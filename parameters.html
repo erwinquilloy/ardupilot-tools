@@ -44,9 +44,9 @@ footer{color:var(--muted);font-size:13px}
   <header>
     <a class="back" href="./">← ArduPilot Tools</a>
     <h1>ArduCustom v2.0 Parameters</h1>
-    <p class="lede">Every parameter in the ArduCustom v2.0 firmware (ArduPlane 4.7.1 base), including the fork's own additions. One list covers both the full and the light release; a light board just doesn't show parameters for features it leaves out. Generated from the source with param_parse.py. Use the <a href="bitmask-calculator.html">Bitmask Calculator</a> to work out bitmask values.</p>
+    <p class="lede">Every parameter in the ArduCustom v2.0 firmware (ArduPlane 4.7.1 base), including the fork's own additions: 6,482 parameters in 6,704 entries, because a few backend parameters are listed once for each backend that uses them. One list covers both the full and the light release; a light board just doesn't show parameters for features it leaves out. Generated from the source with param_parse.py. Use the <a href="bitmask-calculator.html">Bitmask Calculator</a> to work out bitmask values.</p>
   </header>
-  <div class="bar"><input id="q" type="search" placeholder="Search name or description, e.g. LAND_WIND or airspeed" aria-label="Search parameters" autocomplete="off"><output id="n">6704 parameters</output></div>
+  <div class="bar"><input id="q" type="search" placeholder="Search name or description, e.g. LAND_WIND or airspeed" aria-label="Search parameters" autocomplete="off"><output id="n">6,482 parameters</output></div>
   <nav class="groups" aria-label="Parameter groups"><a href="#g-arduplane-parameters">ArduPlane</a><a href="#g-vehicle-parameters">VEHICLE</a><a href="#g-lua-script-parameters">Lua Script</a><a href="#g-adsb-parameters">ADSB_</a><a href="#g-afs-parameters">AFS_</a><a href="#g-ahrs-parameters">AHRS_</a><a href="#g-ais-parameters">AIS_</a><a href="#g-arming-parameters">ARMING_</a><a href="#g-arspd-parameters">ARSPD</a><a href="#g-arspd2-parameters">ARSPD2_</a><a href="#g-arspd3-parameters">ARSPD3_</a><a href="#g-arspd4-parameters">ARSPD4_</a><a href="#g-arspd5-parameters">ARSPD5_</a><a href="#g-arspd6-parameters">ARSPD6_</a><a href="#g-arspd-parameters">ARSPD_</a><a href="#g-autoland-parameters">AUTOLAND_</a><a href="#g-avd-parameters">AVD_</a><a href="#g-baro-parameters">BARO</a><a href="#g-baro1-wcf-parameters">BARO1_WCF_</a><a href="#g-baro2-wcf-parameters">BARO2_WCF_</a><a href="#g-baro3-wcf-parameters">BARO3_WCF_</a><a href="#g-batt2-parameters">BATT2_</a><a href="#g-batt3-parameters">BATT3_</a><a href="#g-batt4-parameters">BATT4_</a><a href="#g-batt5-parameters">BATT5_</a><a href="#g-batt6-parameters">BATT6_</a><a href="#g-batt7-parameters">BATT7_</a><a href="#g-batt8-parameters">BATT8_</a><a href="#g-batt9-parameters">BATT9_</a><a href="#g-batta-parameters">BATTA_</a><a href="#g-battb-parameters">BATTB_</a><a href="#g-battc-parameters">BATTC_</a><a href="#g-battd-parameters">BATTD_</a><a href="#g-batte-parameters">BATTE_</a><a href="#g-battf-parameters">BATTF_</a><a href="#g-battg-parameters">BATTG_</a><a href="#g-batt-parameters">BATT_</a><a href="#g-brd-parameters">BRD_</a><a href="#g-brd-radio-parameters">BRD_RADIO</a><a href="#g-brd-rtc-parameters">BRD_RTC</a><a href="#g-btn-parameters">BTN_</a><a href="#g-cam-parameters">CAM</a><a href="#g-cam1-parameters">CAM1</a><a href="#g-cam1-rc-parameters">CAM1_RC_</a><a href="#g-cam2-parameters">CAM2</a><a href="#g-cam2-rc-parameters">CAM2_RC_</a><a href="#g-can-parameters">CAN_</a><a href="#g-can-d1-parameters">CAN_D1_</a><a href="#g-can-d1-pc-parameters">CAN_D1_PC_</a><a href="#g-can-d1-uc-parameters">CAN_D1_UC_</a><a href="#g-can-d2-parameters">CAN_D2_</a><a href="#g-can-d2-pc-parameters">CAN_D2_PC_</a><a href="#g-can-d2-uc-parameters">CAN_D2_UC_</a><a href="#g-can-d3-parameters">CAN_D3_</a><a href="#g-can-d3-pc-parameters">CAN_D3_PC_</a><a href="#g-can-d3-uc-parameters">CAN_D3_UC_</a><a href="#g-can-p1-parameters">CAN_P1_</a><a href="#g-can-p2-parameters">CAN_P2_</a><a href="#g-can-p3-parameters">CAN_P3_</a><a href="#g-can-slcan-parameters">CAN_SLCAN_</a><a href="#g-chute-parameters">CHUTE_</a><a href="#g-compass-parameters">COMPASS_</a><a href="#g-compass-pmot-parameters">COMPASS_PMOT</a><a href="#g-cust-rot-parameters">CUST_ROT</a><a href="#g-cust-rot1-parameters">CUST_ROT1_</a><a href="#g-cust-rot2-parameters">CUST_ROT2_</a><a href="#g-dds-parameters">DDS</a><a href="#g-dds-ip-parameters">DDS_IP</a><a href="#g-did-parameters">DID_</a><a href="#g-eahrs-parameters">EAHRS</a><a href="#g-efi-parameters">EFI</a><a href="#g-efi-thrlin-parameters">EFI_THRLIN</a><a href="#g-ek2-parameters">EK2_</a><a href="#g-ek3-parameters">EK3_</a><a href="#g-ek3-src-parameters">EK3_SRC</a><a href="#g-esc-tlm-parameters">ESC_TLM</a><a href="#g-fence-parameters">FENCE_</a><a href="#g-fft-parameters">FFT_</a><a href="#g-filt1-parameters">FILT1_</a><a href="#g-filt2-parameters">FILT2_</a><a href="#g-filt3-parameters">FILT3_</a><a href="#g-filt4-parameters">FILT4_</a><a href="#g-filt5-parameters">FILT5_</a><a href="#g-filt6-parameters">FILT6_</a><a href="#g-filt7-parameters">FILT7_</a><a href="#g-filt8-parameters">FILT8_</a><a href="#g-flow-parameters">FLOW</a><a href="#g-foll-parameters">FOLL</a><a href="#g-frsky-parameters">FRSKY_</a><a href="#g-gen-parameters">GEN_</a><a href="#g-gen-l-parameters">GEN_L_</a><a href="#g-gps-parameters">GPS</a><a href="#g-gps1-parameters">GPS1_</a><a href="#g-gps1-mb-parameters">GPS1_MB_</a><a href="#g-gps2-parameters">GPS2_</a><a href="#g-gps2-mb-parameters">GPS2_MB_</a><a href="#g-gps-mb1-parameters">GPS_MB1_</a><a href="#g-gps-mb2-parameters">GPS_MB2_</a><a href="#g-grip-parameters">GRIP_</a><a href="#g-guided-parameters">GUIDED_</a><a href="#g-ice-parameters">ICE_</a><a href="#g-ins-parameters">INS</a><a href="#g-ins4-parameters">INS4_</a><a href="#g-ins4-tcal-parameters">INS4_TCAL_</a><a href="#g-ins5-parameters">INS5_</a><a href="#g-ins5-tcal-parameters">INS5_TCAL_</a><a href="#g-ins-hntc2-parameters">INS_HNTC2_</a><a href="#g-ins-hntc3-parameters">INS_HNTC3_</a><a href="#g-ins-hntc4-parameters">INS_HNTC4_</a><a href="#g-ins-hntch-parameters">INS_HNTCH_</a><a href="#g-ins-log-parameters">INS_LOG_</a><a href="#g-ins-tcal1-parameters">INS_TCAL1_</a><a href="#g-ins-tcal2-parameters">INS_TCAL2_</a><a href="#g-ins-tcal3-parameters">INS_TCAL3_</a><a href="#g-kde-parameters">KDE_</a><a href="#g-land-parameters">LAND_</a><a href="#g-land-ds-parameters">LAND_DS_</a><a href="#g-lgr-parameters">LGR_</a><a href="#g-log-parameters">LOG</a><a href="#g-mav-parameters">MAV</a><a href="#g-mav1-parameters">MAV1</a><a href="#g-mav2-parameters">MAV2</a><a href="#g-mav3-parameters">MAV3</a><a href="#g-mav4-parameters">MAV4</a><a href="#g-mav5-parameters">MAV5</a><a href="#g-mav6-parameters">MAV6</a><a href="#g-mav7-parameters">MAV7</a><a href="#g-mav8-parameters">MAV8</a><a href="#g-mav9-parameters">MAV9</a><a href="#g-mav10-parameters">MAV10</a><a href="#g-mav11-parameters">MAV11</a><a href="#g-mav12-parameters">MAV12</a><a href="#g-mav13-parameters">MAV13</a><a href="#g-mav14-parameters">MAV14</a><a href="#g-mav15-parameters">MAV15</a><a href="#g-mav16-parameters">MAV16</a><a href="#g-mav17-parameters">MAV17</a><a href="#g-mav18-parameters">MAV18</a><a href="#g-mav19-parameters">MAV19</a><a href="#g-mav20-parameters">MAV20</a><a href="#g-mav21-parameters">MAV21</a><a href="#g-mav22-parameters">MAV22</a><a href="#g-mav23-parameters">MAV23</a><a href="#g-mav24-parameters">MAV24</a><a href="#g-mav25-parameters">MAV25</a><a href="#g-mav26-parameters">MAV26</a><a href="#g-mav27-parameters">MAV27</a><a href="#g-mav28-parameters">MAV28</a><a href="#g-mav29-parameters">MAV29</a><a href="#g-mav30-parameters">MAV30</a><a href="#g-mav31-parameters">MAV31</a><a href="#g-mav32-parameters">MAV32</a><a href="#g-mis-parameters">MIS_</a><a href="#g-mnt1-parameters">MNT1</a><a href="#g-mnt2-parameters">MNT2</a><a href="#g-msp-parameters">MSP</a><a href="#g-navl1-parameters">NAVL1_</a><a href="#g-net-parameters">NET_</a><a href="#g-net-gwaddr-parameters">NET_GWADDR</a><a href="#g-net-ipaddr-parameters">NET_IPADDR</a><a href="#g-net-macaddr-parameters">NET_MACADDR</a><a href="#g-net-p1-parameters">NET_P1_</a><a href="#g-net-p1-ip-parameters">NET_P1_IP</a><a href="#g-net-p2-parameters">NET_P2_</a><a href="#g-net-p2-ip-parameters">NET_P2_IP</a><a href="#g-net-p3-parameters">NET_P3_</a><a href="#g-net-p3-ip-parameters">NET_P3_IP</a><a href="#g-net-p4-parameters">NET_P4_</a><a href="#g-net-p4-ip-parameters">NET_P4_IP</a><a href="#g-net-remppp-ip-parameters">NET_REMPPP_IP</a><a href="#g-net-test-ip-parameters">NET_TEST_IP</a><a href="#g-nmea-parameters">NMEA_</a><a href="#g-ntf-parameters">NTF_</a><a href="#g-osd-parameters">OSD</a><a href="#g-osd1-parameters">OSD1_</a><a href="#g-osd2-parameters">OSD2_</a><a href="#g-osd3-parameters">OSD3_</a><a href="#g-osd4-parameters">OSD4_</a><a href="#g-osd5-parameters">OSD5_</a><a href="#g-osd6-parameters">OSD6_</a><a href="#g-osd6-param1-parameters">OSD6_PARAM1</a><a href="#g-osd6-param2-parameters">OSD6_PARAM2</a><a href="#g-osd6-param3-parameters">OSD6_PARAM3</a><a href="#g-osd6-param4-parameters">OSD6_PARAM4</a><a href="#g-osd6-param5-parameters">OSD6_PARAM5</a><a href="#g-osd6-param6-parameters">OSD6_PARAM6</a><a href="#g-osd6-param7-parameters">OSD6_PARAM7</a><a href="#g-osd6-param8-parameters">OSD6_PARAM8</a><a href="#g-osd6-param9-parameters">OSD6_PARAM9</a><a href="#g-osd7-parameters">OSD7_</a><a href="#g-osd7-param1-parameters">OSD7_PARAM1</a><a href="#g-osd7-param2-parameters">OSD7_PARAM2</a><a href="#g-osd7-param3-parameters">OSD7_PARAM3</a><a href="#g-osd7-param4-parameters">OSD7_PARAM4</a><a href="#g-osd7-param5-parameters">OSD7_PARAM5</a><a href="#g-osd7-param6-parameters">OSD7_PARAM6</a><a href="#g-osd7-param7-parameters">OSD7_PARAM7</a><a href="#g-osd7-param8-parameters">OSD7_PARAM8</a><a href="#g-osd7-param9-parameters">OSD7_PARAM9</a><a href="#g-plnd-parameters">PLND_</a><a href="#g-ptch-parameters">PTCH</a><a href="#g-pup-parameters">PUP_</a><a href="#g-qwik-parameters">QWIK_</a><a href="#g-q-parameters">Q_</a><a href="#g-q-autotune-parameters">Q_AUTOTUNE_</a><a href="#g-q-a-parameters">Q_A_</a><a href="#g-q-loit-parameters">Q_LOIT_</a><a href="#g-q-m-parameters">Q_M_</a><a href="#g-q-p-parameters">Q_P</a><a href="#g-q-tailsit-parameters">Q_TAILSIT_</a><a href="#g-q-tilt-parameters">Q_TILT_</a><a href="#g-q-wp-parameters">Q_WP_</a><a href="#g-q-wvane-parameters">Q_WVANE_</a><a href="#g-radar-parameters">RADAR</a><a href="#g-rally-parameters">RALLY_</a><a href="#g-rc-parameters">RC</a><a href="#g-rc1-parameters">RC1_</a><a href="#g-rc2-parameters">RC2_</a><a href="#g-rc3-parameters">RC3_</a><a href="#g-rc4-parameters">RC4_</a><a href="#g-rc5-parameters">RC5_</a><a href="#g-rc6-parameters">RC6_</a><a href="#g-rc7-parameters">RC7_</a><a href="#g-rc8-parameters">RC8_</a><a href="#g-rc9-parameters">RC9_</a><a href="#g-rc10-parameters">RC10_</a><a href="#g-rc11-parameters">RC11_</a><a href="#g-rc12-parameters">RC12_</a><a href="#g-rc13-parameters">RC13_</a><a href="#g-rc14-parameters">RC14_</a><a href="#g-rc15-parameters">RC15_</a><a href="#g-rc16-parameters">RC16_</a><a href="#g-rcmap-parameters">RCMAP_</a><a href="#g-relay1-parameters">RELAY1_</a><a href="#g-relay2-parameters">RELAY2_</a><a href="#g-relay3-parameters">RELAY3_</a><a href="#g-relay4-parameters">RELAY4_</a><a href="#g-relay5-parameters">RELAY5_</a><a href="#g-relay6-parameters">RELAY6_</a><a href="#g-relay7-parameters">RELAY7_</a><a href="#g-relay8-parameters">RELAY8_</a><a href="#g-relay9-parameters">RELAY9_</a><a href="#g-relay10-parameters">RELAY10_</a><a href="#g-relay11-parameters">RELAY11_</a><a href="#g-relay12-parameters">RELAY12_</a><a href="#g-relay13-parameters">RELAY13_</a><a href="#g-relay14-parameters">RELAY14_</a><a href="#g-relay15-parameters">RELAY15_</a><a href="#g-relay16-parameters">RELAY16_</a><a href="#g-rll-parameters">RLL</a><a href="#g-rngfnd1-parameters">RNGFND1_</a><a href="#g-rngfnd1-grf-parameters">RNGFND1_GRF_</a><a href="#g-rngfnd1-grf-parameters">RNGFND1_GRF_</a><a href="#g-rngfnd2-parameters">RNGFND2_</a><a href="#g-rngfnd2-grf-parameters">RNGFND2_GRF_</a><a href="#g-rngfnd2-grf-parameters">RNGFND2_GRF_</a><a href="#g-rngfnd3-parameters">RNGFND3_</a><a href="#g-rngfnd3-grf-parameters">RNGFND3_GRF_</a><a href="#g-rngfnd3-grf-parameters">RNGFND3_GRF_</a><a href="#g-rngfnd4-parameters">RNGFND4_</a><a href="#g-rngfnd4-grf-parameters">RNGFND4_GRF_</a><a href="#g-rngfnd4-grf-parameters">RNGFND4_GRF_</a><a href="#g-rngfnd5-parameters">RNGFND5_</a><a href="#g-rngfnd5-grf-parameters">RNGFND5_GRF_</a><a href="#g-rngfnd5-grf-parameters">RNGFND5_GRF_</a><a href="#g-rngfnd6-parameters">RNGFND6_</a><a href="#g-rngfnd6-grf-parameters">RNGFND6_GRF_</a><a href="#g-rngfnd6-grf-parameters">RNGFND6_GRF_</a><a href="#g-rngfnd7-parameters">RNGFND7_</a><a href="#g-rngfnd7-grf-parameters">RNGFND7_GRF_</a><a href="#g-rngfnd7-grf-parameters">RNGFND7_GRF_</a><a href="#g-rngfnd8-parameters">RNGFND8_</a><a href="#g-rngfnd8-grf-parameters">RNGFND8_GRF_</a><a href="#g-rngfnd8-grf-parameters">RNGFND8_GRF_</a><a href="#g-rngfnd9-parameters">RNGFND9_</a><a href="#g-rngfnd9-grf-parameters">RNGFND9_GRF_</a><a href="#g-rngfnd9-grf-parameters">RNGFND9_GRF_</a><a href="#g-rngfnda-parameters">RNGFNDA_</a><a href="#g-rngfnda-grf-parameters">RNGFNDA_GRF_</a><a href="#g-rngfnda-grf-parameters">RNGFNDA_GRF_</a><a href="#g-rpm1-parameters">RPM1_</a><a href="#g-rpm2-parameters">RPM2_</a><a href="#g-rpm3-parameters">RPM3_</a><a href="#g-rpm4-parameters">RPM4_</a><a href="#g-rssi-parameters">RSSI_</a><a href="#g-sched-parameters">SCHED_</a><a href="#g-scr-parameters">SCR_</a><a href="#g-serial-parameters">SERIAL</a><a href="#g-servo-parameters">SERVO</a><a href="#g-servo1-parameters">SERVO1_</a><a href="#g-servo2-parameters">SERVO2_</a><a href="#g-servo3-parameters">SERVO3_</a><a href="#g-servo4-parameters">SERVO4_</a><a href="#g-servo5-parameters">SERVO5_</a><a href="#g-servo6-parameters">SERVO6_</a><a href="#g-servo7-parameters">SERVO7_</a><a href="#g-servo8-parameters">SERVO8_</a><a href="#g-servo9-parameters">SERVO9_</a><a href="#g-servo10-parameters">SERVO10_</a><a href="#g-servo11-parameters">SERVO11_</a><a href="#g-servo12-parameters">SERVO12_</a><a href="#g-servo13-parameters">SERVO13_</a><a href="#g-servo14-parameters">SERVO14_</a><a href="#g-servo15-parameters">SERVO15_</a><a href="#g-servo16-parameters">SERVO16_</a><a href="#g-servo17-parameters">SERVO17_</a><a href="#g-servo18-parameters">SERVO18_</a><a href="#g-servo19-parameters">SERVO19_</a><a href="#g-servo20-parameters">SERVO20_</a><a href="#g-servo21-parameters">SERVO21_</a><a href="#g-servo22-parameters">SERVO22_</a><a href="#g-servo23-parameters">SERVO23_</a><a href="#g-servo24-parameters">SERVO24_</a><a href="#g-servo25-parameters">SERVO25_</a><a href="#g-servo26-parameters">SERVO26_</a><a href="#g-servo27-parameters">SERVO27_</a><a href="#g-servo28-parameters">SERVO28_</a><a href="#g-servo29-parameters">SERVO29_</a><a href="#g-servo30-parameters">SERVO30_</a><a href="#g-servo31-parameters">SERVO31_</a><a href="#g-servo32-parameters">SERVO32_</a><a href="#g-servo-blh-parameters">SERVO_BLH_</a><a href="#g-servo-ftw-parameters">SERVO_FTW_</a><a href="#g-servo-rob-parameters">SERVO_ROB_</a><a href="#g-servo-sbus-parameters">SERVO_SBUS_</a><a href="#g-servo-volz-parameters">SERVO_VOLZ_</a><a href="#g-sid-parameters">SID</a><a href="#g-sim-parameters">SIM_</a><a href="#g-sim-ais-parameters">SIM_AIS_</a><a href="#g-sim-arspd2-parameters">SIM_ARSPD2_</a><a href="#g-sim-arspd-parameters">SIM_ARSPD_</a><a href="#g-sim-bar2-parameters">SIM_BAR2_</a><a href="#g-sim-bar3-parameters">SIM_BAR3_</a><a href="#g-sim-baro-parameters">SIM_BARO_</a><a href="#g-sim-bz-parameters">SIM_BZ_</a><a href="#g-sim-ftowesc-parameters">SIM_FTOWESC_</a><a href="#g-sim-gld-parameters">SIM_GLD_</a><a href="#g-sim-gps1-parameters">SIM_GPS1_</a><a href="#g-sim-gps2-parameters">SIM_GPS2_</a><a href="#g-sim-gps3-parameters">SIM_GPS3_</a><a href="#g-sim-gps4-parameters">SIM_GPS4_</a><a href="#g-sim-grpe-parameters">SIM_GRPE_</a><a href="#g-sim-grps-parameters">SIM_GRPS_</a><a href="#g-sim-ie24-parameters">SIM_IE24_</a><a href="#g-sim-para-parameters">SIM_PARA_</a><a href="#g-sim-pld-parameters">SIM_PLD_</a><a href="#g-sim-rfl-parameters">SIM_RFL_</a><a href="#g-sim-rich-parameters">SIM_RICH_</a><a href="#g-sim-sb-parameters">SIM_SB_</a><a href="#g-sim-servo-parameters">SIM_SERVO_</a><a href="#g-sim-ship-parameters">SIM_SHIP_</a><a href="#g-sim-slup-parameters">SIM_SLUP_</a><a href="#g-sim-spr-parameters">SIM_SPR_</a><a href="#g-sim-ta-parameters">SIM_TA_</a><a href="#g-sim-teth-parameters">SIM_TETH_</a><a href="#g-sim-vicon-parameters">SIM_VICON_</a><a href="#g-sim-volz-parameters">SIM_VOLZ_</a><a href="#g-soar-parameters">SOAR_</a><a href="#g-stat-parameters">STAT</a><a href="#g-steer2srv-parameters">STEER2SRV_</a><a href="#g-tecs-parameters">TECS_</a><a href="#g-temp-parameters">TEMP</a><a href="#g-temp1-parameters">TEMP1_</a><a href="#g-temp2-parameters">TEMP2_</a><a href="#g-temp3-parameters">TEMP3_</a><a href="#g-temp4-parameters">TEMP4_</a><a href="#g-temp5-parameters">TEMP5_</a><a href="#g-temp6-parameters">TEMP6_</a><a href="#g-temp7-parameters">TEMP7_</a><a href="#g-temp8-parameters">TEMP8_</a><a href="#g-temp9-parameters">TEMP9_</a><a href="#g-temp10-parameters">TEMP10_</a><a href="#g-temp11-parameters">TEMP11_</a><a href="#g-temp12-parameters">TEMP12_</a><a href="#g-temp13-parameters">TEMP13_</a><a href="#g-temp14-parameters">TEMP14_</a><a href="#g-temp15-parameters">TEMP15_</a><a href="#g-terrain-parameters">TERRAIN_</a><a href="#g-tkoff-parameters">TKOFF_</a><a href="#g-tune-parameters">TUNE_</a><a href="#g-viso-parameters">VISO</a><a href="#g-vtx-parameters">VTX_</a><a href="#g-yaw-parameters">YAW</a></nav>
   <section class="grp" id="g-arduplane-parameters"><h2>ArduPlane Parameters</h2><article class="p" id="FORMAT_VERSION" data-k="format_version eeprom format version number (arduplane:format_version)"><h3><a href="#FORMAT_VERSION">FORMAT_VERSION</a> <span>Eeprom format version number</span></h3><em>Note: This parameter is for advanced users</em><br>
 
@@ -7480,7 +7480,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT2_I2C_BUS" data-k="batt2_i2c_bus battery monitor i2c bus number (batt2_i2c_bus)"><h3><a href="#BATT2_I2C_BUS">BATT2_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT2_I2C_BUS-2" data-k="batt2_i2c_bus battery monitor i2c bus number (batt2_i2c_bus)"><h3><a href="#BATT2_I2C_BUS-2">BATT2_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C bus number</p>
 <ul>
@@ -7489,7 +7489,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT2_I2C_ADDR" data-k="batt2_i2c_addr battery monitor i2c address (batt2_i2c_addr)"><h3><a href="#BATT2_I2C_ADDR">BATT2_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT2_I2C_ADDR-2" data-k="batt2_i2c_addr battery monitor i2c address (batt2_i2c_addr)"><h3><a href="#BATT2_I2C_ADDR-2">BATT2_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C address. If this is zero then probe list of supported addresses</p>
 <ul>
@@ -7524,7 +7524,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT2_MAX_AMPS" data-k="batt2_max_amps battery monitor max current (batt2_max_amps)"><h3><a href="#BATT2_MAX_AMPS">BATT2_MAX_AMPS</a> <span>Battery monitor max current</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT2_MAX_AMPS-2" data-k="batt2_max_amps battery monitor max current (batt2_max_amps)"><h3><a href="#BATT2_MAX_AMPS-2">BATT2_MAX_AMPS</a> <span>Battery monitor max current</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>This controls the maximum current the INA239 sensor will work with.</p>
 <ul>
@@ -7533,7 +7533,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT2_SHUNT" data-k="batt2_shunt battery monitor shunt resistor (batt2_shunt)"><h3><a href="#BATT2_SHUNT">BATT2_SHUNT</a> <span>Battery monitor shunt resistor</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT2_SHUNT-2" data-k="batt2_shunt battery monitor shunt resistor (batt2_shunt)"><h3><a href="#BATT2_SHUNT-2">BATT2_SHUNT</a> <span>Battery monitor shunt resistor</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>This sets the shunt resistor used in the device</p>
 <ul>
@@ -7542,7 +7542,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT2_I2C_BUS" data-k="batt2_i2c_bus battery monitor i2c bus number (batt2_i2c_bus)"><h3><a href="#BATT2_I2C_BUS">BATT2_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT2_I2C_BUS-3" data-k="batt2_i2c_bus battery monitor i2c bus number (batt2_i2c_bus)"><h3><a href="#BATT2_I2C_BUS-3">BATT2_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C bus number</p>
 <ul>
@@ -7551,7 +7551,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT2_I2C_ADDR" data-k="batt2_i2c_addr battery monitor i2c address (batt2_i2c_addr)"><h3><a href="#BATT2_I2C_ADDR">BATT2_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT2_I2C_ADDR-3" data-k="batt2_i2c_addr battery monitor i2c address (batt2_i2c_addr)"><h3><a href="#BATT2_I2C_ADDR-3">BATT2_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C address. If this is zero then probe list of supported addresses</p>
 <ul>
@@ -7569,7 +7569,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT2_VOLT_PIN" data-k="batt2_volt_pin battery voltage sensing pin on the ad7091r5 ic (batt2_volt_pin)"><h3><a href="#BATT2_VOLT_PIN">BATT2_VOLT_PIN</a> <span>Battery Voltage sensing pin on the AD7091R5 Ic</span></h3>
+</article><article class="p" id="BATT2_VOLT_PIN-2" data-k="batt2_volt_pin battery voltage sensing pin on the ad7091r5 ic (batt2_volt_pin)"><h3><a href="#BATT2_VOLT_PIN-2">BATT2_VOLT_PIN</a> <span>Battery Voltage sensing pin on the AD7091R5 Ic</span></h3>
 
 <p>Sets the analog input pin that should be used for voltage monitoring on AD7091R5.</p>
 <ul>
@@ -7581,7 +7581,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT2_CURR_PIN" data-k="batt2_curr_pin battery current sensing pin (batt2_curr_pin)"><h3><a href="#BATT2_CURR_PIN">BATT2_CURR_PIN</a> <span>Battery Current sensing pin</span></h3>
+</article><article class="p" id="BATT2_CURR_PIN-2" data-k="batt2_curr_pin battery current sensing pin (batt2_curr_pin)"><h3><a href="#BATT2_CURR_PIN-2">BATT2_CURR_PIN</a> <span>Battery Current sensing pin</span></h3>
 
 <p>Sets the analog input pin that should be used for Current monitoring on AD7091R5.</p>
 <ul>
@@ -7593,14 +7593,14 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT2_VOLT_MULT" data-k="batt2_volt_mult voltage multiplier (batt2_volt_mult)"><h3><a href="#BATT2_VOLT_MULT">BATT2_VOLT_MULT</a> <span>Voltage Multiplier</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT2_VOLT_MULT-2" data-k="batt2_volt_mult voltage multiplier (batt2_volt_mult)"><h3><a href="#BATT2_VOLT_MULT-2">BATT2_VOLT_MULT</a> <span>Voltage Multiplier</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Used to convert the voltage of the voltage sensing pin (BATT2_VOLT_PIN) to the actual battery&#x27;s voltage (pin_voltage * VOLT_MULT).</p>
 <ul>
 </ul>
 
 
-</article><article class="p" id="BATT2_AMP_PERVLT" data-k="batt2_amp_pervlt amps per volt (batt2_amp_pervlt)"><h3><a href="#BATT2_AMP_PERVLT">BATT2_AMP_PERVLT</a> <span>Amps per volt</span></h3>
+</article><article class="p" id="BATT2_AMP_PERVLT-2" data-k="batt2_amp_pervlt amps per volt (batt2_amp_pervlt)"><h3><a href="#BATT2_AMP_PERVLT-2">BATT2_AMP_PERVLT</a> <span>Amps per volt</span></h3>
 
 <p>Number of amps that a 1V reading on the current sensor corresponds to.</p>
 <ul>
@@ -7608,7 +7608,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT2_AMP_OFFSET" data-k="batt2_amp_offset amp offset (batt2_amp_offset)"><h3><a href="#BATT2_AMP_OFFSET">BATT2_AMP_OFFSET</a> <span>AMP offset</span></h3>
+</article><article class="p" id="BATT2_AMP_OFFSET-2" data-k="batt2_amp_offset amp offset (batt2_amp_offset)"><h3><a href="#BATT2_AMP_OFFSET-2">BATT2_AMP_OFFSET</a> <span>AMP offset</span></h3>
 
 <p>Voltage offset at zero current on current sensor</p>
 <ul>
@@ -7616,7 +7616,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT2_VLT_OFFSET" data-k="batt2_vlt_offset volage offset (batt2_vlt_offset)"><h3><a href="#BATT2_VLT_OFFSET">BATT2_VLT_OFFSET</a> <span>Volage offset</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT2_VLT_OFFSET-2" data-k="batt2_vlt_offset volage offset (batt2_vlt_offset)"><h3><a href="#BATT2_VLT_OFFSET-2">BATT2_VLT_OFFSET</a> <span>Volage offset</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Voltage offset on voltage pin. This allows for an offset due to a diode. This voltage is subtracted before the scaling is applied</p>
 <ul>
@@ -8081,7 +8081,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT3_I2C_BUS" data-k="batt3_i2c_bus battery monitor i2c bus number (batt3_i2c_bus)"><h3><a href="#BATT3_I2C_BUS">BATT3_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT3_I2C_BUS-2" data-k="batt3_i2c_bus battery monitor i2c bus number (batt3_i2c_bus)"><h3><a href="#BATT3_I2C_BUS-2">BATT3_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C bus number</p>
 <ul>
@@ -8090,7 +8090,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT3_I2C_ADDR" data-k="batt3_i2c_addr battery monitor i2c address (batt3_i2c_addr)"><h3><a href="#BATT3_I2C_ADDR">BATT3_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT3_I2C_ADDR-2" data-k="batt3_i2c_addr battery monitor i2c address (batt3_i2c_addr)"><h3><a href="#BATT3_I2C_ADDR-2">BATT3_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C address. If this is zero then probe list of supported addresses</p>
 <ul>
@@ -8125,7 +8125,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT3_MAX_AMPS" data-k="batt3_max_amps battery monitor max current (batt3_max_amps)"><h3><a href="#BATT3_MAX_AMPS">BATT3_MAX_AMPS</a> <span>Battery monitor max current</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT3_MAX_AMPS-2" data-k="batt3_max_amps battery monitor max current (batt3_max_amps)"><h3><a href="#BATT3_MAX_AMPS-2">BATT3_MAX_AMPS</a> <span>Battery monitor max current</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>This controls the maximum current the INA239 sensor will work with.</p>
 <ul>
@@ -8134,7 +8134,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT3_SHUNT" data-k="batt3_shunt battery monitor shunt resistor (batt3_shunt)"><h3><a href="#BATT3_SHUNT">BATT3_SHUNT</a> <span>Battery monitor shunt resistor</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT3_SHUNT-2" data-k="batt3_shunt battery monitor shunt resistor (batt3_shunt)"><h3><a href="#BATT3_SHUNT-2">BATT3_SHUNT</a> <span>Battery monitor shunt resistor</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>This sets the shunt resistor used in the device</p>
 <ul>
@@ -8143,7 +8143,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT3_I2C_BUS" data-k="batt3_i2c_bus battery monitor i2c bus number (batt3_i2c_bus)"><h3><a href="#BATT3_I2C_BUS">BATT3_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT3_I2C_BUS-3" data-k="batt3_i2c_bus battery monitor i2c bus number (batt3_i2c_bus)"><h3><a href="#BATT3_I2C_BUS-3">BATT3_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C bus number</p>
 <ul>
@@ -8152,7 +8152,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT3_I2C_ADDR" data-k="batt3_i2c_addr battery monitor i2c address (batt3_i2c_addr)"><h3><a href="#BATT3_I2C_ADDR">BATT3_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT3_I2C_ADDR-3" data-k="batt3_i2c_addr battery monitor i2c address (batt3_i2c_addr)"><h3><a href="#BATT3_I2C_ADDR-3">BATT3_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C address. If this is zero then probe list of supported addresses</p>
 <ul>
@@ -8170,7 +8170,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT3_VOLT_PIN" data-k="batt3_volt_pin battery voltage sensing pin on the ad7091r5 ic (batt3_volt_pin)"><h3><a href="#BATT3_VOLT_PIN">BATT3_VOLT_PIN</a> <span>Battery Voltage sensing pin on the AD7091R5 Ic</span></h3>
+</article><article class="p" id="BATT3_VOLT_PIN-2" data-k="batt3_volt_pin battery voltage sensing pin on the ad7091r5 ic (batt3_volt_pin)"><h3><a href="#BATT3_VOLT_PIN-2">BATT3_VOLT_PIN</a> <span>Battery Voltage sensing pin on the AD7091R5 Ic</span></h3>
 
 <p>Sets the analog input pin that should be used for voltage monitoring on AD7091R5.</p>
 <ul>
@@ -8182,7 +8182,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT3_CURR_PIN" data-k="batt3_curr_pin battery current sensing pin (batt3_curr_pin)"><h3><a href="#BATT3_CURR_PIN">BATT3_CURR_PIN</a> <span>Battery Current sensing pin</span></h3>
+</article><article class="p" id="BATT3_CURR_PIN-2" data-k="batt3_curr_pin battery current sensing pin (batt3_curr_pin)"><h3><a href="#BATT3_CURR_PIN-2">BATT3_CURR_PIN</a> <span>Battery Current sensing pin</span></h3>
 
 <p>Sets the analog input pin that should be used for Current monitoring on AD7091R5.</p>
 <ul>
@@ -8194,14 +8194,14 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT3_VOLT_MULT" data-k="batt3_volt_mult voltage multiplier (batt3_volt_mult)"><h3><a href="#BATT3_VOLT_MULT">BATT3_VOLT_MULT</a> <span>Voltage Multiplier</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT3_VOLT_MULT-2" data-k="batt3_volt_mult voltage multiplier (batt3_volt_mult)"><h3><a href="#BATT3_VOLT_MULT-2">BATT3_VOLT_MULT</a> <span>Voltage Multiplier</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Used to convert the voltage of the voltage sensing pin (BATT3_VOLT_PIN) to the actual battery&#x27;s voltage (pin_voltage * VOLT_MULT).</p>
 <ul>
 </ul>
 
 
-</article><article class="p" id="BATT3_AMP_PERVLT" data-k="batt3_amp_pervlt amps per volt (batt3_amp_pervlt)"><h3><a href="#BATT3_AMP_PERVLT">BATT3_AMP_PERVLT</a> <span>Amps per volt</span></h3>
+</article><article class="p" id="BATT3_AMP_PERVLT-2" data-k="batt3_amp_pervlt amps per volt (batt3_amp_pervlt)"><h3><a href="#BATT3_AMP_PERVLT-2">BATT3_AMP_PERVLT</a> <span>Amps per volt</span></h3>
 
 <p>Number of amps that a 1V reading on the current sensor corresponds to.</p>
 <ul>
@@ -8209,7 +8209,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT3_AMP_OFFSET" data-k="batt3_amp_offset amp offset (batt3_amp_offset)"><h3><a href="#BATT3_AMP_OFFSET">BATT3_AMP_OFFSET</a> <span>AMP offset</span></h3>
+</article><article class="p" id="BATT3_AMP_OFFSET-2" data-k="batt3_amp_offset amp offset (batt3_amp_offset)"><h3><a href="#BATT3_AMP_OFFSET-2">BATT3_AMP_OFFSET</a> <span>AMP offset</span></h3>
 
 <p>Voltage offset at zero current on current sensor</p>
 <ul>
@@ -8217,7 +8217,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT3_VLT_OFFSET" data-k="batt3_vlt_offset volage offset (batt3_vlt_offset)"><h3><a href="#BATT3_VLT_OFFSET">BATT3_VLT_OFFSET</a> <span>Volage offset</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT3_VLT_OFFSET-2" data-k="batt3_vlt_offset volage offset (batt3_vlt_offset)"><h3><a href="#BATT3_VLT_OFFSET-2">BATT3_VLT_OFFSET</a> <span>Volage offset</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Voltage offset on voltage pin. This allows for an offset due to a diode. This voltage is subtracted before the scaling is applied</p>
 <ul>
@@ -8682,7 +8682,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT4_I2C_BUS" data-k="batt4_i2c_bus battery monitor i2c bus number (batt4_i2c_bus)"><h3><a href="#BATT4_I2C_BUS">BATT4_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT4_I2C_BUS-2" data-k="batt4_i2c_bus battery monitor i2c bus number (batt4_i2c_bus)"><h3><a href="#BATT4_I2C_BUS-2">BATT4_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C bus number</p>
 <ul>
@@ -8691,7 +8691,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT4_I2C_ADDR" data-k="batt4_i2c_addr battery monitor i2c address (batt4_i2c_addr)"><h3><a href="#BATT4_I2C_ADDR">BATT4_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT4_I2C_ADDR-2" data-k="batt4_i2c_addr battery monitor i2c address (batt4_i2c_addr)"><h3><a href="#BATT4_I2C_ADDR-2">BATT4_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C address. If this is zero then probe list of supported addresses</p>
 <ul>
@@ -8726,7 +8726,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT4_MAX_AMPS" data-k="batt4_max_amps battery monitor max current (batt4_max_amps)"><h3><a href="#BATT4_MAX_AMPS">BATT4_MAX_AMPS</a> <span>Battery monitor max current</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT4_MAX_AMPS-2" data-k="batt4_max_amps battery monitor max current (batt4_max_amps)"><h3><a href="#BATT4_MAX_AMPS-2">BATT4_MAX_AMPS</a> <span>Battery monitor max current</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>This controls the maximum current the INA239 sensor will work with.</p>
 <ul>
@@ -8735,7 +8735,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT4_SHUNT" data-k="batt4_shunt battery monitor shunt resistor (batt4_shunt)"><h3><a href="#BATT4_SHUNT">BATT4_SHUNT</a> <span>Battery monitor shunt resistor</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT4_SHUNT-2" data-k="batt4_shunt battery monitor shunt resistor (batt4_shunt)"><h3><a href="#BATT4_SHUNT-2">BATT4_SHUNT</a> <span>Battery monitor shunt resistor</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>This sets the shunt resistor used in the device</p>
 <ul>
@@ -8744,7 +8744,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT4_I2C_BUS" data-k="batt4_i2c_bus battery monitor i2c bus number (batt4_i2c_bus)"><h3><a href="#BATT4_I2C_BUS">BATT4_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT4_I2C_BUS-3" data-k="batt4_i2c_bus battery monitor i2c bus number (batt4_i2c_bus)"><h3><a href="#BATT4_I2C_BUS-3">BATT4_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C bus number</p>
 <ul>
@@ -8753,7 +8753,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT4_I2C_ADDR" data-k="batt4_i2c_addr battery monitor i2c address (batt4_i2c_addr)"><h3><a href="#BATT4_I2C_ADDR">BATT4_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT4_I2C_ADDR-3" data-k="batt4_i2c_addr battery monitor i2c address (batt4_i2c_addr)"><h3><a href="#BATT4_I2C_ADDR-3">BATT4_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C address. If this is zero then probe list of supported addresses</p>
 <ul>
@@ -8771,7 +8771,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT4_VOLT_PIN" data-k="batt4_volt_pin battery voltage sensing pin on the ad7091r5 ic (batt4_volt_pin)"><h3><a href="#BATT4_VOLT_PIN">BATT4_VOLT_PIN</a> <span>Battery Voltage sensing pin on the AD7091R5 Ic</span></h3>
+</article><article class="p" id="BATT4_VOLT_PIN-2" data-k="batt4_volt_pin battery voltage sensing pin on the ad7091r5 ic (batt4_volt_pin)"><h3><a href="#BATT4_VOLT_PIN-2">BATT4_VOLT_PIN</a> <span>Battery Voltage sensing pin on the AD7091R5 Ic</span></h3>
 
 <p>Sets the analog input pin that should be used for voltage monitoring on AD7091R5.</p>
 <ul>
@@ -8783,7 +8783,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT4_CURR_PIN" data-k="batt4_curr_pin battery current sensing pin (batt4_curr_pin)"><h3><a href="#BATT4_CURR_PIN">BATT4_CURR_PIN</a> <span>Battery Current sensing pin</span></h3>
+</article><article class="p" id="BATT4_CURR_PIN-2" data-k="batt4_curr_pin battery current sensing pin (batt4_curr_pin)"><h3><a href="#BATT4_CURR_PIN-2">BATT4_CURR_PIN</a> <span>Battery Current sensing pin</span></h3>
 
 <p>Sets the analog input pin that should be used for Current monitoring on AD7091R5.</p>
 <ul>
@@ -8795,14 +8795,14 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT4_VOLT_MULT" data-k="batt4_volt_mult voltage multiplier (batt4_volt_mult)"><h3><a href="#BATT4_VOLT_MULT">BATT4_VOLT_MULT</a> <span>Voltage Multiplier</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT4_VOLT_MULT-2" data-k="batt4_volt_mult voltage multiplier (batt4_volt_mult)"><h3><a href="#BATT4_VOLT_MULT-2">BATT4_VOLT_MULT</a> <span>Voltage Multiplier</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Used to convert the voltage of the voltage sensing pin (BATT4_VOLT_PIN) to the actual battery&#x27;s voltage (pin_voltage * VOLT_MULT).</p>
 <ul>
 </ul>
 
 
-</article><article class="p" id="BATT4_AMP_PERVLT" data-k="batt4_amp_pervlt amps per volt (batt4_amp_pervlt)"><h3><a href="#BATT4_AMP_PERVLT">BATT4_AMP_PERVLT</a> <span>Amps per volt</span></h3>
+</article><article class="p" id="BATT4_AMP_PERVLT-2" data-k="batt4_amp_pervlt amps per volt (batt4_amp_pervlt)"><h3><a href="#BATT4_AMP_PERVLT-2">BATT4_AMP_PERVLT</a> <span>Amps per volt</span></h3>
 
 <p>Number of amps that a 1V reading on the current sensor corresponds to.</p>
 <ul>
@@ -8810,7 +8810,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT4_AMP_OFFSET" data-k="batt4_amp_offset amp offset (batt4_amp_offset)"><h3><a href="#BATT4_AMP_OFFSET">BATT4_AMP_OFFSET</a> <span>AMP offset</span></h3>
+</article><article class="p" id="BATT4_AMP_OFFSET-2" data-k="batt4_amp_offset amp offset (batt4_amp_offset)"><h3><a href="#BATT4_AMP_OFFSET-2">BATT4_AMP_OFFSET</a> <span>AMP offset</span></h3>
 
 <p>Voltage offset at zero current on current sensor</p>
 <ul>
@@ -8818,7 +8818,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT4_VLT_OFFSET" data-k="batt4_vlt_offset volage offset (batt4_vlt_offset)"><h3><a href="#BATT4_VLT_OFFSET">BATT4_VLT_OFFSET</a> <span>Volage offset</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT4_VLT_OFFSET-2" data-k="batt4_vlt_offset volage offset (batt4_vlt_offset)"><h3><a href="#BATT4_VLT_OFFSET-2">BATT4_VLT_OFFSET</a> <span>Volage offset</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Voltage offset on voltage pin. This allows for an offset due to a diode. This voltage is subtracted before the scaling is applied</p>
 <ul>
@@ -9283,7 +9283,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT5_I2C_BUS" data-k="batt5_i2c_bus battery monitor i2c bus number (batt5_i2c_bus)"><h3><a href="#BATT5_I2C_BUS">BATT5_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT5_I2C_BUS-2" data-k="batt5_i2c_bus battery monitor i2c bus number (batt5_i2c_bus)"><h3><a href="#BATT5_I2C_BUS-2">BATT5_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C bus number</p>
 <ul>
@@ -9292,7 +9292,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT5_I2C_ADDR" data-k="batt5_i2c_addr battery monitor i2c address (batt5_i2c_addr)"><h3><a href="#BATT5_I2C_ADDR">BATT5_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT5_I2C_ADDR-2" data-k="batt5_i2c_addr battery monitor i2c address (batt5_i2c_addr)"><h3><a href="#BATT5_I2C_ADDR-2">BATT5_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C address. If this is zero then probe list of supported addresses</p>
 <ul>
@@ -9327,7 +9327,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT5_MAX_AMPS" data-k="batt5_max_amps battery monitor max current (batt5_max_amps)"><h3><a href="#BATT5_MAX_AMPS">BATT5_MAX_AMPS</a> <span>Battery monitor max current</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT5_MAX_AMPS-2" data-k="batt5_max_amps battery monitor max current (batt5_max_amps)"><h3><a href="#BATT5_MAX_AMPS-2">BATT5_MAX_AMPS</a> <span>Battery monitor max current</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>This controls the maximum current the INA239 sensor will work with.</p>
 <ul>
@@ -9336,7 +9336,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT5_SHUNT" data-k="batt5_shunt battery monitor shunt resistor (batt5_shunt)"><h3><a href="#BATT5_SHUNT">BATT5_SHUNT</a> <span>Battery monitor shunt resistor</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT5_SHUNT-2" data-k="batt5_shunt battery monitor shunt resistor (batt5_shunt)"><h3><a href="#BATT5_SHUNT-2">BATT5_SHUNT</a> <span>Battery monitor shunt resistor</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>This sets the shunt resistor used in the device</p>
 <ul>
@@ -9345,7 +9345,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT5_I2C_BUS" data-k="batt5_i2c_bus battery monitor i2c bus number (batt5_i2c_bus)"><h3><a href="#BATT5_I2C_BUS">BATT5_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT5_I2C_BUS-3" data-k="batt5_i2c_bus battery monitor i2c bus number (batt5_i2c_bus)"><h3><a href="#BATT5_I2C_BUS-3">BATT5_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C bus number</p>
 <ul>
@@ -9354,7 +9354,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT5_I2C_ADDR" data-k="batt5_i2c_addr battery monitor i2c address (batt5_i2c_addr)"><h3><a href="#BATT5_I2C_ADDR">BATT5_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT5_I2C_ADDR-3" data-k="batt5_i2c_addr battery monitor i2c address (batt5_i2c_addr)"><h3><a href="#BATT5_I2C_ADDR-3">BATT5_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C address. If this is zero then probe list of supported addresses</p>
 <ul>
@@ -9372,7 +9372,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT5_VOLT_PIN" data-k="batt5_volt_pin battery voltage sensing pin on the ad7091r5 ic (batt5_volt_pin)"><h3><a href="#BATT5_VOLT_PIN">BATT5_VOLT_PIN</a> <span>Battery Voltage sensing pin on the AD7091R5 Ic</span></h3>
+</article><article class="p" id="BATT5_VOLT_PIN-2" data-k="batt5_volt_pin battery voltage sensing pin on the ad7091r5 ic (batt5_volt_pin)"><h3><a href="#BATT5_VOLT_PIN-2">BATT5_VOLT_PIN</a> <span>Battery Voltage sensing pin on the AD7091R5 Ic</span></h3>
 
 <p>Sets the analog input pin that should be used for voltage monitoring on AD7091R5.</p>
 <ul>
@@ -9384,7 +9384,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT5_CURR_PIN" data-k="batt5_curr_pin battery current sensing pin (batt5_curr_pin)"><h3><a href="#BATT5_CURR_PIN">BATT5_CURR_PIN</a> <span>Battery Current sensing pin</span></h3>
+</article><article class="p" id="BATT5_CURR_PIN-2" data-k="batt5_curr_pin battery current sensing pin (batt5_curr_pin)"><h3><a href="#BATT5_CURR_PIN-2">BATT5_CURR_PIN</a> <span>Battery Current sensing pin</span></h3>
 
 <p>Sets the analog input pin that should be used for Current monitoring on AD7091R5.</p>
 <ul>
@@ -9396,14 +9396,14 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT5_VOLT_MULT" data-k="batt5_volt_mult voltage multiplier (batt5_volt_mult)"><h3><a href="#BATT5_VOLT_MULT">BATT5_VOLT_MULT</a> <span>Voltage Multiplier</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT5_VOLT_MULT-2" data-k="batt5_volt_mult voltage multiplier (batt5_volt_mult)"><h3><a href="#BATT5_VOLT_MULT-2">BATT5_VOLT_MULT</a> <span>Voltage Multiplier</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Used to convert the voltage of the voltage sensing pin (BATT5_VOLT_PIN) to the actual battery&#x27;s voltage (pin_voltage * VOLT_MULT).</p>
 <ul>
 </ul>
 
 
-</article><article class="p" id="BATT5_AMP_PERVLT" data-k="batt5_amp_pervlt amps per volt (batt5_amp_pervlt)"><h3><a href="#BATT5_AMP_PERVLT">BATT5_AMP_PERVLT</a> <span>Amps per volt</span></h3>
+</article><article class="p" id="BATT5_AMP_PERVLT-2" data-k="batt5_amp_pervlt amps per volt (batt5_amp_pervlt)"><h3><a href="#BATT5_AMP_PERVLT-2">BATT5_AMP_PERVLT</a> <span>Amps per volt</span></h3>
 
 <p>Number of amps that a 1V reading on the current sensor corresponds to.</p>
 <ul>
@@ -9411,7 +9411,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT5_AMP_OFFSET" data-k="batt5_amp_offset amp offset (batt5_amp_offset)"><h3><a href="#BATT5_AMP_OFFSET">BATT5_AMP_OFFSET</a> <span>AMP offset</span></h3>
+</article><article class="p" id="BATT5_AMP_OFFSET-2" data-k="batt5_amp_offset amp offset (batt5_amp_offset)"><h3><a href="#BATT5_AMP_OFFSET-2">BATT5_AMP_OFFSET</a> <span>AMP offset</span></h3>
 
 <p>Voltage offset at zero current on current sensor</p>
 <ul>
@@ -9419,7 +9419,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT5_VLT_OFFSET" data-k="batt5_vlt_offset volage offset (batt5_vlt_offset)"><h3><a href="#BATT5_VLT_OFFSET">BATT5_VLT_OFFSET</a> <span>Volage offset</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT5_VLT_OFFSET-2" data-k="batt5_vlt_offset volage offset (batt5_vlt_offset)"><h3><a href="#BATT5_VLT_OFFSET-2">BATT5_VLT_OFFSET</a> <span>Volage offset</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Voltage offset on voltage pin. This allows for an offset due to a diode. This voltage is subtracted before the scaling is applied</p>
 <ul>
@@ -9884,7 +9884,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT6_I2C_BUS" data-k="batt6_i2c_bus battery monitor i2c bus number (batt6_i2c_bus)"><h3><a href="#BATT6_I2C_BUS">BATT6_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT6_I2C_BUS-2" data-k="batt6_i2c_bus battery monitor i2c bus number (batt6_i2c_bus)"><h3><a href="#BATT6_I2C_BUS-2">BATT6_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C bus number</p>
 <ul>
@@ -9893,7 +9893,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT6_I2C_ADDR" data-k="batt6_i2c_addr battery monitor i2c address (batt6_i2c_addr)"><h3><a href="#BATT6_I2C_ADDR">BATT6_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT6_I2C_ADDR-2" data-k="batt6_i2c_addr battery monitor i2c address (batt6_i2c_addr)"><h3><a href="#BATT6_I2C_ADDR-2">BATT6_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C address. If this is zero then probe list of supported addresses</p>
 <ul>
@@ -9928,7 +9928,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT6_MAX_AMPS" data-k="batt6_max_amps battery monitor max current (batt6_max_amps)"><h3><a href="#BATT6_MAX_AMPS">BATT6_MAX_AMPS</a> <span>Battery monitor max current</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT6_MAX_AMPS-2" data-k="batt6_max_amps battery monitor max current (batt6_max_amps)"><h3><a href="#BATT6_MAX_AMPS-2">BATT6_MAX_AMPS</a> <span>Battery monitor max current</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>This controls the maximum current the INA239 sensor will work with.</p>
 <ul>
@@ -9937,7 +9937,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT6_SHUNT" data-k="batt6_shunt battery monitor shunt resistor (batt6_shunt)"><h3><a href="#BATT6_SHUNT">BATT6_SHUNT</a> <span>Battery monitor shunt resistor</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT6_SHUNT-2" data-k="batt6_shunt battery monitor shunt resistor (batt6_shunt)"><h3><a href="#BATT6_SHUNT-2">BATT6_SHUNT</a> <span>Battery monitor shunt resistor</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>This sets the shunt resistor used in the device</p>
 <ul>
@@ -9946,7 +9946,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT6_I2C_BUS" data-k="batt6_i2c_bus battery monitor i2c bus number (batt6_i2c_bus)"><h3><a href="#BATT6_I2C_BUS">BATT6_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT6_I2C_BUS-3" data-k="batt6_i2c_bus battery monitor i2c bus number (batt6_i2c_bus)"><h3><a href="#BATT6_I2C_BUS-3">BATT6_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C bus number</p>
 <ul>
@@ -9955,7 +9955,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT6_I2C_ADDR" data-k="batt6_i2c_addr battery monitor i2c address (batt6_i2c_addr)"><h3><a href="#BATT6_I2C_ADDR">BATT6_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT6_I2C_ADDR-3" data-k="batt6_i2c_addr battery monitor i2c address (batt6_i2c_addr)"><h3><a href="#BATT6_I2C_ADDR-3">BATT6_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C address. If this is zero then probe list of supported addresses</p>
 <ul>
@@ -9973,7 +9973,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT6_VOLT_PIN" data-k="batt6_volt_pin battery voltage sensing pin on the ad7091r5 ic (batt6_volt_pin)"><h3><a href="#BATT6_VOLT_PIN">BATT6_VOLT_PIN</a> <span>Battery Voltage sensing pin on the AD7091R5 Ic</span></h3>
+</article><article class="p" id="BATT6_VOLT_PIN-2" data-k="batt6_volt_pin battery voltage sensing pin on the ad7091r5 ic (batt6_volt_pin)"><h3><a href="#BATT6_VOLT_PIN-2">BATT6_VOLT_PIN</a> <span>Battery Voltage sensing pin on the AD7091R5 Ic</span></h3>
 
 <p>Sets the analog input pin that should be used for voltage monitoring on AD7091R5.</p>
 <ul>
@@ -9985,7 +9985,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT6_CURR_PIN" data-k="batt6_curr_pin battery current sensing pin (batt6_curr_pin)"><h3><a href="#BATT6_CURR_PIN">BATT6_CURR_PIN</a> <span>Battery Current sensing pin</span></h3>
+</article><article class="p" id="BATT6_CURR_PIN-2" data-k="batt6_curr_pin battery current sensing pin (batt6_curr_pin)"><h3><a href="#BATT6_CURR_PIN-2">BATT6_CURR_PIN</a> <span>Battery Current sensing pin</span></h3>
 
 <p>Sets the analog input pin that should be used for Current monitoring on AD7091R5.</p>
 <ul>
@@ -9997,14 +9997,14 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT6_VOLT_MULT" data-k="batt6_volt_mult voltage multiplier (batt6_volt_mult)"><h3><a href="#BATT6_VOLT_MULT">BATT6_VOLT_MULT</a> <span>Voltage Multiplier</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT6_VOLT_MULT-2" data-k="batt6_volt_mult voltage multiplier (batt6_volt_mult)"><h3><a href="#BATT6_VOLT_MULT-2">BATT6_VOLT_MULT</a> <span>Voltage Multiplier</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Used to convert the voltage of the voltage sensing pin (BATT6_VOLT_PIN) to the actual battery&#x27;s voltage (pin_voltage * VOLT_MULT).</p>
 <ul>
 </ul>
 
 
-</article><article class="p" id="BATT6_AMP_PERVLT" data-k="batt6_amp_pervlt amps per volt (batt6_amp_pervlt)"><h3><a href="#BATT6_AMP_PERVLT">BATT6_AMP_PERVLT</a> <span>Amps per volt</span></h3>
+</article><article class="p" id="BATT6_AMP_PERVLT-2" data-k="batt6_amp_pervlt amps per volt (batt6_amp_pervlt)"><h3><a href="#BATT6_AMP_PERVLT-2">BATT6_AMP_PERVLT</a> <span>Amps per volt</span></h3>
 
 <p>Number of amps that a 1V reading on the current sensor corresponds to.</p>
 <ul>
@@ -10012,7 +10012,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT6_AMP_OFFSET" data-k="batt6_amp_offset amp offset (batt6_amp_offset)"><h3><a href="#BATT6_AMP_OFFSET">BATT6_AMP_OFFSET</a> <span>AMP offset</span></h3>
+</article><article class="p" id="BATT6_AMP_OFFSET-2" data-k="batt6_amp_offset amp offset (batt6_amp_offset)"><h3><a href="#BATT6_AMP_OFFSET-2">BATT6_AMP_OFFSET</a> <span>AMP offset</span></h3>
 
 <p>Voltage offset at zero current on current sensor</p>
 <ul>
@@ -10020,7 +10020,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT6_VLT_OFFSET" data-k="batt6_vlt_offset volage offset (batt6_vlt_offset)"><h3><a href="#BATT6_VLT_OFFSET">BATT6_VLT_OFFSET</a> <span>Volage offset</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT6_VLT_OFFSET-2" data-k="batt6_vlt_offset volage offset (batt6_vlt_offset)"><h3><a href="#BATT6_VLT_OFFSET-2">BATT6_VLT_OFFSET</a> <span>Volage offset</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Voltage offset on voltage pin. This allows for an offset due to a diode. This voltage is subtracted before the scaling is applied</p>
 <ul>
@@ -10485,7 +10485,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT7_I2C_BUS" data-k="batt7_i2c_bus battery monitor i2c bus number (batt7_i2c_bus)"><h3><a href="#BATT7_I2C_BUS">BATT7_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT7_I2C_BUS-2" data-k="batt7_i2c_bus battery monitor i2c bus number (batt7_i2c_bus)"><h3><a href="#BATT7_I2C_BUS-2">BATT7_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C bus number</p>
 <ul>
@@ -10494,7 +10494,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT7_I2C_ADDR" data-k="batt7_i2c_addr battery monitor i2c address (batt7_i2c_addr)"><h3><a href="#BATT7_I2C_ADDR">BATT7_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT7_I2C_ADDR-2" data-k="batt7_i2c_addr battery monitor i2c address (batt7_i2c_addr)"><h3><a href="#BATT7_I2C_ADDR-2">BATT7_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C address. If this is zero then probe list of supported addresses</p>
 <ul>
@@ -10529,7 +10529,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT7_MAX_AMPS" data-k="batt7_max_amps battery monitor max current (batt7_max_amps)"><h3><a href="#BATT7_MAX_AMPS">BATT7_MAX_AMPS</a> <span>Battery monitor max current</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT7_MAX_AMPS-2" data-k="batt7_max_amps battery monitor max current (batt7_max_amps)"><h3><a href="#BATT7_MAX_AMPS-2">BATT7_MAX_AMPS</a> <span>Battery monitor max current</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>This controls the maximum current the INA239 sensor will work with.</p>
 <ul>
@@ -10538,7 +10538,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT7_SHUNT" data-k="batt7_shunt battery monitor shunt resistor (batt7_shunt)"><h3><a href="#BATT7_SHUNT">BATT7_SHUNT</a> <span>Battery monitor shunt resistor</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT7_SHUNT-2" data-k="batt7_shunt battery monitor shunt resistor (batt7_shunt)"><h3><a href="#BATT7_SHUNT-2">BATT7_SHUNT</a> <span>Battery monitor shunt resistor</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>This sets the shunt resistor used in the device</p>
 <ul>
@@ -10547,7 +10547,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT7_I2C_BUS" data-k="batt7_i2c_bus battery monitor i2c bus number (batt7_i2c_bus)"><h3><a href="#BATT7_I2C_BUS">BATT7_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT7_I2C_BUS-3" data-k="batt7_i2c_bus battery monitor i2c bus number (batt7_i2c_bus)"><h3><a href="#BATT7_I2C_BUS-3">BATT7_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C bus number</p>
 <ul>
@@ -10556,7 +10556,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT7_I2C_ADDR" data-k="batt7_i2c_addr battery monitor i2c address (batt7_i2c_addr)"><h3><a href="#BATT7_I2C_ADDR">BATT7_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT7_I2C_ADDR-3" data-k="batt7_i2c_addr battery monitor i2c address (batt7_i2c_addr)"><h3><a href="#BATT7_I2C_ADDR-3">BATT7_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C address. If this is zero then probe list of supported addresses</p>
 <ul>
@@ -10574,7 +10574,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT7_VOLT_PIN" data-k="batt7_volt_pin battery voltage sensing pin on the ad7091r5 ic (batt7_volt_pin)"><h3><a href="#BATT7_VOLT_PIN">BATT7_VOLT_PIN</a> <span>Battery Voltage sensing pin on the AD7091R5 Ic</span></h3>
+</article><article class="p" id="BATT7_VOLT_PIN-2" data-k="batt7_volt_pin battery voltage sensing pin on the ad7091r5 ic (batt7_volt_pin)"><h3><a href="#BATT7_VOLT_PIN-2">BATT7_VOLT_PIN</a> <span>Battery Voltage sensing pin on the AD7091R5 Ic</span></h3>
 
 <p>Sets the analog input pin that should be used for voltage monitoring on AD7091R5.</p>
 <ul>
@@ -10586,7 +10586,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT7_CURR_PIN" data-k="batt7_curr_pin battery current sensing pin (batt7_curr_pin)"><h3><a href="#BATT7_CURR_PIN">BATT7_CURR_PIN</a> <span>Battery Current sensing pin</span></h3>
+</article><article class="p" id="BATT7_CURR_PIN-2" data-k="batt7_curr_pin battery current sensing pin (batt7_curr_pin)"><h3><a href="#BATT7_CURR_PIN-2">BATT7_CURR_PIN</a> <span>Battery Current sensing pin</span></h3>
 
 <p>Sets the analog input pin that should be used for Current monitoring on AD7091R5.</p>
 <ul>
@@ -10598,14 +10598,14 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT7_VOLT_MULT" data-k="batt7_volt_mult voltage multiplier (batt7_volt_mult)"><h3><a href="#BATT7_VOLT_MULT">BATT7_VOLT_MULT</a> <span>Voltage Multiplier</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT7_VOLT_MULT-2" data-k="batt7_volt_mult voltage multiplier (batt7_volt_mult)"><h3><a href="#BATT7_VOLT_MULT-2">BATT7_VOLT_MULT</a> <span>Voltage Multiplier</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Used to convert the voltage of the voltage sensing pin (BATT7_VOLT_PIN) to the actual battery&#x27;s voltage (pin_voltage * VOLT_MULT).</p>
 <ul>
 </ul>
 
 
-</article><article class="p" id="BATT7_AMP_PERVLT" data-k="batt7_amp_pervlt amps per volt (batt7_amp_pervlt)"><h3><a href="#BATT7_AMP_PERVLT">BATT7_AMP_PERVLT</a> <span>Amps per volt</span></h3>
+</article><article class="p" id="BATT7_AMP_PERVLT-2" data-k="batt7_amp_pervlt amps per volt (batt7_amp_pervlt)"><h3><a href="#BATT7_AMP_PERVLT-2">BATT7_AMP_PERVLT</a> <span>Amps per volt</span></h3>
 
 <p>Number of amps that a 1V reading on the current sensor corresponds to.</p>
 <ul>
@@ -10613,7 +10613,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT7_AMP_OFFSET" data-k="batt7_amp_offset amp offset (batt7_amp_offset)"><h3><a href="#BATT7_AMP_OFFSET">BATT7_AMP_OFFSET</a> <span>AMP offset</span></h3>
+</article><article class="p" id="BATT7_AMP_OFFSET-2" data-k="batt7_amp_offset amp offset (batt7_amp_offset)"><h3><a href="#BATT7_AMP_OFFSET-2">BATT7_AMP_OFFSET</a> <span>AMP offset</span></h3>
 
 <p>Voltage offset at zero current on current sensor</p>
 <ul>
@@ -10621,7 +10621,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT7_VLT_OFFSET" data-k="batt7_vlt_offset volage offset (batt7_vlt_offset)"><h3><a href="#BATT7_VLT_OFFSET">BATT7_VLT_OFFSET</a> <span>Volage offset</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT7_VLT_OFFSET-2" data-k="batt7_vlt_offset volage offset (batt7_vlt_offset)"><h3><a href="#BATT7_VLT_OFFSET-2">BATT7_VLT_OFFSET</a> <span>Volage offset</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Voltage offset on voltage pin. This allows for an offset due to a diode. This voltage is subtracted before the scaling is applied</p>
 <ul>
@@ -11086,7 +11086,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT8_I2C_BUS" data-k="batt8_i2c_bus battery monitor i2c bus number (batt8_i2c_bus)"><h3><a href="#BATT8_I2C_BUS">BATT8_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT8_I2C_BUS-2" data-k="batt8_i2c_bus battery monitor i2c bus number (batt8_i2c_bus)"><h3><a href="#BATT8_I2C_BUS-2">BATT8_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C bus number</p>
 <ul>
@@ -11095,7 +11095,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT8_I2C_ADDR" data-k="batt8_i2c_addr battery monitor i2c address (batt8_i2c_addr)"><h3><a href="#BATT8_I2C_ADDR">BATT8_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT8_I2C_ADDR-2" data-k="batt8_i2c_addr battery monitor i2c address (batt8_i2c_addr)"><h3><a href="#BATT8_I2C_ADDR-2">BATT8_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C address. If this is zero then probe list of supported addresses</p>
 <ul>
@@ -11130,7 +11130,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT8_MAX_AMPS" data-k="batt8_max_amps battery monitor max current (batt8_max_amps)"><h3><a href="#BATT8_MAX_AMPS">BATT8_MAX_AMPS</a> <span>Battery monitor max current</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT8_MAX_AMPS-2" data-k="batt8_max_amps battery monitor max current (batt8_max_amps)"><h3><a href="#BATT8_MAX_AMPS-2">BATT8_MAX_AMPS</a> <span>Battery monitor max current</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>This controls the maximum current the INA239 sensor will work with.</p>
 <ul>
@@ -11139,7 +11139,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT8_SHUNT" data-k="batt8_shunt battery monitor shunt resistor (batt8_shunt)"><h3><a href="#BATT8_SHUNT">BATT8_SHUNT</a> <span>Battery monitor shunt resistor</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT8_SHUNT-2" data-k="batt8_shunt battery monitor shunt resistor (batt8_shunt)"><h3><a href="#BATT8_SHUNT-2">BATT8_SHUNT</a> <span>Battery monitor shunt resistor</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>This sets the shunt resistor used in the device</p>
 <ul>
@@ -11148,7 +11148,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT8_I2C_BUS" data-k="batt8_i2c_bus battery monitor i2c bus number (batt8_i2c_bus)"><h3><a href="#BATT8_I2C_BUS">BATT8_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT8_I2C_BUS-3" data-k="batt8_i2c_bus battery monitor i2c bus number (batt8_i2c_bus)"><h3><a href="#BATT8_I2C_BUS-3">BATT8_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C bus number</p>
 <ul>
@@ -11157,7 +11157,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT8_I2C_ADDR" data-k="batt8_i2c_addr battery monitor i2c address (batt8_i2c_addr)"><h3><a href="#BATT8_I2C_ADDR">BATT8_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT8_I2C_ADDR-3" data-k="batt8_i2c_addr battery monitor i2c address (batt8_i2c_addr)"><h3><a href="#BATT8_I2C_ADDR-3">BATT8_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C address. If this is zero then probe list of supported addresses</p>
 <ul>
@@ -11175,7 +11175,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT8_VOLT_PIN" data-k="batt8_volt_pin battery voltage sensing pin on the ad7091r5 ic (batt8_volt_pin)"><h3><a href="#BATT8_VOLT_PIN">BATT8_VOLT_PIN</a> <span>Battery Voltage sensing pin on the AD7091R5 Ic</span></h3>
+</article><article class="p" id="BATT8_VOLT_PIN-2" data-k="batt8_volt_pin battery voltage sensing pin on the ad7091r5 ic (batt8_volt_pin)"><h3><a href="#BATT8_VOLT_PIN-2">BATT8_VOLT_PIN</a> <span>Battery Voltage sensing pin on the AD7091R5 Ic</span></h3>
 
 <p>Sets the analog input pin that should be used for voltage monitoring on AD7091R5.</p>
 <ul>
@@ -11187,7 +11187,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT8_CURR_PIN" data-k="batt8_curr_pin battery current sensing pin (batt8_curr_pin)"><h3><a href="#BATT8_CURR_PIN">BATT8_CURR_PIN</a> <span>Battery Current sensing pin</span></h3>
+</article><article class="p" id="BATT8_CURR_PIN-2" data-k="batt8_curr_pin battery current sensing pin (batt8_curr_pin)"><h3><a href="#BATT8_CURR_PIN-2">BATT8_CURR_PIN</a> <span>Battery Current sensing pin</span></h3>
 
 <p>Sets the analog input pin that should be used for Current monitoring on AD7091R5.</p>
 <ul>
@@ -11199,14 +11199,14 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT8_VOLT_MULT" data-k="batt8_volt_mult voltage multiplier (batt8_volt_mult)"><h3><a href="#BATT8_VOLT_MULT">BATT8_VOLT_MULT</a> <span>Voltage Multiplier</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT8_VOLT_MULT-2" data-k="batt8_volt_mult voltage multiplier (batt8_volt_mult)"><h3><a href="#BATT8_VOLT_MULT-2">BATT8_VOLT_MULT</a> <span>Voltage Multiplier</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Used to convert the voltage of the voltage sensing pin (BATT8_VOLT_PIN) to the actual battery&#x27;s voltage (pin_voltage * VOLT_MULT).</p>
 <ul>
 </ul>
 
 
-</article><article class="p" id="BATT8_AMP_PERVLT" data-k="batt8_amp_pervlt amps per volt (batt8_amp_pervlt)"><h3><a href="#BATT8_AMP_PERVLT">BATT8_AMP_PERVLT</a> <span>Amps per volt</span></h3>
+</article><article class="p" id="BATT8_AMP_PERVLT-2" data-k="batt8_amp_pervlt amps per volt (batt8_amp_pervlt)"><h3><a href="#BATT8_AMP_PERVLT-2">BATT8_AMP_PERVLT</a> <span>Amps per volt</span></h3>
 
 <p>Number of amps that a 1V reading on the current sensor corresponds to.</p>
 <ul>
@@ -11214,7 +11214,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT8_AMP_OFFSET" data-k="batt8_amp_offset amp offset (batt8_amp_offset)"><h3><a href="#BATT8_AMP_OFFSET">BATT8_AMP_OFFSET</a> <span>AMP offset</span></h3>
+</article><article class="p" id="BATT8_AMP_OFFSET-2" data-k="batt8_amp_offset amp offset (batt8_amp_offset)"><h3><a href="#BATT8_AMP_OFFSET-2">BATT8_AMP_OFFSET</a> <span>AMP offset</span></h3>
 
 <p>Voltage offset at zero current on current sensor</p>
 <ul>
@@ -11222,7 +11222,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT8_VLT_OFFSET" data-k="batt8_vlt_offset volage offset (batt8_vlt_offset)"><h3><a href="#BATT8_VLT_OFFSET">BATT8_VLT_OFFSET</a> <span>Volage offset</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT8_VLT_OFFSET-2" data-k="batt8_vlt_offset volage offset (batt8_vlt_offset)"><h3><a href="#BATT8_VLT_OFFSET-2">BATT8_VLT_OFFSET</a> <span>Volage offset</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Voltage offset on voltage pin. This allows for an offset due to a diode. This voltage is subtracted before the scaling is applied</p>
 <ul>
@@ -11687,7 +11687,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT9_I2C_BUS" data-k="batt9_i2c_bus battery monitor i2c bus number (batt9_i2c_bus)"><h3><a href="#BATT9_I2C_BUS">BATT9_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT9_I2C_BUS-2" data-k="batt9_i2c_bus battery monitor i2c bus number (batt9_i2c_bus)"><h3><a href="#BATT9_I2C_BUS-2">BATT9_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C bus number</p>
 <ul>
@@ -11696,7 +11696,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT9_I2C_ADDR" data-k="batt9_i2c_addr battery monitor i2c address (batt9_i2c_addr)"><h3><a href="#BATT9_I2C_ADDR">BATT9_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT9_I2C_ADDR-2" data-k="batt9_i2c_addr battery monitor i2c address (batt9_i2c_addr)"><h3><a href="#BATT9_I2C_ADDR-2">BATT9_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C address. If this is zero then probe list of supported addresses</p>
 <ul>
@@ -11731,7 +11731,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT9_MAX_AMPS" data-k="batt9_max_amps battery monitor max current (batt9_max_amps)"><h3><a href="#BATT9_MAX_AMPS">BATT9_MAX_AMPS</a> <span>Battery monitor max current</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT9_MAX_AMPS-2" data-k="batt9_max_amps battery monitor max current (batt9_max_amps)"><h3><a href="#BATT9_MAX_AMPS-2">BATT9_MAX_AMPS</a> <span>Battery monitor max current</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>This controls the maximum current the INA239 sensor will work with.</p>
 <ul>
@@ -11740,7 +11740,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT9_SHUNT" data-k="batt9_shunt battery monitor shunt resistor (batt9_shunt)"><h3><a href="#BATT9_SHUNT">BATT9_SHUNT</a> <span>Battery monitor shunt resistor</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT9_SHUNT-2" data-k="batt9_shunt battery monitor shunt resistor (batt9_shunt)"><h3><a href="#BATT9_SHUNT-2">BATT9_SHUNT</a> <span>Battery monitor shunt resistor</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>This sets the shunt resistor used in the device</p>
 <ul>
@@ -11749,7 +11749,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT9_I2C_BUS" data-k="batt9_i2c_bus battery monitor i2c bus number (batt9_i2c_bus)"><h3><a href="#BATT9_I2C_BUS">BATT9_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT9_I2C_BUS-3" data-k="batt9_i2c_bus battery monitor i2c bus number (batt9_i2c_bus)"><h3><a href="#BATT9_I2C_BUS-3">BATT9_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C bus number</p>
 <ul>
@@ -11758,7 +11758,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT9_I2C_ADDR" data-k="batt9_i2c_addr battery monitor i2c address (batt9_i2c_addr)"><h3><a href="#BATT9_I2C_ADDR">BATT9_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT9_I2C_ADDR-3" data-k="batt9_i2c_addr battery monitor i2c address (batt9_i2c_addr)"><h3><a href="#BATT9_I2C_ADDR-3">BATT9_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C address. If this is zero then probe list of supported addresses</p>
 <ul>
@@ -11776,7 +11776,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT9_VOLT_PIN" data-k="batt9_volt_pin battery voltage sensing pin on the ad7091r5 ic (batt9_volt_pin)"><h3><a href="#BATT9_VOLT_PIN">BATT9_VOLT_PIN</a> <span>Battery Voltage sensing pin on the AD7091R5 Ic</span></h3>
+</article><article class="p" id="BATT9_VOLT_PIN-2" data-k="batt9_volt_pin battery voltage sensing pin on the ad7091r5 ic (batt9_volt_pin)"><h3><a href="#BATT9_VOLT_PIN-2">BATT9_VOLT_PIN</a> <span>Battery Voltage sensing pin on the AD7091R5 Ic</span></h3>
 
 <p>Sets the analog input pin that should be used for voltage monitoring on AD7091R5.</p>
 <ul>
@@ -11788,7 +11788,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT9_CURR_PIN" data-k="batt9_curr_pin battery current sensing pin (batt9_curr_pin)"><h3><a href="#BATT9_CURR_PIN">BATT9_CURR_PIN</a> <span>Battery Current sensing pin</span></h3>
+</article><article class="p" id="BATT9_CURR_PIN-2" data-k="batt9_curr_pin battery current sensing pin (batt9_curr_pin)"><h3><a href="#BATT9_CURR_PIN-2">BATT9_CURR_PIN</a> <span>Battery Current sensing pin</span></h3>
 
 <p>Sets the analog input pin that should be used for Current monitoring on AD7091R5.</p>
 <ul>
@@ -11800,14 +11800,14 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT9_VOLT_MULT" data-k="batt9_volt_mult voltage multiplier (batt9_volt_mult)"><h3><a href="#BATT9_VOLT_MULT">BATT9_VOLT_MULT</a> <span>Voltage Multiplier</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT9_VOLT_MULT-2" data-k="batt9_volt_mult voltage multiplier (batt9_volt_mult)"><h3><a href="#BATT9_VOLT_MULT-2">BATT9_VOLT_MULT</a> <span>Voltage Multiplier</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Used to convert the voltage of the voltage sensing pin (BATT9_VOLT_PIN) to the actual battery&#x27;s voltage (pin_voltage * VOLT_MULT).</p>
 <ul>
 </ul>
 
 
-</article><article class="p" id="BATT9_AMP_PERVLT" data-k="batt9_amp_pervlt amps per volt (batt9_amp_pervlt)"><h3><a href="#BATT9_AMP_PERVLT">BATT9_AMP_PERVLT</a> <span>Amps per volt</span></h3>
+</article><article class="p" id="BATT9_AMP_PERVLT-2" data-k="batt9_amp_pervlt amps per volt (batt9_amp_pervlt)"><h3><a href="#BATT9_AMP_PERVLT-2">BATT9_AMP_PERVLT</a> <span>Amps per volt</span></h3>
 
 <p>Number of amps that a 1V reading on the current sensor corresponds to.</p>
 <ul>
@@ -11815,7 +11815,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT9_AMP_OFFSET" data-k="batt9_amp_offset amp offset (batt9_amp_offset)"><h3><a href="#BATT9_AMP_OFFSET">BATT9_AMP_OFFSET</a> <span>AMP offset</span></h3>
+</article><article class="p" id="BATT9_AMP_OFFSET-2" data-k="batt9_amp_offset amp offset (batt9_amp_offset)"><h3><a href="#BATT9_AMP_OFFSET-2">BATT9_AMP_OFFSET</a> <span>AMP offset</span></h3>
 
 <p>Voltage offset at zero current on current sensor</p>
 <ul>
@@ -11823,7 +11823,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT9_VLT_OFFSET" data-k="batt9_vlt_offset volage offset (batt9_vlt_offset)"><h3><a href="#BATT9_VLT_OFFSET">BATT9_VLT_OFFSET</a> <span>Volage offset</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT9_VLT_OFFSET-2" data-k="batt9_vlt_offset volage offset (batt9_vlt_offset)"><h3><a href="#BATT9_VLT_OFFSET-2">BATT9_VLT_OFFSET</a> <span>Volage offset</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Voltage offset on voltage pin. This allows for an offset due to a diode. This voltage is subtracted before the scaling is applied</p>
 <ul>
@@ -12288,7 +12288,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTA_I2C_BUS" data-k="batta_i2c_bus battery monitor i2c bus number (batta_i2c_bus)"><h3><a href="#BATTA_I2C_BUS">BATTA_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTA_I2C_BUS-2" data-k="batta_i2c_bus battery monitor i2c bus number (batta_i2c_bus)"><h3><a href="#BATTA_I2C_BUS-2">BATTA_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C bus number</p>
 <ul>
@@ -12297,7 +12297,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTA_I2C_ADDR" data-k="batta_i2c_addr battery monitor i2c address (batta_i2c_addr)"><h3><a href="#BATTA_I2C_ADDR">BATTA_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTA_I2C_ADDR-2" data-k="batta_i2c_addr battery monitor i2c address (batta_i2c_addr)"><h3><a href="#BATTA_I2C_ADDR-2">BATTA_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C address. If this is zero then probe list of supported addresses</p>
 <ul>
@@ -12332,7 +12332,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTA_MAX_AMPS" data-k="batta_max_amps battery monitor max current (batta_max_amps)"><h3><a href="#BATTA_MAX_AMPS">BATTA_MAX_AMPS</a> <span>Battery monitor max current</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTA_MAX_AMPS-2" data-k="batta_max_amps battery monitor max current (batta_max_amps)"><h3><a href="#BATTA_MAX_AMPS-2">BATTA_MAX_AMPS</a> <span>Battery monitor max current</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>This controls the maximum current the INA239 sensor will work with.</p>
 <ul>
@@ -12341,7 +12341,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTA_SHUNT" data-k="batta_shunt battery monitor shunt resistor (batta_shunt)"><h3><a href="#BATTA_SHUNT">BATTA_SHUNT</a> <span>Battery monitor shunt resistor</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTA_SHUNT-2" data-k="batta_shunt battery monitor shunt resistor (batta_shunt)"><h3><a href="#BATTA_SHUNT-2">BATTA_SHUNT</a> <span>Battery monitor shunt resistor</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>This sets the shunt resistor used in the device</p>
 <ul>
@@ -12350,7 +12350,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTA_I2C_BUS" data-k="batta_i2c_bus battery monitor i2c bus number (batta_i2c_bus)"><h3><a href="#BATTA_I2C_BUS">BATTA_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTA_I2C_BUS-3" data-k="batta_i2c_bus battery monitor i2c bus number (batta_i2c_bus)"><h3><a href="#BATTA_I2C_BUS-3">BATTA_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C bus number</p>
 <ul>
@@ -12359,7 +12359,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTA_I2C_ADDR" data-k="batta_i2c_addr battery monitor i2c address (batta_i2c_addr)"><h3><a href="#BATTA_I2C_ADDR">BATTA_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTA_I2C_ADDR-3" data-k="batta_i2c_addr battery monitor i2c address (batta_i2c_addr)"><h3><a href="#BATTA_I2C_ADDR-3">BATTA_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C address. If this is zero then probe list of supported addresses</p>
 <ul>
@@ -12377,7 +12377,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTA_VOLT_PIN" data-k="batta_volt_pin battery voltage sensing pin on the ad7091r5 ic (batta_volt_pin)"><h3><a href="#BATTA_VOLT_PIN">BATTA_VOLT_PIN</a> <span>Battery Voltage sensing pin on the AD7091R5 Ic</span></h3>
+</article><article class="p" id="BATTA_VOLT_PIN-2" data-k="batta_volt_pin battery voltage sensing pin on the ad7091r5 ic (batta_volt_pin)"><h3><a href="#BATTA_VOLT_PIN-2">BATTA_VOLT_PIN</a> <span>Battery Voltage sensing pin on the AD7091R5 Ic</span></h3>
 
 <p>Sets the analog input pin that should be used for voltage monitoring on AD7091R5.</p>
 <ul>
@@ -12389,7 +12389,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTA_CURR_PIN" data-k="batta_curr_pin battery current sensing pin (batta_curr_pin)"><h3><a href="#BATTA_CURR_PIN">BATTA_CURR_PIN</a> <span>Battery Current sensing pin</span></h3>
+</article><article class="p" id="BATTA_CURR_PIN-2" data-k="batta_curr_pin battery current sensing pin (batta_curr_pin)"><h3><a href="#BATTA_CURR_PIN-2">BATTA_CURR_PIN</a> <span>Battery Current sensing pin</span></h3>
 
 <p>Sets the analog input pin that should be used for Current monitoring on AD7091R5.</p>
 <ul>
@@ -12401,14 +12401,14 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTA_VOLT_MULT" data-k="batta_volt_mult voltage multiplier (batta_volt_mult)"><h3><a href="#BATTA_VOLT_MULT">BATTA_VOLT_MULT</a> <span>Voltage Multiplier</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTA_VOLT_MULT-2" data-k="batta_volt_mult voltage multiplier (batta_volt_mult)"><h3><a href="#BATTA_VOLT_MULT-2">BATTA_VOLT_MULT</a> <span>Voltage Multiplier</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Used to convert the voltage of the voltage sensing pin (BATTA_VOLT_PIN) to the actual battery&#x27;s voltage (pin_voltage * VOLT_MULT).</p>
 <ul>
 </ul>
 
 
-</article><article class="p" id="BATTA_AMP_PERVLT" data-k="batta_amp_pervlt amps per volt (batta_amp_pervlt)"><h3><a href="#BATTA_AMP_PERVLT">BATTA_AMP_PERVLT</a> <span>Amps per volt</span></h3>
+</article><article class="p" id="BATTA_AMP_PERVLT-2" data-k="batta_amp_pervlt amps per volt (batta_amp_pervlt)"><h3><a href="#BATTA_AMP_PERVLT-2">BATTA_AMP_PERVLT</a> <span>Amps per volt</span></h3>
 
 <p>Number of amps that a 1V reading on the current sensor corresponds to.</p>
 <ul>
@@ -12416,7 +12416,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTA_AMP_OFFSET" data-k="batta_amp_offset amp offset (batta_amp_offset)"><h3><a href="#BATTA_AMP_OFFSET">BATTA_AMP_OFFSET</a> <span>AMP offset</span></h3>
+</article><article class="p" id="BATTA_AMP_OFFSET-2" data-k="batta_amp_offset amp offset (batta_amp_offset)"><h3><a href="#BATTA_AMP_OFFSET-2">BATTA_AMP_OFFSET</a> <span>AMP offset</span></h3>
 
 <p>Voltage offset at zero current on current sensor</p>
 <ul>
@@ -12424,7 +12424,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTA_VLT_OFFSET" data-k="batta_vlt_offset volage offset (batta_vlt_offset)"><h3><a href="#BATTA_VLT_OFFSET">BATTA_VLT_OFFSET</a> <span>Volage offset</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTA_VLT_OFFSET-2" data-k="batta_vlt_offset volage offset (batta_vlt_offset)"><h3><a href="#BATTA_VLT_OFFSET-2">BATTA_VLT_OFFSET</a> <span>Volage offset</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Voltage offset on voltage pin. This allows for an offset due to a diode. This voltage is subtracted before the scaling is applied</p>
 <ul>
@@ -12889,7 +12889,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTB_I2C_BUS" data-k="battb_i2c_bus battery monitor i2c bus number (battb_i2c_bus)"><h3><a href="#BATTB_I2C_BUS">BATTB_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTB_I2C_BUS-2" data-k="battb_i2c_bus battery monitor i2c bus number (battb_i2c_bus)"><h3><a href="#BATTB_I2C_BUS-2">BATTB_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C bus number</p>
 <ul>
@@ -12898,7 +12898,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTB_I2C_ADDR" data-k="battb_i2c_addr battery monitor i2c address (battb_i2c_addr)"><h3><a href="#BATTB_I2C_ADDR">BATTB_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTB_I2C_ADDR-2" data-k="battb_i2c_addr battery monitor i2c address (battb_i2c_addr)"><h3><a href="#BATTB_I2C_ADDR-2">BATTB_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C address. If this is zero then probe list of supported addresses</p>
 <ul>
@@ -12933,7 +12933,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTB_MAX_AMPS" data-k="battb_max_amps battery monitor max current (battb_max_amps)"><h3><a href="#BATTB_MAX_AMPS">BATTB_MAX_AMPS</a> <span>Battery monitor max current</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTB_MAX_AMPS-2" data-k="battb_max_amps battery monitor max current (battb_max_amps)"><h3><a href="#BATTB_MAX_AMPS-2">BATTB_MAX_AMPS</a> <span>Battery monitor max current</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>This controls the maximum current the INA239 sensor will work with.</p>
 <ul>
@@ -12942,7 +12942,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTB_SHUNT" data-k="battb_shunt battery monitor shunt resistor (battb_shunt)"><h3><a href="#BATTB_SHUNT">BATTB_SHUNT</a> <span>Battery monitor shunt resistor</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTB_SHUNT-2" data-k="battb_shunt battery monitor shunt resistor (battb_shunt)"><h3><a href="#BATTB_SHUNT-2">BATTB_SHUNT</a> <span>Battery monitor shunt resistor</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>This sets the shunt resistor used in the device</p>
 <ul>
@@ -12951,7 +12951,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTB_I2C_BUS" data-k="battb_i2c_bus battery monitor i2c bus number (battb_i2c_bus)"><h3><a href="#BATTB_I2C_BUS">BATTB_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTB_I2C_BUS-3" data-k="battb_i2c_bus battery monitor i2c bus number (battb_i2c_bus)"><h3><a href="#BATTB_I2C_BUS-3">BATTB_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C bus number</p>
 <ul>
@@ -12960,7 +12960,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTB_I2C_ADDR" data-k="battb_i2c_addr battery monitor i2c address (battb_i2c_addr)"><h3><a href="#BATTB_I2C_ADDR">BATTB_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTB_I2C_ADDR-3" data-k="battb_i2c_addr battery monitor i2c address (battb_i2c_addr)"><h3><a href="#BATTB_I2C_ADDR-3">BATTB_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C address. If this is zero then probe list of supported addresses</p>
 <ul>
@@ -12978,7 +12978,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTB_VOLT_PIN" data-k="battb_volt_pin battery voltage sensing pin on the ad7091r5 ic (battb_volt_pin)"><h3><a href="#BATTB_VOLT_PIN">BATTB_VOLT_PIN</a> <span>Battery Voltage sensing pin on the AD7091R5 Ic</span></h3>
+</article><article class="p" id="BATTB_VOLT_PIN-2" data-k="battb_volt_pin battery voltage sensing pin on the ad7091r5 ic (battb_volt_pin)"><h3><a href="#BATTB_VOLT_PIN-2">BATTB_VOLT_PIN</a> <span>Battery Voltage sensing pin on the AD7091R5 Ic</span></h3>
 
 <p>Sets the analog input pin that should be used for voltage monitoring on AD7091R5.</p>
 <ul>
@@ -12990,7 +12990,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTB_CURR_PIN" data-k="battb_curr_pin battery current sensing pin (battb_curr_pin)"><h3><a href="#BATTB_CURR_PIN">BATTB_CURR_PIN</a> <span>Battery Current sensing pin</span></h3>
+</article><article class="p" id="BATTB_CURR_PIN-2" data-k="battb_curr_pin battery current sensing pin (battb_curr_pin)"><h3><a href="#BATTB_CURR_PIN-2">BATTB_CURR_PIN</a> <span>Battery Current sensing pin</span></h3>
 
 <p>Sets the analog input pin that should be used for Current monitoring on AD7091R5.</p>
 <ul>
@@ -13002,14 +13002,14 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTB_VOLT_MULT" data-k="battb_volt_mult voltage multiplier (battb_volt_mult)"><h3><a href="#BATTB_VOLT_MULT">BATTB_VOLT_MULT</a> <span>Voltage Multiplier</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTB_VOLT_MULT-2" data-k="battb_volt_mult voltage multiplier (battb_volt_mult)"><h3><a href="#BATTB_VOLT_MULT-2">BATTB_VOLT_MULT</a> <span>Voltage Multiplier</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Used to convert the voltage of the voltage sensing pin (BATTB_VOLT_PIN) to the actual battery&#x27;s voltage (pin_voltage * VOLT_MULT).</p>
 <ul>
 </ul>
 
 
-</article><article class="p" id="BATTB_AMP_PERVLT" data-k="battb_amp_pervlt amps per volt (battb_amp_pervlt)"><h3><a href="#BATTB_AMP_PERVLT">BATTB_AMP_PERVLT</a> <span>Amps per volt</span></h3>
+</article><article class="p" id="BATTB_AMP_PERVLT-2" data-k="battb_amp_pervlt amps per volt (battb_amp_pervlt)"><h3><a href="#BATTB_AMP_PERVLT-2">BATTB_AMP_PERVLT</a> <span>Amps per volt</span></h3>
 
 <p>Number of amps that a 1V reading on the current sensor corresponds to.</p>
 <ul>
@@ -13017,7 +13017,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTB_AMP_OFFSET" data-k="battb_amp_offset amp offset (battb_amp_offset)"><h3><a href="#BATTB_AMP_OFFSET">BATTB_AMP_OFFSET</a> <span>AMP offset</span></h3>
+</article><article class="p" id="BATTB_AMP_OFFSET-2" data-k="battb_amp_offset amp offset (battb_amp_offset)"><h3><a href="#BATTB_AMP_OFFSET-2">BATTB_AMP_OFFSET</a> <span>AMP offset</span></h3>
 
 <p>Voltage offset at zero current on current sensor</p>
 <ul>
@@ -13025,7 +13025,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTB_VLT_OFFSET" data-k="battb_vlt_offset volage offset (battb_vlt_offset)"><h3><a href="#BATTB_VLT_OFFSET">BATTB_VLT_OFFSET</a> <span>Volage offset</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTB_VLT_OFFSET-2" data-k="battb_vlt_offset volage offset (battb_vlt_offset)"><h3><a href="#BATTB_VLT_OFFSET-2">BATTB_VLT_OFFSET</a> <span>Volage offset</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Voltage offset on voltage pin. This allows for an offset due to a diode. This voltage is subtracted before the scaling is applied</p>
 <ul>
@@ -13490,7 +13490,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTC_I2C_BUS" data-k="battc_i2c_bus battery monitor i2c bus number (battc_i2c_bus)"><h3><a href="#BATTC_I2C_BUS">BATTC_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTC_I2C_BUS-2" data-k="battc_i2c_bus battery monitor i2c bus number (battc_i2c_bus)"><h3><a href="#BATTC_I2C_BUS-2">BATTC_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C bus number</p>
 <ul>
@@ -13499,7 +13499,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTC_I2C_ADDR" data-k="battc_i2c_addr battery monitor i2c address (battc_i2c_addr)"><h3><a href="#BATTC_I2C_ADDR">BATTC_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTC_I2C_ADDR-2" data-k="battc_i2c_addr battery monitor i2c address (battc_i2c_addr)"><h3><a href="#BATTC_I2C_ADDR-2">BATTC_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C address. If this is zero then probe list of supported addresses</p>
 <ul>
@@ -13534,7 +13534,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTC_MAX_AMPS" data-k="battc_max_amps battery monitor max current (battc_max_amps)"><h3><a href="#BATTC_MAX_AMPS">BATTC_MAX_AMPS</a> <span>Battery monitor max current</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTC_MAX_AMPS-2" data-k="battc_max_amps battery monitor max current (battc_max_amps)"><h3><a href="#BATTC_MAX_AMPS-2">BATTC_MAX_AMPS</a> <span>Battery monitor max current</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>This controls the maximum current the INA239 sensor will work with.</p>
 <ul>
@@ -13543,7 +13543,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTC_SHUNT" data-k="battc_shunt battery monitor shunt resistor (battc_shunt)"><h3><a href="#BATTC_SHUNT">BATTC_SHUNT</a> <span>Battery monitor shunt resistor</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTC_SHUNT-2" data-k="battc_shunt battery monitor shunt resistor (battc_shunt)"><h3><a href="#BATTC_SHUNT-2">BATTC_SHUNT</a> <span>Battery monitor shunt resistor</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>This sets the shunt resistor used in the device</p>
 <ul>
@@ -13552,7 +13552,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTC_I2C_BUS" data-k="battc_i2c_bus battery monitor i2c bus number (battc_i2c_bus)"><h3><a href="#BATTC_I2C_BUS">BATTC_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTC_I2C_BUS-3" data-k="battc_i2c_bus battery monitor i2c bus number (battc_i2c_bus)"><h3><a href="#BATTC_I2C_BUS-3">BATTC_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C bus number</p>
 <ul>
@@ -13561,7 +13561,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTC_I2C_ADDR" data-k="battc_i2c_addr battery monitor i2c address (battc_i2c_addr)"><h3><a href="#BATTC_I2C_ADDR">BATTC_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTC_I2C_ADDR-3" data-k="battc_i2c_addr battery monitor i2c address (battc_i2c_addr)"><h3><a href="#BATTC_I2C_ADDR-3">BATTC_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C address. If this is zero then probe list of supported addresses</p>
 <ul>
@@ -13579,7 +13579,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTC_VOLT_PIN" data-k="battc_volt_pin battery voltage sensing pin on the ad7091r5 ic (battc_volt_pin)"><h3><a href="#BATTC_VOLT_PIN">BATTC_VOLT_PIN</a> <span>Battery Voltage sensing pin on the AD7091R5 Ic</span></h3>
+</article><article class="p" id="BATTC_VOLT_PIN-2" data-k="battc_volt_pin battery voltage sensing pin on the ad7091r5 ic (battc_volt_pin)"><h3><a href="#BATTC_VOLT_PIN-2">BATTC_VOLT_PIN</a> <span>Battery Voltage sensing pin on the AD7091R5 Ic</span></h3>
 
 <p>Sets the analog input pin that should be used for voltage monitoring on AD7091R5.</p>
 <ul>
@@ -13591,7 +13591,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTC_CURR_PIN" data-k="battc_curr_pin battery current sensing pin (battc_curr_pin)"><h3><a href="#BATTC_CURR_PIN">BATTC_CURR_PIN</a> <span>Battery Current sensing pin</span></h3>
+</article><article class="p" id="BATTC_CURR_PIN-2" data-k="battc_curr_pin battery current sensing pin (battc_curr_pin)"><h3><a href="#BATTC_CURR_PIN-2">BATTC_CURR_PIN</a> <span>Battery Current sensing pin</span></h3>
 
 <p>Sets the analog input pin that should be used for Current monitoring on AD7091R5.</p>
 <ul>
@@ -13603,14 +13603,14 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTC_VOLT_MULT" data-k="battc_volt_mult voltage multiplier (battc_volt_mult)"><h3><a href="#BATTC_VOLT_MULT">BATTC_VOLT_MULT</a> <span>Voltage Multiplier</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTC_VOLT_MULT-2" data-k="battc_volt_mult voltage multiplier (battc_volt_mult)"><h3><a href="#BATTC_VOLT_MULT-2">BATTC_VOLT_MULT</a> <span>Voltage Multiplier</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Used to convert the voltage of the voltage sensing pin (BATTC_VOLT_PIN) to the actual battery&#x27;s voltage (pin_voltage * VOLT_MULT).</p>
 <ul>
 </ul>
 
 
-</article><article class="p" id="BATTC_AMP_PERVLT" data-k="battc_amp_pervlt amps per volt (battc_amp_pervlt)"><h3><a href="#BATTC_AMP_PERVLT">BATTC_AMP_PERVLT</a> <span>Amps per volt</span></h3>
+</article><article class="p" id="BATTC_AMP_PERVLT-2" data-k="battc_amp_pervlt amps per volt (battc_amp_pervlt)"><h3><a href="#BATTC_AMP_PERVLT-2">BATTC_AMP_PERVLT</a> <span>Amps per volt</span></h3>
 
 <p>Number of amps that a 1V reading on the current sensor corresponds to.</p>
 <ul>
@@ -13618,7 +13618,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTC_AMP_OFFSET" data-k="battc_amp_offset amp offset (battc_amp_offset)"><h3><a href="#BATTC_AMP_OFFSET">BATTC_AMP_OFFSET</a> <span>AMP offset</span></h3>
+</article><article class="p" id="BATTC_AMP_OFFSET-2" data-k="battc_amp_offset amp offset (battc_amp_offset)"><h3><a href="#BATTC_AMP_OFFSET-2">BATTC_AMP_OFFSET</a> <span>AMP offset</span></h3>
 
 <p>Voltage offset at zero current on current sensor</p>
 <ul>
@@ -13626,7 +13626,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTC_VLT_OFFSET" data-k="battc_vlt_offset volage offset (battc_vlt_offset)"><h3><a href="#BATTC_VLT_OFFSET">BATTC_VLT_OFFSET</a> <span>Volage offset</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTC_VLT_OFFSET-2" data-k="battc_vlt_offset volage offset (battc_vlt_offset)"><h3><a href="#BATTC_VLT_OFFSET-2">BATTC_VLT_OFFSET</a> <span>Volage offset</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Voltage offset on voltage pin. This allows for an offset due to a diode. This voltage is subtracted before the scaling is applied</p>
 <ul>
@@ -14091,7 +14091,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTD_I2C_BUS" data-k="battd_i2c_bus battery monitor i2c bus number (battd_i2c_bus)"><h3><a href="#BATTD_I2C_BUS">BATTD_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTD_I2C_BUS-2" data-k="battd_i2c_bus battery monitor i2c bus number (battd_i2c_bus)"><h3><a href="#BATTD_I2C_BUS-2">BATTD_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C bus number</p>
 <ul>
@@ -14100,7 +14100,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTD_I2C_ADDR" data-k="battd_i2c_addr battery monitor i2c address (battd_i2c_addr)"><h3><a href="#BATTD_I2C_ADDR">BATTD_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTD_I2C_ADDR-2" data-k="battd_i2c_addr battery monitor i2c address (battd_i2c_addr)"><h3><a href="#BATTD_I2C_ADDR-2">BATTD_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C address. If this is zero then probe list of supported addresses</p>
 <ul>
@@ -14135,7 +14135,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTD_MAX_AMPS" data-k="battd_max_amps battery monitor max current (battd_max_amps)"><h3><a href="#BATTD_MAX_AMPS">BATTD_MAX_AMPS</a> <span>Battery monitor max current</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTD_MAX_AMPS-2" data-k="battd_max_amps battery monitor max current (battd_max_amps)"><h3><a href="#BATTD_MAX_AMPS-2">BATTD_MAX_AMPS</a> <span>Battery monitor max current</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>This controls the maximum current the INA239 sensor will work with.</p>
 <ul>
@@ -14144,7 +14144,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTD_SHUNT" data-k="battd_shunt battery monitor shunt resistor (battd_shunt)"><h3><a href="#BATTD_SHUNT">BATTD_SHUNT</a> <span>Battery monitor shunt resistor</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTD_SHUNT-2" data-k="battd_shunt battery monitor shunt resistor (battd_shunt)"><h3><a href="#BATTD_SHUNT-2">BATTD_SHUNT</a> <span>Battery monitor shunt resistor</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>This sets the shunt resistor used in the device</p>
 <ul>
@@ -14153,7 +14153,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTD_I2C_BUS" data-k="battd_i2c_bus battery monitor i2c bus number (battd_i2c_bus)"><h3><a href="#BATTD_I2C_BUS">BATTD_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTD_I2C_BUS-3" data-k="battd_i2c_bus battery monitor i2c bus number (battd_i2c_bus)"><h3><a href="#BATTD_I2C_BUS-3">BATTD_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C bus number</p>
 <ul>
@@ -14162,7 +14162,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTD_I2C_ADDR" data-k="battd_i2c_addr battery monitor i2c address (battd_i2c_addr)"><h3><a href="#BATTD_I2C_ADDR">BATTD_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTD_I2C_ADDR-3" data-k="battd_i2c_addr battery monitor i2c address (battd_i2c_addr)"><h3><a href="#BATTD_I2C_ADDR-3">BATTD_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C address. If this is zero then probe list of supported addresses</p>
 <ul>
@@ -14180,7 +14180,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTD_VOLT_PIN" data-k="battd_volt_pin battery voltage sensing pin on the ad7091r5 ic (battd_volt_pin)"><h3><a href="#BATTD_VOLT_PIN">BATTD_VOLT_PIN</a> <span>Battery Voltage sensing pin on the AD7091R5 Ic</span></h3>
+</article><article class="p" id="BATTD_VOLT_PIN-2" data-k="battd_volt_pin battery voltage sensing pin on the ad7091r5 ic (battd_volt_pin)"><h3><a href="#BATTD_VOLT_PIN-2">BATTD_VOLT_PIN</a> <span>Battery Voltage sensing pin on the AD7091R5 Ic</span></h3>
 
 <p>Sets the analog input pin that should be used for voltage monitoring on AD7091R5.</p>
 <ul>
@@ -14192,7 +14192,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTD_CURR_PIN" data-k="battd_curr_pin battery current sensing pin (battd_curr_pin)"><h3><a href="#BATTD_CURR_PIN">BATTD_CURR_PIN</a> <span>Battery Current sensing pin</span></h3>
+</article><article class="p" id="BATTD_CURR_PIN-2" data-k="battd_curr_pin battery current sensing pin (battd_curr_pin)"><h3><a href="#BATTD_CURR_PIN-2">BATTD_CURR_PIN</a> <span>Battery Current sensing pin</span></h3>
 
 <p>Sets the analog input pin that should be used for Current monitoring on AD7091R5.</p>
 <ul>
@@ -14204,14 +14204,14 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTD_VOLT_MULT" data-k="battd_volt_mult voltage multiplier (battd_volt_mult)"><h3><a href="#BATTD_VOLT_MULT">BATTD_VOLT_MULT</a> <span>Voltage Multiplier</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTD_VOLT_MULT-2" data-k="battd_volt_mult voltage multiplier (battd_volt_mult)"><h3><a href="#BATTD_VOLT_MULT-2">BATTD_VOLT_MULT</a> <span>Voltage Multiplier</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Used to convert the voltage of the voltage sensing pin (BATTD_VOLT_PIN) to the actual battery&#x27;s voltage (pin_voltage * VOLT_MULT).</p>
 <ul>
 </ul>
 
 
-</article><article class="p" id="BATTD_AMP_PERVLT" data-k="battd_amp_pervlt amps per volt (battd_amp_pervlt)"><h3><a href="#BATTD_AMP_PERVLT">BATTD_AMP_PERVLT</a> <span>Amps per volt</span></h3>
+</article><article class="p" id="BATTD_AMP_PERVLT-2" data-k="battd_amp_pervlt amps per volt (battd_amp_pervlt)"><h3><a href="#BATTD_AMP_PERVLT-2">BATTD_AMP_PERVLT</a> <span>Amps per volt</span></h3>
 
 <p>Number of amps that a 1V reading on the current sensor corresponds to.</p>
 <ul>
@@ -14219,7 +14219,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTD_AMP_OFFSET" data-k="battd_amp_offset amp offset (battd_amp_offset)"><h3><a href="#BATTD_AMP_OFFSET">BATTD_AMP_OFFSET</a> <span>AMP offset</span></h3>
+</article><article class="p" id="BATTD_AMP_OFFSET-2" data-k="battd_amp_offset amp offset (battd_amp_offset)"><h3><a href="#BATTD_AMP_OFFSET-2">BATTD_AMP_OFFSET</a> <span>AMP offset</span></h3>
 
 <p>Voltage offset at zero current on current sensor</p>
 <ul>
@@ -14227,7 +14227,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTD_VLT_OFFSET" data-k="battd_vlt_offset volage offset (battd_vlt_offset)"><h3><a href="#BATTD_VLT_OFFSET">BATTD_VLT_OFFSET</a> <span>Volage offset</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTD_VLT_OFFSET-2" data-k="battd_vlt_offset volage offset (battd_vlt_offset)"><h3><a href="#BATTD_VLT_OFFSET-2">BATTD_VLT_OFFSET</a> <span>Volage offset</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Voltage offset on voltage pin. This allows for an offset due to a diode. This voltage is subtracted before the scaling is applied</p>
 <ul>
@@ -14692,7 +14692,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTE_I2C_BUS" data-k="batte_i2c_bus battery monitor i2c bus number (batte_i2c_bus)"><h3><a href="#BATTE_I2C_BUS">BATTE_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTE_I2C_BUS-2" data-k="batte_i2c_bus battery monitor i2c bus number (batte_i2c_bus)"><h3><a href="#BATTE_I2C_BUS-2">BATTE_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C bus number</p>
 <ul>
@@ -14701,7 +14701,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTE_I2C_ADDR" data-k="batte_i2c_addr battery monitor i2c address (batte_i2c_addr)"><h3><a href="#BATTE_I2C_ADDR">BATTE_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTE_I2C_ADDR-2" data-k="batte_i2c_addr battery monitor i2c address (batte_i2c_addr)"><h3><a href="#BATTE_I2C_ADDR-2">BATTE_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C address. If this is zero then probe list of supported addresses</p>
 <ul>
@@ -14736,7 +14736,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTE_MAX_AMPS" data-k="batte_max_amps battery monitor max current (batte_max_amps)"><h3><a href="#BATTE_MAX_AMPS">BATTE_MAX_AMPS</a> <span>Battery monitor max current</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTE_MAX_AMPS-2" data-k="batte_max_amps battery monitor max current (batte_max_amps)"><h3><a href="#BATTE_MAX_AMPS-2">BATTE_MAX_AMPS</a> <span>Battery monitor max current</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>This controls the maximum current the INA239 sensor will work with.</p>
 <ul>
@@ -14745,7 +14745,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTE_SHUNT" data-k="batte_shunt battery monitor shunt resistor (batte_shunt)"><h3><a href="#BATTE_SHUNT">BATTE_SHUNT</a> <span>Battery monitor shunt resistor</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTE_SHUNT-2" data-k="batte_shunt battery monitor shunt resistor (batte_shunt)"><h3><a href="#BATTE_SHUNT-2">BATTE_SHUNT</a> <span>Battery monitor shunt resistor</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>This sets the shunt resistor used in the device</p>
 <ul>
@@ -14754,7 +14754,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTE_I2C_BUS" data-k="batte_i2c_bus battery monitor i2c bus number (batte_i2c_bus)"><h3><a href="#BATTE_I2C_BUS">BATTE_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTE_I2C_BUS-3" data-k="batte_i2c_bus battery monitor i2c bus number (batte_i2c_bus)"><h3><a href="#BATTE_I2C_BUS-3">BATTE_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C bus number</p>
 <ul>
@@ -14763,7 +14763,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTE_I2C_ADDR" data-k="batte_i2c_addr battery monitor i2c address (batte_i2c_addr)"><h3><a href="#BATTE_I2C_ADDR">BATTE_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTE_I2C_ADDR-3" data-k="batte_i2c_addr battery monitor i2c address (batte_i2c_addr)"><h3><a href="#BATTE_I2C_ADDR-3">BATTE_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C address. If this is zero then probe list of supported addresses</p>
 <ul>
@@ -14781,7 +14781,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTE_VOLT_PIN" data-k="batte_volt_pin battery voltage sensing pin on the ad7091r5 ic (batte_volt_pin)"><h3><a href="#BATTE_VOLT_PIN">BATTE_VOLT_PIN</a> <span>Battery Voltage sensing pin on the AD7091R5 Ic</span></h3>
+</article><article class="p" id="BATTE_VOLT_PIN-2" data-k="batte_volt_pin battery voltage sensing pin on the ad7091r5 ic (batte_volt_pin)"><h3><a href="#BATTE_VOLT_PIN-2">BATTE_VOLT_PIN</a> <span>Battery Voltage sensing pin on the AD7091R5 Ic</span></h3>
 
 <p>Sets the analog input pin that should be used for voltage monitoring on AD7091R5.</p>
 <ul>
@@ -14793,7 +14793,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTE_CURR_PIN" data-k="batte_curr_pin battery current sensing pin (batte_curr_pin)"><h3><a href="#BATTE_CURR_PIN">BATTE_CURR_PIN</a> <span>Battery Current sensing pin</span></h3>
+</article><article class="p" id="BATTE_CURR_PIN-2" data-k="batte_curr_pin battery current sensing pin (batte_curr_pin)"><h3><a href="#BATTE_CURR_PIN-2">BATTE_CURR_PIN</a> <span>Battery Current sensing pin</span></h3>
 
 <p>Sets the analog input pin that should be used for Current monitoring on AD7091R5.</p>
 <ul>
@@ -14805,14 +14805,14 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTE_VOLT_MULT" data-k="batte_volt_mult voltage multiplier (batte_volt_mult)"><h3><a href="#BATTE_VOLT_MULT">BATTE_VOLT_MULT</a> <span>Voltage Multiplier</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTE_VOLT_MULT-2" data-k="batte_volt_mult voltage multiplier (batte_volt_mult)"><h3><a href="#BATTE_VOLT_MULT-2">BATTE_VOLT_MULT</a> <span>Voltage Multiplier</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Used to convert the voltage of the voltage sensing pin (BATTE_VOLT_PIN) to the actual battery&#x27;s voltage (pin_voltage * VOLT_MULT).</p>
 <ul>
 </ul>
 
 
-</article><article class="p" id="BATTE_AMP_PERVLT" data-k="batte_amp_pervlt amps per volt (batte_amp_pervlt)"><h3><a href="#BATTE_AMP_PERVLT">BATTE_AMP_PERVLT</a> <span>Amps per volt</span></h3>
+</article><article class="p" id="BATTE_AMP_PERVLT-2" data-k="batte_amp_pervlt amps per volt (batte_amp_pervlt)"><h3><a href="#BATTE_AMP_PERVLT-2">BATTE_AMP_PERVLT</a> <span>Amps per volt</span></h3>
 
 <p>Number of amps that a 1V reading on the current sensor corresponds to.</p>
 <ul>
@@ -14820,7 +14820,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTE_AMP_OFFSET" data-k="batte_amp_offset amp offset (batte_amp_offset)"><h3><a href="#BATTE_AMP_OFFSET">BATTE_AMP_OFFSET</a> <span>AMP offset</span></h3>
+</article><article class="p" id="BATTE_AMP_OFFSET-2" data-k="batte_amp_offset amp offset (batte_amp_offset)"><h3><a href="#BATTE_AMP_OFFSET-2">BATTE_AMP_OFFSET</a> <span>AMP offset</span></h3>
 
 <p>Voltage offset at zero current on current sensor</p>
 <ul>
@@ -14828,7 +14828,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTE_VLT_OFFSET" data-k="batte_vlt_offset volage offset (batte_vlt_offset)"><h3><a href="#BATTE_VLT_OFFSET">BATTE_VLT_OFFSET</a> <span>Volage offset</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTE_VLT_OFFSET-2" data-k="batte_vlt_offset volage offset (batte_vlt_offset)"><h3><a href="#BATTE_VLT_OFFSET-2">BATTE_VLT_OFFSET</a> <span>Volage offset</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Voltage offset on voltage pin. This allows for an offset due to a diode. This voltage is subtracted before the scaling is applied</p>
 <ul>
@@ -15293,7 +15293,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTF_I2C_BUS" data-k="battf_i2c_bus battery monitor i2c bus number (battf_i2c_bus)"><h3><a href="#BATTF_I2C_BUS">BATTF_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTF_I2C_BUS-2" data-k="battf_i2c_bus battery monitor i2c bus number (battf_i2c_bus)"><h3><a href="#BATTF_I2C_BUS-2">BATTF_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C bus number</p>
 <ul>
@@ -15302,7 +15302,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTF_I2C_ADDR" data-k="battf_i2c_addr battery monitor i2c address (battf_i2c_addr)"><h3><a href="#BATTF_I2C_ADDR">BATTF_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTF_I2C_ADDR-2" data-k="battf_i2c_addr battery monitor i2c address (battf_i2c_addr)"><h3><a href="#BATTF_I2C_ADDR-2">BATTF_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C address. If this is zero then probe list of supported addresses</p>
 <ul>
@@ -15337,7 +15337,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTF_MAX_AMPS" data-k="battf_max_amps battery monitor max current (battf_max_amps)"><h3><a href="#BATTF_MAX_AMPS">BATTF_MAX_AMPS</a> <span>Battery monitor max current</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTF_MAX_AMPS-2" data-k="battf_max_amps battery monitor max current (battf_max_amps)"><h3><a href="#BATTF_MAX_AMPS-2">BATTF_MAX_AMPS</a> <span>Battery monitor max current</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>This controls the maximum current the INA239 sensor will work with.</p>
 <ul>
@@ -15346,7 +15346,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTF_SHUNT" data-k="battf_shunt battery monitor shunt resistor (battf_shunt)"><h3><a href="#BATTF_SHUNT">BATTF_SHUNT</a> <span>Battery monitor shunt resistor</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTF_SHUNT-2" data-k="battf_shunt battery monitor shunt resistor (battf_shunt)"><h3><a href="#BATTF_SHUNT-2">BATTF_SHUNT</a> <span>Battery monitor shunt resistor</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>This sets the shunt resistor used in the device</p>
 <ul>
@@ -15355,7 +15355,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTF_I2C_BUS" data-k="battf_i2c_bus battery monitor i2c bus number (battf_i2c_bus)"><h3><a href="#BATTF_I2C_BUS">BATTF_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTF_I2C_BUS-3" data-k="battf_i2c_bus battery monitor i2c bus number (battf_i2c_bus)"><h3><a href="#BATTF_I2C_BUS-3">BATTF_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C bus number</p>
 <ul>
@@ -15364,7 +15364,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTF_I2C_ADDR" data-k="battf_i2c_addr battery monitor i2c address (battf_i2c_addr)"><h3><a href="#BATTF_I2C_ADDR">BATTF_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTF_I2C_ADDR-3" data-k="battf_i2c_addr battery monitor i2c address (battf_i2c_addr)"><h3><a href="#BATTF_I2C_ADDR-3">BATTF_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C address. If this is zero then probe list of supported addresses</p>
 <ul>
@@ -15382,7 +15382,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTF_VOLT_PIN" data-k="battf_volt_pin battery voltage sensing pin on the ad7091r5 ic (battf_volt_pin)"><h3><a href="#BATTF_VOLT_PIN">BATTF_VOLT_PIN</a> <span>Battery Voltage sensing pin on the AD7091R5 Ic</span></h3>
+</article><article class="p" id="BATTF_VOLT_PIN-2" data-k="battf_volt_pin battery voltage sensing pin on the ad7091r5 ic (battf_volt_pin)"><h3><a href="#BATTF_VOLT_PIN-2">BATTF_VOLT_PIN</a> <span>Battery Voltage sensing pin on the AD7091R5 Ic</span></h3>
 
 <p>Sets the analog input pin that should be used for voltage monitoring on AD7091R5.</p>
 <ul>
@@ -15394,7 +15394,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTF_CURR_PIN" data-k="battf_curr_pin battery current sensing pin (battf_curr_pin)"><h3><a href="#BATTF_CURR_PIN">BATTF_CURR_PIN</a> <span>Battery Current sensing pin</span></h3>
+</article><article class="p" id="BATTF_CURR_PIN-2" data-k="battf_curr_pin battery current sensing pin (battf_curr_pin)"><h3><a href="#BATTF_CURR_PIN-2">BATTF_CURR_PIN</a> <span>Battery Current sensing pin</span></h3>
 
 <p>Sets the analog input pin that should be used for Current monitoring on AD7091R5.</p>
 <ul>
@@ -15406,14 +15406,14 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTF_VOLT_MULT" data-k="battf_volt_mult voltage multiplier (battf_volt_mult)"><h3><a href="#BATTF_VOLT_MULT">BATTF_VOLT_MULT</a> <span>Voltage Multiplier</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTF_VOLT_MULT-2" data-k="battf_volt_mult voltage multiplier (battf_volt_mult)"><h3><a href="#BATTF_VOLT_MULT-2">BATTF_VOLT_MULT</a> <span>Voltage Multiplier</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Used to convert the voltage of the voltage sensing pin (BATTF_VOLT_PIN) to the actual battery&#x27;s voltage (pin_voltage * VOLT_MULT).</p>
 <ul>
 </ul>
 
 
-</article><article class="p" id="BATTF_AMP_PERVLT" data-k="battf_amp_pervlt amps per volt (battf_amp_pervlt)"><h3><a href="#BATTF_AMP_PERVLT">BATTF_AMP_PERVLT</a> <span>Amps per volt</span></h3>
+</article><article class="p" id="BATTF_AMP_PERVLT-2" data-k="battf_amp_pervlt amps per volt (battf_amp_pervlt)"><h3><a href="#BATTF_AMP_PERVLT-2">BATTF_AMP_PERVLT</a> <span>Amps per volt</span></h3>
 
 <p>Number of amps that a 1V reading on the current sensor corresponds to.</p>
 <ul>
@@ -15421,7 +15421,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTF_AMP_OFFSET" data-k="battf_amp_offset amp offset (battf_amp_offset)"><h3><a href="#BATTF_AMP_OFFSET">BATTF_AMP_OFFSET</a> <span>AMP offset</span></h3>
+</article><article class="p" id="BATTF_AMP_OFFSET-2" data-k="battf_amp_offset amp offset (battf_amp_offset)"><h3><a href="#BATTF_AMP_OFFSET-2">BATTF_AMP_OFFSET</a> <span>AMP offset</span></h3>
 
 <p>Voltage offset at zero current on current sensor</p>
 <ul>
@@ -15429,7 +15429,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTF_VLT_OFFSET" data-k="battf_vlt_offset volage offset (battf_vlt_offset)"><h3><a href="#BATTF_VLT_OFFSET">BATTF_VLT_OFFSET</a> <span>Volage offset</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTF_VLT_OFFSET-2" data-k="battf_vlt_offset volage offset (battf_vlt_offset)"><h3><a href="#BATTF_VLT_OFFSET-2">BATTF_VLT_OFFSET</a> <span>Volage offset</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Voltage offset on voltage pin. This allows for an offset due to a diode. This voltage is subtracted before the scaling is applied</p>
 <ul>
@@ -15894,7 +15894,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTG_I2C_BUS" data-k="battg_i2c_bus battery monitor i2c bus number (battg_i2c_bus)"><h3><a href="#BATTG_I2C_BUS">BATTG_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTG_I2C_BUS-2" data-k="battg_i2c_bus battery monitor i2c bus number (battg_i2c_bus)"><h3><a href="#BATTG_I2C_BUS-2">BATTG_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C bus number</p>
 <ul>
@@ -15903,7 +15903,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTG_I2C_ADDR" data-k="battg_i2c_addr battery monitor i2c address (battg_i2c_addr)"><h3><a href="#BATTG_I2C_ADDR">BATTG_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTG_I2C_ADDR-2" data-k="battg_i2c_addr battery monitor i2c address (battg_i2c_addr)"><h3><a href="#BATTG_I2C_ADDR-2">BATTG_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C address. If this is zero then probe list of supported addresses</p>
 <ul>
@@ -15938,7 +15938,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTG_MAX_AMPS" data-k="battg_max_amps battery monitor max current (battg_max_amps)"><h3><a href="#BATTG_MAX_AMPS">BATTG_MAX_AMPS</a> <span>Battery monitor max current</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTG_MAX_AMPS-2" data-k="battg_max_amps battery monitor max current (battg_max_amps)"><h3><a href="#BATTG_MAX_AMPS-2">BATTG_MAX_AMPS</a> <span>Battery monitor max current</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>This controls the maximum current the INA239 sensor will work with.</p>
 <ul>
@@ -15947,7 +15947,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTG_SHUNT" data-k="battg_shunt battery monitor shunt resistor (battg_shunt)"><h3><a href="#BATTG_SHUNT">BATTG_SHUNT</a> <span>Battery monitor shunt resistor</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTG_SHUNT-2" data-k="battg_shunt battery monitor shunt resistor (battg_shunt)"><h3><a href="#BATTG_SHUNT-2">BATTG_SHUNT</a> <span>Battery monitor shunt resistor</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>This sets the shunt resistor used in the device</p>
 <ul>
@@ -15956,7 +15956,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTG_I2C_BUS" data-k="battg_i2c_bus battery monitor i2c bus number (battg_i2c_bus)"><h3><a href="#BATTG_I2C_BUS">BATTG_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTG_I2C_BUS-3" data-k="battg_i2c_bus battery monitor i2c bus number (battg_i2c_bus)"><h3><a href="#BATTG_I2C_BUS-3">BATTG_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C bus number</p>
 <ul>
@@ -15965,7 +15965,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTG_I2C_ADDR" data-k="battg_i2c_addr battery monitor i2c address (battg_i2c_addr)"><h3><a href="#BATTG_I2C_ADDR">BATTG_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTG_I2C_ADDR-3" data-k="battg_i2c_addr battery monitor i2c address (battg_i2c_addr)"><h3><a href="#BATTG_I2C_ADDR-3">BATTG_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C address. If this is zero then probe list of supported addresses</p>
 <ul>
@@ -15983,7 +15983,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTG_VOLT_PIN" data-k="battg_volt_pin battery voltage sensing pin on the ad7091r5 ic (battg_volt_pin)"><h3><a href="#BATTG_VOLT_PIN">BATTG_VOLT_PIN</a> <span>Battery Voltage sensing pin on the AD7091R5 Ic</span></h3>
+</article><article class="p" id="BATTG_VOLT_PIN-2" data-k="battg_volt_pin battery voltage sensing pin on the ad7091r5 ic (battg_volt_pin)"><h3><a href="#BATTG_VOLT_PIN-2">BATTG_VOLT_PIN</a> <span>Battery Voltage sensing pin on the AD7091R5 Ic</span></h3>
 
 <p>Sets the analog input pin that should be used for voltage monitoring on AD7091R5.</p>
 <ul>
@@ -15995,7 +15995,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTG_CURR_PIN" data-k="battg_curr_pin battery current sensing pin (battg_curr_pin)"><h3><a href="#BATTG_CURR_PIN">BATTG_CURR_PIN</a> <span>Battery Current sensing pin</span></h3>
+</article><article class="p" id="BATTG_CURR_PIN-2" data-k="battg_curr_pin battery current sensing pin (battg_curr_pin)"><h3><a href="#BATTG_CURR_PIN-2">BATTG_CURR_PIN</a> <span>Battery Current sensing pin</span></h3>
 
 <p>Sets the analog input pin that should be used for Current monitoring on AD7091R5.</p>
 <ul>
@@ -16007,14 +16007,14 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTG_VOLT_MULT" data-k="battg_volt_mult voltage multiplier (battg_volt_mult)"><h3><a href="#BATTG_VOLT_MULT">BATTG_VOLT_MULT</a> <span>Voltage Multiplier</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTG_VOLT_MULT-2" data-k="battg_volt_mult voltage multiplier (battg_volt_mult)"><h3><a href="#BATTG_VOLT_MULT-2">BATTG_VOLT_MULT</a> <span>Voltage Multiplier</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Used to convert the voltage of the voltage sensing pin (BATTG_VOLT_PIN) to the actual battery&#x27;s voltage (pin_voltage * VOLT_MULT).</p>
 <ul>
 </ul>
 
 
-</article><article class="p" id="BATTG_AMP_PERVLT" data-k="battg_amp_pervlt amps per volt (battg_amp_pervlt)"><h3><a href="#BATTG_AMP_PERVLT">BATTG_AMP_PERVLT</a> <span>Amps per volt</span></h3>
+</article><article class="p" id="BATTG_AMP_PERVLT-2" data-k="battg_amp_pervlt amps per volt (battg_amp_pervlt)"><h3><a href="#BATTG_AMP_PERVLT-2">BATTG_AMP_PERVLT</a> <span>Amps per volt</span></h3>
 
 <p>Number of amps that a 1V reading on the current sensor corresponds to.</p>
 <ul>
@@ -16022,7 +16022,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTG_AMP_OFFSET" data-k="battg_amp_offset amp offset (battg_amp_offset)"><h3><a href="#BATTG_AMP_OFFSET">BATTG_AMP_OFFSET</a> <span>AMP offset</span></h3>
+</article><article class="p" id="BATTG_AMP_OFFSET-2" data-k="battg_amp_offset amp offset (battg_amp_offset)"><h3><a href="#BATTG_AMP_OFFSET-2">BATTG_AMP_OFFSET</a> <span>AMP offset</span></h3>
 
 <p>Voltage offset at zero current on current sensor</p>
 <ul>
@@ -16030,7 +16030,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATTG_VLT_OFFSET" data-k="battg_vlt_offset volage offset (battg_vlt_offset)"><h3><a href="#BATTG_VLT_OFFSET">BATTG_VLT_OFFSET</a> <span>Volage offset</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATTG_VLT_OFFSET-2" data-k="battg_vlt_offset volage offset (battg_vlt_offset)"><h3><a href="#BATTG_VLT_OFFSET-2">BATTG_VLT_OFFSET</a> <span>Volage offset</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Voltage offset on voltage pin. This allows for an offset due to a diode. This voltage is subtracted before the scaling is applied</p>
 <ul>
@@ -16495,7 +16495,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT_I2C_BUS" data-k="batt_i2c_bus battery monitor i2c bus number (batt_i2c_bus)"><h3><a href="#BATT_I2C_BUS">BATT_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT_I2C_BUS-2" data-k="batt_i2c_bus battery monitor i2c bus number (batt_i2c_bus)"><h3><a href="#BATT_I2C_BUS-2">BATT_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C bus number</p>
 <ul>
@@ -16504,7 +16504,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT_I2C_ADDR" data-k="batt_i2c_addr battery monitor i2c address (batt_i2c_addr)"><h3><a href="#BATT_I2C_ADDR">BATT_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT_I2C_ADDR-2" data-k="batt_i2c_addr battery monitor i2c address (batt_i2c_addr)"><h3><a href="#BATT_I2C_ADDR-2">BATT_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C address. If this is zero then probe list of supported addresses</p>
 <ul>
@@ -16539,7 +16539,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT_MAX_AMPS" data-k="batt_max_amps battery monitor max current (batt_max_amps)"><h3><a href="#BATT_MAX_AMPS">BATT_MAX_AMPS</a> <span>Battery monitor max current</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT_MAX_AMPS-2" data-k="batt_max_amps battery monitor max current (batt_max_amps)"><h3><a href="#BATT_MAX_AMPS-2">BATT_MAX_AMPS</a> <span>Battery monitor max current</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>This controls the maximum current the INA239 sensor will work with.</p>
 <ul>
@@ -16548,7 +16548,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT_SHUNT" data-k="batt_shunt battery monitor shunt resistor (batt_shunt)"><h3><a href="#BATT_SHUNT">BATT_SHUNT</a> <span>Battery monitor shunt resistor</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT_SHUNT-2" data-k="batt_shunt battery monitor shunt resistor (batt_shunt)"><h3><a href="#BATT_SHUNT-2">BATT_SHUNT</a> <span>Battery monitor shunt resistor</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>This sets the shunt resistor used in the device</p>
 <ul>
@@ -16557,7 +16557,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT_I2C_BUS" data-k="batt_i2c_bus battery monitor i2c bus number (batt_i2c_bus)"><h3><a href="#BATT_I2C_BUS">BATT_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT_I2C_BUS-3" data-k="batt_i2c_bus battery monitor i2c bus number (batt_i2c_bus)"><h3><a href="#BATT_I2C_BUS-3">BATT_I2C_BUS</a> <span>Battery monitor I2C bus number</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C bus number</p>
 <ul>
@@ -16566,7 +16566,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT_I2C_ADDR" data-k="batt_i2c_addr battery monitor i2c address (batt_i2c_addr)"><h3><a href="#BATT_I2C_ADDR">BATT_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT_I2C_ADDR-3" data-k="batt_i2c_addr battery monitor i2c address (batt_i2c_addr)"><h3><a href="#BATT_I2C_ADDR-3">BATT_I2C_ADDR</a> <span>Battery monitor I2C address</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Battery monitor I2C address. If this is zero then probe list of supported addresses</p>
 <ul>
@@ -16584,7 +16584,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT_VOLT_PIN" data-k="batt_volt_pin battery voltage sensing pin on the ad7091r5 ic (batt_volt_pin)"><h3><a href="#BATT_VOLT_PIN">BATT_VOLT_PIN</a> <span>Battery Voltage sensing pin on the AD7091R5 Ic</span></h3>
+</article><article class="p" id="BATT_VOLT_PIN-2" data-k="batt_volt_pin battery voltage sensing pin on the ad7091r5 ic (batt_volt_pin)"><h3><a href="#BATT_VOLT_PIN-2">BATT_VOLT_PIN</a> <span>Battery Voltage sensing pin on the AD7091R5 Ic</span></h3>
 
 <p>Sets the analog input pin that should be used for voltage monitoring on AD7091R5.</p>
 <ul>
@@ -16596,7 +16596,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT_CURR_PIN" data-k="batt_curr_pin battery current sensing pin (batt_curr_pin)"><h3><a href="#BATT_CURR_PIN">BATT_CURR_PIN</a> <span>Battery Current sensing pin</span></h3>
+</article><article class="p" id="BATT_CURR_PIN-2" data-k="batt_curr_pin battery current sensing pin (batt_curr_pin)"><h3><a href="#BATT_CURR_PIN-2">BATT_CURR_PIN</a> <span>Battery Current sensing pin</span></h3>
 
 <p>Sets the analog input pin that should be used for Current monitoring on AD7091R5.</p>
 <ul>
@@ -16608,14 +16608,14 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT_VOLT_MULT" data-k="batt_volt_mult voltage multiplier (batt_volt_mult)"><h3><a href="#BATT_VOLT_MULT">BATT_VOLT_MULT</a> <span>Voltage Multiplier</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT_VOLT_MULT-2" data-k="batt_volt_mult voltage multiplier (batt_volt_mult)"><h3><a href="#BATT_VOLT_MULT-2">BATT_VOLT_MULT</a> <span>Voltage Multiplier</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Used to convert the voltage of the voltage sensing pin (BATT_VOLT_PIN) to the actual battery&#x27;s voltage (pin_voltage * VOLT_MULT).</p>
 <ul>
 </ul>
 
 
-</article><article class="p" id="BATT_AMP_PERVLT" data-k="batt_amp_pervlt amps per volt (batt_amp_pervlt)"><h3><a href="#BATT_AMP_PERVLT">BATT_AMP_PERVLT</a> <span>Amps per volt</span></h3>
+</article><article class="p" id="BATT_AMP_PERVLT-2" data-k="batt_amp_pervlt amps per volt (batt_amp_pervlt)"><h3><a href="#BATT_AMP_PERVLT-2">BATT_AMP_PERVLT</a> <span>Amps per volt</span></h3>
 
 <p>Number of amps that a 1V reading on the current sensor corresponds to.</p>
 <ul>
@@ -16623,7 +16623,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT_AMP_OFFSET" data-k="batt_amp_offset amp offset (batt_amp_offset)"><h3><a href="#BATT_AMP_OFFSET">BATT_AMP_OFFSET</a> <span>AMP offset</span></h3>
+</article><article class="p" id="BATT_AMP_OFFSET-2" data-k="batt_amp_offset amp offset (batt_amp_offset)"><h3><a href="#BATT_AMP_OFFSET-2">BATT_AMP_OFFSET</a> <span>AMP offset</span></h3>
 
 <p>Voltage offset at zero current on current sensor</p>
 <ul>
@@ -16631,7 +16631,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="BATT_VLT_OFFSET" data-k="batt_vlt_offset volage offset (batt_vlt_offset)"><h3><a href="#BATT_VLT_OFFSET">BATT_VLT_OFFSET</a> <span>Volage offset</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="BATT_VLT_OFFSET-2" data-k="batt_vlt_offset volage offset (batt_vlt_offset)"><h3><a href="#BATT_VLT_OFFSET-2">BATT_VLT_OFFSET</a> <span>Volage offset</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Voltage offset on voltage pin. This allows for an offset due to a diode. This voltage is subtracted before the scaling is applied</p>
 <ul>
@@ -54081,7 +54081,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article></section><section class="grp" id="g-rngfnd1-grf-parameters"><h2>RNGFND1_GRF_ Parameters</h2><article class="p" id="RNGFND1_GRF_RET" data-k="rngfnd1_grf_ret lightware grf distance return type (rngfnd1_grf_ret)"><h3><a href="#RNGFND1_GRF_RET">RNGFND1_GRF_RET</a> <span>LightWare GRF Distance Return Type</span></h3>
+</article></section><section class="grp" id="g-rngfnd1-grf-parameters"><h2>RNGFND1_GRF_ Parameters</h2><article class="p" id="RNGFND1_GRF_RET-2" data-k="rngfnd1_grf_ret lightware grf distance return type (rngfnd1_grf_ret)"><h3><a href="#RNGFND1_GRF_RET-2">RNGFND1_GRF_RET</a> <span>LightWare GRF Distance Return Type</span></h3>
 
 <p>Selects which single return to use.</p>
 <ul>
@@ -54095,7 +54095,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="RNGFND1_GRF_ST" data-k="rngfnd1_grf_st lightware grf minimum return strength (rngfnd1_grf_st)"><h3><a href="#RNGFND1_GRF_ST">RNGFND1_GRF_ST</a> <span>LightWare GRF Minimum Return Strength</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="RNGFND1_GRF_ST-2" data-k="rngfnd1_grf_st lightware grf minimum return strength (rngfnd1_grf_st)"><h3><a href="#RNGFND1_GRF_ST-2">RNGFND1_GRF_ST</a> <span>LightWare GRF Minimum Return Strength</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Minimum acceptable return signal strength. Returns weaker than this will be ignored. Units are dB on the GRF-250/500 and percent on the SF000/B (I2C). Set to 0 to disable filtering.</p>
 <ul>
@@ -54104,7 +54104,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="RNGFND1_GRF_RATE" data-k="rngfnd1_grf_rate lightware grf update rate (rngfnd1_grf_rate)"><h3><a href="#RNGFND1_GRF_RATE">RNGFND1_GRF_RATE</a> <span>LightWare GRF Update Rate</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="RNGFND1_GRF_RATE-2" data-k="rngfnd1_grf_rate lightware grf update rate (rngfnd1_grf_rate)"><h3><a href="#RNGFND1_GRF_RATE-2">RNGFND1_GRF_RATE</a> <span>LightWare GRF Update Rate</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>The update rate of the sensor in Hz. Ignored by the SF000/B over I2C, which keeps its own update rate (48 Hz default, set in LightWare Studio).</p>
 <ul>
@@ -54451,7 +54451,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article></section><section class="grp" id="g-rngfnd2-grf-parameters"><h2>RNGFND2_GRF_ Parameters</h2><article class="p" id="RNGFND2_GRF_RET" data-k="rngfnd2_grf_ret lightware grf distance return type (rngfnd2_grf_ret)"><h3><a href="#RNGFND2_GRF_RET">RNGFND2_GRF_RET</a> <span>LightWare GRF Distance Return Type</span></h3>
+</article></section><section class="grp" id="g-rngfnd2-grf-parameters"><h2>RNGFND2_GRF_ Parameters</h2><article class="p" id="RNGFND2_GRF_RET-2" data-k="rngfnd2_grf_ret lightware grf distance return type (rngfnd2_grf_ret)"><h3><a href="#RNGFND2_GRF_RET-2">RNGFND2_GRF_RET</a> <span>LightWare GRF Distance Return Type</span></h3>
 
 <p>Selects which single return to use.</p>
 <ul>
@@ -54465,7 +54465,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="RNGFND2_GRF_ST" data-k="rngfnd2_grf_st lightware grf minimum return strength (rngfnd2_grf_st)"><h3><a href="#RNGFND2_GRF_ST">RNGFND2_GRF_ST</a> <span>LightWare GRF Minimum Return Strength</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="RNGFND2_GRF_ST-2" data-k="rngfnd2_grf_st lightware grf minimum return strength (rngfnd2_grf_st)"><h3><a href="#RNGFND2_GRF_ST-2">RNGFND2_GRF_ST</a> <span>LightWare GRF Minimum Return Strength</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Minimum acceptable return signal strength. Returns weaker than this will be ignored. Units are dB on the GRF-250/500 and percent on the SF000/B (I2C). Set to 0 to disable filtering.</p>
 <ul>
@@ -54474,7 +54474,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="RNGFND2_GRF_RATE" data-k="rngfnd2_grf_rate lightware grf update rate (rngfnd2_grf_rate)"><h3><a href="#RNGFND2_GRF_RATE">RNGFND2_GRF_RATE</a> <span>LightWare GRF Update Rate</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="RNGFND2_GRF_RATE-2" data-k="rngfnd2_grf_rate lightware grf update rate (rngfnd2_grf_rate)"><h3><a href="#RNGFND2_GRF_RATE-2">RNGFND2_GRF_RATE</a> <span>LightWare GRF Update Rate</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>The update rate of the sensor in Hz. Ignored by the SF000/B over I2C, which keeps its own update rate (48 Hz default, set in LightWare Studio).</p>
 <ul>
@@ -54821,7 +54821,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article></section><section class="grp" id="g-rngfnd3-grf-parameters"><h2>RNGFND3_GRF_ Parameters</h2><article class="p" id="RNGFND3_GRF_RET" data-k="rngfnd3_grf_ret lightware grf distance return type (rngfnd3_grf_ret)"><h3><a href="#RNGFND3_GRF_RET">RNGFND3_GRF_RET</a> <span>LightWare GRF Distance Return Type</span></h3>
+</article></section><section class="grp" id="g-rngfnd3-grf-parameters"><h2>RNGFND3_GRF_ Parameters</h2><article class="p" id="RNGFND3_GRF_RET-2" data-k="rngfnd3_grf_ret lightware grf distance return type (rngfnd3_grf_ret)"><h3><a href="#RNGFND3_GRF_RET-2">RNGFND3_GRF_RET</a> <span>LightWare GRF Distance Return Type</span></h3>
 
 <p>Selects which single return to use.</p>
 <ul>
@@ -54835,7 +54835,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="RNGFND3_GRF_ST" data-k="rngfnd3_grf_st lightware grf minimum return strength (rngfnd3_grf_st)"><h3><a href="#RNGFND3_GRF_ST">RNGFND3_GRF_ST</a> <span>LightWare GRF Minimum Return Strength</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="RNGFND3_GRF_ST-2" data-k="rngfnd3_grf_st lightware grf minimum return strength (rngfnd3_grf_st)"><h3><a href="#RNGFND3_GRF_ST-2">RNGFND3_GRF_ST</a> <span>LightWare GRF Minimum Return Strength</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Minimum acceptable return signal strength. Returns weaker than this will be ignored. Units are dB on the GRF-250/500 and percent on the SF000/B (I2C). Set to 0 to disable filtering.</p>
 <ul>
@@ -54844,7 +54844,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="RNGFND3_GRF_RATE" data-k="rngfnd3_grf_rate lightware grf update rate (rngfnd3_grf_rate)"><h3><a href="#RNGFND3_GRF_RATE">RNGFND3_GRF_RATE</a> <span>LightWare GRF Update Rate</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="RNGFND3_GRF_RATE-2" data-k="rngfnd3_grf_rate lightware grf update rate (rngfnd3_grf_rate)"><h3><a href="#RNGFND3_GRF_RATE-2">RNGFND3_GRF_RATE</a> <span>LightWare GRF Update Rate</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>The update rate of the sensor in Hz. Ignored by the SF000/B over I2C, which keeps its own update rate (48 Hz default, set in LightWare Studio).</p>
 <ul>
@@ -55191,7 +55191,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article></section><section class="grp" id="g-rngfnd4-grf-parameters"><h2>RNGFND4_GRF_ Parameters</h2><article class="p" id="RNGFND4_GRF_RET" data-k="rngfnd4_grf_ret lightware grf distance return type (rngfnd4_grf_ret)"><h3><a href="#RNGFND4_GRF_RET">RNGFND4_GRF_RET</a> <span>LightWare GRF Distance Return Type</span></h3>
+</article></section><section class="grp" id="g-rngfnd4-grf-parameters"><h2>RNGFND4_GRF_ Parameters</h2><article class="p" id="RNGFND4_GRF_RET-2" data-k="rngfnd4_grf_ret lightware grf distance return type (rngfnd4_grf_ret)"><h3><a href="#RNGFND4_GRF_RET-2">RNGFND4_GRF_RET</a> <span>LightWare GRF Distance Return Type</span></h3>
 
 <p>Selects which single return to use.</p>
 <ul>
@@ -55205,7 +55205,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="RNGFND4_GRF_ST" data-k="rngfnd4_grf_st lightware grf minimum return strength (rngfnd4_grf_st)"><h3><a href="#RNGFND4_GRF_ST">RNGFND4_GRF_ST</a> <span>LightWare GRF Minimum Return Strength</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="RNGFND4_GRF_ST-2" data-k="rngfnd4_grf_st lightware grf minimum return strength (rngfnd4_grf_st)"><h3><a href="#RNGFND4_GRF_ST-2">RNGFND4_GRF_ST</a> <span>LightWare GRF Minimum Return Strength</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Minimum acceptable return signal strength. Returns weaker than this will be ignored. Units are dB on the GRF-250/500 and percent on the SF000/B (I2C). Set to 0 to disable filtering.</p>
 <ul>
@@ -55214,7 +55214,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="RNGFND4_GRF_RATE" data-k="rngfnd4_grf_rate lightware grf update rate (rngfnd4_grf_rate)"><h3><a href="#RNGFND4_GRF_RATE">RNGFND4_GRF_RATE</a> <span>LightWare GRF Update Rate</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="RNGFND4_GRF_RATE-2" data-k="rngfnd4_grf_rate lightware grf update rate (rngfnd4_grf_rate)"><h3><a href="#RNGFND4_GRF_RATE-2">RNGFND4_GRF_RATE</a> <span>LightWare GRF Update Rate</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>The update rate of the sensor in Hz. Ignored by the SF000/B over I2C, which keeps its own update rate (48 Hz default, set in LightWare Studio).</p>
 <ul>
@@ -55561,7 +55561,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article></section><section class="grp" id="g-rngfnd5-grf-parameters"><h2>RNGFND5_GRF_ Parameters</h2><article class="p" id="RNGFND5_GRF_RET" data-k="rngfnd5_grf_ret lightware grf distance return type (rngfnd5_grf_ret)"><h3><a href="#RNGFND5_GRF_RET">RNGFND5_GRF_RET</a> <span>LightWare GRF Distance Return Type</span></h3>
+</article></section><section class="grp" id="g-rngfnd5-grf-parameters"><h2>RNGFND5_GRF_ Parameters</h2><article class="p" id="RNGFND5_GRF_RET-2" data-k="rngfnd5_grf_ret lightware grf distance return type (rngfnd5_grf_ret)"><h3><a href="#RNGFND5_GRF_RET-2">RNGFND5_GRF_RET</a> <span>LightWare GRF Distance Return Type</span></h3>
 
 <p>Selects which single return to use.</p>
 <ul>
@@ -55575,7 +55575,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="RNGFND5_GRF_ST" data-k="rngfnd5_grf_st lightware grf minimum return strength (rngfnd5_grf_st)"><h3><a href="#RNGFND5_GRF_ST">RNGFND5_GRF_ST</a> <span>LightWare GRF Minimum Return Strength</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="RNGFND5_GRF_ST-2" data-k="rngfnd5_grf_st lightware grf minimum return strength (rngfnd5_grf_st)"><h3><a href="#RNGFND5_GRF_ST-2">RNGFND5_GRF_ST</a> <span>LightWare GRF Minimum Return Strength</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Minimum acceptable return signal strength. Returns weaker than this will be ignored. Units are dB on the GRF-250/500 and percent on the SF000/B (I2C). Set to 0 to disable filtering.</p>
 <ul>
@@ -55584,7 +55584,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="RNGFND5_GRF_RATE" data-k="rngfnd5_grf_rate lightware grf update rate (rngfnd5_grf_rate)"><h3><a href="#RNGFND5_GRF_RATE">RNGFND5_GRF_RATE</a> <span>LightWare GRF Update Rate</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="RNGFND5_GRF_RATE-2" data-k="rngfnd5_grf_rate lightware grf update rate (rngfnd5_grf_rate)"><h3><a href="#RNGFND5_GRF_RATE-2">RNGFND5_GRF_RATE</a> <span>LightWare GRF Update Rate</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>The update rate of the sensor in Hz. Ignored by the SF000/B over I2C, which keeps its own update rate (48 Hz default, set in LightWare Studio).</p>
 <ul>
@@ -55931,7 +55931,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article></section><section class="grp" id="g-rngfnd6-grf-parameters"><h2>RNGFND6_GRF_ Parameters</h2><article class="p" id="RNGFND6_GRF_RET" data-k="rngfnd6_grf_ret lightware grf distance return type (rngfnd6_grf_ret)"><h3><a href="#RNGFND6_GRF_RET">RNGFND6_GRF_RET</a> <span>LightWare GRF Distance Return Type</span></h3>
+</article></section><section class="grp" id="g-rngfnd6-grf-parameters"><h2>RNGFND6_GRF_ Parameters</h2><article class="p" id="RNGFND6_GRF_RET-2" data-k="rngfnd6_grf_ret lightware grf distance return type (rngfnd6_grf_ret)"><h3><a href="#RNGFND6_GRF_RET-2">RNGFND6_GRF_RET</a> <span>LightWare GRF Distance Return Type</span></h3>
 
 <p>Selects which single return to use.</p>
 <ul>
@@ -55945,7 +55945,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="RNGFND6_GRF_ST" data-k="rngfnd6_grf_st lightware grf minimum return strength (rngfnd6_grf_st)"><h3><a href="#RNGFND6_GRF_ST">RNGFND6_GRF_ST</a> <span>LightWare GRF Minimum Return Strength</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="RNGFND6_GRF_ST-2" data-k="rngfnd6_grf_st lightware grf minimum return strength (rngfnd6_grf_st)"><h3><a href="#RNGFND6_GRF_ST-2">RNGFND6_GRF_ST</a> <span>LightWare GRF Minimum Return Strength</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Minimum acceptable return signal strength. Returns weaker than this will be ignored. Units are dB on the GRF-250/500 and percent on the SF000/B (I2C). Set to 0 to disable filtering.</p>
 <ul>
@@ -55954,7 +55954,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="RNGFND6_GRF_RATE" data-k="rngfnd6_grf_rate lightware grf update rate (rngfnd6_grf_rate)"><h3><a href="#RNGFND6_GRF_RATE">RNGFND6_GRF_RATE</a> <span>LightWare GRF Update Rate</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="RNGFND6_GRF_RATE-2" data-k="rngfnd6_grf_rate lightware grf update rate (rngfnd6_grf_rate)"><h3><a href="#RNGFND6_GRF_RATE-2">RNGFND6_GRF_RATE</a> <span>LightWare GRF Update Rate</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>The update rate of the sensor in Hz. Ignored by the SF000/B over I2C, which keeps its own update rate (48 Hz default, set in LightWare Studio).</p>
 <ul>
@@ -56301,7 +56301,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article></section><section class="grp" id="g-rngfnd7-grf-parameters"><h2>RNGFND7_GRF_ Parameters</h2><article class="p" id="RNGFND7_GRF_RET" data-k="rngfnd7_grf_ret lightware grf distance return type (rngfnd7_grf_ret)"><h3><a href="#RNGFND7_GRF_RET">RNGFND7_GRF_RET</a> <span>LightWare GRF Distance Return Type</span></h3>
+</article></section><section class="grp" id="g-rngfnd7-grf-parameters"><h2>RNGFND7_GRF_ Parameters</h2><article class="p" id="RNGFND7_GRF_RET-2" data-k="rngfnd7_grf_ret lightware grf distance return type (rngfnd7_grf_ret)"><h3><a href="#RNGFND7_GRF_RET-2">RNGFND7_GRF_RET</a> <span>LightWare GRF Distance Return Type</span></h3>
 
 <p>Selects which single return to use.</p>
 <ul>
@@ -56315,7 +56315,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="RNGFND7_GRF_ST" data-k="rngfnd7_grf_st lightware grf minimum return strength (rngfnd7_grf_st)"><h3><a href="#RNGFND7_GRF_ST">RNGFND7_GRF_ST</a> <span>LightWare GRF Minimum Return Strength</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="RNGFND7_GRF_ST-2" data-k="rngfnd7_grf_st lightware grf minimum return strength (rngfnd7_grf_st)"><h3><a href="#RNGFND7_GRF_ST-2">RNGFND7_GRF_ST</a> <span>LightWare GRF Minimum Return Strength</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Minimum acceptable return signal strength. Returns weaker than this will be ignored. Units are dB on the GRF-250/500 and percent on the SF000/B (I2C). Set to 0 to disable filtering.</p>
 <ul>
@@ -56324,7 +56324,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="RNGFND7_GRF_RATE" data-k="rngfnd7_grf_rate lightware grf update rate (rngfnd7_grf_rate)"><h3><a href="#RNGFND7_GRF_RATE">RNGFND7_GRF_RATE</a> <span>LightWare GRF Update Rate</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="RNGFND7_GRF_RATE-2" data-k="rngfnd7_grf_rate lightware grf update rate (rngfnd7_grf_rate)"><h3><a href="#RNGFND7_GRF_RATE-2">RNGFND7_GRF_RATE</a> <span>LightWare GRF Update Rate</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>The update rate of the sensor in Hz. Ignored by the SF000/B over I2C, which keeps its own update rate (48 Hz default, set in LightWare Studio).</p>
 <ul>
@@ -56671,7 +56671,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article></section><section class="grp" id="g-rngfnd8-grf-parameters"><h2>RNGFND8_GRF_ Parameters</h2><article class="p" id="RNGFND8_GRF_RET" data-k="rngfnd8_grf_ret lightware grf distance return type (rngfnd8_grf_ret)"><h3><a href="#RNGFND8_GRF_RET">RNGFND8_GRF_RET</a> <span>LightWare GRF Distance Return Type</span></h3>
+</article></section><section class="grp" id="g-rngfnd8-grf-parameters"><h2>RNGFND8_GRF_ Parameters</h2><article class="p" id="RNGFND8_GRF_RET-2" data-k="rngfnd8_grf_ret lightware grf distance return type (rngfnd8_grf_ret)"><h3><a href="#RNGFND8_GRF_RET-2">RNGFND8_GRF_RET</a> <span>LightWare GRF Distance Return Type</span></h3>
 
 <p>Selects which single return to use.</p>
 <ul>
@@ -56685,7 +56685,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="RNGFND8_GRF_ST" data-k="rngfnd8_grf_st lightware grf minimum return strength (rngfnd8_grf_st)"><h3><a href="#RNGFND8_GRF_ST">RNGFND8_GRF_ST</a> <span>LightWare GRF Minimum Return Strength</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="RNGFND8_GRF_ST-2" data-k="rngfnd8_grf_st lightware grf minimum return strength (rngfnd8_grf_st)"><h3><a href="#RNGFND8_GRF_ST-2">RNGFND8_GRF_ST</a> <span>LightWare GRF Minimum Return Strength</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Minimum acceptable return signal strength. Returns weaker than this will be ignored. Units are dB on the GRF-250/500 and percent on the SF000/B (I2C). Set to 0 to disable filtering.</p>
 <ul>
@@ -56694,7 +56694,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="RNGFND8_GRF_RATE" data-k="rngfnd8_grf_rate lightware grf update rate (rngfnd8_grf_rate)"><h3><a href="#RNGFND8_GRF_RATE">RNGFND8_GRF_RATE</a> <span>LightWare GRF Update Rate</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="RNGFND8_GRF_RATE-2" data-k="rngfnd8_grf_rate lightware grf update rate (rngfnd8_grf_rate)"><h3><a href="#RNGFND8_GRF_RATE-2">RNGFND8_GRF_RATE</a> <span>LightWare GRF Update Rate</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>The update rate of the sensor in Hz. Ignored by the SF000/B over I2C, which keeps its own update rate (48 Hz default, set in LightWare Studio).</p>
 <ul>
@@ -57041,7 +57041,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article></section><section class="grp" id="g-rngfnd9-grf-parameters"><h2>RNGFND9_GRF_ Parameters</h2><article class="p" id="RNGFND9_GRF_RET" data-k="rngfnd9_grf_ret lightware grf distance return type (rngfnd9_grf_ret)"><h3><a href="#RNGFND9_GRF_RET">RNGFND9_GRF_RET</a> <span>LightWare GRF Distance Return Type</span></h3>
+</article></section><section class="grp" id="g-rngfnd9-grf-parameters"><h2>RNGFND9_GRF_ Parameters</h2><article class="p" id="RNGFND9_GRF_RET-2" data-k="rngfnd9_grf_ret lightware grf distance return type (rngfnd9_grf_ret)"><h3><a href="#RNGFND9_GRF_RET-2">RNGFND9_GRF_RET</a> <span>LightWare GRF Distance Return Type</span></h3>
 
 <p>Selects which single return to use.</p>
 <ul>
@@ -57055,7 +57055,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="RNGFND9_GRF_ST" data-k="rngfnd9_grf_st lightware grf minimum return strength (rngfnd9_grf_st)"><h3><a href="#RNGFND9_GRF_ST">RNGFND9_GRF_ST</a> <span>LightWare GRF Minimum Return Strength</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="RNGFND9_GRF_ST-2" data-k="rngfnd9_grf_st lightware grf minimum return strength (rngfnd9_grf_st)"><h3><a href="#RNGFND9_GRF_ST-2">RNGFND9_GRF_ST</a> <span>LightWare GRF Minimum Return Strength</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Minimum acceptable return signal strength. Returns weaker than this will be ignored. Units are dB on the GRF-250/500 and percent on the SF000/B (I2C). Set to 0 to disable filtering.</p>
 <ul>
@@ -57064,7 +57064,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="RNGFND9_GRF_RATE" data-k="rngfnd9_grf_rate lightware grf update rate (rngfnd9_grf_rate)"><h3><a href="#RNGFND9_GRF_RATE">RNGFND9_GRF_RATE</a> <span>LightWare GRF Update Rate</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="RNGFND9_GRF_RATE-2" data-k="rngfnd9_grf_rate lightware grf update rate (rngfnd9_grf_rate)"><h3><a href="#RNGFND9_GRF_RATE-2">RNGFND9_GRF_RATE</a> <span>LightWare GRF Update Rate</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>The update rate of the sensor in Hz. Ignored by the SF000/B over I2C, which keeps its own update rate (48 Hz default, set in LightWare Studio).</p>
 <ul>
@@ -57411,7 +57411,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article></section><section class="grp" id="g-rngfnda-grf-parameters"><h2>RNGFNDA_GRF_ Parameters</h2><article class="p" id="RNGFNDA_GRF_RET" data-k="rngfnda_grf_ret lightware grf distance return type (rngfnda_grf_ret)"><h3><a href="#RNGFNDA_GRF_RET">RNGFNDA_GRF_RET</a> <span>LightWare GRF Distance Return Type</span></h3>
+</article></section><section class="grp" id="g-rngfnda-grf-parameters"><h2>RNGFNDA_GRF_ Parameters</h2><article class="p" id="RNGFNDA_GRF_RET-2" data-k="rngfnda_grf_ret lightware grf distance return type (rngfnda_grf_ret)"><h3><a href="#RNGFNDA_GRF_RET-2">RNGFNDA_GRF_RET</a> <span>LightWare GRF Distance Return Type</span></h3>
 
 <p>Selects which single return to use.</p>
 <ul>
@@ -57425,7 +57425,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="RNGFNDA_GRF_ST" data-k="rngfnda_grf_st lightware grf minimum return strength (rngfnda_grf_st)"><h3><a href="#RNGFNDA_GRF_ST">RNGFNDA_GRF_ST</a> <span>LightWare GRF Minimum Return Strength</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="RNGFNDA_GRF_ST-2" data-k="rngfnda_grf_st lightware grf minimum return strength (rngfnda_grf_st)"><h3><a href="#RNGFNDA_GRF_ST-2">RNGFNDA_GRF_ST</a> <span>LightWare GRF Minimum Return Strength</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Minimum acceptable return signal strength. Returns weaker than this will be ignored. Units are dB on the GRF-250/500 and percent on the SF000/B (I2C). Set to 0 to disable filtering.</p>
 <ul>
@@ -57434,7 +57434,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="RNGFNDA_GRF_RATE" data-k="rngfnda_grf_rate lightware grf update rate (rngfnda_grf_rate)"><h3><a href="#RNGFNDA_GRF_RATE">RNGFNDA_GRF_RATE</a> <span>LightWare GRF Update Rate</span></h3><em>Note: This parameter is for advanced users</em><br>
+</article><article class="p" id="RNGFNDA_GRF_RATE-2" data-k="rngfnda_grf_rate lightware grf update rate (rngfnda_grf_rate)"><h3><a href="#RNGFNDA_GRF_RATE-2">RNGFNDA_GRF_RATE</a> <span>LightWare GRF Update Rate</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>The update rate of the sensor in Hz. Ignored by the SF000/B over I2C, which keeps its own update rate (48 Hz default, set in LightWare Studio).</p>
 <ul>
@@ -74996,7 +74996,7 @@ footer{color:var(--muted);font-size:13px}
     let shown=0;
     for(const a of arts){const k=a.dataset.k;const ok=terms.every(w=>k.includes(w));a.hidden=!ok;if(ok)shown++}
     for(const g of grps)g.hidden=!g.querySelector('article.p:not([hidden])');
-    n.textContent=terms.length?shown+' of 6704 parameters':'6704 parameters';
+    n.textContent=terms.length?shown+' of 6704 entries':'6,482 parameters';
   }
 })();
 </script>
