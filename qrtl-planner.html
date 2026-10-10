@@ -1,0 +1,567 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Terrahawk QRTL Planner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: instrument-panel tool. Inputs rail on the left, live profile + timeline on the right; notes stack below. */
+:root{
+  --bg:#f2f4f6; --panel:#ffffff; --ink:#18212b; --muted:#5b6876; --line:#d6dce3;
+  --accent:#c77a12; --accent-soft:#f6e7cf; --sky:#2f6f9f; --sky-soft:#dbe8f2;
+  --vtol:#3c7a52; --vtol-soft:#dcefe2; --warn:#a8402c;
+  --f-display:"Barlow Semi Condensed","Arial Narrow",Arial,sans-serif;
+  --f-body:"Barlow","Segoe UI",Roboto,Arial,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#11161c; --panel:#18202a; --ink:#e4e9ee; --muted:#93a1b0; --line:#2b3644;
+  --accent:#e7a33e; --accent-soft:#3a2b14; --sky:#6aa7d6; --sky-soft:#1b2c3b;
+  --vtol:#6fbf8b; --vtol-soft:#1b3326; --warn:#e07a62; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#11161c; --panel:#18202a; --ink:#e4e9ee; --muted:#93a1b0; --line:#2b3644;
+  --accent:#e7a33e; --accent-soft:#3a2b14; --sky:#6aa7d6; --sky-soft:#1b2c3b;
+  --vtol:#6fbf8b; --vtol-soft:#1b3326; --warn:#e07a62; color-scheme:dark }
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.5}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:16px;padding-block:28px 48px;display:grid;gap:22px}
+header h1{font-family:var(--f-display);font-weight:700;font-size:clamp(26px,4vw,36px);letter-spacing:.01em;margin:0;text-wrap:balance}
+header p{margin:6px 0 0;color:var(--muted);max-width:70ch}
+.tag{font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:320px 1fr;gap:22px;align-items:start}
+@media (max-width:860px){.grid{grid-template-columns:1fr}}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px;min-width:0}
+h2{font-family:var(--f-display);font-weight:600;font-size:19px;margin:0 0 12px;letter-spacing:.01em}
+h3{font-family:var(--f-display);font-weight:600;font-size:16px;margin:18px 0 8px}
+.label{font-family:var(--f-display);text-transform:uppercase;letter-spacing:.08em;font-size:12px;color:var(--muted);font-weight:600}
+.presets{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.presets button{font:500 13px var(--f-body);border:1px solid var(--line);background:var(--bg);color:var(--ink);padding:5px 10px;border-radius:6px;cursor:pointer}
+.presets button:hover,.presets button:focus-visible{border-color:var(--accent);outline:none}
+.presets button[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent)}
+fieldset{border:0;padding:0;margin:0 0 14px;display:grid;gap:8px}
+legend{padding:0;margin-bottom:6px}
+.row{display:grid;grid-template-columns:1fr 92px;align-items:center;gap:10px}
+.row label{font-size:14px}
+.row label code{font-family:var(--f-mono);font-size:12px;color:var(--muted);display:block}
+input[type=number]{width:100%;font:500 14px var(--f-mono);padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);text-align:right;font-variant-numeric:tabular-nums}
+input:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:16px}
+@media (max-width:620px){.summary{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.stat{border-left:3px solid var(--line);padding:2px 0 2px 10px}
+.stat.key{border-left-color:var(--accent)}
+.stat b{display:block;font:600 22px var(--f-display);font-variant-numeric:tabular-nums}
+.stat span{font-size:12.5px;color:var(--muted)}
+.chartbox{overflow-x:auto}
+svg text{font-family:var(--f-mono);font-size:11px;fill:var(--muted)}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--f-display);font-weight:600;text-transform:uppercase;letter-spacing:.06em;font-size:12px;color:var(--muted)}
+td.n{font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.pill{display:inline-block;font:600 11.5px var(--f-display);letter-spacing:.05em;text-transform:uppercase;padding:2px 7px;border-radius:999px;white-space:nowrap}
+.pill.fw{background:var(--sky-soft);color:var(--sky)}
+.pill.tr{background:var(--accent-soft);color:var(--accent)}
+.pill.vt{background:var(--vtol-soft);color:var(--vtol)}
+.note{color:var(--muted);font-size:13.5px;margin:10px 0 0}
+.warn{color:var(--warn);font-weight:500}
+.cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+@media (max-width:860px){.cols{grid-template-columns:1fr}}
+.formula{font-family:var(--f-mono);font-size:13px;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:10px 12px;overflow-x:auto;white-space:pre}
+p{max-width:72ch}
+.loader{display:grid;gap:8px;padding:12px;margin-bottom:14px;border:1px dashed var(--line);border-radius:8px}
+.loader.drag{border-color:var(--accent);background:var(--accent-soft)}
+.loader .note{margin:0}
+#file{position:absolute;width:1px;height:1px;opacity:0}
+.filebtn{justify-self:start;font:600 13px var(--f-body);background:var(--accent);color:var(--panel);padding:6px 12px;border-radius:6px;cursor:pointer}
+#file:focus-visible + .note,.filebtn:hover{filter:brightness(1.08)}
+select{width:100%;font:500 13px var(--f-mono);padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink)}
+#entryBox{display:grid;gap:4px}
+ul{padding-left:20px;margin:6px 0}
+li{margin:4px 0}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div class="tag">ArduCustom v2.0 · ArduPlane 4.7.1 · KakuteH7-Wing quad-X</div>
+    <h1>Terrahawk QRTL Planner</h1>
+    <p>Where a directly selected QRTL starts its glide, how low it gets on the wing, and how long it hovers at the end. Values are filled in from <code>Terrahawk_gimbal.param</code>; the profile follows the v2.0 QRTL code (<code>mode_qrtl.cpp</code>, <code>quadplane.cpp</code>).</p>
+  </header>
+
+  <div class="grid">
+    <section class="panel" aria-labelledby="in-h">
+      <h2 id="in-h">Scenario</h2>
+      <div class="presets" role="group" aria-label="Presets">
+        <button type="button" data-p="A">A: −1 / 40</button>
+        <button type="button" data-p="B">B: 120 / 20</button>
+        <button type="button" data-p="C">C: −1 / 20</button>
+        <button type="button" data-p="D">C from 500 m</button>
+        <button type="button" data-p="X1">XFLY #1 (fixed)</button>
+        <button type="button" data-p="X2">XFLY #2 (fixed)</button>
+      </div>
+      <div class="loader">
+        <label class="filebtn" for="file">Load .param or .bin</label>
+        <input id="file" type="file" accept=".param,.parm,.params,.txt,.bin">
+        <p class="note" id="loadStatus">Reads parameters from a parameter file, or parameters and QRTL entries from a dataflash log. The file stays on this computer.</p>
+        <div id="entryBox" hidden>
+          <label class="label" for="entry">QRTL entries in the log</label>
+          <select id="entry"></select>
+        </div>
+      </div>
+      <fieldset>
+        <legend class="label">Where you are when you select QRTL</legend>
+        <div class="row"><label for="D">Distance from home <code>m</code></label><input id="D" type="number" step="10" min="0"></div>
+        <div class="row"><label for="H">Altitude above home <code>m</code></label><input id="H" type="number" step="5" min="0"></div>
+        <div class="row"><label for="GS">Ground speed <code>m/s (20 = calm)</code></label><input id="GS" type="number" step="1" min="5"></div>
+      </fieldset>
+      <fieldset>
+        <legend class="label">Return heights</legend>
+        <div class="row"><label for="RA">RTL_ALTITUDE <code>m, −1 = current</code></label><input id="RA" type="number" step="1"></div>
+        <div class="row"><label for="QA">Q_RTL_ALT <code>m</code></label><input id="QA" type="number" step="1" min="1"></div>
+      </fieldset>
+      <fieldset>
+        <legend class="label">Your parameters</legend>
+        <div class="row"><label for="WLR">WP_LOITER_RAD <code>m</code></label><input id="WLR" type="number" step="10"></div>
+        <div class="row"><label for="RR">RTL_RADIUS <code>m</code></label><input id="RR" type="number" step="10"></div>
+        <div class="row"><label for="SINK">TECS_SINK_MAX <code>m/s</code></label><input id="SINK" type="number" step="0.5" min="0.5"></div>
+        <div class="row"><label for="CLMB">TECS_CLMB_MAX <code>m/s</code></label><input id="CLMB" type="number" step="0.5" min="0.5"></div>
+        <div class="row"><label for="AC">AIRSPEED_CRUISE <code>m/s</code></label><input id="AC" type="number" step="1" min="5"></div>
+        <div class="row"><label for="DEC">Q_TRANS_DECEL <code>m/s²</code></label><input id="DEC" type="number" step="0.5" min="0.5"></div>
+        <div class="row"><label for="WDN">Q_WP_SPD_DN <code>m/s</code></label><input id="WDN" type="number" step="0.1" min="0.1"></div>
+        <div class="row"><label for="LFA">Q_LAND_FINAL_ALT <code>m</code></label><input id="LFA" type="number" step="1" min="0"></div>
+        <div class="row"><label for="LFS">Q_LAND_FINAL_SPD <code>m/s</code></label><input id="LFS" type="number" step="0.1" min="0.1"></div>
+      </fieldset>
+      <fieldset>
+        <legend class="label">Estimate</legend>
+        <div class="row"><label for="ASINK">Glide sink the plane really holds <code>m/s (log: 3.5–4)</code></label><input id="ASINK" type="number" step="0.5" min="0.5"></div>
+      </fieldset>
+    </section>
+
+    <section class="panel" aria-labelledby="out-h" style="min-width:0">
+      <h2 id="out-h">Profile</h2>
+      <div class="summary" id="summary"></div>
+      <div class="chartbox"><svg id="chart" viewBox="0 0 760 300" width="100%" role="img" aria-label="Altitude against distance from home"></svg></div>
+      <p class="note" id="legend"></p>
+      <h3>Timeline</h3>
+      <div class="tbl"><table id="tl"><thead><tr><th>Phase</th><th>State</th><th>Distance from home</th><th>Altitude</th><th>≈ Time</th></tr></thead><tbody></tbody></table></div>
+      <p class="note">The wing part is simulated at the ground speed you set, chasing the QRTL target at no more than the sink rate in the Estimate box. Airbrake holds altitude (confirmed in the 10-05 log: 24.6 → 23.4 m). The VTOL descent uses the landing speed curve from <code>landing_descent_rate_ms()</code>. The turn back toward home is not modelled.</p>
+    </section>
+  </div>
+
+  <div class="cols">
+    <section class="panel">
+      <h2>How QRTL picks the target height</h2>
+      <p>Inside the start point, QRTL follows a fixed glide line toward home. Every number in it comes from your parameters.</p>
+      <div class="formula" id="formula"></div>
+      <ul>
+        <li><b>Radius</b> is the larger of <code>|WP_LOITER_RAD|</code> and <code>|RTL_RADIUS|</code>. Inside 2 × radius the target is <code>Q_RTL_ALT</code> itself.</li>
+        <li><b>Slope</b> is 0.6 × <code>TECS_SINK_MAX</code> ÷ <code>AIRSPEED_CRUISE</code>: the code plans the glide at 60 % of the maximum sink rate.</li>
+        <li><b>RTL_ALTITUDE −1</b> means the height you were at when QRTL started (v2.0 fix <code>a9cf161</code>). A positive value is the cap, so selecting QRTL below it from far out makes the plane climb first.</li>
+        <li><b>Airbrake</b> starts at the stopping distance plus 2 s of travel. With a tailwind it starts further out (log: 187–207 m at 26–27 m/s).</li>
+      </ul>
+      <p><b>Rule of thumb:</b> to reach <code>Q_RTL_ALT</code> on the wing, select QRTL at least <span class="tag" id="rot"></span> from home.</p>
+    </section>
+
+    <section class="panel">
+      <h2>QRTL, RTL and Q_RTL_MODE</h2>
+      <div class="tbl"><table>
+        <thead><tr><th>You select</th><th>What it does</th></tr></thead>
+        <tbody>
+          <tr><td><b>QRTL</b></td><td>Straight-in glide along the line above, airbrake ~140–200 m out, VTOL the rest. <code>Q_RTL_MODE</code> is not read.</td></tr>
+          <tr><td><b>RTL</b>, <code>Q_RTL_MODE</code> 1</td><td>Flies home at <code>RTL_ALTITUDE</code>, switches to QRTL ~100 m out (too close for the glide), so most of the height comes off on the quad motors.</td></tr>
+          <tr><td><b>RTL</b>, <code>Q_RTL_MODE</code> 2</td><td>Circles home on an 80 m radius (<code>Q_FW_LND_APR_RAD</code>) down to <code>Q_RTL_ALT</code> at ~5 m/s, lines up into wind, transitions ~80 m out.</td></tr>
+        </tbody>
+      </table></div>
+      <h3>Logged on 10-05 (Q_RTL_ALT 20, RTL_ALTITUDE 120)</h3>
+      <div class="tbl"><table>
+        <thead><tr><th>Event</th><th>Start</th><th>At airbrake</th><th>Over home</th></tr></thead>
+        <tbody>
+          <tr><td>QRTL from FBWB</td><td class="n">470 m · 79 m</td><td class="n">143 m · 23.7 m</td><td class="n">23.4 m</td></tr>
+          <tr><td>QRTL from FBWB</td><td class="n">535 m · 69 m</td><td class="n">155 m · 23.7 m</td><td class="n">25.1 m</td></tr>
+          <tr><td>QRTL from LOITER</td><td class="n">291 m · 66 m</td><td class="n">207 m · 66.5 m</td><td class="n">64.0 m</td></tr>
+          <tr><td>Mission RTL, mode 2</td><td class="n">home · 120 m</td><td class="n">circle 120 → 20 m in ~20 s</td><td class="n">transition 80 m out</td></tr>
+        </tbody>
+      </table></div>
+      <p class="note">The third QRTL was selected too close to home to glide down, so it arrived almost as high as it started.</p>
+    </section>
+  </div>
+
+  <section class="panel">
+    <h2>XFLY-H743 tester log, before the fix</h2>
+    <p>Log <code>2026-09-27 18-59-48.bin</code>, firmware <code>Custom v2.0 (f9823a9)</code>, built before the <code>RTL_ALTITUDE −1</code> fix. Tester parameters: <code>RTL_ALTITUDE −1</code>, <code>Q_RTL_ALT 45</code>, <code>WP_LOITER_RAD 150</code>, <code>RTL_RADIUS 90</code>, <code>AIRSPEED_CRUISE 18.72</code>, <code>TECS_SINK_MAX 5</code>. Both times QRTL was selected on a switch while flying on the wing, and both times the tester switched to CRUISE after a while.</p>
+    <div class="cols">
+      <div class="tbl" style="min-width:0">
+        <h3>QRTL #1 (254 s, CRUISE at 272 s)</h3>
+        <table>
+          <thead><tr><th>Time</th><th>Distance</th><th>Altitude</th></tr></thead>
+          <tbody>
+            <tr><td class="n">−2 s</td><td class="n">1,155 m</td><td class="n">94.7 m</td></tr>
+            <tr><td class="n">+2 s</td><td class="n">1,197 m</td><td class="n">92.7 m</td></tr>
+            <tr><td class="n">+6 s</td><td class="n">1,141 m</td><td class="n">81.3 m</td></tr>
+            <tr><td class="n">+10 s</td><td class="n">1,055 m</td><td class="n">70.2 m</td></tr>
+            <tr><td class="n">+14 s</td><td class="n">971 m</td><td class="n">57.0 m</td></tr>
+            <tr><td class="n">+18 s</td><td class="n">886 m</td><td class="n">48.1 m</td></tr>
+          </tbody>
+        </table>
+        <p class="note">Lost 45 m in about 16 s (~2.8 m/s) while still 900–1,200 m from home.</p>
+      </div>
+      <div class="tbl" style="min-width:0">
+        <h3>QRTL #2 (795 s, CRUISE at 832 s)</h3>
+        <table>
+          <thead><tr><th>Time</th><th>Distance</th><th>Altitude</th></tr></thead>
+          <tbody>
+            <tr><td class="n">−2 s</td><td class="n">1,461 m</td><td class="n">79.4 m</td></tr>
+            <tr><td class="n">+2 s</td><td class="n">1,519 m</td><td class="n">77.4 m</td></tr>
+            <tr><td class="n">+6 s</td><td class="n">1,473 m</td><td class="n">67.2 m</td></tr>
+            <tr><td class="n">+10 s</td><td class="n">1,373 m</td><td class="n">53.1 m</td></tr>
+            <tr><td class="n">+14 s</td><td class="n">1,277 m</td><td class="n">45.7 m</td></tr>
+            <tr><td class="n">+18 s</td><td class="n">1,186 m</td><td class="n">42.7 m</td></tr>
+            <tr><td class="n">+26 s</td><td class="n">997 m</td><td class="n">46.0 m</td></tr>
+            <tr><td class="n">+38 s</td><td class="n">712 m</td><td class="n">46.0 m</td></tr>
+          </tbody>
+        </table>
+        <p class="note">Down to Q_RTL_ALT within ~250 m of switching, then flew about 800 m home at ~45 m.</p>
+      </div>
+    </div>
+    <h3>Before and after the fix, same entries</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>Entry</th><th>Before (f9823a9, logged)</th><th>After (a9cf161), formula</th><th>After, SITL with tester params</th></tr></thead>
+      <tbody>
+        <tr><td class="n">#1 · 1,197 m · 93 m</td><td>Starts down at once, reaches ~48 m by 886 m</td><td class="n">holds 93 m, glide starts ~600 m</td><td class="n">holds 95 m, starts down at 542 m</td></tr>
+        <tr><td class="n">#2 · 1,519 m · 77 m</td><td>Starts down at once, reaches ~45 m by 1,277 m</td><td class="n">holds 77 m, glide starts ~500 m</td><td class="n">holds 80 m, starts down at 452 m</td></tr>
+      </tbody>
+    </table></div>
+    <p class="note">Formula: 2 × 150 + 18.72 × (entry height − 45) ÷ 3. The SITL runs (2026-09-29, entries of 95 m and 80 m) mark where the first ~3 m of descent shows up, so they read a little closer to home than the formula's start point. Upstream ArduPlane 4.6.3 and 4.7.1 behave like the "before" column. Use the two XFLY presets above to see the fixed profile for these entries.</p>
+  </section>
+
+  <section class="panel">
+    <h2>General formula for any VTOL plane</h2>
+    <p>Direct QRTL, ArduPlane 4.7 code. Every quadplane runs the same logic; only the parameter values differ.</p>
+    <div class="cols">
+      <div style="min-width:0">
+        <h3>1. Radius and height to lose</h3>
+        <div class="formula">R     = max(|WP_LOITER_RAD|, |RTL_RADIUS|)
+H_ret = RTL_ALTITUDE   (entry height if −1, fork v2.0)
+ΔH    = max(0, H_ret − Q_RTL_ALT)</div>
+        <h3>2. Where the glide starts</h3>
+        <div class="formula">D_start = 2R + AIRSPEED_CRUISE × ΔH ÷ max(0.6 × TECS_SINK_MAX, 1)
+          limited to 2R … 20R</div>
+        <h3>3. Target height at distance d</h3>
+        <div class="formula">d ≥ D_start  →  H_ret
+d ≤ 2R       →  Q_RTL_ALT
+in between   →  Q_RTL_ALT + ΔH × (d − 2R) ÷ (D_start − 2R)
+
+slope (no cap) = 0.6 × TECS_SINK_MAX ÷ AIRSPEED_CRUISE  m per m</div>
+      </div>
+      <div style="min-width:0">
+        <h3>4. Glide only happens far enough out</h3>
+        <div class="formula">d_entry ≥ 1.5 × AIRSPEED_CRUISE² ÷ (2 × Q_TRANS_DECEL)</div>
+        <p class="note">Closer than this, QRTL goes straight to airbrake at its current height.</p>
+        <h3>5. Airbrake point</h3>
+        <div class="formula">d_airbrake = gs² ÷ (2 × Q_TRANS_DECEL) + 2 × gs     (gs = ground speed)</div>
+        <h3>6. Will it reach Q_RTL_ALT?</h3>
+        <div class="formula">required sink ≈ 0.6 × TECS_SINK_MAX × gs ÷ AIRSPEED_CRUISE</div>
+        <p class="note">A tailwind raises it. If the plane can't hold that sink, or QRTL is selected inside D_start, it arrives above Q_RTL_ALT and airbrake holds that height over home.</p>
+        <p class="note"><b>Version caveat:</b> with RTL_ALTITUDE −1, upstream ArduPlane 4.6.3 and 4.7.1 use ΔH = 0 and dive to Q_RTL_ALT as soon as QRTL is selected. The fork's v2.0 fix (<code>a9cf161</code>) uses the entry height instead.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+const PRESETS={
+  base:{D:1000,H:100,GS:20,RA:-1,QA:20,WLR:-120,RR:60,SINK:5,CLMB:5,AC:20,DEC:2,WDN:1.5,LFA:6,LFS:0.5,ASINK:4},
+  A:{RA:-1,QA:40,D:1000,H:100},B:{RA:120,QA:20,D:1000,H:100},C:{RA:-1,QA:20,D:1000,H:100},D:{RA:-1,QA:20,D:500,H:100},
+  X1:{D:1197,H:93,GS:19,RA:-1,QA:45,WLR:150,RR:90,SINK:5,AC:18.72,DEC:2},
+  X2:{D:1519,H:77,GS:19,RA:-1,QA:45,WLR:150,RR:90,SINK:5,AC:18.72,DEC:2}
+};
+const ids=Object.keys(PRESETS.base);
+const $=id=>document.getElementById(id);
+function setVals(o){for(const k in o){$(k).value=o[k]}}
+function get(){const p={};ids.forEach(k=>p[k]=parseFloat($(k).value));return p}
+const lerp=(lo,hi,x,x0,x1)=>{if(x<=x0)return lo;if(x>=x1)return hi;return lo+(hi-lo)*(x-x0)/(x1-x0)};
+const fmt=(v,d=0)=>Number.isFinite(v)?v.toFixed(d):"–";
+
+function model(p){
+  const R=Math.max(Math.abs(p.WLR),Math.abs(p.RR));
+  const rmin=2*R, rmax=20*R;
+  const rtl=p.RA<0?p.H:p.RA;
+  const delta=Math.max(0,rtl-p.QA);
+  const planSink=Math.max(0.6*p.SINK,1);
+  const sinkDist=p.AC*(delta/planSink);
+  const rhi=Math.max(rmin,Math.min(rmax,rmin+sinkDist));
+  const target=d=>p.QA+lerp(0,delta,d,rmin,rhi);
+  const stop=p.GS*p.GS/(2*p.DEC)+2*p.GS;
+  const thresh=1.5*p.AC*p.AC/(2*p.DEC);
+  // fixed-wing approach simulation
+  const pts=[]; let d=p.D, h=p.H, t=0; const dt=0.1;
+  const approach=p.D>=thresh;
+  let tClimbEnd=null, tGlideStart=null, tLevel=null, hMin=h;
+  pts.push([d,h]);
+  if(approach){
+    let lastRec=0;
+    while(d>stop){
+      const err=target(d)-h;
+      const rate=Math.max(-p.ASINK,Math.min(p.CLMB,err*0.5));
+      h+=rate*dt; d-=p.GS*dt; t+=dt;
+      if(rate>0.2) tClimbEnd=t;
+      if(tGlideStart===null && rate<-0.2) tGlideStart={t,d,h};
+      if(t-lastRec>=0.5){pts.push([Math.max(d,0),h]);lastRec=t}
+    }
+  }
+  const dAir=Math.min(d,p.D), hAir=h, tFW=t;
+  const tBrake=2+p.GS/p.DEC; // ~2 s margin + deceleration
+  pts.push([dAir,hAir]); pts.push([0,hAir]);
+  // VTOL descent
+  const top=p.LFA+6;
+  let tDesc=0, tRamp=0, tFinal=0;
+  const hv=hAir;
+  if(hv>top){tDesc=(hv-top)/p.WDN; tRamp=6*Math.log(p.WDN/p.LFS)/(p.WDN-p.LFS); tFinal=p.LFA/p.LFS}
+  else if(hv>p.LFA){const vtop=lerp(p.LFS,p.WDN,hv,p.LFA,top);tRamp=(hv-p.LFA)*Math.log(vtop/p.LFS)/Math.max(vtop-p.LFS,1e-6);tFinal=p.LFA/p.LFS}
+  else{tFinal=hv/p.LFS}
+  return {R,rmin,rmax,rtl,delta,planSink,sinkDist,rhi,target,stop,thresh,approach,pts,dAir,hAir,tFW,tBrake,tDesc,tRamp,tFinal,tClimbEnd,tGlideStart};
+}
+
+function render(){
+  const p=get(); if(ids.some(k=>!Number.isFinite(p[k])))return;
+  const m=model(p);
+  const vt=m.tBrake+m.tDesc+m.tRamp+m.tFinal;
+  const reaches=m.hAir<=p.QA+5;
+  $('summary').innerHTML=
+    `<div class="stat key"><b>${fmt(m.rhi)} m</b><span>glide toward ${fmt(p.QA)} m starts</span></div>`+
+    `<div class="stat"><b>${fmt(m.rmin)} m</b><span>line reaches Q_RTL_ALT</span></div>`+
+    `<div class="stat key"><b>${fmt(m.hAir)} m</b><span>height at airbrake / over home</span></div>`+
+    `<div class="stat"><b>${fmt(vt)} s</b><span>VTOL time to touchdown</span></div>`;
+  $('formula').textContent=
+`radius        = max(|${p.WLR}|, |${p.RR}|)          = ${fmt(m.R)} m
+line meets Q_RTL_ALT at 2 × radius     = ${fmt(m.rmin)} m
+slope         = 0.6 × ${p.SINK} ÷ ${p.AC}            = ${fmt(0.6*p.SINK/p.AC,3)} m per m
+return height = ${p.RA<0?'entry height ('+p.H+' m)':'RTL_ALTITUDE '+p.RA+' m'}
+height to lose= ${fmt(m.rtl)} − ${p.QA}                 = ${fmt(m.delta)} m
+glide starts  = ${fmt(m.rmin)} + ${p.AC} × ${fmt(m.delta)} ÷ ${fmt(m.planSink,1)}   = ${fmt(m.rhi)} m
+airbrake at   = ${p.GS}² ÷ (2 × ${p.DEC}) + 2 × ${p.GS}   = ${fmt(m.stop)} m`;
+  $('rot').textContent=`${fmt(m.rhi)} m (from ${fmt(m.rtl)} m with Q_RTL_ALT ${p.QA})`;
+  drawChart(p,m);
+  // timeline
+  const rows=[];
+  const climb=m.rtl>p.H+0.5 && p.D>m.rmin;
+  rows.push(['Switch to QRTL','fw',`${fmt(p.D)} m`,`${fmt(p.H)} m, target ${fmt(m.target(p.D))} m`,'—']);
+  if(!m.approach){
+    rows.push(['Too close for the glide: airbrake at once','tr',`${fmt(p.D)} → 0 m`,`holds ~${fmt(m.hAir)} m`,`~${fmt(m.tBrake)} s`]);
+  }else{
+    if(climb) rows.push(['Climb to the return height','fw',`${fmt(p.D)} m onward`,`${fmt(p.H)} → ${fmt(m.rtl)} m (≤ +${p.CLMB} m/s)`,`~${fmt((m.rtl-p.H)/Math.min(p.CLMB,2.5))} s`]);
+    if(p.D>m.rhi) rows.push(['Hold height','fw',`${fmt(p.D)} → ${fmt(m.rhi)} m`,`${fmt(m.rtl)} m`,`~${fmt((p.D-m.rhi)/p.GS)} s`]);
+    else if(m.target(p.D)<p.H-1) rows.push(['Above the glide line: descend at once','fw',`${fmt(p.D)} m`,`${fmt(p.H)} m, line at ${fmt(m.target(p.D))} m`,'—']);
+    const gStart=Math.min(p.D,m.rhi);
+    rows.push(['Glide toward Q_RTL_ALT','fw',`${fmt(gStart)} → ${fmt(m.dAir)} m`,`→ ${fmt(m.hAir)} m`,`~${fmt((gStart-m.dAir)/p.GS)} s`]);
+  }
+  rows.push(['Airbrake + move to above home','tr',`${fmt(m.dAir)} → 0 m`,`holds ~${fmt(m.hAir)} m`,`~${fmt(m.tBrake)} s`]);
+  if(m.tDesc>0) rows.push(['Land descent','vt','0 m',`${fmt(m.hAir)} → ${fmt(p.LFA+6)} m at −${p.WDN} m/s`,`~${fmt(m.tDesc)} s`]);
+  if(m.tRamp>0) rows.push(['Ramp','vt','0 m',`${fmt(Math.min(m.hAir,p.LFA+6))} → ${p.LFA} m`,`~${fmt(m.tRamp)} s`]);
+  rows.push(['Final','vt','0 m',`${fmt(Math.min(m.hAir,p.LFA))} → 0 m at −${p.LFS} m/s`,`~${fmt(m.tFinal)} s`]);
+  const pill={fw:'<span class="pill fw">Fixed-wing</span>',tr:'<span class="pill tr">Transition</span>',vt:'<span class="pill vt">VTOL</span>'};
+  const tb=$('tl').querySelector('tbody');
+  tb.innerHTML=rows.map(r=>`<tr><td>${r[0]}</td><td>${pill[r[1]]}</td><td class="n">${r[2]}</td><td class="n">${r[3]}</td><td class="n">${r[4]}</td></tr>`).join('')+
+    `<tr><td><b>Total</b></td><td></td><td></td><td></td><td class="n"><b>~${fmt(m.tFW+vt)} s</b></td></tr>`;
+  $('legend').innerHTML=(reaches?`Reaches Q_RTL_ALT on the wing.`:`<span class="warn">Arrives ${fmt(m.hAir-p.QA)} m above Q_RTL_ALT.</span> Select QRTL further out, or expect a longer hover.`)+
+    ` Dashed line: QRTL target height. Blue line: estimated flight path.`+
+    (overlay?` <span class="warn">Red line: path flown in the loaded log.</span>`:'');
+}
+
+function drawChart(p,m){
+  const W=760,Hh=300,L=46,Rr=16,T=16,B=36;
+  const xmax=Math.max(p.D,m.rhi)*1.05, ymax=Math.max(p.H,m.rtl,p.QA)*1.2+5;
+  const X=d=>L+(W-L-Rr)*(1-d/xmax), Y=h=>T+(Hh-T-B)*(1-h/ymax);
+  const css=getComputedStyle(document.documentElement);
+  const c=n=>css.getPropertyValue(n).trim();
+  let s='';
+  const yStep=ymax>150?40:20, xStep=xmax>1500?500:(xmax>700?200:100);
+  for(let h=0;h<=ymax;h+=yStep){s+=`<line x1="${L}" x2="${W-Rr}" y1="${Y(h)}" y2="${Y(h)}" stroke="${c('--line')}" stroke-width="1"/><text x="${L-6}" y="${Y(h)+4}" text-anchor="end">${h}</text>`}
+  for(let d=0;d<=xmax;d+=xStep){s+=`<line x1="${X(d)}" x2="${X(d)}" y1="${Hh-B}" y2="${Hh-B+4}" stroke="${c('--muted')}"/><text x="${X(d)}" y="${Hh-B+17}" text-anchor="middle">${d}</text>`}
+  s+=`<text x="${(L+W-Rr)/2}" y="${Hh-4}" text-anchor="middle">distance from home (m) · home at right</text>`;
+  s+=`<text x="12" y="${T+8}" transform="rotate(-90 12 ${T+8})" text-anchor="end">altitude (m)</text>`;
+  // airbrake zone
+  s+=`<rect x="${X(m.dAir)}" y="${T}" width="${X(0)-X(m.dAir)}" height="${Hh-T-B}" fill="${c('--accent-soft')}" opacity=".7"/>`;
+  s+=`<text x="${X(m.dAir)+4}" y="${T+12}" fill="${c('--accent')}" style="fill:${c('--accent')}">airbrake + VTOL</text>`;
+  // target line
+  let tp='';for(let d=xmax;d>=0;d-=xmax/200){tp+=`${tp?'L':'M'}${X(d).toFixed(1)},${Y(Math.min(m.target(d),ymax)).toFixed(1)}`}
+  s+=`<path d="${tp}" fill="none" stroke="${c('--muted')}" stroke-width="1.5" stroke-dasharray="5 4"/>`;
+  // Q_RTL_ALT
+  s+=`<line x1="${L}" x2="${W-Rr}" y1="${Y(p.QA)}" y2="${Y(p.QA)}" stroke="${c('--vtol')}" stroke-width="1" stroke-dasharray="2 3"/><text x="${W-Rr-4}" y="${Y(p.QA)-5}" text-anchor="end" style="fill:${c('--vtol')}">Q_RTL_ALT ${p.QA} m</text>`;
+  // path
+  const pp=m.pts.map((q,i)=>`${i?'L':'M'}${X(q[0]).toFixed(1)},${Y(q[1]).toFixed(1)}`).join('');
+  s+=`<path d="${pp}" fill="none" stroke="${c('--sky')}" stroke-width="2.5"/>`;
+  // vertical VTOL descent at home
+  s+=`<line x1="${X(0)}" x2="${X(0)}" y1="${Y(m.hAir)}" y2="${Y(0)}" stroke="${c('--vtol')}" stroke-width="2.5"/>`;
+  // logged path overlay
+  if(overlay&&overlay.length>1){
+    const op=overlay.filter(q=>q[0]<=xmax).map((q,i)=>`${i?'L':'M'}${X(q[0]).toFixed(1)},${Y(Math.min(q[1],ymax)).toFixed(1)}`).join('');
+    s+=`<path d="${op}" fill="none" stroke="${c('--warn')}" stroke-width="2" stroke-linejoin="round"/>`;
+  }
+  // markers
+  const mk=(d,h,label,anchor)=>`<circle cx="${X(d)}" cy="${Y(h)}" r="4" fill="${c('--panel')}" stroke="${c('--ink')}" stroke-width="1.5"/><text x="${X(d)+(anchor==='end'?-7:7)}" y="${Y(h)-8}" text-anchor="${anchor||'start'}" style="fill:${c('--ink')}">${label}</text>`;
+  s+=mk(p.D,p.H,`QRTL ${fmt(p.D)} m`,'start');
+  if(m.rhi<p.D) s+=mk(m.rhi,m.rtl,`glide starts ${fmt(m.rhi)} m`,'start');
+  s+=mk(m.rmin,p.QA,`${fmt(m.rmin)} m`,'end');
+  s+=mk(0,m.hAir,`${fmt(m.hAir)} m over home`,'end');
+  $('chart').innerHTML=s;
+}
+
+let overlay=null;
+
+/* ---------- parameter files ---------- */
+const PMAP={WP_LOITER_RAD:'WLR',RTL_RADIUS:'RR',TECS_SINK_MAX:'SINK',TECS_CLMB_MAX:'CLMB',AIRSPEED_CRUISE:'AC',
+  Q_TRANS_DECEL:'DEC',Q_WP_SPD_DN:'WDN',Q_LAND_FINAL_ALT:'LFA',Q_LAND_FINAL_SPD:'LFS',RTL_ALTITUDE:'RA',Q_RTL_ALT:'QA'};
+// older (pre-4.7) names, converted to the 4.7 units
+const PALIAS={Q_WP_SPEED_DN:['WDN',0.01],ALT_HOLD_RTL:['RA',0.01],TRIM_ARSPD_CM:['AC',0.01]};
+function parseParamText(txt){
+  const out={};
+  for(const raw of txt.split(/\r?\n/)){
+    const line=raw.replace(/#.*/,'').trim(); if(!line)continue;
+    const tok=line.split(/[\s,]+/);
+    let name,val;
+    if(tok.length>=4&&/^\d+$/.test(tok[0])&&/^\d+$/.test(tok[1])){name=tok[2];val=tok[3]}  // QGC .params
+    else{name=tok[0];val=tok[1]}
+    const v=parseFloat(val); if(name&&Number.isFinite(v))out[name]=v;
+  }
+  return out;
+}
+function applyParams(P){
+  const got=[],missing=[];
+  for(const [n,id] of Object.entries(PMAP)){
+    if(n in P){$(id).value=P[n];got.push(n)}
+    else{
+      const al=Object.entries(PALIAS).find(([a,[tid]])=>tid===id&&a in P);
+      if(al){const v=P[al[0]];$(id).value=(id==='RA'&&v<0)?-1:+(v*al[1][1]).toFixed(2);got.push(al[0])}
+      else missing.push(n);
+    }
+  }
+  return {got,missing};
+}
+
+/* ---------- dataflash .bin ---------- */
+const FSIZE={a:64,b:1,B:1,h:2,H:2,i:4,I:4,f:4,d:8,n:4,N:16,Z:64,c:2,C:2,e:4,E:4,L:4,M:1,q:8,Q:8};
+const WANT=new Set(['PARM','MODE','ORGN','POS','GPS','VER','MSG']);
+function readStr(u8,o,len){let s='';for(let k=0;k<len;k++){const c=u8[o+k];if(!c)break;s+=String.fromCharCode(c)}return s}
+function decodeField(dv,u8,o,ch){
+  switch(ch){
+    case 'b':return dv.getInt8(o);case 'B':case 'M':return u8[o];
+    case 'h':return dv.getInt16(o,true);case 'H':return dv.getUint16(o,true);
+    case 'i':case 'L':return dv.getInt32(o,true);case 'I':return dv.getUint32(o,true);
+    case 'f':return dv.getFloat32(o,true);case 'd':return dv.getFloat64(o,true);
+    case 'c':return dv.getInt16(o,true)/100;case 'C':return dv.getUint16(o,true)/100;
+    case 'e':return dv.getInt32(o,true)/100;case 'E':return dv.getUint32(o,true)/100;
+    case 'q':return Number(dv.getBigInt64(o,true));case 'Q':return Number(dv.getBigUint64(o,true));
+    case 'n':return readStr(u8,o,4);case 'N':return readStr(u8,o,16);case 'Z':return readStr(u8,o,64);
+    default:return null;
+  }
+}
+function parseBin(buf){
+  const u8=new Uint8Array(buf), dv=new DataView(buf), n=u8.length;
+  const fmts={}; const P={}; const modes=[]; const pos=[]; const gps=[]; let home=null; let fw='';
+  let i=0;
+  while(i<n-3){
+    if(u8[i]!==0xA3||u8[i+1]!==0x95){i++;continue}
+    const t=u8[i+2];
+    if(t===128){
+      if(i+89>n)break;
+      const ft=u8[i+3],fl=u8[i+4],name=readStr(u8,i+5,4),fmt=readStr(u8,i+9,16),cols=readStr(u8,i+25,64).split(',');
+      const offs=[];let o=3;for(const ch of fmt){offs.push(o);o+=FSIZE[ch]||0}
+      fmts[ft]={name,len:fl,fmt,cols,offs};i+=89;continue;
+    }
+    const f=fmts[t];
+    if(!f||f.len<3){i++;continue}
+    if(i+f.len>n)break;
+    if(WANT.has(f.name)){
+      const g=c=>{const k=f.cols.indexOf(c);return k<0?undefined:decodeField(dv,u8,i+f.offs[k],f.fmt[k])};
+      const ts=g('TimeUS')/1e6;
+      switch(f.name){
+        case 'PARM':{const nm=g('Name'),v=g('Value');if(nm)P[nm]=v;break}
+        case 'MODE':modes.push([ts,g('ModeNum')]);break;
+        case 'ORGN':if(g('Type')===1)home=[g('Lat')/1e7,g('Lng')/1e7];break;
+        case 'POS':pos.push([ts,g('Lat')/1e7,g('Lng')/1e7,g('RelHomeAlt')]);break;
+        case 'GPS':{const inst=g('I');if(inst===undefined||inst===0)gps.push([ts,g('Spd')]);break}
+        case 'VER':{const s=g('FWS');if(s)fw=s;break}
+        case 'MSG':{const s=g('Message');if(!fw&&s&&/^ArduPlane V/.test(s))fw=s;break}
+      }
+    }
+    i+=f.len;
+  }
+  return {P,modes,pos,gps,home,fw};
+}
+function qrtlEntries(L){
+  if(!L.home||!L.pos.length)return [];
+  const [hl,hn]=L.home, kx=111320*Math.cos(hl*Math.PI/180);
+  const dist=p=>Math.hypot((p[1]-hl)*111320,(p[2]-hn)*kx);
+  const out=[];
+  L.modes.forEach(([t,mn],k)=>{
+    if(mn!==21)return;
+    const tEnd=k+1<L.modes.length?L.modes[k+1][0]:Infinity;
+    const seg=L.pos.filter(p=>p[0]>=t&&p[0]<tEnd);
+    if(seg.length<2)return;
+    const sp=L.gps.filter(g=>g[0]>=t&&g[0]<Math.min(tEnd,t+15)).map(g=>g[1]);
+    const gs=sp.length?sp.reduce((a,b)=>a+b,0)/sp.length:20;
+    const path=[];let last=-1;for(const p of seg){if(p[0]-last>=0.5){path.push([dist(p),p[3]]);last=p[0]}}
+    out.push({t,dur:Math.min(tEnd,seg[seg.length-1][0])-t,D:path[0][0],H:path[0][1],GS:gs,path});
+  });
+  return out;
+}
+
+let logEntries=[];
+async function loadFile(file){
+  const st=$('loadStatus');
+  st.textContent=`Reading ${file.name}…`;
+  try{
+    const buf=await file.arrayBuffer();
+    const head=new Uint8Array(buf,0,Math.min(2,buf.byteLength));
+    if(head[0]===0xA3&&head[1]===0x95){
+      await new Promise(r=>setTimeout(r,20));
+      const L=parseBin(buf);
+      if(!Object.keys(L.P).length){st.textContent=`No parameters found in ${file.name}.`;return}
+      setVals(PRESETS.base);
+      const r=applyParams(L.P);
+      logEntries=qrtlEntries(L);
+      const box=$('entryBox'),sel=$('entry');
+      sel.innerHTML='';
+      if(logEntries.length){
+        logEntries.forEach((e,k)=>{const o=document.createElement('option');o.value=k;
+          o.textContent=`QRTL at ${fmt(e.t)} s · ${fmt(e.D)} m · ${fmt(e.H)} m · ${fmt(e.dur)} s${e.GS<12?' · already hovering, glide model does not apply':''}`;sel.appendChild(o)});
+        box.hidden=false; useEntry(0);
+      }else{box.hidden=true;overlay=null;clearPressed();render()}
+      st.textContent=`${file.name}${L.fw?' · '+L.fw:''}: loaded ${r.got.length} parameters`+
+        (r.missing.length?` (not in log, kept: ${r.missing.join(', ')})`:'')+`. ${logEntries.length} QRTL entr${logEntries.length===1?'y':'ies'} found.`;
+    }else{
+      const P=parseParamText(new TextDecoder().decode(buf));
+      if(!Object.keys(P).length){st.textContent=`${file.name} doesn't look like a parameter file.`;return}
+      const r=applyParams(P);
+      overlay=null;$('entryBox').hidden=true;clearPressed();render();
+      st.textContent=`${file.name}: loaded ${r.got.join(', ')||'nothing'}`+(r.missing.length?`. Not in file, kept: ${r.missing.join(', ')}`:'')+'.';
+    }
+  }catch(err){st.textContent=`Couldn't read ${file.name}: ${err.message}`}
+}
+function useEntry(k){
+  const e=logEntries[k]; if(!e)return;
+  $('D').value=Math.round(e.D);$('H').value=Math.round(e.H);$('GS').value=Math.round(e.GS);
+  overlay=e.path; clearPressed(); render();
+}
+function clearPressed(){document.querySelectorAll('.presets button').forEach(b=>b.setAttribute('aria-pressed','false'))}
+$('file').addEventListener('change',e=>{const f=e.target.files[0];if(f)loadFile(f);e.target.value=''});
+$('entry').addEventListener('change',e=>useEntry(+e.target.value));
+const ld=document.querySelector('.loader');
+['dragenter','dragover'].forEach(ev=>ld.addEventListener(ev,e=>{e.preventDefault();ld.classList.add('drag')}));
+['dragleave','drop'].forEach(ev=>ld.addEventListener(ev,e=>{e.preventDefault();ld.classList.remove('drag')}));
+ld.addEventListener('drop',e=>{const f=e.dataTransfer.files[0];if(f)loadFile(f)});
+
+function applyPreset(k){overlay=null;$('entryBox').hidden=true;setVals(PRESETS.base);if(k)setVals(PRESETS[k]);document.querySelectorAll('.presets button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.p===k?'true':'false'));render()}
+document.querySelectorAll('.presets button').forEach(b=>b.addEventListener('click',()=>applyPreset(b.dataset.p)));
+ids.forEach(k=>$(k).addEventListener('input',()=>{document.querySelectorAll('.presets button').forEach(b=>b.setAttribute('aria-pressed','false'));render()}));
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',render);
+new MutationObserver(render).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+applyPreset('C');
+</script>
+</body>
+</html>

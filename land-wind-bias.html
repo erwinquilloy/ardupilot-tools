@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{color-scheme:light}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>LAND_WIND_BIAS Explorer</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: chart-table map on the left, controls and the verdict on the right, scoring table and rules below */
+:root{
+  --bg:#eef1ee; --panel:#fbfcfa; --fg:#1c2421; --muted:#5d6b66; --line:#cdd6d1; --grid:#dfe6e2;
+  --wind:#1f7a8c; --pick:#2e7d32; --near:#b8860b; --out:#9aa5a0; --tail:#b23a3a; --plane:#1c2421;
+  --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --body:"Source Sans 3","Segoe UI",Roboto,Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#141a18; --panel:#1b2320; --fg:#e3ebe7; --muted:#9aaba4; --line:#2f3b37; --grid:#25302c;
+  --wind:#5cc2d6; --pick:#6cc070; --near:#e0b44a; --out:#5f6d68; --tail:#e27777; --plane:#e3ebe7; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141a18; --panel:#1b2320; --fg:#e3ebe7; --muted:#9aaba4; --line:#2f3b37; --grid:#25302c;
+  --wind:#5cc2d6; --pick:#6cc070; --near:#e0b44a; --out:#5f6d68; --tail:#e27777; --plane:#e3ebe7; color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.5}
+.wrap{max-width:1080px;margin:0 auto;padding-inline:16px;padding-block:24px 56px;display:flex;flex-direction:column;gap:24px}
+h1,h2{font-family:var(--display);margin:0;text-wrap:balance;letter-spacing:.01em}
+h1{font-size:clamp(1.8rem,4.5vw,2.6rem)}
+h2{font-size:1.35rem}
+p{margin:0;max-width:70ch}
+.eyebrow{font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--wind)}
+.lede{color:var(--muted)}
+.main{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:20px;align-items:start}
+@media (max-width:820px){.main{grid-template-columns:1fr}}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:14px;min-width:0}
+svg#map{width:100%;height:auto;display:block;touch-action:none;cursor:crosshair;user-select:none}
+svg text{font-family:var(--mono);font-size:30px}
+.hint{font-size:.82rem;color:var(--muted);margin-top:6px}
+.ctl{display:flex;flex-direction:column;gap:14px}
+.row{display:grid;grid-template-columns:1fr auto;gap:4px 10px;align-items:center}
+.row label{font-family:var(--mono);font-size:.82rem}
+.row output{font-family:var(--mono);font-size:.85rem;font-variant-numeric:tabular-nums}
+.row input[type=range]{grid-column:1 / -1;width:100%;accent-color:var(--wind)}
+.row small{grid-column:1 / -1;color:var(--muted);font-size:.78rem}
+.toggle{display:flex;gap:8px;align-items:center;font-family:var(--mono);font-size:.82rem}
+.toggle input{accent-color:var(--tail);width:16px;height:16px}
+.verdict{border-left:4px solid var(--pick);padding:10px 12px;background:color-mix(in srgb,var(--pick) 8%,transparent);border-radius:0 6px 6px 0;display:flex;flex-direction:column;gap:6px}
+.verdict.refuse{border-color:var(--tail);background:color-mix(in srgb,var(--tail) 8%,transparent)}
+.verdict.fallback{border-color:var(--near);background:color-mix(in srgb,var(--near) 9%,transparent)}
+.verdict b{font-family:var(--display);font-size:1.25rem;letter-spacing:.02em}
+.gcs{font-family:var(--mono);font-size:.8rem;background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:8px;white-space:pre-wrap;min-height:2.4em}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:600px;font-size:.88rem}
+th,td{padding:8px 9px;border-bottom:1px solid var(--line);text-align:left}
+thead th{font-family:var(--display);font-size:.95rem;letter-spacing:.03em;border-bottom:2px solid var(--fg)}
+td.n{font-family:var(--mono);font-variant-numeric:tabular-nums;text-align:right}
+.pill{font-family:var(--mono);font-size:.72rem;padding:1px 7px;border-radius:999px;border:1px solid currentColor;white-space:nowrap}
+.p-pick{color:var(--pick)} .p-near{color:var(--near)} .p-out{color:var(--out)} .p-tail{color:var(--tail)}
+tr.isout td{color:var(--out)}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+ol,ul{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:6px}
+code,.mono{font-family:var(--mono);font-size:.86em}
+pre{font-family:var(--mono);font-size:.85rem;margin:0;white-space:pre-wrap}
+.preset{display:flex;flex-wrap:wrap;gap:6px}
+button{font-family:var(--mono);font-size:.78rem;padding:5px 9px;border:1px solid var(--line);background:var(--bg);color:var(--fg);border-radius:4px;cursor:pointer}
+button:hover{border-color:var(--wind)}
+button:focus-visible,input:focus-visible{outline:2px solid var(--wind);outline-offset:2px}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header style="display:flex;flex-direction:column;gap:8px">
+    <div class="eyebrow">ArduPlane Custom · fork feature · landing sequence choice</div>
+    <h1>LAND_WIND_BIAS Explorer</h1>
+    <p class="lede">When the plane needs an autoland (RTL autoland, battery failsafe, fence breach, or a DO_LAND_START from the GCS), upstream ArduPlane flies to the nearest DO_LAND_START. With LAND_WIND_BIAS above 0, the fork also weighs which landing faces into the wind. Drag the plane, turn the wind and move the sliders to see which landing it picks and why.</p>
+  </header>
+
+  <div class="main">
+    <div class="panel">
+      <svg id="map" viewBox="-1700 -1700 3400 3400" role="img" aria-label="Map with the plane, three DO_LAND_START approaches and the wind"></svg>
+      <p class="hint">Click or drag on the map to move the plane. Each arrow is a landing approach, drawn from its DO_LAND_START point toward the next waypoint. Grid squares are 500 m. Example mission, not your real one.</p>
+    </div>
+
+    <div class="ctl">
+      <div class="panel ctl">
+        <div class="row"><label for="wdir">Wind from</label><output id="wdirO"></output>
+          <input type="range" id="wdir" min="0" max="359" step="1" value="200"></div>
+        <div class="row"><label for="wspd">Wind speed (AHRS estimate)</label><output id="wspdO"></output>
+          <input type="range" id="wspd" min="0" max="15" step="0.5" value="6">
+          <small>Below 1 m/s the estimate is not trusted and the nearest landing is used.</small></div>
+        <div class="row"><label for="bias">LAND_WIND_BIAS</label><output id="biasO"></output>
+          <input type="range" id="bias" min="0" max="1" step="0.05" value="0.5">
+          <small>0 = upstream (nearest only). 1 = a direct tailwind counts as twice as far.</small></div>
+        <div class="row"><label for="dist">LAND_WIND_DIST</label><output id="distO"></output>
+          <input type="range" id="dist" min="0" max="2000" step="50" value="0">
+          <small>0 = no cap. Otherwise only DO_LAND_STARTs within this distance of the plane are considered.</small></div>
+        <label class="toggle"><input type="checkbox" id="strict"> LAND_WIND_STRICT = 1 (refuse to land when nothing is within the cap)</label>
+        <div class="preset" aria-label="Presets">
+          <button type="button" data-p="upwind">Upwind beats nearest</button>
+          <button type="button" data-p="calm">Calm wind</button>
+          <button type="button" data-p="cap">Cap leaves one</button>
+          <button type="button" data-p="strict">Strict, none in cap</button>
+          <button type="button" data-p="off">Bias off (upstream)</button>
+        </div>
+      </div>
+      <div id="verdict" class="verdict"><b id="vTitle"></b><span id="vWhy"></span>
+        <div class="gcs" id="gcs" aria-label="GCS messages"></div></div>
+    </div>
+  </div>
+
+  <section style="display:flex;flex-direction:column;gap:10px">
+    <h2>Scores</h2>
+    <div class="panel scroll">
+      <table>
+        <thead><tr><th>DO_LAND_START</th><th>Approach</th><th style="text-align:right">Distance</th><th style="text-align:right">cos(approach − wind from)</th><th style="text-align:right">Multiplier</th><th style="text-align:right">Score</th><th>Status</th></tr></thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+    <p class="hint">Lowest score wins. Multiplier = 1 − LAND_WIND_BIAS × cos. A full headwind (cos +1) shrinks the distance, a full tailwind (cos −1) stretches it.</p>
+  </section>
+
+  <section class="cols">
+    <div class="panel" style="display:flex;flex-direction:column;gap:10px">
+      <h2>How the fork decides</h2>
+      <ol>
+        <li>If <code>LAND_WIND_BIAS</code> is 0, use upstream: nearest DO_LAND_START.</li>
+        <li>If the wind estimate is under 1 m/s, use upstream: nearest.</li>
+        <li>If <code>LAND_WIND_DIST</code> is set, drop every DO_LAND_START farther than that from the plane.</li>
+        <li>Score each remaining one: <span class="mono">distance × (1 − BIAS × cos(approach − wind_from))</span>. A landing with no next waypoint to take a heading from is scored on distance alone.</li>
+        <li>Pick the lowest score. If that isn't the nearest one, the GCS shows <span class="mono">DO_LAND_START n (upwind, nearest was m)</span>.</li>
+        <li>If the cap left nothing: with <code>LAND_WIND_STRICT</code> 0, fall back to upstream nearest across all; with 1, refuse and keep loitering.</li>
+      </ol>
+    </div>
+    <div class="panel" style="display:flex;flex-direction:column;gap:10px">
+      <h2>Things to know</h2>
+      <ul>
+        <li><b>Where the cap is measured from.</b> With <code>RTL_AUTOLAND 1</code> the choice runs after the plane reaches the RTL loiter point, so the cap is effectively measured from home. With <code>RTL_AUTOLAND 2</code>, a battery failsafe or a GCS DO_LAND_START it is measured from wherever the plane is when it fires.</li>
+        <li><b>The approach heading</b> is the bearing from the DO_LAND_START point to the next waypoint in the mission. Put the first approach waypoint on the line you want to land along.</li>
+        <li><b>Without a pitot</b> the wind estimate needs a few turns to settle and can be badly wrong (one Terrahawk flight showed 12 m/s of wind that wasn't there). A wrong estimate picks a wrong landing, so keep the bias moderate (0.3–0.5).</li>
+        <li><b>Strict mode can lose the aircraft.</b> A battery failsafe with nothing inside the cap will loiter until the battery runs out. Leave it at 0 unless you are watching every flight.</li>
+      </ul>
+    </div>
+  </section>
+</div>
+
+<script>
+(function(){
+  const NS='http://www.w3.org/2000/svg';
+  // Example mission: DO_LAND_START points (north, east in metres from home) and approach headings
+  const C=[
+    {idx:12,name:'North field',n:900,e:100,hdg:180},
+    {idx:18,name:'South field',n:-700,e:-150,hdg:0},
+    {idx:24,name:'East strip',n:150,e:1100,hdg:270}
+  ];
+  const st={pn:300,pe:600};
+  const $=id=>document.getElementById(id);
+  const ins={wdir:$('wdir'),wspd:$('wspd'),bias:$('bias'),dist:$('dist'),strict:$('strict')};
+  const svg=$('map');
+  const rad=d=>d*Math.PI/180;
+  const P=(n,e)=>[e,-n]; // map coords: x east, y south
+
+  function el(tag,attrs,parent){const x=document.createElementNS(NS,tag);for(const k in attrs)x.setAttribute(k,attrs[k]);(parent||svg).appendChild(x);return x}
+
+  function decide(){
+    const bias=+ins.bias.value, ws=+ins.wspd.value, wf=+ins.wdir.value, cap=+ins.dist.value, strict=ins.strict.checked;
+    const rows=C.map(c=>{const d=Math.hypot(c.n-st.pn,c.e-st.pe);const cs=Math.cos(rad(c.hdg-wf));return {...c,d,cs,mult:1-bias*cs,score:d*(1-bias*cs),out:false}});
+    const nearestAll=rows.reduce((a,b)=>b.d<a.d?b:a);
+    const res={rows,mode:'',pick:null,nearest:null,msgs:[],why:''};
+    if(!(bias>0)){res.mode='upstream';res.pick=nearestAll;res.why='LAND_WIND_BIAS is 0, so it uses upstream behaviour: the nearest DO_LAND_START.';res.msgs=['Landing sequence start'];rows.forEach(r=>r.score=null);return res}
+    if(ws<1){res.mode='upstream';res.pick=nearestAll;res.why='The wind estimate is under 1 m/s, so it is not trusted and the nearest DO_LAND_START is used.';res.msgs=['Landing sequence start'];rows.forEach(r=>r.score=null);return res}
+    const live=rows.filter(r=>{if(cap>0&&r.d>cap){r.out=true;return false}return true});
+    if(!live.length){
+      if(cap>0&&strict){res.mode='refuse';res.why='No DO_LAND_START is within LAND_WIND_DIST and LAND_WIND_STRICT is 1. It refuses to autoland and keeps loitering. You have to take over.';res.msgs=['No DO_LAND_START within LAND_WIND_DIST'];return res}
+      res.mode='fallback';res.pick=nearestAll;res.why='No DO_LAND_START is within LAND_WIND_DIST. With LAND_WIND_STRICT 0 it falls back to upstream: the nearest across all, ignoring the wind.';res.msgs=['Landing sequence start'];return res}
+    const pick=live.reduce((a,b)=>b.score<a.score?b:a);
+    const near=live.reduce((a,b)=>b.d<a.d?b:a);
+    res.mode='bias';res.pick=pick;res.nearest=near;
+    if(pick!==near){res.msgs.push(`DO_LAND_START ${pick.idx} (upwind, nearest was ${near.idx})`);res.why=`${pick.name} wins on wind: its score ${Math.round(pick.score)} beats the nearer ${near.name} at ${Math.round(near.score)}.`}
+    else res.why=`${pick.name} is both the nearest and the best score, so the wind doesn't change the choice.`;
+    res.msgs.push('Landing sequence start');
+    return res;
+  }
+
+  function draw(res){
+    svg.textContent='';
+    for(let v=-1500;v<=1500;v+=500){el('line',{x1:v,y1:-1700,x2:v,y2:1700,stroke:'var(--grid)','stroke-width':v===0?6:3});el('line',{x1:-1700,y1:v,x2:1700,y2:v,stroke:'var(--grid)','stroke-width':v===0?6:3})}
+    // home
+    el('circle',{cx:0,cy:0,r:34,fill:'none',stroke:'var(--muted)','stroke-width':6});
+    const th=el('text',{x:48,y:12,fill:'var(--muted)'});th.textContent='HOME';
+    // cap circle
+    const cap=+ins.dist.value; const [px,py]=P(st.pn,st.pe);
+    if(cap>0&&+ins.bias.value>0)el('circle',{cx:px,cy:py,r:cap,fill:'color-mix(in srgb,var(--wind) 7%,transparent)',stroke:'var(--wind)','stroke-width':5,'stroke-dasharray':'26 18'});
+    // candidates
+    C.forEach(c=>{
+      const r=res.rows.find(x=>x.idx===c.idx);
+      const isPick=res.pick&&res.pick.idx===c.idx;
+      const col=isPick?'var(--pick)':(r.out?'var(--out)':(res.mode==='bias'&&r.cs<0?'var(--tail)':'var(--fg)'));
+      const [x1,y1]=P(c.n,c.e);
+      const x2=x1+Math.sin(rad(c.hdg))*520, y2=y1-Math.cos(rad(c.hdg))*520;
+      el('line',{x1,y1,x2,y2,stroke:col,'stroke-width':isPick?22:12,'stroke-linecap':'round',opacity:r.out?.55:1});
+      const a=rad(c.hdg),hx=x2,hy=y2;
+      const pts=[[hx+Math.sin(a)*70,hy-Math.cos(a)*70],[hx+Math.sin(a+2.4)*70,hy-Math.cos(a+2.4)*70],[hx+Math.sin(a-2.4)*70,hy-Math.cos(a-2.4)*70]];
+      el('polygon',{points:pts.map(p=>p.join(',')).join(' '),fill:col,opacity:r.out?.55:1});
+      el('circle',{cx:x1,cy:y1,r:30,fill:'var(--panel)',stroke:col,'stroke-width':10});
+      const t=el('text',{x:x1+44,y:y1-40,fill:col});t.textContent='#'+c.idx+' '+c.name;
+      if(isPick)el('line',{x1:px,y1:py,x2:x1,y2:y1,stroke:'var(--pick)','stroke-width':6,'stroke-dasharray':'10 16'});
+    });
+    // wind arrow (blowing FROM wdir)
+    const wf=rad(+ins.wdir.value), ws=+ins.wspd.value;
+    const cx=-1250,cy=-1250,L=110+ws*18;
+    const sx=cx+Math.sin(wf)*L, sy=cy-Math.cos(wf)*L, ex=cx-Math.sin(wf)*L, ey=cy+Math.cos(wf)*L;
+    el('circle',{cx,cy,r:300,fill:'var(--panel)',stroke:'var(--line)','stroke-width':5});
+    el('line',{x1:sx,y1:sy,x2:ex,y2:ey,stroke:'var(--wind)','stroke-width':18,'stroke-linecap':'round'});
+    const wa=wf+Math.PI;el('polygon',{points:[[ex+Math.sin(wa)*80,ey-Math.cos(wa)*80],[ex+Math.sin(wa+2.4)*80,ey-Math.cos(wa+2.4)*80],[ex+Math.sin(wa-2.4)*80,ey-Math.cos(wa-2.4)*80]].map(p=>p.join(',')).join(' '),fill:'var(--wind)'});
+    const wt=el('text',{x:cx,y:cy+380,'text-anchor':'middle',fill:'var(--wind)'});wt.textContent=`wind ${ins.wdir.value}° ${ws} m/s`;
+    const nt=el('text',{x:1560,y:-1560,'text-anchor':'end',fill:'var(--muted)'});nt.textContent='N ↑';
+    // plane
+    const g=el('g',{transform:`translate(${px},${py})`});
+    el('polygon',{points:'0,-70 22,10 70,30 70,48 20,38 12,80 32,98 32,112 0,104 -32,112 -32,98 -12,80 -20,38 -70,48 -70,30 -22,10',fill:'var(--plane)'},g);
+  }
+
+  function table(res){
+    const tb=$('tbody');tb.textContent='';
+    res.rows.forEach(r=>{
+      const tr=document.createElement('tr');if(r.out)tr.className='isout';
+      let status='';
+      if(r.out)status='<span class="pill p-out">outside cap</span>';
+      if(res.pick&&res.pick.idx===r.idx)status+=' <span class="pill p-pick">picked</span>';
+      if(res.mode==='bias'&&res.nearest&&res.nearest.idx===r.idx&&res.pick.idx!==r.idx)status+=' <span class="pill p-near">nearest</span>';
+      if(res.mode==='bias'&&!r.out&&r.cs<-0.3)status+=' <span class="pill p-tail">tailwind</span>';
+      const sc=(r.score===null||r.out)?'—':Math.round(r.score);
+      const ml=(r.score===null||r.out)?'—':r.mult.toFixed(2);
+      tr.innerHTML=`<td>#${r.idx} ${r.name}</td><td class="n">${r.hdg}°</td><td class="n">${Math.round(r.d)} m</td><td class="n">${r.cs.toFixed(2)}</td><td class="n">${ml}</td><td class="n">${sc}</td><td>${status||'—'}</td>`;
+      tb.appendChild(tr);
+    });
+  }
+
+  function update(){
+    $('wdirO').textContent=ins.wdir.value+'°';$('wspdO').textContent=(+ins.wspd.value).toFixed(1)+' m/s';
+    $('biasO').textContent=(+ins.bias.value).toFixed(2);$('distO').textContent=+ins.dist.value?ins.dist.value+' m':'0 (off)';
+    const res=decide();draw(res);table(res);
+    const v=$('verdict');v.className='verdict'+(res.mode==='refuse'?' refuse':(res.mode==='fallback'||res.mode==='upstream'?' fallback':''));
+    $('vTitle').textContent=res.mode==='refuse'?'No landing: keeps loitering':`Lands at #${res.pick.idx} ${res.pick.name}`;
+    $('vWhy').textContent=res.why;$('gcs').textContent=res.msgs.join('\n');
+  }
+
+  function toMap(evt){const pt=svg.createSVGPoint();pt.x=evt.clientX;pt.y=evt.clientY;const p=pt.matrixTransform(svg.getScreenCTM().inverse());return {e:Math.max(-1600,Math.min(1600,p.x)),n:Math.max(-1600,Math.min(1600,-p.y))}}
+  let drag=false;
+  svg.addEventListener('pointerdown',e=>{drag=true;svg.setPointerCapture(e.pointerId);const m=toMap(e);st.pn=m.n;st.pe=m.e;update()});
+  svg.addEventListener('pointermove',e=>{if(!drag)return;const m=toMap(e);st.pn=m.n;st.pe=m.e;update()});
+  svg.addEventListener('pointerup',()=>drag=false);
+  Object.values(ins).forEach(i=>i.addEventListener('input',update));
+
+  const presets={
+    upwind:{pn:300,pe:600,wdir:200,wspd:6,bias:.5,dist:0,strict:false},
+    calm:{pn:300,pe:600,wdir:200,wspd:0.5,bias:.5,dist:0,strict:false},
+    cap:{pn:300,pe:600,wdir:200,wspd:6,bias:.5,dist:600,strict:false},
+    strict:{pn:-1200,pe:1300,wdir:200,wspd:6,bias:.5,dist:500,strict:true},
+    off:{pn:300,pe:600,wdir:200,wspd:6,bias:0,dist:0,strict:false}
+  };
+  document.querySelectorAll('[data-p]').forEach(b=>b.addEventListener('click',()=>{const p=presets[b.dataset.p];st.pn=p.pn;st.pe=p.pe;ins.wdir.value=p.wdir;ins.wspd.value=p.wspd;ins.bias.value=p.bias;ins.dist.value=p.dist;ins.strict.checked=p.strict;update()}));
+  update();
+})();
+</script>
+</body>
+</html>

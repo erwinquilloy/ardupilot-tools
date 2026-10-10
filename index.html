@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ArduPilot Tools</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&family=Barlow:wght@400;500&display=swap">
+<style>
+/* Layout: one narrow column, a short intro, then one row per tool. */
+:root{--bg:#f2f4f6;--panel:#fff;--ink:#18212b;--muted:#5b6876;--line:#d6dce3;--accent:#c77a12;
+  --f-display:"Barlow Semi Condensed","Arial Narrow",Arial,sans-serif;--f-body:"Barlow","Segoe UI",Roboto,Arial,sans-serif}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#11161c;--panel:#18202a;--ink:#e4e9ee;--muted:#93a1b0;--line:#2b3644;--accent:#e7a33e;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#11161c;--panel:#18202a;--ink:#e4e9ee;--muted:#93a1b0;--line:#2b3644;--accent:#e7a33e;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 var(--f-body)}
+.wrap{max-width:44rem;margin:0 auto;padding-inline:16px;padding-block:48px 64px;display:grid;gap:28px}
+h1{font:700 clamp(30px,5vw,40px)/1.1 var(--f-display);margin:0}
+.lede{color:var(--muted);margin:8px 0 0}
+.tools{display:grid;gap:12px}
+a.tool{display:grid;gap:4px;padding:18px 20px;background:var(--panel);border:1px solid var(--line);border-radius:10px;color:inherit;text-decoration:none}
+a.tool:hover,a.tool:focus-visible{border-color:var(--accent);outline:none}
+a.tool b{font:600 20px var(--f-display);color:var(--ink)}
+a.tool span{color:var(--muted);font-size:15px}
+a.tool i{font-style:normal;font-size:13px;color:var(--accent);font-weight:500}
+footer{color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>ArduPilot Tools</h1>
+    <p class="lede">Planning and tuning notes for ArduCustom, the ArduPlane fork. Everything runs in your browser; files you load stay on your computer.</p>
+  </header>
+  <div class="tools">
+    <a class="tool" href="qrtl-planner.html">
+      <b>QRTL Planner</b>
+      <span>Where a QRTL starts its glide, how low it gets on the wing, and how long it hovers. Load a .param file or a .bin log to use your own values and compare against what the plane flew.</span>
+      <i>ArduCustom v2.0 · ArduPlane 4.7.1</i>
+    </a>
+    <a class="tool" href="land-wind-bias.html">
+      <b>LAND_WIND_BIAS Explorer</b>
+      <span>Which DO_LAND_START the plane picks for an autoland, and why. Move the plane, turn the wind and set LAND_WIND_BIAS, LAND_WIND_DIST and LAND_WIND_STRICT to see the scores and the GCS messages.</span>
+      <i>ArduCustom v1.0 and later · full and light</i>
+    </a>
+  </div>
+  <footer>Not affiliated with the ArduPilot project.</footer>
+</div>
+</body>
+</html>
