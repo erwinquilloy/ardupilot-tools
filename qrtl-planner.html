@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Terrahawk QRTL Planner</title>
+<title>QRTL Planner</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
@@ -87,9 +87,9 @@ li{margin:4px 0}
 
 <div class="wrap">
   <header>
-    <div class="tag">ArduCustom v2.0 · ArduPlane 4.7.1 · KakuteH7-Wing quad-X</div>
-    <h1>Terrahawk QRTL Planner</h1>
-    <p>Where a directly selected QRTL starts its glide, how low it gets on the wing, and how long it hovers at the end. Values are filled in from <code>Terrahawk_gimbal.param</code>; the profile follows the v2.0 QRTL code (<code>mode_qrtl.cpp</code>, <code>quadplane.cpp</code>).</p>
+    <div class="tag">ArduCustom v2.0 · ArduPlane 4.7.1 · quadplane</div>
+    <h1>QRTL Planner</h1>
+    <p>Where a directly selected QRTL starts its glide, how low it gets on the wing, and how long it hovers at the end. Load your own <code>.param</code> or <code>.bin</code> to fill in your values; the profile follows the v2.0 QRTL code (<code>mode_qrtl.cpp</code>, <code>quadplane.cpp</code>).</p>
   </header>
 
   <div class="grid">
@@ -100,8 +100,6 @@ li{margin:4px 0}
         <button type="button" data-p="B">B: 120 / 20</button>
         <button type="button" data-p="C">C: −1 / 20</button>
         <button type="button" data-p="D">C from 500 m</button>
-        <button type="button" data-p="X1">XFLY #1 (fixed)</button>
-        <button type="button" data-p="X2">XFLY #2 (fixed)</button>
       </div>
       <div class="loader">
         <label class="filebtn" for="file">Load .param or .bin</label>
@@ -191,54 +189,6 @@ li{margin:4px 0}
   </div>
 
   <section class="panel">
-    <h2>XFLY-H743 tester log, before the fix</h2>
-    <p>Log <code>2026-09-27 18-59-48.bin</code>, firmware <code>Custom v2.0 (f9823a9)</code>, built before the <code>RTL_ALTITUDE −1</code> fix. Tester parameters: <code>RTL_ALTITUDE −1</code>, <code>Q_RTL_ALT 45</code>, <code>WP_LOITER_RAD 150</code>, <code>RTL_RADIUS 90</code>, <code>AIRSPEED_CRUISE 18.72</code>, <code>TECS_SINK_MAX 5</code>. Both times QRTL was selected on a switch while flying on the wing, and both times the tester switched to CRUISE after a while.</p>
-    <div class="cols">
-      <div class="tbl" style="min-width:0">
-        <h3>QRTL #1 (254 s, CRUISE at 272 s)</h3>
-        <table>
-          <thead><tr><th>Time</th><th>Distance</th><th>Altitude</th></tr></thead>
-          <tbody>
-            <tr><td class="n">−2 s</td><td class="n">1,155 m</td><td class="n">94.7 m</td></tr>
-            <tr><td class="n">+2 s</td><td class="n">1,197 m</td><td class="n">92.7 m</td></tr>
-            <tr><td class="n">+6 s</td><td class="n">1,141 m</td><td class="n">81.3 m</td></tr>
-            <tr><td class="n">+10 s</td><td class="n">1,055 m</td><td class="n">70.2 m</td></tr>
-            <tr><td class="n">+14 s</td><td class="n">971 m</td><td class="n">57.0 m</td></tr>
-            <tr><td class="n">+18 s</td><td class="n">886 m</td><td class="n">48.1 m</td></tr>
-          </tbody>
-        </table>
-        <p class="note">Lost 45 m in about 16 s (~2.8 m/s) while still 900–1,200 m from home.</p>
-      </div>
-      <div class="tbl" style="min-width:0">
-        <h3>QRTL #2 (795 s, CRUISE at 832 s)</h3>
-        <table>
-          <thead><tr><th>Time</th><th>Distance</th><th>Altitude</th></tr></thead>
-          <tbody>
-            <tr><td class="n">−2 s</td><td class="n">1,461 m</td><td class="n">79.4 m</td></tr>
-            <tr><td class="n">+2 s</td><td class="n">1,519 m</td><td class="n">77.4 m</td></tr>
-            <tr><td class="n">+6 s</td><td class="n">1,473 m</td><td class="n">67.2 m</td></tr>
-            <tr><td class="n">+10 s</td><td class="n">1,373 m</td><td class="n">53.1 m</td></tr>
-            <tr><td class="n">+14 s</td><td class="n">1,277 m</td><td class="n">45.7 m</td></tr>
-            <tr><td class="n">+18 s</td><td class="n">1,186 m</td><td class="n">42.7 m</td></tr>
-            <tr><td class="n">+26 s</td><td class="n">997 m</td><td class="n">46.0 m</td></tr>
-            <tr><td class="n">+38 s</td><td class="n">712 m</td><td class="n">46.0 m</td></tr>
-          </tbody>
-        </table>
-        <p class="note">Down to Q_RTL_ALT within ~250 m of switching, then flew about 800 m home at ~45 m.</p>
-      </div>
-    </div>
-    <h3>Before and after the fix, same entries</h3>
-    <div class="tbl"><table>
-      <thead><tr><th>Entry</th><th>Before (f9823a9, logged)</th><th>After (a9cf161), formula</th><th>After, SITL with tester params</th></tr></thead>
-      <tbody>
-        <tr><td class="n">#1 · 1,197 m · 93 m</td><td>Starts down at once, reaches ~48 m by 886 m</td><td class="n">holds 93 m, glide starts ~600 m</td><td class="n">holds 95 m, starts down at 542 m</td></tr>
-        <tr><td class="n">#2 · 1,519 m · 77 m</td><td>Starts down at once, reaches ~45 m by 1,277 m</td><td class="n">holds 77 m, glide starts ~500 m</td><td class="n">holds 80 m, starts down at 452 m</td></tr>
-      </tbody>
-    </table></div>
-    <p class="note">Formula: 2 × 150 + 18.72 × (entry height − 45) ÷ 3. The SITL runs (2026-09-29, entries of 95 m and 80 m) mark where the first ~3 m of descent shows up, so they read a little closer to home than the formula's start point. Upstream ArduPlane 4.6.3 and 4.7.1 behave like the "before" column. Use the two XFLY presets above to see the fixed profile for these entries.</p>
-  </section>
-
-  <section class="panel">
     <h2>General formula for any VTOL plane</h2>
     <p>Direct QRTL, ArduPlane 4.7 code. Every quadplane runs the same logic; only the parameter values differ.</p>
     <div class="cols">
@@ -275,9 +225,7 @@ slope (no cap) = 0.6 × TECS_SINK_MAX ÷ AIRSPEED_CRUISE  m per m</div>
 <script>
 const PRESETS={
   base:{D:1000,H:100,GS:20,RA:-1,QA:20,WLR:-120,RR:60,SINK:5,CLMB:5,AC:20,DEC:2,WDN:1.5,LFA:6,LFS:0.5,ASINK:4},
-  A:{RA:-1,QA:40,D:1000,H:100},B:{RA:120,QA:20,D:1000,H:100},C:{RA:-1,QA:20,D:1000,H:100},D:{RA:-1,QA:20,D:500,H:100},
-  X1:{D:1197,H:93,GS:19,RA:-1,QA:45,WLR:150,RR:90,SINK:5,AC:18.72,DEC:2},
-  X2:{D:1519,H:77,GS:19,RA:-1,QA:45,WLR:150,RR:90,SINK:5,AC:18.72,DEC:2}
+  A:{RA:-1,QA:40,D:1000,H:100},B:{RA:120,QA:20,D:1000,H:100},C:{RA:-1,QA:20,D:1000,H:100},D:{RA:-1,QA:20,D:500,H:100}
 };
 const ids=Object.keys(PRESETS.base);
 const $=id=>document.getElementById(id);
