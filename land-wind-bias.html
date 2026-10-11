@@ -101,6 +101,7 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--wind);outline-o
           <button type="button" data-p="cap">Cap leaves one</button>
           <button type="button" data-p="strict">Strict, none in cap</button>
           <button type="button" data-p="off">Bias off (upstream)</button>
+          <button type="button" data-p="nohead">No headwind landing</button>
         </div>
       </div>
       <div id="verdict" class="verdict"><b id="vTitle"></b><span id="vWhy"></span>
@@ -117,6 +118,22 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--wind);outline-o
       </table>
     </div>
     <p class="hint">Lowest score wins. Multiplier = 1 − LAND_WIND_BIAS × cos. A full headwind (cos +1) shrinks the distance, a full tailwind (cos −1) stretches it.</p>
+  </section>
+
+  <section style="display:flex;flex-direction:column;gap:10px">
+    <h2>Worked example: no landing faces into the wind</h2>
+    <p class="hint">Wind from 87° at 6 m/s, plane 300 m north and 600 m east of home, <code>LAND_WIND_BIAS</code> 0.50, no cap. North and South field are crosswind (93° off), East strip is a straight tailwind. Press <b>No headwind landing</b> to load it.</p>
+    <div class="panel scroll">
+      <table>
+        <thead><tr><th>DO_LAND_START</th><th>Approach</th><th style="text-align:right">Distance</th><th style="text-align:right">cos(approach − wind from)</th><th style="text-align:right">Multiplier</th><th style="text-align:right">Score</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>#24 East strip</td><td>270° (tailwind)</td><td class="n">522 m</td><td class="n">−1.00</td><td class="n">1.50</td><td class="n"><b>783</b></td><td>picked</td></tr>
+          <tr><td>#12 North field</td><td>180° (crosswind)</td><td class="n">781 m</td><td class="n">−0.05</td><td class="n">1.03</td><td class="n">801</td><td></td></tr>
+          <tr><td>#18 South field</td><td>0° (crosswind)</td><td class="n">1,250 m</td><td class="n">+0.05</td><td class="n">0.97</td><td class="n">1,217</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="hint">The wind only stretches or shrinks a landing's distance; it never rules one out. A full tailwind at most multiplies the distance by (1 + BIAS), so East strip still wins by being about 260 m closer. From <code>LAND_WIND_BIAS</code> 0.55 up, North field (crosswind) wins instead. Even at 1.0, a tailwind landing less than half as far as every other one is still picked. <code>LAND_WIND_DIST</code> and <code>LAND_WIND_STRICT</code> only filter by distance, so they can't stop it either. To be sure of an into-wind choice, give each field approaches in both directions (for example 09 and 27).</p>
   </section>
 
   <section class="cols">
@@ -256,7 +273,8 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--wind);outline-o
     calm:{pn:300,pe:600,wdir:200,wspd:0.5,bias:.5,dist:0,strict:false},
     cap:{pn:300,pe:600,wdir:200,wspd:6,bias:.5,dist:600,strict:false},
     strict:{pn:-1200,pe:1300,wdir:200,wspd:6,bias:.5,dist:500,strict:true},
-    off:{pn:300,pe:600,wdir:200,wspd:6,bias:0,dist:0,strict:false}
+    off:{pn:300,pe:600,wdir:200,wspd:6,bias:0,dist:0,strict:false},
+    nohead:{pn:300,pe:600,wdir:87,wspd:6,bias:.5,dist:0,strict:false}
   };
   document.querySelectorAll('[data-p]').forEach(b=>b.addEventListener('click',()=>{const p=presets[b.dataset.p];st.pn=p.pn;st.pe=p.pe;ins.wdir.value=p.wdir;ins.wspd.value=p.wspd;ins.bias.value=p.bias;ins.dist.value=p.dist;ins.strict.checked=p.strict;update()}));
   update();
