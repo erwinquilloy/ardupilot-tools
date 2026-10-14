@@ -77,6 +77,7 @@ code{font-family:var(--mono);font-size:.86em}
 .howto h2{font-size:1.2rem}
 .howto ol{gap:8px}
 .howto .tag{font:600 .7rem var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--acc)}
+.why{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:16px}
 .note{border-left:4px solid var(--acc);padding:10px 12px;background:color-mix(in srgb,var(--acc) 8%,transparent);border-radius:0 6px 6px 0}
 footer{font-size:.8rem;color:var(--muted)}
 </style>
@@ -86,7 +87,7 @@ footer{font-size:.8rem;color:var(--muted)}
   <header style="display:flex;flex-direction:column;gap:8px">
     <span class="eyebrow">ArduCustom v2.1 · fixed wing · not yet flight-tested</span>
     <h1>Adaptive Pitch Trim Explorer</h1>
-    <p class="lede"><code>PTCH_TRIM_DEG</code> is only right at one airspeed. Adaptive pitch trim adds an airspeed-dependent offset on top of it, set by three points (<code>PTCH_TRIM_SPD1–3</code>, <code>PTCH_TRIM_OFS1–3</code>). Enter or load a curve to see the trim it gives at every speed, or fit one from a learn-flight log exactly as the aircraft's own learner would.</p>
+    <p class="lede">A plane needs a different pitch attitude to fly level at each speed, but <code>PTCH_TRIM_DEG</code> is one number, right at one speed only. Adaptive pitch trim replaces it with a curve of three points (<code>PTCH_TRIM_SPD1–3</code>, <code>PTCH_TRIM_OFS1–3</code>). Enter or load a curve to see the trim it gives at every speed, or fit one from a learn-flight log exactly as the aircraft's own learner would.</p>
   </header>
 
   <div class="howto">
@@ -164,9 +165,39 @@ footer{font-size:.8rem;color:var(--muted)}
     </div>
   </section>
 
-  <section class="note">
-    <p><b>What to expect, from SITL (76 runs on the v2.1 test build).</b> The clear gain is hands-off FBWA: over the same 80 s throttle sweep the plane climbed 42 % less with a pitot (31.7 → 18.4 m) and 54 % less without (23.7 → 10.8 m). In FBWB, CRUISE and AUTO steady height hold is unchanged because TECS already holds height; it simply needs less pitch correction. After a speed change it costs 0.1–0.2 m more height error with a pitot and gains about 20 % without one. In turbulence steady hold was about 9 % looser with the curve (8 and 9 of 12 pairs; small, not statistically firm). No porpoising was seen in any run. The SITL plane's level pitch changes only about 0.9° across its speed range; real airframes measured 2.5–3.7°, so expect larger effects either way.</p>
-  </section>
+  <div class="guide why">
+    <section aria-labelledby="w1">
+      <h2 id="w1">Why it matters</h2>
+      <p>Flying slow needs the nose higher, flying fast needs it lower. With one trim value the flight controller holds the wrong attitude as "level" at every speed but one:</p>
+      <ul>
+        <li><b>FBWA, Course Hold, Auto Trim:</b> hands-off, the plane climbs when you add throttle and sinks when you slow down, so you keep correcting with the pitch stick.</li>
+        <li><b>FBWB, CRUISE, AUTO:</b> TECS carries a standing pitch correction to hold height and has to find it again after every speed change.</li>
+      </ul>
+      <p>The curve puts the right level attitude at every speed. It is off during takeoff, landing and VTOL. It does not measure angle of attack: it is pitch trim scheduled on airspeed.</p>
+    </section>
+    <section aria-labelledby="w2">
+      <h2 id="w2">What you gain</h2>
+      <p class="hint">SITL on the v2.1 build, no wind.</p>
+      <div class="scroll"><table><thead><tr><th>Where</th><th>With a pitot</th><th>Without a pitot</th></tr></thead><tbody>
+        <tr><td><b>FBWA</b> hands-off, throttle changed</td><td><b>Clear gain.</b> 31.7 → 18.4 m climbed over an 80 s throttle sweep (42 % less)</td><td><b>Clear gain.</b> 23.7 → 10.8 m (54 % less)</td></tr>
+        <tr><td><b>FBWB, CRUISE, AUTO</b> steady</td><td>Height hold unchanged; TECS needs less pitch correction</td><td>Same</td></tr>
+        <tr><td>Same modes, after a speed change</td><td>0.1–0.2 m more height change, not noticeable</td><td><b>Gain:</b> about 20 % less</td></tr>
+      </tbody></table></div>
+      <p>The simulated plane's level pitch changes only about 0.9° across its speed range; real airframes measured 2.5–3.7°, so expect larger effects. On four real logs the curve matched level pitch within 0.30–0.39°; stock <code>KFF_THR2PTCH</code> managed 0.42–1.38° at best, and only at −12 to −17, far outside its ±5 range.</p>
+    </section>
+    <section aria-labelledby="w3">
+      <h2 id="w3">Caveats</h2>
+      <ul>
+        <li><b>One weight and balance.</b> Learn at your normal take-off weight; after a big payload, battery or CG change, learn again or recheck hands-off FBWA.</li>
+        <li><b>Basics first.</b> Offsets are measured against <code>PTCH_TRIM_DEG</code>, so set that at cruise first, and tune TECS before learning.</li>
+        <li><b>Pitot and TECS modes only:</b> nothing to gain, so it is optional there.</li>
+        <li><b>Gusty air:</b> in SITL turbulence steady height hold was slightly looser with the curve (0.87 → 0.95 m RMS with a pitot, 0.97 → 1.06 m without; 8 and 9 of 12 runs). Learning is also slow in gusts.</li>
+        <li><b>No pitot:</b> it runs on the wind estimate, and an error there shifts the whole curve along the speed axis.</li>
+        <li><b>No new stall protection.</b> The taper only stops the curve raising the nose near <code>AIRSPEED_MIN</code>; FBWA still lets you slow into a stall as before.</li>
+        <li><b><code>KFF_THR2PTCH</code> is ignored</b> while the curve is active, since both do the same job.</li>
+      </ul>
+    </section>
+  </div>
 
   <div class="guide">
     <section aria-labelledby="g1">
