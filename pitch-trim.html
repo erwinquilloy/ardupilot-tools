@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Adaptive Pitch Trim Explorer</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: curve editor beside its chart, the log fit below, then the guide — same family as the other ArduPilot Tools pages */
+:root{
+  color-scheme:light;
+  --bg:#eef0ec; --panel:#fbfbf8; --fg:#1d221f; --muted:#5e6862; --line:#cfd5cf; --grid:#e1e6e0;
+  --acc:#8a5a12; --pts:#2a78d6; --taper:#f1e6d3; --ok:#2e7d32; --warn:#a8650a; --bad:#b23a3a;
+  --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --body:"Source Sans 3","Segoe UI",Roboto,Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#151916; --panel:#1c211d; --fg:#e4e9e4; --muted:#9ba69f; --line:#303833; --grid:#262d28;
+  --acc:#e0a64a; --pts:#3987e5; --taper:#2c261b; --ok:#6cc070; --warn:#e0a64a; --bad:#e27777; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#151916; --panel:#1c211d; --fg:#e4e9e4; --muted:#9ba69f; --line:#303833; --grid:#262d28;
+  --acc:#e0a64a; --pts:#3987e5; --taper:#2c261b; --ok:#6cc070; --warn:#e0a64a; --bad:#e27777; color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.5}
+img{max-width:100%} [hidden]{display:none!important}
+.wrap{max-width:1100px;margin:0 auto;padding-inline:16px;padding-block:24px 56px;display:flex;flex-direction:column;gap:24px}
+h1,h2,h3{font-family:var(--display);margin:0;text-wrap:balance;letter-spacing:.01em}
+h1{font-size:clamp(1.8rem,4.5vw,2.6rem)} h2{font-size:1.35rem} h3{font-size:1.1rem}
+p{margin:0;max-width:72ch}
+.eyebrow{font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--acc)}
+.lede{color:var(--muted)}
+.main{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.4fr);gap:20px;align-items:start}
+@media (max-width:860px){.main{grid-template-columns:1fr}}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:14px;min-width:0;display:flex;flex-direction:column;gap:12px}
+.grid3{display:grid;grid-template-columns:auto 1fr 1fr;gap:6px 10px;align-items:center}
+.grid3 .h{font-family:var(--mono);font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.grid3 label{font-family:var(--mono);font-size:.82rem}
+.pair{display:grid;grid-template-columns:1fr 110px;gap:6px 10px;align-items:center}
+.pair label{font-family:var(--mono);font-size:.82rem}
+input[type=number]{font:400 .9rem var(--mono);width:100%;min-width:0;padding:5px 7px;border:1px solid var(--line);border-radius:4px;background:var(--bg);color:var(--fg);font-variant-numeric:tabular-nums}
+input:focus-visible,button:focus-visible,select:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+button,.filebtn{font:600 .85rem var(--body);padding:6px 12px;border:1px solid var(--line);border-radius:4px;background:var(--bg);color:var(--fg);cursor:pointer}
+button.primary{background:var(--acc);border-color:var(--acc);color:var(--panel)}
+.filebtn input{display:none}
+.hint{font-size:.82rem;color:var(--muted)}
+.checks{display:flex;flex-direction:column;gap:6px;margin:0;padding:0;list-style:none}
+.checks li{display:flex;gap:8px;align-items:flex-start;font-size:.88rem}
+.badge{font:600 .68rem var(--mono);padding:1px 6px;border-radius:999px;border:1px solid currentColor;white-space:nowrap;margin-top:2px}
+.b-ok{color:var(--ok)} .b-warn{color:var(--warn)} .b-bad{color:var(--bad)}
+.chartbox{position:relative}
+svg.chart{display:block;width:100%;height:auto}
+svg.chart text{font-family:var(--mono);font-size:11px;fill:var(--muted)}
+.tip{position:absolute;pointer-events:none;background:var(--panel);border:1px solid var(--line);border-radius:5px;padding:7px 9px;font:400 .78rem/1.45 var(--mono);white-space:nowrap;box-shadow:0 3px 12px rgba(0,0,0,.14)}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:.82rem;color:var(--muted)}
+.legend span{display:inline-flex;gap:6px;align-items:center}
+.sw{display:inline-block;width:18px;height:3px;border-radius:2px}
+.sw.dash{height:2px;background:repeating-linear-gradient(90deg,var(--muted) 0 5px,transparent 5px 9px)}
+.sw.dot{width:9px;height:9px;border-radius:50%}
+.sw.band{height:10px;width:16px;border-radius:2px}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.88rem}
+th,td{padding:7px 9px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+thead th{font-family:var(--display);font-size:.95rem;letter-spacing:.03em;border-bottom:2px solid var(--fg)}
+td.n,th.n{font-family:var(--mono);font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+.mono{font-family:var(--mono)}
+pre.params{font:400 .82rem var(--mono);background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:10px;margin:0;white-space:pre;overflow-x:auto}
+.status{font-size:.88rem;border-left:3px solid var(--line);padding:4px 10px}
+.status.ok{border-color:var(--ok)} .status.bad{border-color:var(--bad)} .status.warn{border-color:var(--warn)}
+.guide{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px}
+.guide section{display:flex;flex-direction:column;gap:10px;min-width:0}
+ol,ul{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:6px}
+code{font-family:var(--mono);font-size:.86em}
+.howto{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.howto .panel{gap:10px}
+.howto h2{font-size:1.2rem}
+.howto ol{gap:8px}
+.howto .tag{font:600 .7rem var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--acc)}
+.note{border-left:4px solid var(--acc);padding:10px 12px;background:color-mix(in srgb,var(--acc) 8%,transparent);border-radius:0 6px 6px 0}
+footer{font-size:.8rem;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header style="display:flex;flex-direction:column;gap:8px">
+    <span class="eyebrow">ArduCustom v2.1 · fixed wing · not yet flight-tested</span>
+    <h1>Adaptive Pitch Trim Explorer</h1>
+    <p class="lede"><code>PTCH_TRIM_DEG</code> is only right at one airspeed. Adaptive pitch trim adds an airspeed-dependent offset on top of it, set by three points (<code>PTCH_TRIM_SPD1–3</code>, <code>PTCH_TRIM_OFS1–3</code>). Enter or load a curve to see the trim it gives at every speed, or fit one from a learn-flight log exactly as the aircraft's own learner would.</p>
+  </header>
+
+  <div class="howto">
+    <section class="panel" aria-labelledby="how-a">
+      <span class="tag">Most people want this</span>
+      <h2 id="how-a">Get a curve from a flight log</h2>
+      <ol>
+        <li><b>Fly the legs.</b> In FBWB or CRUISE, fly straight and level at 4–5 different speeds about 4–5 m/s apart, 5–10 s each, in calm air. Any firmware version works for this flight.</li>
+        <li><b>Load the <code>.bin</code></b> in <a href="#h-fit">Fit a curve from a log</a> below. You don't need to type anything first: the trim and <code>AIRSPEED_MIN</code> come from the log.</li>
+        <li><b>Check the result.</b> The blue dots on the chart should fall steadily as speed rises. A dot far off the others, or a "need 3 over 3m/s" message, means fly those legs again.</li>
+        <li><b>Click "Use this fitted curve"</b> to draw it, then <b>"Copy as .param lines"</b>.</li>
+        <li><b>Paste into Mission Planner</b> (Config → Full Parameter List, or save as a <code>.param</code> file and load it). The lines are in the safe order, <code>PTCH_TRIM_SPD1</code> last. The aircraft needs ArduCustom v2.1.</li>
+        <li><b>Check in flight:</b> hands-off FBWA at a few speeds should now hold height.</li>
+      </ol>
+    </section>
+    <section class="panel" aria-labelledby="how-b">
+      <span class="tag">Optional</span>
+      <h2 id="how-b">Look at or change a curve</h2>
+      <ol>
+        <li><b>Load .param</b> from your aircraft to see the curve it has now, or type values in <a href="#h-curve">Your curve</a>.</li>
+        <li>The chart shows the trim the aircraft will use at every airspeed; the list under the inputs flags problems (curve off, offsets not falling with speed, points inside the stall taper).</li>
+        <li>Edit the numbers to try changes before writing them to the aircraft.</li>
+      </ol>
+      <p class="hint">Rather learn the curve in flight with the <code>RCx_OPTION 254</code> switch? See <a href="#g2">Learning in flight</a> below; the aircraft then saves the curve itself and you only need this page to look at it.</p>
+    </section>
+  </div>
+
+  <div class="main">
+    <section class="panel" aria-labelledby="h-curve">
+      <h2 id="h-curve">Your curve</h2>
+      <div class="pair">
+        <label for="trim">PTCH_TRIM_DEG <span class="hint">°</span></label><input type="number" id="trim" step="0.1">
+        <label for="asmin">AIRSPEED_MIN <span class="hint">m/s</span></label><input type="number" id="asmin" step="0.5" min="0">
+      </div>
+      <div class="grid3" role="group" aria-label="Curve points">
+        <span></span><span class="h">Airspeed m/s</span><span class="h">Offset °</span>
+        <label for="s1">Point 1</label><input type="number" id="s1" step="0.5" aria-label="PTCH_TRIM_SPD1"><input type="number" id="o1" step="0.05" aria-label="PTCH_TRIM_OFS1">
+        <label for="s2">Point 2</label><input type="number" id="s2" step="0.5" aria-label="PTCH_TRIM_SPD2"><input type="number" id="o2" step="0.05" aria-label="PTCH_TRIM_OFS2">
+        <label for="s3">Point 3</label><input type="number" id="s3" step="0.5" aria-label="PTCH_TRIM_SPD3"><input type="number" id="o3" step="0.05" aria-label="PTCH_TRIM_OFS3">
+      </div>
+      <div class="btns">
+        <label class="filebtn" for="paramfile">Load .param<input type="file" id="paramfile" accept=".param,.parm,.params,.txt"></label>
+        <button type="button" id="ex-pitot">Example: SITL, pitot</button>
+        <button type="button" id="ex-nopitot">Example: SITL, no pitot</button>
+      </div>
+      <p class="hint" id="src">Showing the SITL example learned with a pitot (example values, not your aircraft).</p>
+      <p class="hint">Fitting from a log? Leave these alone: loading the <code>.bin</code> fills them from the log.</p>
+      <ul class="checks" id="checks"></ul>
+    </section>
+
+    <section class="panel" aria-labelledby="h-chart">
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;align-items:baseline">
+        <h2 id="h-chart">Pitch trim against airspeed</h2>
+        <div class="legend"><span><i class="sw" style="background:var(--acc)"></i>Trim with the curve</span><span><i class="sw dash"></i>PTCH_TRIM_DEG alone</span><span><i class="sw band" style="background:var(--taper)"></i>Stall taper</span><span id="lg-pts" hidden><i class="sw dot" style="background:var(--pts)"></i>Level pitch from log (hollow: under 30 samples, not used)</span></div>
+      </div>
+      <div class="chartbox" id="chart"></div>
+      <p class="hint">Trim = <code>PTCH_TRIM_DEG</code> + offset. Between the points the offset is a straight line; outside them it holds the end value. From 1.25 × <code>AIRSPEED_MIN</code> down to <code>AIRSPEED_MIN</code> it fades to the least nose-up offset, so slowing toward the stall never raises the nose.</p>
+      <div class="scroll"><table><thead><tr><th class="n">Airspeed</th><th class="n">Offset</th><th class="n">Trim held as level</th><th>Region</th></tr></thead><tbody id="tab"></tbody></table></div>
+    </section>
+  </div>
+
+  <section class="panel" aria-labelledby="h-fit">
+    <h2 id="h-fit">Fit a curve from a log</h2>
+    <p>Load the <code>.bin</code> from a learn flight (or any flight with steady level legs at several speeds). The file is read in your browser and never uploaded. The fit repeats the firmware learner step for step: 10 samples a second, kept only when roll is within ±5°, vertical speed under 0.5 m/s and the filtered airspeed changing by less than 0.5 m/s per second; 1 m/s speed bands that need 30 samples (3 s); then the same weighted least-squares fit, saved as three points.</p>
+    <div class="btns" style="align-items:center">
+      <label class="filebtn" for="binfile">Load .bin log<input type="file" id="binfile" accept=".bin,.BIN"></label>
+      <label class="hint" style="display:inline-flex;gap:6px;align-items:center"><input type="checkbox" id="allmodes"> Also use FBWA and other non-TECS modes (log method; the in-flight learner only uses FBWB and CRUISE)</label>
+      <label class="hint" id="winrow" hidden style="display:inline-flex;gap:6px;align-items:center"><input type="checkbox" id="onlywin" checked> Only the learn window (switch HIGH), to match what the aircraft saved</label>
+    </div>
+    <div class="status" id="fitstatus">No log loaded.</div>
+    <div id="fitout" hidden style="display:flex;flex-direction:column;gap:12px">
+      <div class="scroll"><table><thead><tr><th class="n">Speed band</th><th class="n">Samples</th><th class="n">Mean pitch</th><th class="n">Offset (pitch − trim)</th></tr></thead><tbody id="bins"></tbody></table></div>
+      <div class="btns"><button type="button" class="primary" id="usefit">Use this fitted curve</button><button type="button" id="copyp">Copy as .param lines</button></div>
+      <pre class="params" id="ptext"></pre>
+    </div>
+  </section>
+
+  <section class="note">
+    <p><b>What to expect, from SITL (76 runs on the v2.1 test build).</b> The clear gain is hands-off FBWA: over the same 80 s throttle sweep the plane climbed 42 % less with a pitot (31.7 → 18.4 m) and 54 % less without (23.7 → 10.8 m). In FBWB, CRUISE and AUTO steady height hold is unchanged because TECS already holds height; it simply needs less pitch correction. After a speed change it costs 0.1–0.2 m more height error with a pitot and gains about 20 % without one. In turbulence steady hold was about 9 % looser with the curve (8 and 9 of 12 pairs; small, not statistically firm). No porpoising was seen in any run. The SITL plane's level pitch changes only about 0.9° across its speed range; real airframes measured 2.5–3.7°, so expect larger effects either way.</p>
+  </section>
+
+  <div class="guide">
+    <section aria-labelledby="g1">
+      <h2 id="g1">How it works</h2>
+      <p>The offset is added to the pitch demand after the flight mode has computed it, in the same place <code>PTCH_TRIM_DEG</code> goes. It is pitch trim scheduled on airspeed; it does not measure or control angle of attack.</p>
+      <ul>
+        <li><b>Off</b> during takeoff, the landing (<code>NAV_LAND</code>) leg, VTOL and assisted flight. <code>PTCH_TRIM_SPD1</code> = 0 turns it off completely.</li>
+        <li><b>Smooth:</b> airspeed is filtered and the offset follows with about a 1 s time constant.</li>
+        <li><b><code>KFF_THR2PTCH</code> is ignored</b> while the curve is active, since it does the same job by throttle; it applies normally whenever the curve is off.</li>
+        <li><b>Valid curve:</b> <code>0 &lt; SPD1 &lt; SPD2 &lt; SPD3</code>, offsets ±10°.</li>
+      </ul>
+      <h3>Switch, <code>RCx_OPTION = 254</code></h3>
+      <div class="scroll"><table><thead><tr><th>Position</th><th>Effect</th></tr></thead><tbody>
+        <tr><td><b>LOW</b></td><td>Off (the saved curve is kept)</td></tr>
+        <tr><td><b>MIDDLE</b></td><td>On</td></tr>
+        <tr><td><b>HIGH</b></td><td>Learn; moving off HIGH fits the curve and saves it</td></tr>
+      </tbody></table></div>
+      <p class="hint">With no switch assigned, the curve is used whenever one exists. The position at boot only chooses on or off; it never starts a learn.</p>
+    </section>
+
+    <section aria-labelledby="g2">
+      <h2 id="g2">Learning in flight</h2>
+      <ol>
+        <li>Switch HIGH: <code>Adaptive trim learn: fly level FBWB/CRUISE</code>. A switch already HIGH at boot does not learn; move it off and back.</li>
+        <li>In FBWB or CRUISE fly straight and level at 4–5 speeds about 4–5 m/s apart, 5–10 s each. Progress every 10 s: <code>Adaptive trim learn: N speeds</code>.</li>
+        <li>Move the switch to MIDDLE. The curve is fitted, saved and printed, e.g. <code>Adaptive trim: 14.5 +2.1 18.5 +1.0 22.5 +0.2</code>. It needs at least 3 speeds over 3 m/s, otherwise nothing is saved.</li>
+      </ol>
+      <h3>Flying the legs</h3>
+      <ul>
+        <li><b>Pitch stick centred</b>: in FBWB it commands a climb, and over 0.5 m/s drops the samples.</li>
+        <li><b>Roll within 5°</b> for samples to count; turning around between legs is fine, samples for the same speed add up.</li>
+        <li><b>Throttle stick sets each speed</b> (with a pitot); let it settle before it counts.</li>
+        <li><b>Calm air</b>: gusts break the steadiness checks, so the counts climb slowly.</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="g3">
+      <h2 id="g3">Setting it by hand or from a log</h2>
+      <ol>
+        <li>Turn the curve off while measuring (switch LOW, or <code>PTCH_TRIM_SPD1</code> 0).</li>
+        <li>Fly level in FBWB or CRUISE at a slow, a middle and a fast speed, the slow one above 1.25 × <code>AIRSPEED_MIN</code>.</li>
+        <li>Offset at each speed = measured level pitch − <code>PTCH_TRIM_DEG</code>. From a log use <code>ATT.Pitch</code> (real pitch) with <code>CTUN.As</code>, not <code>CTUN.Pitch</code>, which already has the trim removed. Offsets should fall as speed rises.</li>
+        <li>Enter <code>SPD2</code>, <code>SPD3</code> and the offsets first, <code>PTCH_TRIM_SPD1</code> last, so a half-entered curve never goes live.</li>
+        <li>Check with hands-off FBWA at each speed: it should hold altitude.</li>
+      </ol>
+      <p class="hint">The fit above does steps 2–3 for you from the <code>.bin</code>.</p>
+    </section>
+
+    <section aria-labelledby="g4">
+      <h2 id="g4">Pitot or no pitot</h2>
+      <div class="scroll"><table><thead><tr><th>Setup</th><th>Recommendation</th></tr></thead><tbody>
+        <tr><td>Pitot, flown mostly in TECS modes (AUTO, CRUISE, FBWB)</td><td>Optional. Steady flight is unchanged and speed changes are slightly worse (0.1–0.2 m).</td></tr>
+        <tr><td>Pitot, flies FBWA</td><td>Use it, <code>PTCH_TRIM_SPD1</code> around <code>AIRSPEED_CRUISE</code>.</td></tr>
+        <tr><td>No pitot</td><td>Use it in all modes, <code>PTCH_TRIM_SPD1</code> not below the trim-throttle speed.</td></tr>
+      </tbody></table></div>
+      <p>Without a pitot it runs on synthetic airspeed (GPS speed corrected by the wind estimate). A wind-estimate error shifts the curve along the speed axis, so learn on a calm day, fly a few circles first, and fly each speed upwind and downwind. Without a pitot TECS also sets throttle from pitch against trim, so the curve affects throttle in FBWB, CRUISE and AUTO as well.</p>
+      <p class="hint">Tune TECS first (run a transmitter TECS helper with the switch LOW), then learn the curve.</p>
+    </section>
+  </div>
+
+  <footer>ArduCustom v2.1 (unreleased). Curve, stall taper and fit follow <code>ArduPlane/pitch_trim_sched.cpp</code>. SITL figures from the v2.1 test build, 2026-10-11. Not yet flight-tested: check the result in flight before relying on it.</footer>
+</div>
+
+<script>
+(function(){
+'use strict';
+var $ = function(id){ return document.getElementById(id); };
+var css = function(n){ return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); };
+var EX = {
+  pitot:   {trim:-3.2, asmin:10, s:[19.5,25.0,30.5], o:[0.079,-0.305,-0.575], src:'Showing the SITL example learned with a pitot (example values, not your aircraft).'},
+  nopitot: {trim:-3.2, asmin:10, s:[23.5,28.0,32.5], o:[-0.287,-0.686,-0.835], src:'Showing the SITL example learned without a pitot (example values, not your aircraft).'}
+};
+var fitPts = null;   // [{v, pitch, n}] bins from a log
+var lastFit = null;
+
+function val(id){ var v = parseFloat($(id).value); return isFinite(v) ? v : NaN; }
+function setCurve(c, src){
+  $('trim').value = c.trim; $('asmin').value = c.asmin;
+  for (var i = 0; i < 3; i++){ $('s'+(i+1)).value = +(+c.s[i]).toFixed(2); $('o'+(i+1)).value = +(+c.o[i]).toFixed(3); }
+  if (src) $('src').textContent = src;
+  render();
+}
+function curve(){ return {trim:val('trim'), asmin:val('asmin'), s:[val('s1'),val('s2'),val('s3')], o:[val('o1'),val('o2'),val('o3')]}; }
+function enabled(c){ return c.s[0] > 0 && c.s[0] < c.s[1] && c.s[1] < c.s[2]; }
+function lerp(a,b,x,x0,x1){ return a + (b-a)*(x-x0)/(x1-x0); }
+// ArduPlane/pitch_trim_sched.cpp curve_deg() and scheduled_deg()
+function curveDeg(c,v){ if (v <= c.s[0]) return c.o[0]; if (v <= c.s[1]) return lerp(c.o[0],c.o[1],v,c.s[0],c.s[1]); if (v <= c.s[2]) return lerp(c.o[1],c.o[2],v,c.s[1],c.s[2]); return c.o[2]; }
+function schedDeg(c,v){
+  var oc = curveDeg(c,v);
+  if (!(c.asmin > 0)) return oc;
+  var top = 1.25*c.asmin; if (v >= top) return oc;
+  var least = Math.min(c.o[0],c.o[1],c.o[2]);
+  var k = Math.max(0, Math.min(1, (v - c.asmin)/(top - c.asmin)));
+  return least + k*(oc - least);
+}
+
+function checks(c){
+  var out = [];
+  if (!(c.s[0] > 0)) out.push(['bad','Off: PTCH_TRIM_SPD1 is 0, so the curve is not used.']);
+  else if (!enabled(c)) out.push(['bad','Not active: the speeds must increase, SPD1 < SPD2 < SPD3.']);
+  else out.push(['ok','Active: the firmware will use this curve.']);
+  if (c.o.some(function(o){ return Math.abs(o) > 10; })) out.push(['bad','An offset is beyond ±10°; the firmware limits offsets to ±10.']);
+  if (enabled(c)){
+    if (!(c.o[0] >= c.o[1] && c.o[1] >= c.o[2])) out.push(['warn','The offsets do not fall as speed rises. Level pitch normally drops with speed; re-measure the leg that breaks the trend.']);
+    if (c.asmin > 0 && c.s[0] < 1.25*c.asmin) out.push(['warn','Point 1 is inside the stall taper (below 1.25 × AIRSPEED_MIN = '+(1.25*c.asmin).toFixed(1)+' m/s), where the taper overrides it.']);
+    if (c.s[2]-c.s[0] < 3) out.push(['warn','The points span less than 3 m/s; the learner would not save a curve this narrow.']);
+    var spread = Math.max(c.o[0],c.o[1],c.o[2]) - Math.min(c.o[0],c.o[1],c.o[2]);
+    out.push(['ok','Trim changes by '+spread.toFixed(2)+'° across the curve.']);
+  }
+  if (!(c.asmin > 0)) out.push(['warn','AIRSPEED_MIN not set: the stall taper is not shown.']);
+  return out;
+}
+
+function niceTicks(lo,hi,n){ var span=hi-lo||1, s0=span/n, mag=Math.pow(10,Math.floor(Math.log10(s0))); var step=[1,2,2.5,5,10].map(function(x){return x*mag;}).find(function(x){return span/x<=n;})||10*mag; var out=[]; for (var v=Math.ceil(lo/step)*step; v<=hi+1e-9; v+=step) out.push(+v.toFixed(6)); return out; }
+
+function render(){
+  var c = curve(), on = enabled(c);
+  var ul = $('checks'); ul.innerHTML = '';
+  checks(c).forEach(function(k){ var li=document.createElement('li'); li.innerHTML='<span class="badge b-'+k[0]+'">'+({ok:'OK',warn:'CHECK',bad:'NO'}[k[0]])+'</span><span>'+k[1]+'</span>'; ul.appendChild(li); });
+  // x range
+  var lo = c.asmin > 0 ? c.asmin*0.8 : Math.max(0,(c.s[0]||10)-6), hi = (on ? c.s[2] : (c.s[2]||30)) + 5;
+  if (fitPts && fitPts.length){ lo = Math.min(lo, fitPts[0].v-1); hi = Math.max(hi, fitPts[fitPts.length-1].v+1); }
+  lo = Math.max(0, Math.floor(lo)); hi = Math.ceil(hi);
+  var N = 240, pts = [];
+  for (var i=0;i<=N;i++){ var v = lo + (hi-lo)*i/N; pts.push([v, (isFinite(c.trim)?c.trim:0) + (on ? schedDeg(c,v) : 0)]); }
+  var ys = pts.map(function(p){return p[1];}).concat([isFinite(c.trim)?c.trim:0]);
+  if (fitPts) fitPts.forEach(function(p){ ys.push(p.pitch); });
+  var ylo = Math.min.apply(null,ys), yhi = Math.max.apply(null,ys), pad = Math.max(0.3,(yhi-ylo)*0.15); ylo -= pad; yhi += pad;
+  drawChart(c, on, pts, lo, hi, ylo, yhi);
+  // table
+  var tb = $('tab'); tb.innerHTML='';
+  var speeds = [];
+  if (c.asmin > 0){ speeds.push(c.asmin, 1.25*c.asmin); }
+  if (on) speeds.push(c.s[0], c.s[1], c.s[2], c.s[2]+3);
+  speeds = speeds.filter(function(v,i,a){ return isFinite(v) && a.indexOf(v)===i; }).sort(function(a,b){return a-b;});
+  speeds.forEach(function(v){
+    var o = on ? schedDeg(c,v) : 0, region;
+    if (!on) region = 'curve off'; else if (c.asmin>0 && v < 1.25*c.asmin) region = 'stall taper'; else if (v <= c.s[0]) region = v===c.s[0]?'point 1':'held at point 1'; else if (v >= c.s[2]) region = v===c.s[2]?'point 3':'held at point 3'; else region = v===c.s[1]?'point 2':'interpolated';
+    var tr = document.createElement('tr');
+    tr.innerHTML = '<td class="n">'+v.toFixed(1)+' m/s</td><td class="n">'+(o>=0?'+':'−')+Math.abs(o).toFixed(2)+'°</td><td class="n">'+((isFinite(c.trim)?c.trim:0)+o).toFixed(2)+'°</td><td>'+region+'</td>';
+    tb.appendChild(tr);
+  });
+}
+
+function drawChart(c, on, pts, x0, x1, ylo, yhi){
+  var box = $('chart'), W = Math.max(320, box.clientWidth), H = 300, L = 46, R = 34, T = 12, B = 30;
+  var X = function(v){ return L + (v-x0)/(x1-x0)*(W-L-R); }, Y = function(v){ return T + (1-(v-ylo)/(yhi-ylo))*(H-T-B); };
+  var ns = 'http://www.w3.org/2000/svg', svg = document.createElementNS(ns,'svg');
+  svg.setAttribute('viewBox','0 0 '+W+' '+H); svg.setAttribute('class','chart'); svg.setAttribute('role','img');
+  svg.setAttribute('aria-label','Pitch trim against airspeed');
+  function el(n,a,t){ var e=document.createElementNS(ns,n); for (var k in a) e.setAttribute(k,a[k]); if (t!==undefined) e.textContent=t; svg.appendChild(e); return e; }
+  if (c.asmin > 0){ var a = Math.max(x0,c.asmin), b = Math.min(x1,1.25*c.asmin); if (b>a) el('rect',{x:X(a),y:T,width:X(b)-X(a),height:H-T-B,fill:css('--taper')}); }
+  niceTicks(ylo,yhi,6).forEach(function(v){ el('line',{x1:L,x2:W-R,y1:Y(v),y2:Y(v),stroke:css('--grid')}); el('text',{x:L-6,y:Y(v)+4,'text-anchor':'end'},(Math.round(v*10)/10)+'°'); });
+  niceTicks(x0,x1,8).forEach(function(v){ el('text',{x:X(v),y:H-10,'text-anchor':'middle'},v+(v===niceTicks(x0,x1,8).slice(-1)[0]?' m/s':'')); });
+  if (isFinite(c.trim)) el('line',{x1:L,x2:W-R,y1:Y(c.trim),y2:Y(c.trim),stroke:css('--muted'),'stroke-width':1.5,'stroke-dasharray':'5 4'});
+  if (fitPts) fitPts.forEach(function(p){ var used = p.n >= 30; el('circle',{cx:X(p.v),cy:Y(p.pitch),r:Math.max(3,Math.min(7,2+Math.sqrt(p.n)/3)),fill:used?css('--pts'):css('--panel'),stroke:used?css('--panel'):css('--pts'),'stroke-width':1.5,opacity:0.9}); });
+  if (on){
+    var d = pts.map(function(p,i){ return (i?'L':'M')+X(p[0]).toFixed(1)+','+Y(p[1]).toFixed(1); }).join('');
+    el('path',{d:d,fill:'none',stroke:css('--acc'),'stroke-width':2.5,'stroke-linejoin':'round'});
+    for (var i=0;i<3;i++) el('circle',{cx:X(c.s[i]),cy:Y(c.trim+schedDeg(c,c.s[i])),r:5,fill:css('--acc'),stroke:css('--panel'),'stroke-width':2});
+  }
+  var cross = el('line',{x1:0,x2:0,y1:T,y2:H-B,stroke:css('--muted'),visibility:'hidden'});
+  var dot = el('circle',{r:4,fill:css('--acc'),stroke:css('--panel'),'stroke-width':2,visibility:'hidden'});
+  var hit = el('rect',{x:L,y:T,width:W-L-R,height:H-T-B,fill:'transparent'});
+  box.innerHTML=''; box.appendChild(svg);
+  var tip = document.createElement('div'); tip.className='tip'; tip.hidden = true; box.appendChild(tip);
+  function move(ev){
+    var r = svg.getBoundingClientRect(), sx = (ev.clientX-r.left)*W/r.width, v = x0 + (sx-L)/(W-L-R)*(x1-x0);
+    if (v < x0 || v > x1) return hide();
+    var o = on ? schedDeg(c,v) : 0, t = (isFinite(c.trim)?c.trim:0)+o;
+    cross.setAttribute('x1',X(v)); cross.setAttribute('x2',X(v)); cross.setAttribute('visibility','visible');
+    dot.setAttribute('cx',X(v)); dot.setAttribute('cy',Y(t)); dot.setAttribute('visibility',on?'visible':'hidden');
+    tip.innerHTML = '<b>'+v.toFixed(1)+' m/s</b><br>offset '+(o>=0?'+':'−')+Math.abs(o).toFixed(2)+'°<br>trim '+t.toFixed(2)+'°';
+    tip.hidden = false; var bx = box.getBoundingClientRect(), left = ev.clientX-bx.left+14; if (left+tip.offsetWidth > bx.width) left = ev.clientX-bx.left-tip.offsetWidth-14;
+    tip.style.left = left+'px'; tip.style.top = Math.max(0, ev.clientY-bx.top-tip.offsetHeight-8)+'px';
+  }
+  function hide(){ cross.setAttribute('visibility','hidden'); dot.setAttribute('visibility','hidden'); tip.hidden = true; }
+  hit.addEventListener('pointermove',move); hit.addEventListener('pointerleave',hide);
+}
+
+/* .param loading */
+$('paramfile').addEventListener('change', function(e){
+  var f = e.target.files[0]; if (!f) return;
+  f.text().then(function(txt){
+    var p = {};
+    txt.split(/\r?\n/).forEach(function(l){ var m = l.trim().match(/^([A-Z0-9_]+)[\s,]+(-?[\d.eE+-]+)/); if (m) p[m[1]] = parseFloat(m[2]); });
+    var need = ['PTCH_TRIM_SPD1','PTCH_TRIM_SPD2','PTCH_TRIM_SPD3','PTCH_TRIM_OFS1','PTCH_TRIM_OFS2','PTCH_TRIM_OFS3'];
+    var missing = need.filter(function(k){ return !(k in p); });
+    var c = {trim: p.PTCH_TRIM_DEG!==undefined ? p.PTCH_TRIM_DEG : 0, asmin: p.AIRSPEED_MIN!==undefined ? p.AIRSPEED_MIN : (p.ARSPD_FBW_MIN||0),
+      s:[p.PTCH_TRIM_SPD1||0,p.PTCH_TRIM_SPD2||0,p.PTCH_TRIM_SPD3||0], o:[p.PTCH_TRIM_OFS1||0,p.PTCH_TRIM_OFS2||0,p.PTCH_TRIM_OFS3||0]};
+    setCurve(c, missing.length===need.length
+      ? 'Loaded '+f.name+'. It has no PTCH_TRIM_SPD/OFS parameters: this firmware predates v2.1, so only PTCH_TRIM_DEG and AIRSPEED_MIN were read.'
+      : 'Loaded from '+f.name+'.');
+  });
+  e.target.value = '';
+});
+$('ex-pitot').onclick = function(){ setCurve(EX.pitot, EX.pitot.src); };
+$('ex-nopitot').onclick = function(){ setCurve(EX.nopitot, EX.nopitot.src); };
+['trim','asmin','s1','s2','s3','o1','o2','o3'].forEach(function(id){ $(id).addEventListener('input', function(){ $('src').textContent = 'Edited by hand.'; render(); }); });
+
+/* DataFlash .bin parsing (same reader as the Power Lab page) */
+var SZ = { a:64,b:1,B:1,h:2,H:2,i:4,I:4,f:4,d:8,n:4,N:16,Z:64,c:2,C:2,e:4,E:4,L:4,M:1,q:8,Q:8 };
+var WANT = { PARM:['Name','Value'], MODE:['ModeNum'], CTUN:['As','AsT'], ATT:['Roll','Pitch'], XKF1:['C','VD'], MSG:['Message'] };
+function parseDF(buf){
+  var u8 = new Uint8Array(buf), dv = new DataView(buf), n = u8.length, fmts = {}, data = {}, p = 0, nfmt = 0;
+  function str(o,len){ var s=''; for (var i=0;i<len;i++){ var ch=u8[o+i]; if (!ch) break; s+=String.fromCharCode(ch); } return s; }
+  function rd(o,c){ switch(c){ case 'b':return dv.getInt8(o); case 'B':case 'M':return u8[o]; case 'h':return dv.getInt16(o,true); case 'H':return dv.getUint16(o,true);
+    case 'i':return dv.getInt32(o,true); case 'I':return dv.getUint32(o,true); case 'f':return dv.getFloat32(o,true); case 'd':return dv.getFloat64(o,true);
+    case 'c':return dv.getInt16(o,true)/100; case 'C':return dv.getUint16(o,true)/100; case 'e':return dv.getInt32(o,true)/100; case 'E':return dv.getUint32(o,true)/100;
+    case 'L':return dv.getInt32(o,true)/1e7; case 'q':return dv.getInt32(o+4,true)*4294967296+dv.getUint32(o,true); case 'Q':return dv.getUint32(o+4,true)*4294967296+dv.getUint32(o,true);
+    case 'n':return str(o,4); case 'N':return str(o,16); case 'Z':return str(o,64); } return NaN; }
+  while (p+3 <= n){
+    if (u8[p]!==0xA3 || u8[p+1]!==0x95){ p++; continue; }
+    var type = u8[p+2];
+    if (type===0x80){
+      if (p+89>n) break;
+      var t=u8[p+3], len=u8[p+4], name=str(p+5,4), format=str(p+9,16), cols=str(p+25,64).split(',');
+      var f={name:name,len:len,fields:null,time:null};
+      if (WANT[name]){ var off=3; f.fields=[]; for (var i=0;i<format.length;i++){ var c=format[i], col=cols[i]; if (col==='TimeUS') f.time={off:off,c:c}; else if (WANT[name].indexOf(col)>=0) f.fields.push({off:off,c:c,col:col}); off+=SZ[c]||0; }
+        if (!data[name]) data[name]={t:[]}; for (var j=0;j<f.fields.length;j++) if (!data[name][f.fields[j].col]) data[name][f.fields[j].col]=[]; }
+      fmts[t]=f; nfmt++; p+=89; continue;
+    }
+    var fm=fmts[type]; if (!fm || fm.len<3){ p++; continue; } if (p+fm.len>n) break;
+    if (fm.fields){ var d=data[fm.name]; d.t.push(fm.time?rd(p+fm.time.off,fm.time.c)/1e6:NaN); for (var k=0;k<fm.fields.length;k++){ var fl=fm.fields[k]; d[fl.col].push(rd(p+fl.off,fl.c)); } }
+    p+=fm.len;
+  }
+  return {data:data, formats:nfmt};
+}
+
+/* Replays ArduPlane/pitch_trim_sched.cpp: update() filtering, learn_sample() checks, learn_stop() fit */
+function learnWindows(D){
+  // switch HIGH prints 'Adaptive trim learn: fly level...', leaving HIGH prints the saved curve or the 'need 3' warning
+  var w = [], start = null;
+  if (!D.MSG) return w;
+  for (var i=0;i<D.MSG.t.length;i++){ var m = D.MSG.Message[i];
+    if (/^Adaptive trim learn: fly level/.test(m)) start = D.MSG.t[i];
+    else if (start !== null && /^Adaptive trim: /.test(m)){ w.push([start, D.MSG.t[i], m]); start = null; } }
+  return w;
+}
+function fitFromLog(D, allModes, win){
+  var P = {}; if (D.PARM) for (var i=0;i<D.PARM.t.length;i++) P[D.PARM.Name[i]] = D.PARM.Value[i];
+  var base = P.PTCH_TRIM_DEG !== undefined ? P.PTCH_TRIM_DEG : 0, asmin = P.AIRSPEED_MIN !== undefined ? P.AIRSPEED_MIN : (P.ARSPD_FBW_MIN || 0);
+  if (!D.ATT || !D.CTUN) throw new Error('This log has no ATT or CTUN records, which the fit needs.');
+  var vdT = [], vdV = [];
+  if (D.XKF1){ var cores = {}; D.XKF1.C.forEach(function(c){ cores[c]=(cores[c]||0)+1; }); var core = +Object.keys(cores).sort(function(a,b){return cores[b]-cores[a];})[0];
+    for (var i=0;i<D.XKF1.t.length;i++) if (D.XKF1.C[i]===core){ vdT.push(D.XKF1.t[i]); vdV.push(D.XKF1.VD[i]); } }
+  if (!vdT.length) throw new Error('This log has no XKF1 (EKF3) records, so vertical speed cannot be checked.');
+  var mT = D.MODE ? D.MODE.t : [], mV = D.MODE ? D.MODE.ModeNum : [];
+  var tecsModes = {6:1,7:1};                  // FBWB, CRUISE: what the learner uses
+  var fwModes = {2:1,4:1,5:1,6:1,7:1,10:1,11:1,12:1,15:1,24:1,26:1,27:1}; // fixed-wing modes allowed by the log method
+  var bins = {}, t0 = D.ATT.t[0], t1 = D.ATT.t[D.ATT.t.length-1];
+  var ia=0, ic=0, iv=0, im=-1, filt=null, kept=0;
+  for (var t=t0; t<=t1; t+=0.1){
+    while (ia+1<D.ATT.t.length && D.ATT.t[ia+1]<=t) ia++;
+    while (ic+1<D.CTUN.t.length && D.CTUN.t[ic+1]<=t) ic++;
+    while (iv+1<vdT.length && vdT[iv+1]<=t) iv++;
+    while (im+1<mT.length && mT[im+1]<=t) im++;
+    if (win && (t < win[0] || t > win[1])) continue;
+    if (D.CTUN.t[ic] > t || t - D.CTUN.t[ic] > 1) continue;
+    if (D.CTUN.AsT && D.CTUN.AsT[ic] === 0) continue;          // no new airspeed estimate
+    var as = D.CTUN.As[ic];
+    var prev = filt === null ? as : filt;
+    filt = filt === null ? as : filt + (as - filt)*0.3;
+    var rate = (filt - prev)*10;
+    var mode = im >= 0 ? mV[im] : -1;
+    if (!(allModes ? fwModes[mode] : tecsModes[mode])) continue;
+    if (asmin > 0 && filt < 0.7*asmin) continue;               // stand-in for "flying"
+    if (Math.abs(D.ATT.Roll[ia]) > 5 || Math.abs(vdV[iv]) > 0.5 || Math.abs(rate) > 0.5) continue;
+    var b = Math.floor(filt); if (b < 0 || b >= 50) continue;
+    if (!bins[b]) bins[b] = {sum:0,n:0}; bins[b].sum += D.ATT.Pitch[ia]; bins[b].n++; kept++;
+  }
+  var all = Object.keys(bins).map(Number).sort(function(a,b){return a-b;}).map(function(b){ return {v:b+0.5, pitch:bins[b].sum/bins[b].n, n:bins[b].n}; });
+  var good = all.filter(function(x){ return x.n >= 30; });
+  var res = {base:base, asmin:asmin, all:all, good:good, kept:kept, ok:false};
+  if (good.length < 3 || good[good.length-1].v - good[0].v < 3){ res.msg = 'Adaptive trim: '+good.length+' speeds (need 3 over 3m/s)'; return res; }
+  var vmin = good[0].v, vmax = good[good.length-1].v, vc = 0.5*(vmin+vmax), S=[0,0,0,0,0], Tt=[0,0,0];
+  good.forEach(function(g){ var x = g.v - vc, y = g.pitch, w = Math.min(g.n,300), xk = 1; for (var k=0;k<5;k++){ S[k]+=w*xk; if (k<3) Tt[k]+=w*y*xk; xk*=x; } });
+  var a, b2, c2 = 0;
+  if (good.length >= 4){
+    var det = S[0]*(S[2]*S[4]-S[3]*S[3]) - S[1]*(S[1]*S[4]-S[3]*S[2]) + S[2]*(S[1]*S[3]-S[2]*S[2]);
+    if (det === 0){ res.msg = 'Adaptive trim: fit failed, not saved'; return res; }
+    a = (Tt[0]*(S[2]*S[4]-S[3]*S[3]) - S[1]*(Tt[1]*S[4]-S[3]*Tt[2]) + S[2]*(Tt[1]*S[3]-S[2]*Tt[2]))/det;
+    b2 = (S[0]*(Tt[1]*S[4]-S[3]*Tt[2]) - Tt[0]*(S[1]*S[4]-S[3]*S[2]) + S[2]*(S[1]*Tt[2]-Tt[1]*S[2]))/det;
+    c2 = (S[0]*(S[2]*Tt[2]-Tt[1]*S[3]) - S[1]*(S[1]*Tt[2]-Tt[1]*S[2]) + Tt[0]*(S[1]*S[3]-S[2]*S[2]))/det;
+  } else {
+    var d2 = S[0]*S[2]-S[1]*S[1]; if (d2 === 0){ res.msg = 'Adaptive trim: fit failed, not saved'; return res; }
+    b2 = (S[0]*Tt[1]-S[1]*Tt[0])/d2; a = (Tt[0]-b2*S[1])/S[0];
+  }
+  res.s = [vmin, vc, vmax];
+  res.o = res.s.map(function(v){ var x = v - vc; return Math.max(-10, Math.min(10, a + b2*x + c2*x*x - base)); });
+  res.ok = true;
+  res.msg = 'Adaptive trim: '+res.s.map(function(v,i){ return v.toFixed(1)+' '+(res.o[i]>=0?'+':'')+res.o[i].toFixed(1); }).join(' ');
+  return res;
+}
+
+var lastLog = null;
+function runFit(){
+  if (!lastLog) return;
+  var st = $('fitstatus');
+  try {
+    var wins = learnWindows(lastLog.data), useWin = $('onlywin').checked && wins.length;
+    $('winrow').hidden = !wins.length;
+    var win = useWin ? wins[wins.length-1] : null;
+    var r = fitFromLog(lastLog.data, $('allmodes').checked, win);
+    fitPts = r.all.length ? r.all : null;
+    $('lg-pts').hidden = !fitPts;
+    var tb = $('bins'); tb.innerHTML='';
+    r.all.forEach(function(g){ var tr=document.createElement('tr'); var off=g.pitch-r.base;
+      tr.innerHTML='<td class="n">'+(g.v-0.5).toFixed(0)+'–'+(g.v+0.5).toFixed(0)+' m/s</td><td class="n">'+g.n+(g.n<30?' (under 30, not used)':'')+'</td><td class="n">'+g.pitch.toFixed(2)+'°</td><td class="n">'+(off>=0?'+':'−')+Math.abs(off).toFixed(2)+'°</td>'; tb.appendChild(tr); });
+    $('fitout').hidden = false;
+    if (r.ok){
+      lastFit = r;
+      st.className = 'status ok';
+      st.innerHTML = '<b>'+r.msg+'</b> — '+r.good.length+' speed bands used, '+r.kept+' samples kept, from '+(win?'the last learn window ('+(win[1]-win[0]).toFixed(0)+' s; the aircraft saved <span class="mono">'+win[2]+'</span>)':'all steady level flight in the log')+'. PTCH_TRIM_DEG in the log: '+r.base.toFixed(2)+'°.';
+      $('ptext').textContent = ['PTCH_TRIM_SPD2,'+r.s[1].toFixed(1),'PTCH_TRIM_SPD3,'+r.s[2].toFixed(1),'PTCH_TRIM_OFS1,'+r.o[0].toFixed(3),'PTCH_TRIM_OFS2,'+r.o[1].toFixed(3),'PTCH_TRIM_OFS3,'+r.o[2].toFixed(3),'PTCH_TRIM_SPD1,'+r.s[0].toFixed(1)].join('\n');
+      $('usefit').disabled = false; $('copyp').disabled = false; $('ptext').hidden = false;
+    } else {
+      lastFit = null;
+      st.className = 'status warn';
+      st.innerHTML = '<b>'+r.msg+'</b> — not enough steady level flight: each band needs 30 samples (3 s) and the bands must span at least 3 m/s. '+(r.kept? r.kept+' samples passed the checks.' : 'No samples passed: check the log has FBWB or CRUISE legs, or tick the box to include FBWA.');
+      $('usefit').disabled = true; $('copyp').disabled = true; $('ptext').hidden = true;
+    }
+  } catch (err){
+    st.className = 'status bad'; st.textContent = err.message; $('fitout').hidden = true; fitPts = null; $('lg-pts').hidden = true;
+  }
+  render();
+}
+$('binfile').addEventListener('change', function(e){
+  var f = e.target.files[0]; if (!f) return;
+  var st = $('fitstatus'); st.className = 'status'; st.textContent = 'Reading '+f.name+' ('+(f.size/1048576).toFixed(1)+' MB)…';
+  f.arrayBuffer().then(function(buf){
+    setTimeout(function(){
+      try {
+        var P = parseDF(buf);
+        if (!P.formats) throw new Error('This file has no format (FMT) records, so it is not a readable DataFlash log.');
+        lastLog = P; lastLog.name = f.name;
+        // a log carries the aircraft's parameters: show its own trim, AIRSPEED_MIN and any saved curve
+        var pp = {}; if (P.data.PARM) for (var i=0;i<P.data.PARM.t.length;i++) pp[P.data.PARM.Name[i]] = P.data.PARM.Value[i];
+        if (pp.PTCH_TRIM_DEG !== undefined){
+          var has = pp.PTCH_TRIM_SPD1 !== undefined;
+          setCurve({trim:pp.PTCH_TRIM_DEG, asmin:pp.AIRSPEED_MIN!==undefined?pp.AIRSPEED_MIN:(pp.ARSPD_FBW_MIN||0),
+            s:[has?pp.PTCH_TRIM_SPD1:0, has?pp.PTCH_TRIM_SPD2:0, has?pp.PTCH_TRIM_SPD3:0], o:[has?pp.PTCH_TRIM_OFS1:0, has?pp.PTCH_TRIM_OFS2:0, has?pp.PTCH_TRIM_OFS3:0]},
+            'Parameters from '+f.name+(has?' (the curve saved on the aircraft when the log was recorded).':' (no adaptive-trim curve on this aircraft: firmware before v2.1 or curve not set).'));
+        }
+        runFit();
+        st.innerHTML = st.innerHTML.replace(/^/, '<span class="mono">'+f.name+'</span>: ');
+      } catch (err){ st.className = 'status bad'; st.textContent = err.message; }
+    }, 20);
+  });
+  e.target.value = '';
+});
+$('allmodes').addEventListener('change', runFit);
+$('onlywin').addEventListener('change', runFit);
+$('usefit').onclick = function(){ if (!lastFit) return; setCurve({trim:lastFit.base, asmin:lastFit.asmin||val('asmin'), s:lastFit.s, o:lastFit.o}, 'Fitted from '+(lastLog?lastLog.name:'the log')+'.'); };
+$('copyp').onclick = function(){
+  var txt = $('ptext').textContent, btn = $('copyp');
+  var done = function(){ btn.textContent = 'Copied'; setTimeout(function(){ btn.textContent = 'Copy as .param lines'; }, 1500); };
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(done, function(){ selectText(); });
+  else selectText();
+  function selectText(){ var r = document.createRange(); r.selectNodeContents($('ptext')); var s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = 'Selected — press Ctrl+C'; }
+};
+
+var rt; addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(render, 150); });
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change', render);
+setCurve(EX.pitot, EX.pitot.src);
+})();
+</script>
+</body>
+</html>
