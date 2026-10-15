@@ -178,6 +178,8 @@ tr.click:hover td { background: var(--grid); }
 .pill.na { background: var(--grid); color: var(--ink-2); }
 .note { font-size: .8rem; color: var(--ink-2); }
 .content { display: grid; gap: 22px; }
+.top-acts { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.btn.confirm { border-color: var(--crit); color: var(--crit); }
 .back { margin-bottom: -10px; }
 .back a { display: inline-flex; align-items: center; gap: 6px; padding: 4px 11px; border: 1px solid var(--line); border-radius: 999px; background: var(--panel); color: var(--ink-2); font-size: .84rem; text-decoration: none; }
 .back a:hover { color: var(--ink); border-color: var(--ink-3); }
@@ -245,7 +247,8 @@ tr.grp td { font-family: var(--f-mono); font-size: .68rem; letter-spacing: .1em;
       <h1>Log Analyzer</h1>
       <p class="lede">Open a flight log to get the aircraft, firmware and date, a list of problems found in the log, the flight path on a map, controller demand versus actual, tuning parameters, efficiency and an estimated flight time for your battery, motors and props. The log is read in your browser and never uploaded.</p>
     </div>
-    <div>
+    <div class="top-acts">
+      <button class="btn" id="clear-all" type="button" hidden>Clear all logs</button>
       <label class="btn primary" for="file">Open .bin log</label>
       <input type="file" id="file" accept=".bin,.BIN" hidden>
     </div>
@@ -368,7 +371,7 @@ tr.grp td { font-family: var(--f-mono); font-size: .68rem; letter-spacing: .1em;
   <section class="sec" id="compare">
     <div class="sec-head"><h2>Compare flights</h2><p>Add more logs from the same aircraft and give each one a note, such as the prop you flew (9x9, 10x8). The first log is the baseline; differences are against it. The charts above show the log you pick with View.</p></div>
     <div class="card">
-      <div class="toolbar"><label class="btn primary" for="file-add">Add log to compare</label><input type="file" id="file-add" accept=".bin,.BIN" multiple hidden><span class="hint">You can pick several files at once. Notes are kept in this browser for each file.</span></div>
+      <div class="toolbar"><label class="btn primary" for="file-add">Add log to compare</label><input type="file" id="file-add" accept=".bin,.BIN" multiple hidden><button class="btn" id="clear-all-2" type="button">Clear all logs</button><span class="hint">You can pick several files at once. Notes are kept in this browser for each file.</span></div>
       <div class="tablewrap"><table id="cmp-list"></table></div>
     </div>
     <div id="cmp-body"></div>
@@ -1376,7 +1379,7 @@ if (typeof module !== 'undefined') module.exports = DF;
   }
   function next() {
     if (busy || !queue.length) return;
-    busy = queue.shift();
+    busy = queue.shift(); updateClear();
     var f = busy.file;
     $('source').innerHTML = '<span><span class="stage">Reading</span> <span class="file">' + esc(f.name) + '</span> (' + fmtBytes(f.size) + ')' + (queue.length ? ' · ' + queue.length + ' more queued' : '') + '</span><span class="progress"><i></i></span>';
     f.arrayBuffer().then(function (buf) { getWorker().postMessage({ buf: buf, pidHz: busy.mode === 'open' || state.logs.length < 2 ? 25 : 10 }, [buf]); })
@@ -1384,9 +1387,25 @@ if (typeof module !== 'undefined') module.exports = DF;
   }
   function openFile(file, mode) { if (!file) return; $('error').hidden = true; queue.push({ file: file, mode: mode || 'open' }); next(); }
   function showError(msg) { $('error').textContent = msg; $('error').hidden = false; }
+  function clearAll() {
+    queue = []; busy = null;
+    if (worker) { worker.terminate(); worker = null; }
+    state.logs = []; state.R = null; state.pi = 0; state.name = ''; state.cursor = null;
+    ['ov', 'ctl', 'eff', 'cmp'].forEach(destroyPlots);
+    $('error').hidden = true; setLoaded(false); renderSource(); updateClear();
+  }
+  function updateClear() { $('clear-all').hidden = !(state.logs.length || busy || queue.length); }
+  /* two-step: the first click asks, a second click within 4 s clears */
+  ['clear-all', 'clear-all-2'].forEach(function (id) {
+    var b = $(id), t = null, label = b.textContent;
+    b.addEventListener('click', function () {
+      if (!b.classList.contains('confirm')) { b.classList.add('confirm'); b.textContent = 'Click again to clear ' + (state.logs.length || '') + (state.logs.length === 1 ? ' log' : ' logs'); t = setTimeout(function () { b.classList.remove('confirm'); b.textContent = label; }, 4000); return; }
+      clearTimeout(t); b.classList.remove('confirm'); b.textContent = label; clearAll();
+    });
+  });
   function showLog(i) {
     var L = state.logs[i]; if (!L) return;
-    state.pi = i; state.R = L.R; state.name = L.name; state.example = false; setLoaded(true);
+    state.pi = i; state.R = L.R; state.name = L.name; state.example = false; setLoaded(true); updateClear();
     state.ovRange = null; state.ctlRange = null; state.ctl = null; state.cursor = null; modeCol = {};
     fillAirframe(true); render();
   }
@@ -2126,7 +2145,7 @@ if (typeof module !== 'undefined') module.exports = DF;
     });
     list.querySelectorAll('[data-view]').forEach(function (b) { b.onclick = function () { showLog(+b.dataset.view); document.getElementById('facts').scrollIntoView({ block: 'start' }); }; });
     list.querySelectorAll('[data-base]').forEach(function (b) { b.onclick = function () { var i = +b.dataset.base, L = logs.splice(i, 1)[0], cur = logs[state.pi > i ? state.pi - 1 : state.pi]; logs.unshift(L); state.pi = state.pi === i ? 0 : logs.indexOf(cur); renderCompare(); }; });
-    list.querySelectorAll('[data-rm]').forEach(function (b) { b.onclick = function () { var i = +b.dataset.rm, shown = logs[state.pi]; logs.splice(i, 1); if (!logs.length) { state.R = null; state.pi = 0; destroyPlots('ov'); destroyPlots('ctl'); destroyPlots('eff'); destroyPlots('cmp'); setLoaded(false); renderSource(); return; } if (shown === logs[i] || logs.indexOf(shown) < 0) showLog(0); else { state.pi = logs.indexOf(shown); renderCompare(); renderSource(); } }; });
+    list.querySelectorAll('[data-rm]').forEach(function (b) { b.onclick = function () { var i = +b.dataset.rm, shown = logs[state.pi]; logs.splice(i, 1); if (!logs.length) { clearAll(); return; } if (shown === logs[i] || logs.indexOf(shown) < 0) showLog(0); else { state.pi = logs.indexOf(shown); renderCompare(); renderSource(); } }; });
     renderCompareBody();
   }
   var cmpTimer = null;
