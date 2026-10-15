@@ -427,7 +427,7 @@ tr.grp td { font-family: var(--f-mono); font-size: .68rem; letter-spacing: .1em;
 
   <footer class="method" id="method"></footer>
   </div>
-  <p class="support">☕ If this tool saved you time (or a plane), a tip helps keep it going: <a href="https://paypal.me/iamwinq" target="_blank" rel="noopener">paypal.me/iamwinq</a> · <a href="https://erwinquilloy.github.io/ardupilot-tools/" target="_blank" rel="noopener">more ArduPilot tools</a></p>
+  <p class="support">☕ If this tool saved you time (or a plane), a tip helps keep it going: <a href="https://paypal.me/iamwinq" target="_blank" rel="noopener">paypal.me/iamwinq</a> · <a href="https://erwinquilloy.github.io/ardupilot-tools/" target="_blank" rel="noopener">more ArduPilot tools</a> <img class="apt-hits" src="https://hits.sh/erwinquilloy.github.io/ardupilot-tools/log-analyzer.svg?label=visits&amp;style=flat-square&amp;color=6b7a86&amp;labelColor=3b4650" alt="page visits" height="18" loading="lazy" referrerpolicy="no-referrer-when-downgrade" onerror="this.remove()" style="vertical-align:middle;margin-left:6px"></p>
 </div>
 <div class="drop" id="drop" hidden>Drop the .bin log to analyse it</div>
 <div class="tip" id="tip" hidden></div>
@@ -2133,7 +2133,17 @@ if (typeof module !== 'undefined') module.exports = DF;
     ['Level cruise', null], ['Best-range airspeed', 'bestAs', 1, ' m/s'], ['Power at best range', 'bestP', 0, ' W'], ['Energy per km at best range', 'bestE', 3, ' Wh/km'], ['Throttle at best range', 'bestT', 0, ' %'], ['Lowest-power airspeed', 'endAs', 1, ' m/s'], ['Lowest cruise power', 'endP', 0, ' W'], ['Level-cruise samples', 'cruiseN', 0, ''], ['Max ground speed', 'maxSpd', 1, ' m/s'],
     ['Conditions and control', null], ['Wind (median, EKF)', 'wind', 1, ' m/s'], ['Wind from', 'windFrom', 0, '°'], ['Vibration X p95', 'vibeX', 1, ' m/s²'], ['Vibration Z p95', 'vibeZ', 1, ' m/s²'], ['Accelerometer clips', 'clip', 0, ''], ['Roll tracking RMS', 'rmsR', 2, '°'], ['Pitch tracking RMS', 'rmsP', 2, '°'], ['TECS height RMS', 'rmsH', 2, ' m']
   ];
-  var CAL = ['BATT_AMP_PERVLT', 'BATT_AMP_OFFSET', 'BATT_VOLT_MULT', 'BATT_MONITOR', 'BATT_CURR_PIN', 'BATT_VOLT_PIN', 'ARSPD_TYPE', 'ARSPD_RATIO', 'ARSPD_OFFSET', 'ARSPD_USE', 'BATT_CAPACITY'];
+  /* settings that change how current, voltage or airspeed are measured (first and second battery monitor, airspeed) */
+  var CAL = [];
+  ['BATT', 'BATT2'].forEach(function (b) { ['AMP_PERVLT', 'AMP_OFFSET', 'VOLT_MULT', 'MONITOR', 'CURR_PIN', 'VOLT_PIN', 'CAPACITY'].forEach(function (s) { CAL.push(b + '_' + s); }); });
+  CAL.push('ARSPD_TYPE', 'ARSPD_RATIO', 'ARSPD_OFFSET', 'ARSPD_USE', 'ARSPD2_TYPE', 'ARSPD2_RATIO', 'ARSPD2_OFFSET');
+  /* motor / ESC output setup */
+  var MOT = ['Q_M_PWM_TYPE', 'MOT_PWM_TYPE', 'SERVO_BLH_MASK', 'SERVO_BLH_OTYPE', 'SERVO_BLH_BDMASK', 'SERVO_BLH_POLES', 'SERVO_DSHOT_RATE', 'Q_M_PWM_MIN', 'Q_M_PWM_MAX', 'MOT_PWM_MIN', 'MOT_PWM_MAX', 'Q_M_SPIN_MIN', 'MOT_SPIN_MIN'];
+  /* sensor hardware identity: a changed device ID means a different or re-wired sensor */
+  var HW = /^(COMPASS_DEV_ID\d?|COMPASS_PRIO\d_ID|INS_ACC\d?_ID|INS_GYR\d?_ID|BARO\d?_DEVID|ARSPD\d?_DEVID|GPS_TYPE\d?|GPS\d_TYPE|RNGFND\d_TYPE)$/;
+  function cellsOf(R) { return R.params.BATT_CELL_COUNT > 0 ? R.params.BATT_CELL_COUNT : (R.bat ? R.bat.cells : null); }
+  function diffKeys(R0, R1, test) { var ks = {}; Object.keys(R0.params).concat(Object.keys(R1.params)).forEach(function (k) { if (test(k)) ks[k] = 1; }); return Object.keys(ks).sort().filter(function (k) { return R0.params[k] !== R1.params[k]; }); }
+  function listDiff(R0, R1, ks) { return ks.map(function (k) { return k + ' ' + pval(R0.params[k]) + ' → ' + pval(R1.params[k]); }).join(', '); }
   var NOISY = /^(STAT_|STATS_|INS_GYR\d?OFFS_|INS_GYROFFS_|BARO\d?_GND_PRESS|GND_ABS_PRESS|BARO_GND_TEMP|FORMAT_VERSION|SYSID_SW_|COMPASS_DEC$|INS_ACC\d?_CALTEMP|INS_GYR\d?_CALTEMP|AUTOTUNE_LEVEL$)/;
   var cmpHideNoisy = true;
   function renderCompare() {
@@ -2166,7 +2176,17 @@ if (typeof module !== 'undefined') module.exports = DF;
     var notes = [];
     logs.forEach(function (L, i) {
       if (!i) return; var R0 = logs[0].R, R1 = L.R, lb = esc(logLabel(L));
-      if (R0.meta.boardId && R1.meta.boardId && R0.meta.boardId !== R1.meta.boardId) notes.push('<b>' + lb + '</b> was recorded on a different flight controller (' + esc(R1.meta.boardId) + '), so it may not be the same aircraft.');
+      var b0 = R0.meta.board, b1 = R1.meta.board, s0 = R0.meta.boardId, s1 = R1.meta.boardId;
+      if (b0 && b1 && b0 !== b1) notes.push('<b>' + lb + '</b> was recorded on a different flight controller type (' + esc(b1) + ' vs ' + esc(b0) + ' in the baseline), so it is probably not the same aircraft.');
+      else if (s0 && s1 && s0 !== s1) notes.push('<b>' + lb + '</b> was recorded on a different flight controller of the same type (serial ' + esc(s1) + ' vs ' + esc(s0) + '), so it may not be the same aircraft.');
+      else if (!s0 || !s1) notes.push('The board serial number is missing from ' + (!s0 && !s1 ? 'both logs' : (!s1 ? '<b>' + lb + '</b>' : 'the baseline')) + ', so it cannot be confirmed that <b>' + lb + '</b> was flown on the same flight controller.');
+      if (R0.meta.fw && R1.meta.fw && R0.meta.fw !== R1.meta.fw) notes.push('<b>' + lb + '</b> ran different firmware (' + esc(R1.meta.fw) + ' vs ' + esc(R0.meta.fw) + '). Controllers, estimation and logging can behave differently between versions.');
+      var c0 = cellsOf(R0), c1 = cellsOf(R1);
+      if (c0 && c1 && c0 !== c1) notes.push('<b>' + lb + '</b> flew on a ' + c1 + 'S pack and the baseline on ' + c0 + 'S. Voltage, current and power are not directly comparable.');
+      var mot = diffKeys(R0, R1, function (k) { return MOT.indexOf(k) >= 0; });
+      if (mot.length) notes.push('<b>' + lb + '</b> has a different motor or ESC output setup: ' + listDiff(R0, R1, mot) + '. Throttle, motor outputs and RPM are not directly comparable.');
+      var hw = diffKeys(R0, R1, function (k) { return HW.test(k); });
+      if (hw.length) notes.push('<b>' + lb + '</b> has different sensor hardware: ' + listDiff(R0, R1, hw) + '. A sensor was replaced, added, removed or moved to another bus.');
       var cal = CAL.filter(function (k) { return R0.params[k] !== R1.params[k] && (R0.params[k] !== undefined || R1.params[k] !== undefined); });
       if (cal.length) notes.push('<b>' + lb + '</b> has different measurement settings: ' + cal.map(function (k) { return k + ' ' + pval(R0.params[k]) + ' → ' + pval(R1.params[k]); }).join(', ') + '. Current, power or airspeed are measured differently, so compare those with care.');
       if (base.wind !== null && Ms[i].wind !== null && Math.abs(base.wind - Ms[i].wind) > 2) notes.push('Wind differs: ' + fx(base.wind, 1) + ' m/s in the baseline vs ' + fx(Ms[i].wind, 1) + ' m/s in <b>' + lb + '</b>. Wind changes cruise power and the airspeed estimate, and can be larger than a prop change.');
@@ -2195,11 +2215,11 @@ if (typeof module !== 'undefined') module.exports = DF;
     var keys = {}; logs.forEach(function (L) { Object.keys(L.R.params).forEach(function (k) { keys[k] = 1; }); });
     var diff = Object.keys(keys).sort().filter(function (k) { var v0 = logs[0].R.params[k]; return logs.some(function (L) { return L.R.params[k] !== v0; }); });
     var shown = cmpHideNoisy ? diff.filter(function (k) { return !NOISY.test(k); }) : diff;
-    body.innerHTML = (notes.length ? '<div class="card"><h3>Check before comparing</h3><ul class="cmp-notes">' + notes.map(function (n) { return '<li>' + n + '</li>'; }).join('') + '</ul></div>' : '<div class="card"><h3>Check before comparing</h3><p class="note">No calibration, controller, wind, voltage or hover-power differences found between these logs.</p></div>') +
+    body.innerHTML = (notes.length ? '<div class="card"><h3>Check before comparing</h3><ul class="cmp-notes">' + notes.map(function (n) { return '<li>' + n + '</li>'; }).join('') + '</ul></div>' : '<div class="card"><h3>Check before comparing</h3><p class="note">No differences found in flight controller, firmware, battery cells, measurement calibration, motor output setup, sensor hardware, wind, start voltage or hover power.</p></div>') +
       '<div class="grid2" id="cmp-grid"></div>' +
       '<div class="card"><h3>Side by side <small>differences are against the baseline</small></h3><div class="tablewrap"><table>' + head + '<tbody>' + rows + '</tbody></table></div></div>' +
       '<div class="card"><h3>Parameters that differ <small>' + shown.length + ' of ' + diff.length + ' shown</small></h3><label class="toolbar"><input type="checkbox" id="cmp-noisy"' + (cmpHideNoisy ? ' checked' : '') + '> Hide values that change every flight (gyro offsets, baro ground pressure, statistics)</label>' +
-      (shown.length ? '<div class="tablewrap msglog"><table class="ptab">' + head.replace('<th></th>', '<th>Parameter</th>') + '<tbody>' + shown.map(function (k) { return '<tr><td>' + esc(k) + (CAL.indexOf(k) >= 0 ? ' <span class="pill warn">measurement</span>' : '') + '</td>' + logs.map(function (L) { return '<td>' + esc(pval(L.R.params[k])) + '</td>'; }).join('') + '</tr>'; }).join('') + '</tbody></table></div>' : '<p class="note">All parameters match.</p>') + '</div>';
+      (shown.length ? '<div class="tablewrap msglog"><table class="ptab">' + head.replace('<th></th>', '<th>Parameter</th>') + '<tbody>' + shown.map(function (k) { return '<tr><td>' + esc(k) + (CAL.indexOf(k) >= 0 ? ' <span class="pill warn">measurement</span>' : HW.test(k) ? ' <span class="pill warn">hardware</span>' : MOT.indexOf(k) >= 0 ? ' <span class="pill warn">motor output</span>' : '') + '</td>' + logs.map(function (L) { return '<td>' + esc(pval(L.R.params[k])) + '</td>'; }).join('') + '</tr>'; }).join('') + '</tbody></table></div>' : '<p class="note">All parameters match.</p>') + '</div>';
     $('cmp-noisy').onchange = function () { cmpHideNoisy = this.checked; renderCompareBody(); };
     /* overlaid cruise curves */
     var g = $('cmp-grid'), series = logs.map(function (L, i) { var bins = L.R.power ? L.R.power.eff.bins : []; return { L: L, i: i, x: bins.map(function (b) { return b.c; }), P: bins.map(function (b) { return b.P[1]; }), E: bins.map(function (b) { return b.E[1]; }), T: bins.map(function (b) { return b.T; }), n: bins.map(function (b) { return b.n; }) }; });
