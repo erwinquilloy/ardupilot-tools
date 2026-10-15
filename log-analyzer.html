@@ -178,6 +178,9 @@ tr.click:hover td { background: var(--grid); }
 .pill.na { background: var(--grid); color: var(--ink-2); }
 .note { font-size: .8rem; color: var(--ink-2); }
 .content { display: grid; gap: 22px; }
+.back { margin-bottom: -10px; }
+.back a { display: inline-flex; align-items: center; gap: 6px; padding: 4px 11px; border: 1px solid var(--line); border-radius: 999px; background: var(--panel); color: var(--ink-2); font-size: .84rem; text-decoration: none; }
+.back a:hover { color: var(--ink); border-color: var(--ink-3); }
 .support { margin: 0; padding: 12px 16px; border: 1px dashed var(--line); border-radius: 8px; color: var(--ink-2); font-size: .88rem; }
 .support a { color: var(--accent); font-weight: 500; }
 .welcome { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap: 18px; align-items: stretch; }
@@ -235,6 +238,7 @@ tr.grp td { font-family: var(--f-mono); font-size: .68rem; letter-spacing: .1em;
 
 
 <div class="wrap">
+  <nav class="back" aria-label="Site"><a href="https://erwinquilloy.github.io/ardupilot-tools/">← ArduPilot Tools</a></nav>
   <header class="top">
     <div>
       <div class="eyebrow">ArduPilot DataFlash .bin</div>

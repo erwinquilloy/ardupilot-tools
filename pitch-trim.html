@@ -83,6 +83,9 @@ footer{font-size:.8rem;color:var(--muted)}
 </style>
 </head>
 <body>
+<style>.apt-back{box-sizing:border-box;max-width:1180px;margin:0 auto;padding:10px max(16px,env(safe-area-inset-right,0px)) 0 max(16px,env(safe-area-inset-left,0px));font:500 14px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif}.apt-back a{color:inherit;opacity:.8;text-decoration:none;display:inline-flex;gap:6px;align-items:center;padding:4px 10px;border:1px solid currentColor;border-radius:999px}.apt-back a:hover,.apt-back a:focus-visible{opacity:1}</style>
+<nav class="apt-back" aria-label="Site"><a href="./">← ArduPilot Tools</a></nav>
+
 <div class="wrap">
   <header style="display:flex;flex-direction:column;gap:8px">
     <span class="eyebrow">ArduCustom v2.1 · fixed wing</span>
@@ -565,5 +568,7 @@ matchMedia('(prefers-color-scheme: dark)').addEventListener('change', render);
 setCurve(EX.pitot, EX.pitot.src);
 })();
 </script>
+<style>.apt-support{box-sizing:border-box;max-width:1080px;margin:28px auto 36px;padding:12px 16px;border:1px dashed currentColor;border-radius:8px;font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;color:inherit;opacity:.78}.apt-support a{color:inherit;font-weight:600;text-decoration:underline}.apt-wrap{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}</style>
+<div class="apt-wrap"><p class="apt-support">☕ If this tool saved you time (or a plane), a tip helps keep it going: <a href="https://paypal.me/iamwinq" target="_blank" rel="noopener">paypal.me/iamwinq</a> · <a href="./">more ArduPilot tools</a></p></div>
 </body>
 </html>
