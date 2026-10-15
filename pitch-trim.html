@@ -90,6 +90,7 @@ footer{font-size:.8rem;color:var(--muted)}
   <header style="display:flex;flex-direction:column;gap:8px">
     <span class="eyebrow">ArduCustom v2.1 · fixed wing</span>
     <h1>Adaptive Pitch Trim Explorer</h1>
+    <p class="apt-vnote" style="margin:0;padding:8px 12px;border:1px solid currentColor;border-radius:8px;font-weight:600;opacity:.9">Needs ArduCustom v2.1 or later. Not supported in v2.0 or lower: those versions do not have the PTCH_TRIM_SPD / PTCH_TRIM_OFS parameters.</p>
     <p class="lede">A plane needs a different pitch attitude to fly level at each speed, but <code>PTCH_TRIM_DEG</code> is one number, right at one speed only. Adaptive pitch trim replaces it with a curve of three points (<code>PTCH_TRIM_SPD1–3</code>, <code>PTCH_TRIM_OFS1–3</code>). Enter or load a curve to see the trim it gives at every speed, or fit one from a learn-flight log exactly as the aircraft's own learner would.</p>
   </header>
 
