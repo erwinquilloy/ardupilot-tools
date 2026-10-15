@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Flight Log Lab</title>
+<title>Log Analyzer</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -229,7 +229,7 @@ tr.grp td { font-family: var(--f-mono); font-size: .68rem; letter-spacing: .1em;
   <header class="top">
     <div>
       <div class="eyebrow">ArduPilot DataFlash .bin</div>
-      <h1>Flight Log Lab</h1>
+      <h1>Log Analyzer</h1>
       <p class="lede">Open a flight log to get the aircraft, firmware and date, a list of problems found in the log, the flight path on a map, controller demand versus actual, tuning parameters, efficiency and an estimated flight time for your battery, motors and props. The log is read in your browser and never uploaded.</p>
     </div>
     <div>
@@ -392,7 +392,7 @@ tr.grp td { font-family: var(--f-mono); font-size: .68rem; letter-spacing: .1em;
 <div class="drop" id="drop" hidden>Drop the .bin log to analyse it</div>
 <div class="tip" id="tip" hidden></div>
 
-<script type="text/plain" id="dfcore">/* ArduPilot DataFlash (.bin) parser and flight analysis (Flight Log Lab).
+<script type="text/plain" id="dfcore">/* ArduPilot DataFlash (.bin) parser and flight analysis (Log Analyzer).
    Power analysis is shared with ArduPlane Power Lab. Runs inside the page's Web Worker and under Node (for testing). */
 var DF = (function () {
   'use strict';
