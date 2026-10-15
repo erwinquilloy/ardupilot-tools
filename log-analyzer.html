@@ -275,6 +275,7 @@ tr.grp td { font-family: var(--f-mono); font-size: .68rem; letter-spacing: .1em;
 
   <div id="content" class="content" hidden>
   <nav class="jump" aria-label="Sections">
+    <a href="#flights">Flights</a>
     <a href="#story">What happened</a>
     <a href="#overview">Flight overview</a>
     <a href="#map">Map</a>
@@ -283,10 +284,18 @@ tr.grp td { font-family: var(--f-mono); font-size: .68rem; letter-spacing: .1em;
     <a href="#controllers">Demand vs actual</a>
     <a href="#tuning">Tuning</a>
     <a href="#efficiency">Efficiency</a>
-    <a href="#compare">Compare flights</a>
+    <a href="#compare">Comparison</a>
     <a href="#params">All parameters</a>
     <a href="#airframe">Flight time estimator</a>
   </nav>
+
+  <section class="sec" id="flights">
+    <div class="sec-head"><h2>Flights</h2><p>The logs you have open. View shows a log in every section below; the baseline is the log the Comparison section measures the others against. Add logs from the same aircraft and give each a note, such as the prop you flew (9x9, 10x8).</p></div>
+    <div class="card">
+      <div class="toolbar"><label class="btn primary" for="file-add">Add log to compare</label><input type="file" id="file-add" accept=".bin,.BIN" multiple hidden><button class="btn" id="clear-all-2" type="button">Clear all logs</button><span class="hint">You can pick several files at once. Notes are kept in this browser for each file.</span></div>
+      <div class="tablewrap"><table id="cmp-list"></table></div>
+    </div>
+  </section>
 
   <dl class="facts" id="facts"></dl>
 
@@ -369,11 +378,7 @@ tr.grp td { font-family: var(--f-mono); font-size: .68rem; letter-spacing: .1em;
   </section>
 
   <section class="sec" id="compare">
-    <div class="sec-head"><h2>Compare flights</h2><p>Add more logs from the same aircraft and give each one a note, such as the prop you flew (9x9, 10x8). The first log is the baseline; differences are against it. The charts above show the log you pick with View.</p></div>
-    <div class="card">
-      <div class="toolbar"><label class="btn primary" for="file-add">Add log to compare</label><input type="file" id="file-add" accept=".bin,.BIN" multiple hidden><button class="btn" id="clear-all-2" type="button">Clear all logs</button><span class="hint">You can pick several files at once. Notes are kept in this browser for each file.</span></div>
-      <div class="tablewrap"><table id="cmp-list"></table></div>
-    </div>
+    <div class="sec-head"><h2>Comparison</h2><p>Every loaded log side by side, labelled with its note. Differences are against the baseline set in Flights at the top of the page.</p></div>
     <div id="cmp-body"></div>
   </section>
 
@@ -1392,6 +1397,7 @@ if (typeof module !== 'undefined') module.exports = DF;
     if (worker) { worker.terminate(); worker = null; }
     state.logs = []; state.R = null; state.pi = 0; state.name = ''; state.cursor = null;
     ['ov', 'ctl', 'eff', 'cmp'].forEach(destroyPlots);
+    $('cmp-list').innerHTML = ''; $('cmp-body').innerHTML = '';
     $('error').hidden = true; setLoaded(false); renderSource(); updateClear();
   }
   function updateClear() { $('clear-all').hidden = !(state.logs.length || busy || queue.length); }
@@ -1550,7 +1556,7 @@ if (typeof module !== 'undefined') module.exports = DF;
   function renderSource() {
     $('source').innerHTML = !state.R
       ? '<span>No log open. Open a .bin log, or drop one anywhere on the page.</span>'
-      : '<span><b>Showing:</b> <span class="file">' + esc(state.name) + '</span>' + (state.logs[state.pi] && state.logs[state.pi].note ? ' · ' + esc(state.logs[state.pi].note) : '') + ' (' + fmtBytes(state.R.meta.bytes) + ')' + (state.logs.length > 1 ? ' · ' + state.logs.length + ' logs loaded, see Compare flights' : '') + '</span>';
+      : '<span><b>Showing:</b> <span class="file">' + esc(state.name) + '</span>' + (state.logs[state.pi] && state.logs[state.pi].note ? ' · ' + esc(state.logs[state.pi].note) : '') + ' (' + fmtBytes(state.R.meta.bytes) + ')' + (state.logs.length > 1 ? ' · ' + state.logs.length + ' logs loaded, see Flights' : '') + '</span>';
   }
   function armedSpan(R) { var a = R.meta.armed; return a.length ? [Math.max(R.meta.start, a[0][0] - 10), Math.min(R.meta.end, a[a.length - 1][1] + 10)] : [R.meta.start, R.meta.end]; }
 
@@ -2152,7 +2158,7 @@ if (typeof module !== 'undefined') module.exports = DF;
   function renderCompareBody() {
     var logs = state.logs, body = $('cmp-body'); destroyPlots('cmp');
     if (logs.length < 2 || logs.some(function (L) { return L.example; })) {
-      body.innerHTML = '<div class="empty">' + 'Add another log from the same aircraft to compare it with this one.' + ' Give each log a note (for example the prop size) so the tables and charts are labelled with it.</div>';
+      body.innerHTML = '<div class="empty">' + 'Add another log from the same aircraft with Add log to compare in Flights at the top of the page.' + ' Give each log a note (for example the prop size) so the tables and charts are labelled with it.</div>';
       return;
     }
     var Ms = logs.map(function (L) { return metrics(L.R); }), base = Ms[0];
