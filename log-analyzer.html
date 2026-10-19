@@ -942,7 +942,31 @@ var DF = (function () {
       /* one pass of outlier rejection: compass glitches and badly wrong attitude samples */
       var lim = 3 * X.rms, S2 = S.filter(function (s) { return s.res <= lim; });
       if (S2.length > S.length * 0.8) { var X2 = fit(S2); if (X2) { X = X2; S = S2; } }
-      var dec = Math.atan2(X.B[1], X.B[0]) / D2R, K = X.K;
+      /* Mission Planner CompassMot method (ArduCopter/compassmot.cpp) on the log's own ground spool-ups: base field
+         with the motors stopped, then -(field - base) / current for every sample at 3 A or more while the aircraft
+         has not moved. compassmot averages those ratios with a 0.99/0.01 filter; over a long run that settles on
+         their mean, which is what is reported here. Liftoff (attitude leaving the base attitude) ends a run. */
+      var cm = null, base = [], baseAtt = null, ratios = [], runs = 0, inRun = false, cmImax = 0;
+      var SA = S.slice().sort(function (p, q) { return p.t - q.t; });
+      function still(s) { return baseAtt && Math.abs(s.a[0] - baseAtt[0]) < 1.5 * D2R && Math.abs(s.a[1] - baseAtt[1]) < 1.5 * D2R && Math.abs(wrap(s.a[3] - baseAtt[3])) < 3; }
+      SA.forEach(function (s, q) {
+        var gap = q && s.t - SA[q - 1].t > 1;
+        if (gap) { base = []; baseAtt = null; inRun = false; }
+        if (s.I < 1) {
+          if (!still(s) || inRun) { base = []; inRun = false; }
+          base.push(s); if (base.length > 20) base.shift(); baseAtt = base[0].a;
+          return;
+        }
+        if (base.length < 5 || !still(s)) { base = []; baseAtt = null; inRun = false; return; }
+        if (s.I < 3) return;
+        if (!inRun) { runs++; inRun = true; }
+        var bm = [0, 1, 2].map(function (ax) { return base.reduce(function (acc, b2) { return acc + b2.m[ax]; }, 0) / base.length; });
+        ratios.push([0, 1, 2].map(function (ax) { return -(s.m[ax] - bm[ax]) / s.I; })); cmImax = Math.max(cmImax, s.I);
+      });
+      if (ratios.length >= 10) cm = { n: ratios.length, runs: runs, iMax: r(cmImax, 1), mot: [0, 1, 2].map(function (ax) { return r(ratios.reduce(function (acc, x) { return acc + x[ax]; }, 0) / ratios.length, 1); }) };
+      F.cm = cm;
+      F.cmNote = cm ? null : 'No usable ground spool-up in this log (the motors spinning up to 3 A or more from a stop, with the aircraft not moving), so the CompassMot method cannot be applied.';
+      var dec = Math.atan2(X.B[1], X.B[0]) / D2R, K = X.K, Kcm = cm ? cm.mot.map(function (x) { return -x; }) : null;
       F.ok = true; F.used = S.length; F.K = K.map(function (x) { return r(x, 2); });
       F.mot = K.map(function (x) { return r(-x, 1); });
       F.slope = r(Math.sqrt(K[0] * K[0] + K[1] * K[1] + K[2] * K[2]), 1);
@@ -954,16 +978,18 @@ var DF = (function () {
       for (var e = 0; e < edges.length - 1; e++) {
         var sel = S.filter(function (s) { return s.I >= edges[e] && s.I < edges[e + 1]; });
         if (sel.length < 15) continue;
-        var fN = [], fF = [], hN = [], hF = [];
+        var fN = [], fF = [], hN = [], hF = [], hC = [];
         sel.forEach(function (s) {
           var fit2 = [s.m[0] - K[0] * s.I, s.m[1] - K[1] * s.I, s.m[2] - K[2] * s.I];
           fN.push(Math.sqrt(s.log[0] * s.log[0] + s.log[1] * s.log[1] + s.log[2] * s.log[2]));
           fF.push(Math.sqrt(fit2[0] * fit2[0] + fit2[1] * fit2[1] + fit2[2] * fit2[2]));
           hN.push(wrap(heading(s.log, s.a, dec) - s.a[3])); hF.push(wrap(heading(fit2, s.a, dec) - s.a[3]));
+          if (Kcm) hC.push(wrap(heading([s.m[0] - Kcm[0] * s.I, s.m[1] - Kcm[1] * s.I, s.m[2] - Kcm[2] * s.I], s.a, dec) - s.a[3]));
         });
         var ab = function (a) { return a.map(Math.abs); };
         F.bins.push({ a: edges[e], b: isFinite(edges[e + 1]) ? edges[e + 1] : null, n: sel.length, fNow: r(median(fN), 0), fFit: r(median(fF), 0),
-          hNow: r(median(hN), 0), hNowP95: r(sortedQ(ab(hN), .95), 0), hFit: r(median(hF), 0), hFitP95: r(sortedQ(ab(hF), .95), 0) });
+          hNow: r(median(hN), 0), hNowP95: r(sortedQ(ab(hN), .95), 0), hFit: r(median(hF), 0), hFitP95: r(sortedQ(ab(hF), .95), 0),
+          hCm: Kcm ? r(median(hC), 0) : null, hCmP95: Kcm ? r(sortedQ(ab(hC), .95), 0) : null });
       }
       var top = F.bins[F.bins.length - 1];
       F.top = top || null;
@@ -2159,8 +2185,14 @@ var APC = (function () {
         (t ? 'With the fitted values the heading error at ' + t.a + (t.b ? '–' + t.b : '+') + ' A goes from ' + t.hNowP95 + '° to ' + t.hFitP95 + '° (95th percentile).' : '') + '</p>';
       html += '<p class="note">' + esc(cur) + ' Fit: ' + f.used + ' of ' + f.n + ' samples, residual ' + fx(f.rms, 0) + ' mGauss RMS.' +
         (f.halves ? ' Each half of the log on its own gives ' + f.halves[0].join(' / ') + ' and ' + f.halves[1].join(' / ') + '; a large difference between them means the values are uncertain, so fly a longer log with more current changes.' : '') + '</p>';
-      html += '<div class="tablewrap"><table><thead><tr><th>Battery current</th><th>Samples</th><th>Field now</th><th>Field fitted</th><th>Heading error now<br><small>median / p95</small></th><th>Heading error fitted<br><small>median / p95</small></th></tr></thead><tbody>' +
-        f.bins.map(function (b) { return '<tr><td>' + b.a + (b.b ? '–' + b.b : '+') + ' A</td><td>' + b.n + '</td><td>' + b.fNow + '</td><td>' + b.fFit + '</td><td>' + b.hNow + '° / ' + b.hNowP95 + '°</td><td>' + b.hFit + '° / ' + b.hFitP95 + '°</td></tr>'; }).join('') +
+      var c = f.cm;
+      html += '<div class="tablewrap"><table><thead><tr><th>Method</th><th>' + esc(f.prefix) + '_X</th><th>_Y</th><th>_Z</th><th class="txt">Data used</th></tr></thead><tbody>' +
+        '<tr><td class="txt">Full-log fit <span class="tag">loaded above</span></td><td>' + f.mot[0] + '</td><td>' + f.mot[1] + '</td><td>' + f.mot[2] + '</td><td class="txt">' + f.used + ' samples, ' + fx(f.iLo, 0) + '–' + fx(f.iMax, 0) + ' A, in flight and on the ground</td></tr>' +
+        (c ? '<tr><td class="txt">Mission Planner CompassMot method</td><td>' + c.mot[0] + '</td><td>' + c.mot[1] + '</td><td>' + c.mot[2] + '</td><td class="txt">' + c.n + ' samples from ' + c.runs + ' ground spool-up' + (c.runs === 1 ? '' : 's') + ', 3–' + fx(c.iMax, 0) + ' A</td></tr>' : '') +
+        '</tbody></table></div>';
+      html += '<p class="note">' + (c ? 'The CompassMot method repeats what ArduCopter\'s compassmot does on a tied-down aircraft: the field with the motors stopped as the base, then −(field − base) ÷ current averaged over every sample at 3 A or more, here taken from the moments this log spooled up on the ground before liftoff. It only sees ground currents (up to ' + fx(c.iMax, 0) + ' A here), so it suits hover; the full-log fit also covers transitions and cruise. Compare the two heading-error columns below for each current band.' : esc(f.cmNote)) + '</p>';
+      html += '<div class="tablewrap"><table><thead><tr><th>Battery current</th><th>Samples</th><th>Field now</th><th>Field fitted</th><th>Heading error now<br><small>median / p95</small></th><th>Heading error, full-log fit<br><small>median / p95</small></th>' + (c ? '<th>Heading error, CompassMot method<br><small>median / p95</small></th>' : '') + '</tr></thead><tbody>' +
+        f.bins.map(function (b) { return '<tr><td>' + b.a + (b.b ? '–' + b.b : '+') + ' A</td><td>' + b.n + '</td><td>' + b.fNow + '</td><td>' + b.fFit + '</td><td>' + b.hNow + '° / ' + b.hNowP95 + '°</td><td>' + b.hFit + '° / ' + b.hFitP95 + '°</td>' + (c ? '<td>' + b.hCm + '° / ' + b.hCmP95 + '°</td>' : '') + '</tr>'; }).join('') +
         '</tbody></table></div>';
       if (f.notes.length) html += f.notes.map(function (n) { return '<p class="note">' + esc(n) + '</p>'; }).join('');
       html += '</div>';
