@@ -283,6 +283,7 @@ tr.grp td { font-family: var(--f-mono); font-size: .68rem; letter-spacing: .1em;
     <a href="#warnings">Warnings<span class="ct" id="nav-ct" hidden></span></a>
     <a href="#controllers">Demand vs actual</a>
     <a href="#tuning">Tuning</a>
+    <a href="#compassmot">Compass motor fit</a>
     <a href="#efficiency">Efficiency</a>
     <a href="#compare">Comparison</a>
     <a href="#params">All parameters</a>
@@ -371,6 +372,11 @@ tr.grp td { font-family: var(--f-mono); font-size: .68rem; letter-spacing: .1em;
     <div class="pgroups" id="tune"></div>
   </section>
 
+  <section class="sec" id="compassmot">
+    <div class="sec-head"><h2>Compass motor fit</h2><p>COMPASS_MOT_X/Y/Z fitted from this log, for COMPASS_MOTCT 2 (compensation by battery current). Each compass sample is modelled as the Earth's field turned by the logged attitude plus a field that grows with battery current; the per-amp part is what COMPASS_MOT cancels. ArduPlane has no CompassMot routine, so a log is the way to get these numbers.</p></div>
+    <div id="cm-body"></div>
+  </section>
+
   <section class="sec" id="efficiency">
     <div class="sec-head"><h2>Efficiency</h2><p id="eff-note"></p></div>
     <div class="grid2" id="eff-grid"></div>
@@ -456,7 +462,7 @@ var DF = (function () {
     BARO: ['I', 'Alt', 'CRt'], AOA: ['AOA'],
     GPS: ['I', 'Status', 'NSats', 'HDop', 'Lat', 'Lng', 'Alt', 'Spd', 'VZ', 'GWk', 'GMS'], GPA: ['I', 'HAcc', 'VAcc', 'SAcc'],
     POS: ['Lat', 'Lng', 'Alt', 'RelHomeAlt'], VIBE: ['IMU', 'VibeX', 'VibeY', 'VibeZ', 'Clip'],
-    XKF2: ['C', 'VWN', 'VWE'], XKF4: ['C', 'SV', 'SP', 'SH', 'SM'], NKF4: ['C', 'SV', 'SP', 'SH', 'SM'], MAG: ['I', 'MagX', 'MagY', 'MagZ'],
+    XKF2: ['C', 'VWN', 'VWE'], XKF4: ['C', 'SV', 'SP', 'SH', 'SM'], NKF4: ['C', 'SV', 'SP', 'SH', 'SM'], MAG: ['I', 'MagX', 'MagY', 'MagZ', 'MOX', 'MOY', 'MOZ'],
     PM: ['NLon', 'InE', 'ErC'], DSF: ['Dp'], ERR: ['Subsys', 'ECode'], EV: ['Id'], ARM: ['ArmState'],
     TECS: ['h', 'dh', 'hdem', 'dhdem', 'sp', 'spdem'], QTUN: ['DAlt', 'Alt', 'DCRt', 'CRt'],
     RSSI: ['RXRSSI', 'RXLQ'], MCU: ['MTemp'],
@@ -856,6 +862,123 @@ var DF = (function () {
     return out.filter(function (w) { return w[1] - w[0] >= minDur; });
   }
 
+  /* COMPASS_MOT fit. Each compass sample is modelled as m = Rnb(attitude)·Bned + K·I: the Earth field rotated
+     into the body frame plus a body-frame field that grows with battery current I (mGauss/A). m is the logged
+     field with any motor compensation the firmware applied taken back out, so the fit sees the raw interference.
+     Linear least squares in the 6 unknowns (Bned, K). The firmware adds MOT·I to the field
+     (AP_Compass_Backend::correct_field), so COMPASS_MOT = -K. */
+  function compassMotFit(D, prm, B, bi) {
+    var M = D.MAG, A = D.ATT;
+    if (!M || !M.t.length) return { fits: [], reason: 'This log has no compass (MAG) data.' };
+    if (!A || !A.t.length) return { fits: [], reason: 'This log has no attitude (ATT) data.' };
+    if (!B || !bi.length || !B.Curr) return { fits: [], reason: 'This log has no battery current, so there is nothing to fit against. COMPASS_MOTCT 2 needs a current sensor.' };
+    var bt = bi.map(function (q) { return B.t[q]; }), bc = bi.map(function (q) { return B.Curr[q]; });
+    var cBt = cursor(bt), cAt = cursor(A.t), D2R = Math.PI / 180;
+    var yawU = new Float64Array(A.t.length), prev = 0, acc = 0;
+    for (var i = 0; i < A.t.length; i++) { var y = A.Yaw[i]; if (i) { var dy = y - prev; if (dy > 180) acc -= 360; else if (dy < -180) acc += 360; } prev = y; yawU[i] = y + acc; }
+    function curAt(t) { var k = cBt(t); if (k < 0 || k >= bt.length - 1) return null; var t0 = bt[k], t1 = bt[k + 1]; if (t1 - t0 > 2) return null; return bc[k] + (bc[k + 1] - bc[k]) * (t - t0) / (t1 - t0); }
+    function attAt(t) { var k = cAt(t); if (k < 0 || t - A.t[k] > 0.5) return null; return [A.Roll[k] * D2R, A.Pitch[k] * D2R, yawU[k] * D2R, A.Yaw[k]]; }
+    /* rows of the NED->body rotation */
+    function rot(a) {
+      var cr = Math.cos(a[0]), sr = Math.sin(a[0]), cp = Math.cos(a[1]), sp = Math.sin(a[1]), cy = Math.cos(a[2]), sy = Math.sin(a[2]);
+      return [[cp * cy, cp * sy, -sp], [sr * sp * cy - cr * sy, sr * sp * sy + cr * cy, sr * cp], [cr * sp * cy + sr * sy, cr * sp * sy - sr * cy, cr * cp]];
+    }
+    function solve6(N, v) {
+      var a = N.map(function (row, q) { return row.concat([v[q]]); }), n = 6, c, rr, k2;
+      for (c = 0; c < n; c++) {
+        var piv = c; for (rr = c + 1; rr < n; rr++) if (Math.abs(a[rr][c]) > Math.abs(a[piv][c])) piv = rr;
+        if (Math.abs(a[piv][c]) < 1e-9) return null;
+        var tmp = a[c]; a[c] = a[piv]; a[piv] = tmp;
+        for (rr = 0; rr < n; rr++) if (rr !== c) { var f = a[rr][c] / a[c][c]; for (k2 = c; k2 <= n; k2++) a[rr][k2] -= f * a[c][k2]; }
+      }
+      return a.map(function (row, q) { return row[n] / a[q][q]; });
+    }
+    function fit(S) {
+      var N = [], v = [0, 0, 0, 0, 0, 0], q, ax, c, c2;
+      for (q = 0; q < 6; q++) N.push([0, 0, 0, 0, 0, 0]);
+      S.forEach(function (s) {
+        for (ax = 0; ax < 3; ax++) {
+          var row = [s.R[ax][0], s.R[ax][1], s.R[ax][2], 0, 0, 0]; row[3 + ax] = s.I;
+          for (c = 0; c < 6; c++) { if (!row[c]) continue; v[c] += row[c] * s.m[ax]; for (c2 = 0; c2 < 6; c2++) N[c][c2] += row[c] * row[c2]; }
+        }
+      });
+      var x = solve6(N, v); if (!x) return null;
+      var se = 0; S.forEach(function (s) { s.res = 0; for (ax = 0; ax < 3; ax++) { var p = s.R[ax][0] * x[0] + s.R[ax][1] * x[1] + s.R[ax][2] * x[2] + x[3 + ax] * s.I, e = s.m[ax] - p; s.res += e * e; } se += s.res; s.res = Math.sqrt(s.res / 3); });
+      return { B: x.slice(0, 3), K: x.slice(3), rms: Math.sqrt(se / (3 * S.length)) };
+    }
+    function spread(S) { var c = S.map(function (s) { return s.I; }).sort(function (a, b) { return a - b; }); return { lo: quant(c, .05), hi: quant(c, .99), max: c[c.length - 1] }; }
+    function heading(m, a, dec) {
+      var cr = Math.cos(a[0]), sr = Math.sin(a[0]), cp = Math.cos(a[1]), sp = Math.sin(a[1]);
+      var xh = m[0] * cp + m[1] * sr * sp + m[2] * cr * sp, yh = m[1] * cr - m[2] * sr;
+      return Math.atan2(-yh, xh) / D2R + dec;
+    }
+    function wrap(d) { return ((d + 540) % 360) - 180; }
+
+    var byInst = {};
+    for (i = 0; i < M.t.length; i++) { var u = M.I ? M.I[i] : 0; (byInst[u] = byInst[u] || []).push(i); }
+    var motct = prm.COMPASS_MOTCT || 0, fits = [];
+    Object.keys(byInst).map(Number).sort().forEach(function (u) {
+      if (u > 2) return;
+      var pre = u === 0 ? 'COMPASS_MOT' : 'COMPASS_MOT' + (u + 1);
+      var old = [prm[pre + '_X'] || 0, prm[pre + '_Y'] || 0, prm[pre + '_Z'] || 0];
+      var F = { inst: u, prefix: pre, motct: motct, old: old.map(function (x) { return r(x, 2); }), ok: false, notes: [] };
+      fits.push(F);
+      var S = [];
+      byInst[u].forEach(function (q) {
+        var t = M.t[q], I = curAt(t), a = attAt(t); if (I === null || !a) return;
+        var log = [M.MagX[q], M.MagY[q], M.MagZ[q]], raw = log.slice();
+        if (M.MOX) { raw[0] -= M.MOX[q]; raw[1] -= M.MOY[q]; raw[2] -= M.MOZ[q]; }
+        else if (motct === 2) for (var ax = 0; ax < 3; ax++) raw[ax] -= old[ax] * I;
+        if (!isFinite(raw[0] + raw[1] + raw[2])) return;
+        S.push({ t: t, I: I, a: a, R: rot(a), log: log, m: raw });
+      });
+      if (!M.MOX && motct === 1) F.notes.push('Throttle-based compensation (COMPASS_MOTCT 1) was active and this log does not record its offsets, so the fit includes it. Treat the result as a change on top of your current values.');
+      if ((prm.COMPASS_PMOT_EN || 0) > 0) F.notes.push('Per-motor compensation (COMPASS_PMOT_EN) is enabled. It replaces COMPASS_MOT_* on the first compass; disable it to use these values.');
+      F.n = S.length;
+      if (S.length < 200) { F.reason = 'Only ' + S.length + ' compass samples with battery current and attitude. Fly longer, at least a minute with the motors working.'; return; }
+      var sp = spread(S); F.iLo = r(sp.lo, 1); F.iHi = r(sp.hi, 1); F.iMax = r(sp.max, 1);
+      if (sp.hi - sp.lo < 8 || sp.hi < 10) { F.reason = 'Battery current only ranged ' + r(sp.lo, 1) + '–' + r(sp.hi, 1) + ' A. The fit needs a wide range of current, so use a log with a hover or a long climb, and some time at low power.'; return; }
+      var X = fit(S); if (!X) { F.reason = 'The fit did not converge.'; return; }
+      /* one pass of outlier rejection: compass glitches and badly wrong attitude samples */
+      var lim = 3 * X.rms, S2 = S.filter(function (s) { return s.res <= lim; });
+      if (S2.length > S.length * 0.8) { var X2 = fit(S2); if (X2) { X = X2; S = S2; } }
+      var dec = Math.atan2(X.B[1], X.B[0]) / D2R, K = X.K;
+      F.ok = true; F.used = S.length; F.K = K.map(function (x) { return r(x, 2); });
+      F.mot = K.map(function (x) { return r(-x, 1); });
+      F.slope = r(Math.sqrt(K[0] * K[0] + K[1] * K[1] + K[2] * K[2]), 1);
+      F.earth = r(Math.sqrt(X.B[0] * X.B[0] + X.B[1] * X.B[1] + X.B[2] * X.B[2]), 0);
+      F.dec = r(dec, 1); F.rms = r(X.rms, 1);
+      /* how the field and the compass heading behave now and with the fitted values, by current band */
+      var edges = [0, 3, 10, 20, 30, 45, 60, 80, 120, Infinity];
+      F.bins = [];
+      for (var e = 0; e < edges.length - 1; e++) {
+        var sel = S.filter(function (s) { return s.I >= edges[e] && s.I < edges[e + 1]; });
+        if (sel.length < 15) continue;
+        var fN = [], fF = [], hN = [], hF = [];
+        sel.forEach(function (s) {
+          var fit2 = [s.m[0] - K[0] * s.I, s.m[1] - K[1] * s.I, s.m[2] - K[2] * s.I];
+          fN.push(Math.sqrt(s.log[0] * s.log[0] + s.log[1] * s.log[1] + s.log[2] * s.log[2]));
+          fF.push(Math.sqrt(fit2[0] * fit2[0] + fit2[1] * fit2[1] + fit2[2] * fit2[2]));
+          hN.push(wrap(heading(s.log, s.a, dec) - s.a[3])); hF.push(wrap(heading(fit2, s.a, dec) - s.a[3]));
+        });
+        var ab = function (a) { return a.map(Math.abs); };
+        F.bins.push({ a: edges[e], b: isFinite(edges[e + 1]) ? edges[e + 1] : null, n: sel.length, fNow: r(median(fN), 0), fFit: r(median(fF), 0),
+          hNow: r(median(hN), 0), hNowP95: r(sortedQ(ab(hN), .95), 0), hFit: r(median(hF), 0), hFitP95: r(sortedQ(ab(hF), .95), 0) });
+      }
+      var top = F.bins[F.bins.length - 1];
+      F.top = top || null;
+      F.useful = !!top && top.hNowP95 - top.hFitP95 >= 5;
+      /* stability: fit each half of the log on its own when both have enough current range */
+      var half = S.slice().sort(function (a, b) { return a.t - b.t; }), h1 = half.slice(0, half.length >> 1), h2 = half.slice(half.length >> 1);
+      var sp1 = spread(h1), sp2 = spread(h2);
+      if (sp1.hi - sp1.lo >= 8 && sp2.hi - sp2.lo >= 8) {
+        var A1 = fit(h1), A2 = fit(h2);
+        if (A1 && A2) F.halves = [A1.K.map(function (x) { return r(-x, 1); }), A2.K.map(function (x) { return r(-x, 1); })];
+      }
+    });
+    return { fits: fits, ampPerVolt: prm.BATT_AMP_PERVLT, battMonitor: prm.BATT_MONITOR };
+  }
+
   function analyzeAll(P, o) {
     o = Object.assign({ pidHz: 25, trackMax: 5000, tlMax: 3000 }, o || {});
     var D = P.data, prm = {}, i, j, k;
@@ -1109,6 +1232,14 @@ var DF = (function () {
           'Field strength ' + magCur.fLow + ' mGauss at ≤' + magCur.lowA + ' A vs ' + magCur.fHigh + ' at ≥' + magCur.highA + ' A. Power wiring or motors are near the compass. Move it away or use COMPASS_MOT compensation (COMPASS_MOTCT ' + (prm.COMPASS_MOTCT || 0) + ').');
       }
     }
+    var compMot = compassMotFit(D, prm, B, bi);
+    compMot.fits.forEach(function (f) {
+      if (!f.ok || !f.useful) return;
+      var vals = f.prefix + '_X ' + f.mot[0] + ', _Y ' + f.mot[1] + ', _Z ' + f.mot[2];
+      warn(motct0(f) ? 'info' : 'warn', 'Compass', (motct0(f) ? 'Compass motor compensation fitted' : 'Compass motor compensation can be improved') + ' (compass ' + (f.inst + 1) + ')',
+        'COMPASS_MOTCT 2, ' + vals + ' (mGauss/A). At ' + f.top.a + (f.top.b ? '–' + f.top.b : '+') + ' A the compass heading error drops from ' + f.top.hNowP95 + '° to ' + f.top.hFitP95 + '° (95th percentile, against the EKF heading). See Compass motor fit.');
+    });
+    function motct0(f) { return !f.motct || f.old.every(function (x) { return !x; }); }
     /* GPS */
     if (sats.length) {
       var smin = amin(sats), hmax = amax(hdop);
@@ -1317,7 +1448,7 @@ var DF = (function () {
         sats: sats.length ? [amin(sats), amax(sats)] : null, hdopMax: hdop.length ? r(amax(hdop), 2) : null,
         bytes: P.bytes, skipped: P.skipped, trackSrc: src, wind: wind },
       bat: bat, params: params, msgs: msgs, modes: modes, events: events, track: track, home: home, timeline: tl,
-      ctrls: ctrls, power: power, powerErr: powerErr, warnings: W, story: story, vibe: vibe, magCur: magCur, gpa: gpa, motors: motors
+      ctrls: ctrls, power: power, powerErr: powerErr, warnings: W, story: story, vibe: vibe, magCur: magCur, compMot: compMot, gpa: gpa, motors: motors
     };
   }
 
@@ -1634,7 +1765,7 @@ var APC = (function () {
   function render() {
     var R = state.R; renderSource();
     R.modes.forEach(function (m) { modeColor(m.name); });
-    renderFacts(R); renderStory(R); renderWarnings(R); renderOverview(R); renderMap(R); renderControllers(R); renderTuning(R); renderEfficiency(R); renderCompare(); renderAirframe(); renderParams(R); renderMessages(R); renderMethod(R);
+    renderFacts(R); renderStory(R); renderWarnings(R); renderOverview(R); renderMap(R); renderControllers(R); renderTuning(R); renderCompassMot(R); renderEfficiency(R); renderCompare(); renderAirframe(); renderParams(R); renderMessages(R); renderMethod(R);
   }
 
   function renderFacts(R) {
@@ -2005,6 +2136,52 @@ var APC = (function () {
     $('tune-note').textContent = 'Values as recorded in the log (' + Object.keys(P).length + ' parameters). Groups shown for a ' + R.meta.type.toLowerCase() + '.';
   }
 
+  /* ---------------- compass motor fit (COMPASS_MOT_*) ---------------- */
+  function cmParamText(C) {
+    var ok = C.fits.filter(function (f) { return f.ok; });
+    if (!ok.length) return '';
+    return ['COMPASS_MOTCT,2'].concat([].concat.apply([], ok.map(function (f) { return ['X', 'Y', 'Z'].map(function (a, q) { return f.prefix + '_' + a + ',' + f.mot[q]; }); }))).join('\n') + '\n';
+  }
+  function renderCompassMot(R) {
+    var C = R.compMot, host = $('cm-body');
+    if (!C || !C.fits || !C.fits.length) { host.innerHTML = '<div class="empty">' + esc((C && C.reason) || 'This log has no compass data.') + '</div>'; return; }
+    var txt = cmParamText(C), html = '';
+    if (txt) {
+      html += '<div class="card"><h3>Parameters to load</h3>' +
+        '<textarea id="cm-text" class="search" rows="' + txt.split('\n').length + '" style="width:100%;font-family:var(--f-mono)" aria-label="COMPASS_MOT parameters" readonly>' + esc(txt) + '</textarea>' +
+        '<div class="toolbar"><button class="btn small" id="cm-copy" type="button">Copy</button><button class="btn small" id="cm-dl" type="button"' + (framed ? ' hidden' : '') + '>Download .param</button><span class="hint" id="cm-note">Load in Mission Planner (Config, Full Parameter List, Load from file) or paste the values. Units are mGauss per amp.</span></div></div>';
+    }
+    C.fits.forEach(function (f) {
+      html += '<div class="card"><h3>Compass ' + (f.inst + 1) + '<small>' + esc(f.prefix) + '_X/Y/Z</small></h3>';
+      if (!f.ok) { html += '<p class="note">' + esc(f.reason || 'No fit.') + '</p></div>'; return; }
+      var t = f.top, cur = f.motct ? 'In this log COMPASS_MOTCT is ' + f.motct + ' with ' + f.old.join(' / ') + '. The fit takes that compensation back out first, so the values below replace it.' : 'In this log COMPASS_MOTCT is 0 (no compensation).';
+      html += '<p>Battery current ran from ' + fx(f.iLo, 1) + ' to ' + fx(f.iHi, 1) + ' A (peak ' + fx(f.iMax, 1) + ' A). The compass field moves <b>' + fx(f.slope, 1) + ' mGauss per amp</b>, which is ' + Math.round(f.slope * f.iHi) + ' mGauss at ' + fx(f.iHi, 0) + ' A against an Earth field of about ' + f.earth + ' mGauss here. ' +
+        (t ? 'With the fitted values the heading error at ' + t.a + (t.b ? '–' + t.b : '+') + ' A goes from ' + t.hNowP95 + '° to ' + t.hFitP95 + '° (95th percentile).' : '') + '</p>';
+      html += '<p class="note">' + esc(cur) + ' Fit: ' + f.used + ' of ' + f.n + ' samples, residual ' + fx(f.rms, 0) + ' mGauss RMS.' +
+        (f.halves ? ' Each half of the log on its own gives ' + f.halves[0].join(' / ') + ' and ' + f.halves[1].join(' / ') + '; a large difference between them means the values are uncertain, so fly a longer log with more current changes.' : '') + '</p>';
+      html += '<div class="tablewrap"><table><thead><tr><th>Battery current</th><th>Samples</th><th>Field now</th><th>Field fitted</th><th>Heading error now<br><small>median / p95</small></th><th>Heading error fitted<br><small>median / p95</small></th></tr></thead><tbody>' +
+        f.bins.map(function (b) { return '<tr><td>' + b.a + (b.b ? '–' + b.b : '+') + ' A</td><td>' + b.n + '</td><td>' + b.fNow + '</td><td>' + b.fFit + '</td><td>' + b.hNow + '° / ' + b.hNowP95 + '°</td><td>' + b.hFit + '° / ' + b.hFitP95 + '°</td></tr>'; }).join('') +
+        '</tbody></table></div>';
+      if (f.notes.length) html += f.notes.map(function (n) { return '<p class="note">' + esc(n) + '</p>'; }).join('');
+      html += '</div>';
+    });
+    html += '<div class="card"><h3>Before you use these</h3><ul class="note">' +
+      '<li>The values are in amps as this log measured them (BATT_AMP_PERVLT ' + pval(C.ampPerVolt) + '). If you recalibrate the current sensor later, multiply each value by old ÷ new BATT_AMP_PERVLT.</li>' +
+      '<li>They hold only while the compass and the power wiring stay where they are. Moving the compass away from the wiring is the better fix; refit from a new log afterwards.</li>' +
+      '<li>Heading error is measured against the EKF heading, which itself used this compass, so read it as a before/after comparison, not an absolute accuracy.</li>' +
+      '<li>A good log has the vehicle sitting still while the motors spool up and down, plus flight at several power levels: hover, climb, cruise.</li>' +
+      '<li>After loading, check the next log: the compass innovation (XKF4 SM) should stay below 1 at high current.</li></ul></div>';
+    host.innerHTML = html;
+    var cp = $('cm-copy'); if (cp) cp.addEventListener('click', function () {
+      var box = $('cm-text'); box.focus(); box.select();
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(function () { $('cm-note').textContent = 'Copied to the clipboard.'; }, function () {});
+    });
+    var dl = $('cm-dl'); if (dl) dl.addEventListener('click', function () {
+      var u = URL.createObjectURL(new Blob([txt], { type: 'text/plain' })), l = document.createElement('a');
+      l.href = u; l.download = state.name.replace(/\.bin$/i, '') + '_COMPASS_MOT.param'; document.body.appendChild(l); l.click(); l.remove(); setTimeout(function () { URL.revokeObjectURL(u); }, 2000);
+    });
+  }
+
   /* ---------------- efficiency (Power Lab analysis) ---------------- */
   function renderEfficiency(R) {
     destroyPlots('eff'); var g = $('eff-grid'), tb = $('eff-tables'); g.innerHTML = ''; tb.innerHTML = '';
@@ -2225,6 +2402,7 @@ var APC = (function () {
   function renderMethod(R) {
     $('method').innerHTML = '<p><b>How this works.</b> The .bin file is parsed in a background worker in your browser. Times are seconds since the flight controller booted, as in the log. The date comes from the first GPS fix (GPS week and time, minus 18 leap seconds).</p>' +
       '<p>Warnings use these thresholds: EKF innovation ratios above FS_EKF_THRESH (' + (R.params.FS_EKF_THRESH || 0.8) + ') or a compass ratio above 1; vibration above 30 m/s² (critical above 60); compass field change between the lowest 20 % and highest 10 % of battery current; full motor output for 0.5 s or more; attitude error above 20° for over 1 s outside MANUAL, ACRO and AUTOTUNE; quad hover output imbalance above 5 % of the PWM range. They are rules of thumb, not pass/fail limits.</p>' +
+      '<p>The compass motor fit solves, by least squares over every compass sample with battery current and attitude, for the Earth field in NED and a body-frame field per amp; any compensation already active is removed first using the logged MOX/MOY/MOZ, samples more than 3× the residual RMS are dropped once, and COMPASS_MOT is minus the per-amp field. It needs at least 200 samples and 8 A of current range.</p>' +
       '<p>Flight time and range use the measured hover power and the airspeed bin with the lowest energy per kilometre in steady level cruise. Thrust headroom from current assumes thrust grows with current to the ⅔ power (momentum theory), so treat it as an estimate.</p>';
   }
 
