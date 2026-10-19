@@ -591,15 +591,20 @@ var DF = (function () {
       for (i = 0; i < E.t.length; i++) { var e = esc[E.Instance[i]]; if (e) { e.t.push(E.t[i]); e.rpm.push(E.RPM[i]); e.cur.push(E.Curr ? E.Curr[i] : NaN); } }
     }
     var escKeys = Object.keys(esc), escC = escKeys.map(function (k) { return cursor(esc[k].t); });
-    var hasRpm = false, curValid = 0, curTotal = 0;
+    var hasRpm = false, curValid = 0, curTotal = 0, curStopped = [];
     escKeys.forEach(function (k) {
       var e = esc[k];
       for (var q = 0; q < e.rpm.length; q++) {
         if (e.rpm[q] > 500) hasRpm = true;
         curTotal++; var cv = e.cur[q]; if (cv > 0.05 && cv < 250 && cv !== 255) curValid++;
+        if (e.rpm[q] < 100 && isFinite(cv)) curStopped.push(cv);
       }
     });
     var escCurrOk = escKeys.length && curTotal && curValid / curTotal > 0.5;
+    /* ESC current must read near zero with the motors stopped; some ESC firmware (e.g. AM32 on a 4-in-1 without
+       per-channel current sensing) sends a constant junk value. The hover sum is checked against the battery below. */
+    var escCurrWhy = '';
+    if (escCurrOk && curStopped.length > 20 && median(curStopped) > 3) { escCurrOk = false; escCurrWhy = 'ESC current telemetry reads ' + r(median(curStopped), 0) + ' A per ESC with the motors stopped, so it is not used.'; }
 
     var vmax = new Float64Array(N), vthr = new Float64Array(N), ppwm = new Float64Array(N), as = new Float64Array(N), tho = new Float64Array(N),
       roll = new Float64Array(N), crt = new Float64Array(N), alt = new Float64Array(N), aoa = new Float64Array(N), rpm3 = new Float64Array(N),
@@ -635,6 +640,13 @@ var DF = (function () {
     hoverPw.sort(function (a, b) { return a - b; });
     var vStart = 0; for (i = 0; i < Math.min(N, 50); i++) if (V[i] > vStart) vStart = V[i];
     if (isVtolData) {
+      if (escCurrOk) {
+        /* in pure hover the ESC currents must add up to roughly the battery current */
+        var rat = [];
+        for (i = 0; i < N; i++) if (vmax[i] > 1100 && ppwm[i] <= 1005 && I[i] > 3 && escSum[i] > 0) rat.push(escSum[i] / I[i]);
+        var mr = rat.length > 20 ? median(rat) : NaN;
+        if (isFinite(mr) && (mr < 0.6 || mr > 1.5)) { escCurrOk = false; escCurrWhy = 'In hover the ESC currents add up to ' + r(mr, 1) + '× the battery current, so they are not used.'; }
+      }
       var method = escCurrOk ? 'esc-current' : (hasRpm ? 'rpm3' : 'throttle');
       var xs = [], ys = [];
       for (i = 0; i < N; i++) {
@@ -814,7 +826,7 @@ var DF = (function () {
         vStart: r(vStart, 2), hoverW: hoverPw.length >= 50 ? r(quant(hoverPw, .5), 0) : null,
         cells: prm.BATT_CELL_COUNT > 0 ? prm.BATT_CELL_COUNT : (vStart > 0 ? Math.max(1, Math.round(vStart / 4.15)) : null),
         capacity: prm.BATT_CAPACITY || null },
-      model: model, params: keep, opts: o, timeline: tl, transitions: trans, landings: landings, takeoffs: takeoffs,
+      model: model, escCurrNote: escCurrWhy, params: keep, opts: o, timeline: tl, transitions: trans, landings: landings, takeoffs: takeoffs,
       eff: { n: effIdx.length, bins: bins, pts: pts },
       hover: hov, peaks: { total: r(pk2.total, 1), vtol: r(pk2.vtol, 1), push: r(pk2.push, 1), vMin: r(pk2.vMin, 2) }, pushRpm: pushRpm,
       escKeys: escKeys.map(Number)
@@ -1186,6 +1198,7 @@ var DF = (function () {
     var W = [];
     function warn(sev, area, title, detail, t) { W.push({ sev: sev, area: area, title: title, detail: detail || '', t: t === undefined || t === null ? null : r(t, 1) }); }
     var inFlight = function (t) { return isArmed(t); };
+    if (power && power.escCurrNote) warn('info', 'ESC telemetry', 'ESC current telemetry is not believable', power.escCurrNote + ' Battery current is used instead. RPM and temperature from the ESC are unaffected.');
 
     /* ERR records */
     if (D.ERR) for (i = 0; i < D.ERR.t.length; i++) {
@@ -2221,7 +2234,7 @@ var APC = (function () {
     if (!Pw) { $('eff-note').textContent = ''; g.innerHTML = '<div class="empty">' + esc(R.powerErr || 'No power data.') + '</div>'; tb.hidden = true; return; }
     tb.hidden = false;
     var vt = Pw.model.ok;
-    $('eff-note').textContent = (vt ? 'VTOL current is modelled from ' + (Pw.model.method === 'rpm3' ? 'ESC RPM' : Pw.model.method === 'esc-current' ? 'ESC current telemetry' : 'motor outputs') + ' (hover fit R² ' + fx(Pw.model.r2, 3) + '); the rest is the forward motor. ' : '') +
+    $('eff-note').textContent = (vt ? 'VTOL current is modelled from ' + (Pw.model.method === 'rpm3' ? 'ESC RPM' : Pw.model.method === 'esc-current' ? 'ESC current telemetry' : 'motor outputs') + ' (hover fit R² ' + fx(Pw.model.r2, 3) + '); the rest is the forward motor. ' : '') + (Pw.escCurrNote ? Pw.escCurrNote + ' ' : '') +
       'Level cruise is steady flight with bank under ' + Pw.opts.bank + '°, climb under ' + Pw.opts.climb + ' m/s and no VTOL motors; ' + Pw.eff.n + ' samples.';
     /* current split */
     var tl = Pw.timeline, xs = tl.t;
