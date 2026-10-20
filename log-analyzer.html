@@ -109,6 +109,10 @@ nav.jump a .ct { font-family: var(--f-mono); font-size: .74rem; margin-left: 5px
 .wfilter b { font-family: var(--f-mono); font-weight: 500; }
 .dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; flex: none; }
 .dot.crit { background: var(--crit); } .dot.warn { background: var(--warn); } .dot.info { background: var(--info); }
+.dot.ok { background: var(--ok); }
+.vib-find { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.vib-find li { display: flex; gap: 10px; align-items: baseline; font-size: .9rem; max-width: 80ch; }
+.vib-find .dot { transform: translateY(1px); }
 .wlist { display: grid; gap: 8px; }
 .w { display: grid; grid-template-columns: 4px 1fr auto; gap: 0 14px; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
 .w .stripe { background: var(--info); }
@@ -282,6 +286,7 @@ tr.grp td { font-family: var(--f-mono); font-size: .68rem; letter-spacing: .1em;
     <a href="#messages">Messages</a>
     <a href="#warnings">Warnings<span class="ct" id="nav-ct" hidden></span></a>
     <a href="#controllers">Demand vs actual</a>
+    <a href="#vibration">Vibration</a>
     <a href="#tuning">Tuning</a>
     <a href="#compassmot">Compass motor fit</a>
     <a href="#efficiency">Efficiency</a>
@@ -365,6 +370,11 @@ tr.grp td { font-family: var(--f-mono); font-size: .68rem; letter-spacing: .1em;
       <div class="stack" id="ctl-stack"></div>
       <p class="hint">Drag across a chart to zoom in on a manoeuvre.</p>
     </div>
+  </section>
+
+  <section class="sec" id="vibration">
+    <div class="sec-head"><h2>Vibration</h2><p>Accelerometer vibration (VIBE, m/s²) on each axis, split by flight phase and by throttle. ArduPilot's guide: below 30 is normally fine, above 30 can disturb the altitude and position estimates, above 60 nearly always does. Clips are samples where the accelerometer hit its range limit.</p></div>
+    <div id="vib-body"></div>
   </section>
 
   <section class="sec" id="tuning">
@@ -464,7 +474,7 @@ var DF = (function () {
     POS: ['Lat', 'Lng', 'Alt', 'RelHomeAlt'], VIBE: ['IMU', 'VibeX', 'VibeY', 'VibeZ', 'Clip'],
     XKF2: ['C', 'VWN', 'VWE'], XKF4: ['C', 'SV', 'SP', 'SH', 'SM'], NKF4: ['C', 'SV', 'SP', 'SH', 'SM'], MAG: ['I', 'MagX', 'MagY', 'MagZ', 'MOX', 'MOY', 'MOZ'],
     PM: ['NLon', 'InE', 'ErC'], DSF: ['Dp'], ERR: ['Subsys', 'ECode'], EV: ['Id'], ARM: ['ArmState'],
-    TECS: ['h', 'dh', 'hdem', 'dhdem', 'sp', 'spdem'], QTUN: ['DAlt', 'Alt', 'DCRt', 'CRt'],
+    TECS: ['h', 'dh', 'hdem', 'dhdem', 'sp', 'spdem'], QTUN: ['DAlt', 'Alt', 'DCRt', 'CRt', 'ThO'],
     RSSI: ['RXRSSI', 'RXLQ'], MCU: ['MTemp'],
     PIDR: PIDF, PIDP: PIDF, PIDY: PIDF, PIQR: PIDF, PIQP: PIDF, PIQY: PIDF, PIDA: PIDF
   };
@@ -1017,6 +1027,143 @@ var DF = (function () {
     return { fits: fits, ampPerVolt: prm.BATT_AMP_PERVLT, battMonitor: prm.BATT_MONITOR };
   }
 
+  /* Vibration analysis. VIBE is the accelerometer's high-frequency content (m/s², filtered, about 10 Hz), one row per
+     IMU, plus a running count of samples that hit the accelerometer's range (Clip). ArduPilot's guide: below 30 is
+     normally fine, above 30 can cause trouble, above 60 nearly always does. VIBE has no frequency information. */
+  function vibeAnalysis(D, ctx) {
+    var V = D.VIBE; if (!V || !V.t || V.t.length < 20) return null;
+    var isArmed = ctx.isArmed, modes = ctx.modes, n = V.t.length, i;
+    var byImu = {};
+    for (i = 0; i < n; i++) { var u = V.IMU ? V.IMU[i] : 0; (byImu[u] = byImu[u] || []).push(i); }
+    var imuIds = Object.keys(byImu).map(Number).sort(function (a, b) { return a - b; });
+    /* forward transitions from the text messages */
+    var trans = [];
+    /* "Transition started" also repeats when Q assist kicks in during fixed-wing flight, without a "done":
+       end each window at "Transition done", the next mode change or 20 s, and merge overlaps */
+    ctx.msgs.forEach(function (m, k) {
+      if (!/^Transition started/.test(m.m)) return;
+      var end = m.t + 20;
+      for (var q = k + 1; q < ctx.msgs.length && ctx.msgs[q].t < end; q++) if (/^Transition done/.test(ctx.msgs[q].m)) { end = ctx.msgs[q].t; break; }
+      for (q = 0; q < modes.length; q++) if (modes[q].t > m.t + 0.5) { end = Math.min(end, modes[q].t); break; }
+      if (trans.length && m.t <= trans[trans.length - 1][1]) trans[trans.length - 1][1] = Math.max(trans[trans.length - 1][1], end);
+      else trans.push([m.t, end]);
+    });
+    function inTrans(t) { for (var q = 0; q < trans.length; q++) if (t >= trans[q][0] && t <= trans[q][1]) return true; return false; }
+    function modeAtT(t) { var m = null; for (var q = 0; q < modes.length && modes[q].t <= t; q++) m = modes[q]; return m; }
+    var QM = { 17: 1, 18: 1, 19: 1, 20: 1, 21: 1, 22: 1, 23: 1, 25: 1 };
+    var armedEnds = ctx.armed.map(function (w) { return w[1]; });
+    function axisStats(a) { return { p50: r(median(a), 1), p95: r(sortedQ(a, .95), 1), max: r(amax(a), 1) }; }
+    var out = { imus: [], groups: [], worst: [], thr: { fw: null, vtol: null }, findings: [], trans: trans.map(function (w) { return [r(w[0], 1), r(w[1], 1)]; }) };
+    imuIds.forEach(function (u) {
+      var ix = byImu[u], t0 = V.t[ix[0]], t1 = V.t[ix[ix.length - 1]];
+      var nb = Math.min(3000, ix.length), bw = Math.max(1e-6, (t1 - t0) / nb);
+      var bx = new Array(nb).fill(null), by = new Array(nb).fill(null), bz = new Array(nb).fill(null), bt = [];
+      for (var k = 0; k < nb; k++) bt.push(r(t0 + (k + .5) * bw, 2));
+      /* bucket maximum, so short peaks survive the thinning */
+      ix.forEach(function (q) {
+        var b = Math.min(nb - 1, Math.floor((V.t[q] - t0) / bw));
+        if (bx[b] === null || V.VibeX[q] > bx[b]) bx[b] = V.VibeX[q];
+        if (by[b] === null || V.VibeY[q] > by[b]) by[b] = V.VibeY[q];
+        if (bz[b] === null || V.VibeZ[q] > bz[b]) bz[b] = V.VibeZ[q];
+      });
+      var clipT = [], clipTotal = 0;
+      if (V.Clip) for (var c = 1; c < ix.length; c++) { var d = V.Clip[ix[c]] - V.Clip[ix[c - 1]]; if (d > 0) { clipTotal += d; if (clipT.length < 300) clipT.push({ t: r(V.t[ix[c]], 2), n: d }); } }
+      var fl = ix.filter(function (q) { return isArmed(V.t[q]); });
+      var st = fl.length ? { x: axisStats(fl.map(function (q) { return V.VibeX[q]; })), y: axisStats(fl.map(function (q) { return V.VibeY[q]; })), z: axisStats(fl.map(function (q) { return V.VibeZ[q]; })) } : null;
+      out.imus.push({ imu: u, t: bt, x: rarr(bx, 1), y: rarr(by, 1), z: rarr(bz, 1), clipT: clipT, clipTotal: clipTotal, stats: st, n: fl.length });
+    });
+    var prim = out.imus.filter(function (m) { return m.n; })[0]; if (!prim) return null;
+    out.primary = prim.imu;
+    var ix0 = byImu[prim.imu].filter(function (q) { return isArmed(V.t[q]); });
+    var dts = []; for (i = 1; i < Math.min(ix0.length, 2000); i++) dts.push(V.t[ix0[i]] - V.t[ix0[i - 1]]);
+    var dt = Math.min(0.5, Math.max(0.01, median(dts) || 0.1)); out.dt = r(dt, 3);
+    /* per flight phase: the mode, or a forward transition */
+    var ph = ix0.map(function (q) { var t = V.t[q], m = modeAtT(t); return inTrans(t) ? { name: 'Forward transition', vtol: 0, trans: 1 } : { name: m ? m.name : 'Unknown', vtol: m && QM[m.n] ? 1 : 0, trans: 0 }; });
+    var G = {}, order = [];
+    ix0.forEach(function (q, k) {
+      var p = ph[k];
+      if (!G[p.name]) { G[p.name] = { name: p.name, vtol: p.vtol, trans: p.trans, x: [], y: [], z: [], clips: 0 }; order.push(p.name); }
+      var g = G[p.name]; g.x.push(V.VibeX[q]); g.y.push(V.VibeY[q]); g.z.push(V.VibeZ[q]);
+      if (V.Clip && k > 0) { var d2 = V.Clip[q] - V.Clip[ix0[k - 1]]; if (d2 > 0 && d2 < 1e6) g.clips += d2; }
+    });
+    out.groups = order.map(function (nm) {
+      var g = G[nm], over = 0;
+      for (var q = 0; q < g.x.length; q++) if (Math.max(g.x[q], g.y[q], g.z[q]) > 30) over++;
+      return { name: nm, vtol: g.vtol, trans: g.trans, dur: r(g.x.length * dt, 0), x: axisStats(g.x), y: axisStats(g.y), z: axisStats(g.z), over30: r(over * dt, 1), clips: g.clips };
+    }).filter(function (g) { return g.clips > 0 || (g.name === 'Unknown' ? g.dur >= 10 : g.dur >= 2); });
+    /* worst moments above 30 */
+    var T0 = ix0.map(function (q) { return V.t[q]; });
+    var ws = windows(T0, function (k) { var q = ix0[k]; return Math.max(V.VibeX[q], V.VibeY[q], V.VibeZ[q]) > 30; }, 1.5, 0);
+    out.worstCount = ws.length;
+    out.worst = ws.map(function (w) {
+      var pk = 0, ax = 'X', tp = w[0], k0 = -1;
+      ix0.forEach(function (q, k) { var t = V.t[q]; if (t < w[0] || t > w[1]) return; [['X', V.VibeX[q]], ['Y', V.VibeY[q]], ['Z', V.VibeZ[q]]].forEach(function (p) { if (p[1] > pk) { pk = p[1]; ax = p[0]; tp = t; k0 = k; } }); });
+      var near = armedEnds.some(function (e) { return e - w[1] >= -1 && e - w[1] < 12; });
+      return { a: r(w[0], 1), b: r(w[1], 1), t: r(tp, 1), peak: r(pk, 1), axis: ax, phase: k0 >= 0 ? ph[k0].name : '', touchdown: near };
+    }).sort(function (a, b) { return b.peak - a.peak; }).slice(0, 8);
+    /* vibration against throttle, median per 10 % band */
+    function thrBins(T, Y, scale, keep) {
+      if (!T || !Y) return null;
+      var cur = cursor(T), bins = {};
+      ix0.forEach(function (q, k) {
+        var t = V.t[q]; if (!keep(ph[k])) return; var j = cur(t); if (j < 0 || t - T[j] > 0.5) return;
+        var th = Y[j] * scale; if (!isFinite(th) || th < 0) return; var b = Math.min(9, Math.floor(th / 10));
+        if (!bins[b]) bins[b] = { x: [], y: [], z: [] };
+        bins[b].x.push(V.VibeX[q]); bins[b].y.push(V.VibeY[q]); bins[b].z.push(V.VibeZ[q]);
+      });
+      /* bands below 10 % are idle on the ground or a stopped motor; thin bands are noise */
+      var tot = 0; Object.keys(bins).forEach(function (b) { tot += bins[b].x.length; });
+      var res = Object.keys(bins).map(Number).sort(function (a, b) { return a - b; }).filter(function (b) { return b >= 1 && bins[b].x.length >= Math.max(30, tot * .01); }).map(function (b) {
+        var B2 = bins[b]; return { a: b * 10, b: b * 10 + 10, n: B2.x.length, x: r(median(B2.x), 1), y: r(median(B2.y), 1), z: r(median(B2.z), 1) };
+      });
+      return res.length >= 2 ? res : null;
+    }
+    out.thr.fw = D.CTUN && D.CTUN.ThO ? thrBins(D.CTUN.t, D.CTUN.ThO, 1, function (p) { return !p.vtol && !p.trans; }) : null;
+    out.thr.vtol = ctx.vtol && D.QTUN && D.QTUN.ThO ? thrBins(D.QTUN.t, D.QTUN.ThO, 100, function (p) { return p.vtol; }) : null;
+    /* findings */
+    var F = out.findings, s = prim.stats, worstP95 = Math.max(s.x.p95, s.y.p95, s.z.p95);
+    out.worstP95 = worstP95;
+    out.level = worstP95 > 60 ? 'severe' : worstP95 > 30 ? 'high' : worstP95 > 15 ? 'moderate' : 'low';
+    var lvlText = { low: 'Low', moderate: 'Moderate, within ArduPilot\'s guide', high: 'High', severe: 'Very high' }[out.level];
+    F.push({ sev: out.level === 'severe' ? 'crit' : out.level === 'high' ? 'warn' : 'ok', text: lvlText + ': the worst axis is ' + worstP95 + ' m/s² or less for 95 % of armed time (IMU ' + prim.imu + '; X ' + s.x.p95 + ', Y ' + s.y.p95 + ', Z ' + s.z.p95 + '). ArduPilot treats below 30 as normally fine and above 60 as nearly always a problem.' });
+    var hmax = Math.max(s.x.p95, s.y.p95);
+    if (s.z.p95 > 1.5 * hmax && s.z.p95 > 10) F.push({ sev: 'info', text: 'Z (vertical) dominates, ' + r(s.z.p95 / Math.max(hmax, .1), 1) + '× the horizontal axes. That points at props and motors shaking along the thrust line, or a mount that is soft only vertically: balance props, check motor bearings and motor mounts.' });
+    else if (hmax > 1.5 * s.z.p95 && hmax > 10) F.push({ sev: 'info', text: (s.x.p95 >= s.y.p95 ? 'X (forward)' : 'Y (sideways)') + ' dominates over Z. Horizontal vibration usually comes from an unbalanced prop or motor spinning in that plane, or a flight controller mount that rocks.' });
+    var vt = out.groups.filter(function (g) { return g.vtol && g.dur >= 10; }), fw = out.groups.filter(function (g) { return !g.vtol && !g.trans && g.dur >= 10; }), tr = out.groups.filter(function (g) { return g.trans; })[0];
+    function gp(g) { return Math.max(g.x.p95, g.y.p95, g.z.p95); }
+    function avgP(list) { var tot = 0, w = 0; list.forEach(function (g) { tot += gp(g) * g.dur; w += g.dur; }); return w ? tot / w : null; }
+    var vP = avgP(vt), fP = avgP(fw);
+    if (vP !== null && fP !== null) {
+      if (fP > 1.4 * vP) F.push({ sev: 'info', text: 'Fixed-wing flight vibrates more than VTOL flight (p95 ' + r(fP, 0) + ' against ' + r(vP, 0) + ' m/s²): the forward motor or its prop is the likely source.' });
+      else if (vP > 1.4 * fP) F.push({ sev: 'info', text: 'VTOL flight vibrates more than fixed-wing flight (p95 ' + r(vP, 0) + ' against ' + r(fP, 0) + ' m/s²): look at the lift motors, their props and the booms.' });
+      else F.push({ sev: 'info', text: 'VTOL and fixed-wing flight vibrate about the same (p95 ' + r(vP, 0) + ' and ' + r(fP, 0) + ' m/s²).' });
+    }
+    if (tr && gp(tr) > 30) F.push({ sev: 'warn', text: 'Forward transitions reach p95 ' + gp(tr) + ' m/s² (' + tr.dur + ' s in total). Both motor sets run hard there; a short burst is common, but long stretches above 30 can upset the altitude estimate.' });
+    ['fw', 'vtol'].forEach(function (k) {
+      var b = out.thr[k]; if (!b) return;
+      var lo = b[0], hi = b[b.length - 1], vlo = Math.max(lo.x, lo.y, lo.z), vhi = Math.max(hi.x, hi.y, hi.z);
+      if (vhi > 1.6 * vlo && vhi - vlo > 5) F.push({ sev: 'info', text: (k === 'fw' ? 'Forward' : 'VTOL') + ' throttle: vibration rises from ' + r(vlo, 0) + ' m/s² at ' + lo.a + '–' + lo.b + ' % to ' + r(vhi, 0) + ' at ' + hi.a + '–' + hi.b + ' %. Vibration that grows with throttle comes from rotating parts: prop or motor balance, a bent shaft, a loose prop adapter.' });
+    });
+    var clipsAll = 0, clipsTd = 0;
+    out.imus.forEach(function (m) { m.clipT.forEach(function (c) { clipsAll += c.n; if (armedEnds.some(function (e) { return e - c.t >= -2 && e - c.t < 12; })) clipsTd += c.n; }); });
+    out.clipsAll = clipsAll; out.clipsTouchdown = clipsTd;
+    if (clipsAll > 0) {
+      var clipsFl = clipsAll - clipsTd;
+      F.push({ sev: clipsFl > 100 ? 'crit' : clipsFl > 0 ? 'warn' : 'info', text: clipsAll + ' accelerometer clip' + (clipsAll > 1 ? 's' : '') + ' (samples at the sensor\'s range limit): ' +
+        (clipsFl ? clipsFl + ' in flight' + (clipsTd ? ' and ' + clipsTd + ' at touchdown' : '') + '. Clips in flight are lost information for the EKF and need fixing.' : 'all within seconds of disarming, so landing impacts. Harmless unless the landings were hard.') });
+    } else F.push({ sev: 'ok', text: 'No accelerometer clipping.' });
+    var td = out.worst.filter(function (w) { return w.touchdown; });
+    if (td.length) F.push({ sev: 'info', text: td.length + ' of the peaks above 30 end within 12 s of disarming, so they are most likely touchdown and landing impacts rather than in-flight vibration.' });
+    if (out.imus.length > 1) {
+      var ps = out.imus.filter(function (m) { return m.stats; }).map(function (m) { return { imu: m.imu, p: Math.max(m.stats.x.p95, m.stats.y.p95, m.stats.z.p95) }; });
+      if (ps.length > 1) {
+        var hiI = ps.reduce(function (a, b) { return b.p > a.p ? b : a; }), loI = ps.reduce(function (a, b) { return b.p < a.p ? b : a; });
+        if (hiI.p > 1.5 * loI.p && hiI.p - loI.p > 5) F.push({ sev: 'info', text: 'IMU ' + hiI.imu + ' sees ' + r(hiI.p, 0) + ' m/s² against ' + r(loI.p, 0) + ' on IMU ' + loI.imu + '. Different chips filter differently; a large gap can also mean one IMU sits on a different mount or damping.' });
+      }
+    }
+    return out;
+  }
+
   function analyzeAll(P, o) {
     o = Object.assign({ pidHz: 25, trackMax: 5000, tlMax: 3000 }, o || {});
     var D = P.data, prm = {}, i, j, k;
@@ -1253,6 +1400,8 @@ var DF = (function () {
         if (v.clip > 0) warn(v.clip > 100 ? 'crit' : 'warn', 'Vibration', 'IMU ' + u + ' accelerometer clipping: ' + v.clip + ' samples', 'The accelerometer hit its range limit. Even a few clips can corrupt altitude.');
       });
     }
+    var vib = null;
+    try { vib = vibeAnalysis(D, { isArmed: isArmed, modes: modes, msgs: msgs, armed: armed, vtol: (prm.Q_ENABLE || 0) > 0 }); } catch (e) { vib = { error: String(e && e.message || e) }; }
     /* compass field vs battery current */
     var magCur = null;
     if (D.MAG && B && bi.length) {
@@ -1487,7 +1636,7 @@ var DF = (function () {
         sats: sats.length ? [amin(sats), amax(sats)] : null, hdopMax: hdop.length ? r(amax(hdop), 2) : null,
         bytes: P.bytes, skipped: P.skipped, trackSrc: src, wind: wind },
       bat: bat, params: params, msgs: msgs, modes: modes, events: events, track: track, home: home, timeline: tl,
-      ctrls: ctrls, power: power, powerErr: powerErr, warnings: W, story: story, vibe: vibe, magCur: magCur, compMot: compMot, gpa: gpa, motors: motors
+      ctrls: ctrls, power: power, powerErr: powerErr, warnings: W, story: story, vibe: vibe, vib: vib, magCur: magCur, compMot: compMot, gpa: gpa, motors: motors
     };
   }
 
@@ -1653,7 +1802,7 @@ var APC = (function () {
   function showLog(i) {
     var L = state.logs[i]; if (!L) return;
     state.pi = i; state.R = L.R; state.name = L.name; state.example = false; setLoaded(true); updateClear();
-    state.ovRange = null; state.ctlRange = null; state.ctl = null; state.cursor = null; modeCol = {};
+    state.ovRange = null; state.ctlRange = null; state.ctl = null; state.cursor = null; state.vibRange = null; state.vibImu = null; modeCol = {};
     fillAirframe(true); render();
   }
   $('file').addEventListener('change', function (e) { openFile(e.target.files[0], 'open'); e.target.value = ''; });
@@ -1788,7 +1937,7 @@ var APC = (function () {
   /* shared time cursor: overview plots + map */
   function setCursor(t, src) {
     state.cursor = t;
-    plots.forEach(function (p) { if (p.group === 'ov' && p !== src) p.overlay(t, p.spec.dotsAt ? p.spec.dotsAt(t) : null); });
+    plots.forEach(function (p) { if ((p.group === 'ov' || p.group === 'vibt') && p !== src) p.overlay(t, p.spec.dotsAt && t !== null ? p.spec.dotsAt(t) : null); });
     if (src && src.group === 'ov') src.overlay(t, src.spec.dotsAt ? src.spec.dotsAt(t) : null);
     if (map && src !== map) map.setCursor(t);
   }
@@ -1804,7 +1953,7 @@ var APC = (function () {
   function render() {
     var R = state.R; renderSource();
     R.modes.forEach(function (m) { modeColor(m.name); });
-    renderFacts(R); renderStory(R); renderWarnings(R); renderOverview(R); renderMap(R); renderControllers(R); renderTuning(R); renderCompassMot(R); renderEfficiency(R); renderCompare(); renderAirframe(); renderParams(R); renderMessages(R); renderMethod(R);
+    renderFacts(R); renderStory(R); renderWarnings(R); renderOverview(R); renderMap(R); renderControllers(R); renderVibration(R); renderTuning(R); renderCompassMot(R); renderEfficiency(R); renderCompare(); renderAirframe(); renderParams(R); renderMessages(R); renderMethod(R);
   }
 
   function renderFacts(R) {
@@ -2181,6 +2330,98 @@ var APC = (function () {
     if (!ok.length) return '';
     return ['COMPASS_MOTCT,2'].concat([].concat.apply([], ok.map(function (f) { return ['X', 'Y', 'Z'].map(function (a, q) { return f.prefix + '_' + a + ',' + f.mot[q]; }); }))).join('\n') + '\n';
   }
+  /* ---------------- vibration ---------------- */
+  var VIB_AX = [['x', 'X (forward)', '--m1'], ['y', 'Y (right)', '--m3'], ['z', 'Z (down)', '--m2']];
+  function vibLevelPill(v) { var c = v > 60 ? 'crit' : v > 30 ? 'warn' : 'ok'; return '<span class="pill ' + c + '">' + fx(v, 1) + '</span>'; }
+  function renderVibration(R) {
+    destroyPlots('vib'); var host = $('vib-body'), V = R.vib;
+    if (!V || V.error || !V.imus || !V.imus.length) { host.innerHTML = '<div class="empty">' + esc(V && V.error ? 'Vibration analysis failed: ' + V.error : 'This log has no VIBE messages. They are logged with LOG_BITMASK IMU (bit 7) or the fast attitude bits.') + '</div>'; return; }
+    if (state.vibImu === null || state.vibImu === undefined || !V.imus.some(function (m) { return m.imu === state.vibImu; })) state.vibImu = V.primary;
+    var lvl = { low: ['ok', 'Low'], moderate: ['ok', 'Moderate'], high: ['warn', 'High'], severe: ['crit', 'Very high'] }[V.level] || ['na', V.level];
+    var html = '<div class="card"><h3>Summary <span class="pill ' + lvl[0] + '">' + lvl[1] + ', worst axis p95 ' + fx(V.worstP95, 1) + ' m/s²</span></h3><ul class="vib-find">' +
+      V.findings.map(function (f) { return '<li><i class="dot ' + (f.sev === 'ok' ? 'ok' : f.sev) + '"></i>' + esc(f.text) + '</li>'; }).join('') + '</ul></div>';
+    html += '<div class="card"><div class="toolbar">' +
+      (V.imus.length > 1 ? '<label for="vib-imu">IMU</label><select id="vib-imu">' + V.imus.map(function (m) { return '<option value="' + m.imu + '"' + (m.imu === state.vibImu ? ' selected' : '') + '>IMU ' + m.imu + (m.clipTotal ? ' (' + m.clipTotal + ' clips)' : '') + '</option>'; }).join('') + '</select>' : '') +
+      '<span style="flex:1"></span><button class="btn small" id="vib-armed" type="button">Armed time</button><button class="btn small" id="vib-all" type="button">Whole log</button></div>' +
+      '<div class="legend" id="vib-legend"></div><div class="stack" id="vib-stack"></div><p class="hint">Each point is the highest value in its slice of time, so short peaks stay visible. Drag across the chart to zoom.</p></div>';
+    var G = V.groups;
+    if (G.length) {
+      html += '<div class="card"><h3>By flight phase<small>IMU ' + V.primary + ', armed time</small></h3><div class="tablewrap"><table><thead><tr><th class="txt">Phase</th><th>Time</th>' +
+        VIB_AX.map(function (a) { return '<th>' + a[0].toUpperCase() + ' median / p95</th>'; }).join('') + '<th>Max</th><th>Time above 30</th><th>Clips</th></tr></thead><tbody>' +
+        G.map(function (g) {
+          var mx = Math.max(g.x.max, g.y.max, g.z.max);
+          return '<tr><td class="txt">' + esc(g.name) + (g.trans ? ' <span class="tag">VTOL → FW</span>' : g.vtol ? ' <span class="tag">VTOL</span>' : '') + '</td><td>' + dur(g.dur) + '</td>' +
+            VIB_AX.map(function (a) { return '<td>' + fx(g[a[0]].p50, 1) + ' / ' + vibLevelPill(g[a[0]].p95) + '</td>'; }).join('') +
+            '<td>' + fx(mx, 1) + '</td><td>' + (g.over30 ? fx(g.over30, 1) + ' s' : '–') + '</td><td>' + (g.clips || '–') + '</td></tr>';
+        }).join('') + '</tbody></table></div></div>';
+    }
+    if (V.worst.length) {
+      html += '<div class="card"><h3>Peaks above 30 m/s²<small>' + (V.worstCount > V.worst.length ? 'highest ' + V.worst.length + ' of ' + V.worstCount : V.worstCount + ' in total') + '</small></h3><div class="tablewrap"><table><thead><tr><th class="txt">When</th><th>Length</th><th>Peak</th><th>Axis</th><th class="txt">Phase</th><th class="txt">Note</th></tr></thead><tbody>' +
+        V.worst.map(function (w) { return '<tr><td class="txt"><button class="btn small" type="button" data-vt="' + w.t + '">at ' + clock(w.t) + '</button></td><td>' + (w.b - w.a < 0.15 ? 'single sample' : fx(w.b - w.a, 1) + ' s') + '</td><td>' + fx(w.peak, 1) + '</td><td>' + w.axis + '</td><td class="txt">' + esc(w.phase) + '</td><td class="txt">' + (w.touchdown ? 'within 12 s of disarming: likely touchdown' : '') + '</td></tr>'; }).join('') +
+        '</tbody></table></div></div>';
+    }
+    if (V.thr.fw || V.thr.vtol) {
+      html += '<div class="grid2">' + [['fw', 'Forward (fixed-wing) throttle', 'CTUN.ThO, fixed-wing modes'], ['vtol', 'VTOL throttle', 'QTUN.ThO, VTOL modes']].filter(function (k) { return V.thr[k[0]]; }).map(function (k) {
+        return '<div class="card"><h3>' + k[1] + '<small>median vibration per 10 % band, ' + k[2] + '</small></h3>' +
+          '<div class="legend">' + VIB_AX.map(function (ax) { return '<span><i style="background:var(' + ax[2] + ')"></i>' + ax[1] + '</span>'; }).join('') + '</div><div class="plot" id="vib-thr-' + k[0] + '"></div></div>';
+      }).join('') + '</div>';
+    }
+    html += '<div class="card"><h3>Reading this</h3><ul class="note">' +
+      '<li>VIBE is the spread of the raw accelerometer around its slowly-changing value, so it shows how much the board shakes but not at what frequency. For notch tuning, log FFT data (INS_LOG_BAT_MASK, or the in-flight FFT) instead.</li>' +
+      '<li>Vibration that rises with throttle comes from what spins: props, motors, shafts, prop adapters. Vibration that is high at every throttle points at the mount or a loose part.</li>' +
+      '<li>Z (vertical) is usually the highest on a healthy aircraft. A forward transition runs both motor sets hard, so short bursts there are normal.</li>' +
+      '<li>Peaks within seconds of disarming are usually the touchdown.</li></ul></div>';
+    host.innerHTML = html;
+    host.querySelectorAll('button[data-vt]').forEach(function (b) { b.addEventListener('click', function () { var t = +b.dataset.vt; state.vibRange = [Math.max(R.meta.start, t - 20), Math.min(R.meta.end, t + 20)]; drawVibration(R); setCursor(t, null); $('vib-stack').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'center' }); }); });
+    var sel = $('vib-imu'); if (sel) sel.addEventListener('change', function () { state.vibImu = +this.value; drawVibration(R); });
+    $('vib-armed').addEventListener('click', function () { state.vibRange = null; drawVibration(R); });
+    $('vib-all').addEventListener('click', function () { state.vibRange = [R.meta.start, R.meta.end]; drawVibration(R); });
+    drawVibration(R);
+    ['fw', 'vtol'].forEach(function (k) {
+      var B = V.thr[k], div = $('vib-thr-' + k); if (!B || !div) return;
+      var xs = B.map(function (b) { return (b.a + b.b) / 2; }), hi = 0;
+      B.forEach(function (b) { hi = Math.max(hi, b.x, b.y, b.z); });
+      var p = new Plot(div, {
+        height: 200, x: { min: Math.max(0, B[0].a), max: Math.min(100, B[B.length - 1].b), label: 'throttle (%)' }, y: { min: 0, max: Math.max(10, hi * 1.15), label: 'm/s²' },
+        layers: VIB_AX.map(function (a) { return { kind: 'line', x: xs, y: B.map(function (b) { return b[a[0]]; }), color: a[2], width: 1.8 }; }).concat(VIB_AX.map(function (a) { return { kind: 'points', x: xs, y: B.map(function (b) { return b[a[0]]; }), color: a[2] }; })),
+        hover: function (x) { var i = nearest(xs, x); if (i < 0) return null; var b = B[i]; return { x: xs[i], title: b.a + '–' + b.b + ' % throttle', rows: VIB_AX.map(function (a) { return { label: a[1], value: fx(b[a[0]], 1) + ' m/s²', color: a[2] }; }).concat([{ label: 'Samples', value: String(b.n) }]), dots: VIB_AX.map(function (a) { return { y: b[a[0]], color: a[2] }; }) }; }
+      });
+      p.group = 'vib';
+    });
+  }
+  function drawVibration(R) {
+    plots.filter(function (p) { return p.group === 'vibt'; }).forEach(function (p) { p.ro.disconnect(); });
+    plots = plots.filter(function (p) { return p.group !== 'vibt'; });
+    var V = R.vib, M = V.imus.filter(function (m) { return m.imu === state.vibImu; })[0] || V.imus[0], host = $('vib-stack'); host.innerHTML = '';
+    var rg = state.vibRange || armedSpan(R), a = rg[0], b = rg[1], xs = M.t;
+    var spans = modeSpans(R, a, b), labels = spans.filter(function (s) { return s.name; }).map(function (s) { return { a: s.a, b: s.b, text: s.name }; });
+    V.trans.forEach(function (w) { spans.push({ a: w[0], b: w[1], color: '--warn', alpha: .16 }); });
+    var ys = VIB_AX.map(function (ax) { return M[ax[0]]; }), yr = yRange(xs, ys, a, b, { zero: true });
+    yr.max = Math.max(yr.max, 35);
+    var lines = [[30, '--warn'], [60, '--crit']].filter(function (L) { return L[0] < yr.max * 1.05; }).map(function (L) { return { kind: 'line', x: [a, b], y: [L[0], L[0]], color: L[1], width: 1, dash: [5, 4] }; });
+    var div = document.createElement('div'); div.className = 'plot'; host.appendChild(div);
+    var p = new Plot(div, {
+      height: 250, timeAxis: true, topPad: 18, x: { min: a, max: b, fmt: clock, label: 'time since boot' }, y: Object.assign(yr, { label: 'Vibration (m/s²)' }),
+      spans: spans, spanLabels: labels, marks: M.clipT.filter(function (c) { return c.t >= a && c.t <= b; }).slice(0, 200).map(function (c) { return { x: c.t, color: '--crit' }; }),
+      layers: lines.concat(VIB_AX.map(function (ax) { return { kind: 'line', x: xs, y: M[ax[0]], color: ax[2], width: 1.4 }; })),
+      onZoom: function (z0, z1) { state.vibRange = [z0, z1]; drawVibration(R); },
+      dotsAt: function (t) { var i = nearest(xs, t); return VIB_AX.map(function (ax) { return { y: M[ax[0]][i], color: ax[2] }; }); },
+      onCursor: function (t, src) { setCursor(t, src); if (src) src.overlay(t, t === null ? null : src.spec.dotsAt(t)); },
+      hover: function (x) {
+        var i = nearest(xs, x); if (i < 0) return null; var t = xs[i], m = modeAt(R, t);
+        var rr = [{ label: 'Mode', value: m ? m.name : '–' }].concat(VIB_AX.map(function (ax) { return { label: ax[1], value: fx(M[ax[0]][i], 1) + ' m/s²', color: ax[2] }; }));
+        var inT = V.trans.some(function (w) { return t >= w[0] && t <= w[1]; }); if (inT) rr.push({ label: 'Phase', value: 'forward transition' });
+        var cl = M.clipT.filter(function (c) { return Math.abs(c.t - t) < 1; }).reduce(function (s, c) { return s + c.n; }, 0); if (cl) rr.push({ label: 'Clips (±1 s)', value: String(cl) });
+        return { x: t, title: clock(t), rows: rr, dots: this.dotsAt(t) };
+      }
+    });
+    p.group = 'vibt'; p.spec.hover = p.spec.hover.bind(p.spec);
+    $('vib-legend').innerHTML = VIB_AX.map(function (ax) { return '<span><i style="background:var(' + ax[2] + ')"></i>' + ax[1] + '</span>'; }).join('') +
+      '<span><i style="background:var(--warn)"></i>30 m/s²</span>' + (yr.max > 60 ? '<span><i style="background:var(--crit)"></i>60 m/s²</span>' : '') +
+      (V.trans.length ? '<span><i class="sq" style="background:var(--warn);opacity:.35"></i>forward transition</span>' : '') +
+      (M.clipTotal ? '<span><i class="sq" style="background:var(--crit)"></i>clip</span>' : '');
+  }
+
   function renderCompassMot(R) {
     var C = R.compMot, host = $('cm-body');
     if (!C || !C.fits || !C.fits.length) { host.innerHTML = '<div class="empty">' + esc((C && C.reason) || 'This log has no compass data.') + '</div>'; return; }
