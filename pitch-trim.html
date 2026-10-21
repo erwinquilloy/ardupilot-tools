@@ -88,9 +88,9 @@ footer{font-size:.8rem;color:var(--muted)}
 
 <div class="wrap">
   <header style="display:flex;flex-direction:column;gap:8px">
-    <span class="eyebrow">ArduCustom v2.1 · fixed wing</span>
+    <span class="eyebrow">ArduPlane Stratos v2.1 · fixed wing</span>
     <h1>Adaptive Pitch Trim Explorer</h1>
-    <p class="apt-vnote" style="margin:0;padding:8px 12px;border:1px solid currentColor;border-radius:8px;font-weight:600;opacity:.9">Needs ArduCustom v2.1 or later. Not supported in v2.0 or lower: those versions do not have the PTCH_TRIM_SPD / PTCH_TRIM_OFS parameters.</p>
+    <p class="apt-vnote" style="margin:0;padding:8px 12px;border:1px solid currentColor;border-radius:8px;font-weight:600;opacity:.9">Needs ArduPlane Stratos v2.1 or later. Not supported in v2.0 or lower: those versions do not have the PTCH_TRIM_SPD / PTCH_TRIM_OFS parameters.</p>
     <p class="lede">A plane needs a different pitch attitude to fly level at each speed, but <code>PTCH_TRIM_DEG</code> is one number, right at one speed only. Adaptive pitch trim replaces it with a curve of three points (<code>PTCH_TRIM_SPD1–3</code>, <code>PTCH_TRIM_OFS1–3</code>). Enter or load a curve to see the trim it gives at every speed, or fit one from a learn-flight log exactly as the aircraft's own learner would.</p>
   </header>
 
@@ -103,7 +103,7 @@ footer{font-size:.8rem;color:var(--muted)}
         <li><b>Load the <code>.bin</code></b> in <a href="#h-fit">Fit a curve from a log</a> below. You don't need to type anything first: the trim and <code>AIRSPEED_MIN</code> come from the log.</li>
         <li><b>Check the result.</b> The blue dots on the chart should fall steadily as speed rises. A dot far off the others, or a "need 3 over 3m/s" message, means fly those legs again.</li>
         <li><b>Click "Use this fitted curve"</b> to draw it, then <b>"Copy as .param lines"</b>.</li>
-        <li><b>Paste into Mission Planner</b> (Config → Full Parameter List, or save as a <code>.param</code> file and load it). The lines are in the safe order, <code>PTCH_TRIM_SPD1</code> last. The aircraft needs ArduCustom v2.1.</li>
+        <li><b>Paste into Mission Planner</b> (Config → Full Parameter List, or save as a <code>.param</code> file and load it). The lines are in the safe order, <code>PTCH_TRIM_SPD1</code> last. The aircraft needs ArduPlane Stratos v2.1.</li>
         <li><b>Check in flight:</b> hands-off FBWA at a few speeds should now hold height.</li>
       </ol>
     </section>
@@ -262,7 +262,7 @@ footer{font-size:.8rem;color:var(--muted)}
     </section>
   </div>
 
-  <footer>ArduCustom v2.1 (unreleased). Curve, stall taper and fit follow <code>ArduPlane/pitch_trim_sched.cpp</code>. SITL figures from the v2.1 test build, 2026-10-11.</footer>
+  <footer>ArduPlane Stratos v2.1. Curve, stall taper and fit follow <code>ArduPlane/pitch_trim_sched.cpp</code>. SITL figures from the v2.1 test build, 2026-10-11.</footer>
 </div>
 
 <script>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>ArduCustom v2.0 Parameters</title>
+<title>ArduPlane Stratos v2.1 Parameters</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&family=Barlow:wght@400;500&family=JetBrains+Mono:wght@400;600&display=swap">
@@ -46,10 +46,10 @@ footer{color:var(--muted);font-size:13px}
 <div class="wrap">
   <header>
     <a class="back" href="./">← ArduPilot Tools</a>
-    <h1>ArduCustom v2.0 Parameters</h1>
-    <p class="lede">Every parameter in the ArduCustom v2.0 firmware (ArduPlane 4.7.1 base), including the fork's own additions: 6,482 parameters in 6,704 entries, because a few backend parameters are listed once for each backend that uses them. One list covers both the full and the light release; a light board just doesn't show parameters for features it leaves out. Generated from the source with param_parse.py. Use the <a href="bitmask-calculator.html">Bitmask Calculator</a> to work out bitmask values.</p>
+    <h1>ArduPlane Stratos v2.1 Parameters</h1>
+    <p class="lede">Every parameter in the ArduPlane Stratos v2.1 firmware (ArduPlane 4.7.2 base; formerly ArduPlane Custom), including the fork's own additions: 6,589 parameters in 6,811 entries, because a few backend parameters are listed once for each backend that uses them. One list covers both the full and the light release; a light board just doesn't show parameters for features it leaves out. Generated from the source with param_parse.py. Use the <a href="bitmask-calculator.html">Bitmask Calculator</a> to work out bitmask values.</p>
   </header>
-  <div class="bar"><input id="q" type="search" placeholder="Search name or description, e.g. LAND_WIND or airspeed" aria-label="Search parameters" autocomplete="off"><output id="n">6,482 parameters</output></div>
+  <div class="bar"><input id="q" type="search" placeholder="Search name or description, e.g. LAND_WIND or airspeed" aria-label="Search parameters" autocomplete="off"><output id="n">6,589 parameters</output></div>
   <nav class="groups" aria-label="Parameter groups"><a href="#g-arduplane-parameters">ArduPlane</a><a href="#g-vehicle-parameters">VEHICLE</a><a href="#g-lua-script-parameters">Lua Script</a><a href="#g-adsb-parameters">ADSB_</a><a href="#g-afs-parameters">AFS_</a><a href="#g-ahrs-parameters">AHRS_</a><a href="#g-ais-parameters">AIS_</a><a href="#g-arming-parameters">ARMING_</a><a href="#g-arspd-parameters">ARSPD</a><a href="#g-arspd2-parameters">ARSPD2_</a><a href="#g-arspd3-parameters">ARSPD3_</a><a href="#g-arspd4-parameters">ARSPD4_</a><a href="#g-arspd5-parameters">ARSPD5_</a><a href="#g-arspd6-parameters">ARSPD6_</a><a href="#g-arspd-parameters-2">ARSPD_</a><a href="#g-autoland-parameters">AUTOLAND_</a><a href="#g-avd-parameters">AVD_</a><a href="#g-baro-parameters">BARO</a><a href="#g-baro1-wcf-parameters">BARO1_WCF_</a><a href="#g-baro2-wcf-parameters">BARO2_WCF_</a><a href="#g-baro3-wcf-parameters">BARO3_WCF_</a><a href="#g-batt2-parameters">BATT2_</a><a href="#g-batt3-parameters">BATT3_</a><a href="#g-batt4-parameters">BATT4_</a><a href="#g-batt5-parameters">BATT5_</a><a href="#g-batt6-parameters">BATT6_</a><a href="#g-batt7-parameters">BATT7_</a><a href="#g-batt8-parameters">BATT8_</a><a href="#g-batt9-parameters">BATT9_</a><a href="#g-batta-parameters">BATTA_</a><a href="#g-battb-parameters">BATTB_</a><a href="#g-battc-parameters">BATTC_</a><a href="#g-battd-parameters">BATTD_</a><a href="#g-batte-parameters">BATTE_</a><a href="#g-battf-parameters">BATTF_</a><a href="#g-battg-parameters">BATTG_</a><a href="#g-batt-parameters">BATT_</a><a href="#g-brd-parameters">BRD_</a><a href="#g-brd-radio-parameters">BRD_RADIO</a><a href="#g-brd-rtc-parameters">BRD_RTC</a><a href="#g-btn-parameters">BTN_</a><a href="#g-cam-parameters">CAM</a><a href="#g-cam1-parameters">CAM1</a><a href="#g-cam1-rc-parameters">CAM1_RC_</a><a href="#g-cam2-parameters">CAM2</a><a href="#g-cam2-rc-parameters">CAM2_RC_</a><a href="#g-can-parameters">CAN_</a><a href="#g-can-d1-parameters">CAN_D1_</a><a href="#g-can-d1-pc-parameters">CAN_D1_PC_</a><a href="#g-can-d1-uc-parameters">CAN_D1_UC_</a><a href="#g-can-d2-parameters">CAN_D2_</a><a href="#g-can-d2-pc-parameters">CAN_D2_PC_</a><a href="#g-can-d2-uc-parameters">CAN_D2_UC_</a><a href="#g-can-d3-parameters">CAN_D3_</a><a href="#g-can-d3-pc-parameters">CAN_D3_PC_</a><a href="#g-can-d3-uc-parameters">CAN_D3_UC_</a><a href="#g-can-p1-parameters">CAN_P1_</a><a href="#g-can-p2-parameters">CAN_P2_</a><a href="#g-can-p3-parameters">CAN_P3_</a><a href="#g-can-slcan-parameters">CAN_SLCAN_</a><a href="#g-chute-parameters">CHUTE_</a><a href="#g-compass-parameters">COMPASS_</a><a href="#g-compass-pmot-parameters">COMPASS_PMOT</a><a href="#g-cust-rot-parameters">CUST_ROT</a><a href="#g-cust-rot1-parameters">CUST_ROT1_</a><a href="#g-cust-rot2-parameters">CUST_ROT2_</a><a href="#g-dds-parameters">DDS</a><a href="#g-dds-ip-parameters">DDS_IP</a><a href="#g-did-parameters">DID_</a><a href="#g-eahrs-parameters">EAHRS</a><a href="#g-efi-parameters">EFI</a><a href="#g-efi-thrlin-parameters">EFI_THRLIN</a><a href="#g-ek2-parameters">EK2_</a><a href="#g-ek3-parameters">EK3_</a><a href="#g-ek3-src-parameters">EK3_SRC</a><a href="#g-esc-tlm-parameters">ESC_TLM</a><a href="#g-fence-parameters">FENCE_</a><a href="#g-fft-parameters">FFT_</a><a href="#g-filt1-parameters">FILT1_</a><a href="#g-filt2-parameters">FILT2_</a><a href="#g-filt3-parameters">FILT3_</a><a href="#g-filt4-parameters">FILT4_</a><a href="#g-filt5-parameters">FILT5_</a><a href="#g-filt6-parameters">FILT6_</a><a href="#g-filt7-parameters">FILT7_</a><a href="#g-filt8-parameters">FILT8_</a><a href="#g-flow-parameters">FLOW</a><a href="#g-foll-parameters">FOLL</a><a href="#g-frsky-parameters">FRSKY_</a><a href="#g-gen-parameters">GEN_</a><a href="#g-gen-l-parameters">GEN_L_</a><a href="#g-gps-parameters">GPS</a><a href="#g-gps1-parameters">GPS1_</a><a href="#g-gps1-mb-parameters">GPS1_MB_</a><a href="#g-gps2-parameters">GPS2_</a><a href="#g-gps2-mb-parameters">GPS2_MB_</a><a href="#g-gps-mb1-parameters">GPS_MB1_</a><a href="#g-gps-mb2-parameters">GPS_MB2_</a><a href="#g-grip-parameters">GRIP_</a><a href="#g-guided-parameters">GUIDED_</a><a href="#g-ice-parameters">ICE_</a><a href="#g-ins-parameters">INS</a><a href="#g-ins4-parameters">INS4_</a><a href="#g-ins4-tcal-parameters">INS4_TCAL_</a><a href="#g-ins5-parameters">INS5_</a><a href="#g-ins5-tcal-parameters">INS5_TCAL_</a><a href="#g-ins-hntc2-parameters">INS_HNTC2_</a><a href="#g-ins-hntc3-parameters">INS_HNTC3_</a><a href="#g-ins-hntc4-parameters">INS_HNTC4_</a><a href="#g-ins-hntch-parameters">INS_HNTCH_</a><a href="#g-ins-log-parameters">INS_LOG_</a><a href="#g-ins-tcal1-parameters">INS_TCAL1_</a><a href="#g-ins-tcal2-parameters">INS_TCAL2_</a><a href="#g-ins-tcal3-parameters">INS_TCAL3_</a><a href="#g-kde-parameters">KDE_</a><a href="#g-land-parameters">LAND_</a><a href="#g-land-ds-parameters">LAND_DS_</a><a href="#g-lgr-parameters">LGR_</a><a href="#g-log-parameters">LOG</a><a href="#g-mav-parameters">MAV</a><a href="#g-mav1-parameters">MAV1</a><a href="#g-mav2-parameters">MAV2</a><a href="#g-mav3-parameters">MAV3</a><a href="#g-mav4-parameters">MAV4</a><a href="#g-mav5-parameters">MAV5</a><a href="#g-mav6-parameters">MAV6</a><a href="#g-mav7-parameters">MAV7</a><a href="#g-mav8-parameters">MAV8</a><a href="#g-mav9-parameters">MAV9</a><a href="#g-mav10-parameters">MAV10</a><a href="#g-mav11-parameters">MAV11</a><a href="#g-mav12-parameters">MAV12</a><a href="#g-mav13-parameters">MAV13</a><a href="#g-mav14-parameters">MAV14</a><a href="#g-mav15-parameters">MAV15</a><a href="#g-mav16-parameters">MAV16</a><a href="#g-mav17-parameters">MAV17</a><a href="#g-mav18-parameters">MAV18</a><a href="#g-mav19-parameters">MAV19</a><a href="#g-mav20-parameters">MAV20</a><a href="#g-mav21-parameters">MAV21</a><a href="#g-mav22-parameters">MAV22</a><a href="#g-mav23-parameters">MAV23</a><a href="#g-mav24-parameters">MAV24</a><a href="#g-mav25-parameters">MAV25</a><a href="#g-mav26-parameters">MAV26</a><a href="#g-mav27-parameters">MAV27</a><a href="#g-mav28-parameters">MAV28</a><a href="#g-mav29-parameters">MAV29</a><a href="#g-mav30-parameters">MAV30</a><a href="#g-mav31-parameters">MAV31</a><a href="#g-mav32-parameters">MAV32</a><a href="#g-mis-parameters">MIS_</a><a href="#g-mnt1-parameters">MNT1</a><a href="#g-mnt2-parameters">MNT2</a><a href="#g-msp-parameters">MSP</a><a href="#g-navl1-parameters">NAVL1_</a><a href="#g-net-parameters">NET_</a><a href="#g-net-gwaddr-parameters">NET_GWADDR</a><a href="#g-net-ipaddr-parameters">NET_IPADDR</a><a href="#g-net-macaddr-parameters">NET_MACADDR</a><a href="#g-net-p1-parameters">NET_P1_</a><a href="#g-net-p1-ip-parameters">NET_P1_IP</a><a href="#g-net-p2-parameters">NET_P2_</a><a href="#g-net-p2-ip-parameters">NET_P2_IP</a><a href="#g-net-p3-parameters">NET_P3_</a><a href="#g-net-p3-ip-parameters">NET_P3_IP</a><a href="#g-net-p4-parameters">NET_P4_</a><a href="#g-net-p4-ip-parameters">NET_P4_IP</a><a href="#g-net-remppp-ip-parameters">NET_REMPPP_IP</a><a href="#g-net-test-ip-parameters">NET_TEST_IP</a><a href="#g-nmea-parameters">NMEA_</a><a href="#g-ntf-parameters">NTF_</a><a href="#g-osd-parameters">OSD</a><a href="#g-osd1-parameters">OSD1_</a><a href="#g-osd2-parameters">OSD2_</a><a href="#g-osd3-parameters">OSD3_</a><a href="#g-osd4-parameters">OSD4_</a><a href="#g-osd5-parameters">OSD5_</a><a href="#g-osd6-parameters">OSD6_</a><a href="#g-osd6-param1-parameters">OSD6_PARAM1</a><a href="#g-osd6-param2-parameters">OSD6_PARAM2</a><a href="#g-osd6-param3-parameters">OSD6_PARAM3</a><a href="#g-osd6-param4-parameters">OSD6_PARAM4</a><a href="#g-osd6-param5-parameters">OSD6_PARAM5</a><a href="#g-osd6-param6-parameters">OSD6_PARAM6</a><a href="#g-osd6-param7-parameters">OSD6_PARAM7</a><a href="#g-osd6-param8-parameters">OSD6_PARAM8</a><a href="#g-osd6-param9-parameters">OSD6_PARAM9</a><a href="#g-osd7-parameters">OSD7_</a><a href="#g-osd7-param1-parameters">OSD7_PARAM1</a><a href="#g-osd7-param2-parameters">OSD7_PARAM2</a><a href="#g-osd7-param3-parameters">OSD7_PARAM3</a><a href="#g-osd7-param4-parameters">OSD7_PARAM4</a><a href="#g-osd7-param5-parameters">OSD7_PARAM5</a><a href="#g-osd7-param6-parameters">OSD7_PARAM6</a><a href="#g-osd7-param7-parameters">OSD7_PARAM7</a><a href="#g-osd7-param8-parameters">OSD7_PARAM8</a><a href="#g-osd7-param9-parameters">OSD7_PARAM9</a><a href="#g-plnd-parameters">PLND_</a><a href="#g-ptch-parameters">PTCH</a><a href="#g-pup-parameters">PUP_</a><a href="#g-qwik-parameters">QWIK_</a><a href="#g-q-parameters">Q_</a><a href="#g-q-autotune-parameters">Q_AUTOTUNE_</a><a href="#g-q-a-parameters">Q_A_</a><a href="#g-q-loit-parameters">Q_LOIT_</a><a href="#g-q-m-parameters">Q_M_</a><a href="#g-q-p-parameters">Q_P</a><a href="#g-q-tailsit-parameters">Q_TAILSIT_</a><a href="#g-q-tilt-parameters">Q_TILT_</a><a href="#g-q-wp-parameters">Q_WP_</a><a href="#g-q-wvane-parameters">Q_WVANE_</a><a href="#g-radar-parameters">RADAR</a><a href="#g-rally-parameters">RALLY_</a><a href="#g-rc-parameters">RC</a><a href="#g-rc1-parameters">RC1_</a><a href="#g-rc2-parameters">RC2_</a><a href="#g-rc3-parameters">RC3_</a><a href="#g-rc4-parameters">RC4_</a><a href="#g-rc5-parameters">RC5_</a><a href="#g-rc6-parameters">RC6_</a><a href="#g-rc7-parameters">RC7_</a><a href="#g-rc8-parameters">RC8_</a><a href="#g-rc9-parameters">RC9_</a><a href="#g-rc10-parameters">RC10_</a><a href="#g-rc11-parameters">RC11_</a><a href="#g-rc12-parameters">RC12_</a><a href="#g-rc13-parameters">RC13_</a><a href="#g-rc14-parameters">RC14_</a><a href="#g-rc15-parameters">RC15_</a><a href="#g-rc16-parameters">RC16_</a><a href="#g-rcmap-parameters">RCMAP_</a><a href="#g-relay1-parameters">RELAY1_</a><a href="#g-relay2-parameters">RELAY2_</a><a href="#g-relay3-parameters">RELAY3_</a><a href="#g-relay4-parameters">RELAY4_</a><a href="#g-relay5-parameters">RELAY5_</a><a href="#g-relay6-parameters">RELAY6_</a><a href="#g-relay7-parameters">RELAY7_</a><a href="#g-relay8-parameters">RELAY8_</a><a href="#g-relay9-parameters">RELAY9_</a><a href="#g-relay10-parameters">RELAY10_</a><a href="#g-relay11-parameters">RELAY11_</a><a href="#g-relay12-parameters">RELAY12_</a><a href="#g-relay13-parameters">RELAY13_</a><a href="#g-relay14-parameters">RELAY14_</a><a href="#g-relay15-parameters">RELAY15_</a><a href="#g-relay16-parameters">RELAY16_</a><a href="#g-rll-parameters">RLL</a><a href="#g-rngfnd1-parameters">RNGFND1_</a><a href="#g-rngfnd1-grf-parameters">RNGFND1_GRF_</a><a href="#g-rngfnd1-grf-parameters-2">RNGFND1_GRF_</a><a href="#g-rngfnd2-parameters">RNGFND2_</a><a href="#g-rngfnd2-grf-parameters">RNGFND2_GRF_</a><a href="#g-rngfnd2-grf-parameters-2">RNGFND2_GRF_</a><a href="#g-rngfnd3-parameters">RNGFND3_</a><a href="#g-rngfnd3-grf-parameters">RNGFND3_GRF_</a><a href="#g-rngfnd3-grf-parameters-2">RNGFND3_GRF_</a><a href="#g-rngfnd4-parameters">RNGFND4_</a><a href="#g-rngfnd4-grf-parameters">RNGFND4_GRF_</a><a href="#g-rngfnd4-grf-parameters-2">RNGFND4_GRF_</a><a href="#g-rngfnd5-parameters">RNGFND5_</a><a href="#g-rngfnd5-grf-parameters">RNGFND5_GRF_</a><a href="#g-rngfnd5-grf-parameters-2">RNGFND5_GRF_</a><a href="#g-rngfnd6-parameters">RNGFND6_</a><a href="#g-rngfnd6-grf-parameters">RNGFND6_GRF_</a><a href="#g-rngfnd6-grf-parameters-2">RNGFND6_GRF_</a><a href="#g-rngfnd7-parameters">RNGFND7_</a><a href="#g-rngfnd7-grf-parameters">RNGFND7_GRF_</a><a href="#g-rngfnd7-grf-parameters-2">RNGFND7_GRF_</a><a href="#g-rngfnd8-parameters">RNGFND8_</a><a href="#g-rngfnd8-grf-parameters">RNGFND8_GRF_</a><a href="#g-rngfnd8-grf-parameters-2">RNGFND8_GRF_</a><a href="#g-rngfnd9-parameters">RNGFND9_</a><a href="#g-rngfnd9-grf-parameters">RNGFND9_GRF_</a><a href="#g-rngfnd9-grf-parameters-2">RNGFND9_GRF_</a><a href="#g-rngfnda-parameters">RNGFNDA_</a><a href="#g-rngfnda-grf-parameters">RNGFNDA_GRF_</a><a href="#g-rngfnda-grf-parameters-2">RNGFNDA_GRF_</a><a href="#g-rpm1-parameters">RPM1_</a><a href="#g-rpm2-parameters">RPM2_</a><a href="#g-rpm3-parameters">RPM3_</a><a href="#g-rpm4-parameters">RPM4_</a><a href="#g-rssi-parameters">RSSI_</a><a href="#g-sched-parameters">SCHED_</a><a href="#g-scr-parameters">SCR_</a><a href="#g-serial-parameters">SERIAL</a><a href="#g-servo-parameters">SERVO</a><a href="#g-servo1-parameters">SERVO1_</a><a href="#g-servo2-parameters">SERVO2_</a><a href="#g-servo3-parameters">SERVO3_</a><a href="#g-servo4-parameters">SERVO4_</a><a href="#g-servo5-parameters">SERVO5_</a><a href="#g-servo6-parameters">SERVO6_</a><a href="#g-servo7-parameters">SERVO7_</a><a href="#g-servo8-parameters">SERVO8_</a><a href="#g-servo9-parameters">SERVO9_</a><a href="#g-servo10-parameters">SERVO10_</a><a href="#g-servo11-parameters">SERVO11_</a><a href="#g-servo12-parameters">SERVO12_</a><a href="#g-servo13-parameters">SERVO13_</a><a href="#g-servo14-parameters">SERVO14_</a><a href="#g-servo15-parameters">SERVO15_</a><a href="#g-servo16-parameters">SERVO16_</a><a href="#g-servo17-parameters">SERVO17_</a><a href="#g-servo18-parameters">SERVO18_</a><a href="#g-servo19-parameters">SERVO19_</a><a href="#g-servo20-parameters">SERVO20_</a><a href="#g-servo21-parameters">SERVO21_</a><a href="#g-servo22-parameters">SERVO22_</a><a href="#g-servo23-parameters">SERVO23_</a><a href="#g-servo24-parameters">SERVO24_</a><a href="#g-servo25-parameters">SERVO25_</a><a href="#g-servo26-parameters">SERVO26_</a><a href="#g-servo27-parameters">SERVO27_</a><a href="#g-servo28-parameters">SERVO28_</a><a href="#g-servo29-parameters">SERVO29_</a><a href="#g-servo30-parameters">SERVO30_</a><a href="#g-servo31-parameters">SERVO31_</a><a href="#g-servo32-parameters">SERVO32_</a><a href="#g-servo-blh-parameters">SERVO_BLH_</a><a href="#g-servo-ftw-parameters">SERVO_FTW_</a><a href="#g-servo-rob-parameters">SERVO_ROB_</a><a href="#g-servo-sbus-parameters">SERVO_SBUS_</a><a href="#g-servo-volz-parameters">SERVO_VOLZ_</a><a href="#g-sid-parameters">SID</a><a href="#g-sim-parameters">SIM_</a><a href="#g-sim-ais-parameters">SIM_AIS_</a><a href="#g-sim-arspd2-parameters">SIM_ARSPD2_</a><a href="#g-sim-arspd-parameters">SIM_ARSPD_</a><a href="#g-sim-bar2-parameters">SIM_BAR2_</a><a href="#g-sim-bar3-parameters">SIM_BAR3_</a><a href="#g-sim-baro-parameters">SIM_BARO_</a><a href="#g-sim-bz-parameters">SIM_BZ_</a><a href="#g-sim-ftowesc-parameters">SIM_FTOWESC_</a><a href="#g-sim-gld-parameters">SIM_GLD_</a><a href="#g-sim-gps1-parameters">SIM_GPS1_</a><a href="#g-sim-gps2-parameters">SIM_GPS2_</a><a href="#g-sim-gps3-parameters">SIM_GPS3_</a><a href="#g-sim-gps4-parameters">SIM_GPS4_</a><a href="#g-sim-grpe-parameters">SIM_GRPE_</a><a href="#g-sim-grps-parameters">SIM_GRPS_</a><a href="#g-sim-ie24-parameters">SIM_IE24_</a><a href="#g-sim-para-parameters">SIM_PARA_</a><a href="#g-sim-pld-parameters">SIM_PLD_</a><a href="#g-sim-rfl-parameters">SIM_RFL_</a><a href="#g-sim-rich-parameters">SIM_RICH_</a><a href="#g-sim-sb-parameters">SIM_SB_</a><a href="#g-sim-servo-parameters">SIM_SERVO_</a><a href="#g-sim-ship-parameters">SIM_SHIP_</a><a href="#g-sim-slup-parameters">SIM_SLUP_</a><a href="#g-sim-spr-parameters">SIM_SPR_</a><a href="#g-sim-ta-parameters">SIM_TA_</a><a href="#g-sim-teth-parameters">SIM_TETH_</a><a href="#g-sim-vicon-parameters">SIM_VICON_</a><a href="#g-sim-volz-parameters">SIM_VOLZ_</a><a href="#g-soar-parameters">SOAR_</a><a href="#g-stat-parameters">STAT</a><a href="#g-steer2srv-parameters">STEER2SRV_</a><a href="#g-tecs-parameters">TECS_</a><a href="#g-temp-parameters">TEMP</a><a href="#g-temp1-parameters">TEMP1_</a><a href="#g-temp2-parameters">TEMP2_</a><a href="#g-temp3-parameters">TEMP3_</a><a href="#g-temp4-parameters">TEMP4_</a><a href="#g-temp5-parameters">TEMP5_</a><a href="#g-temp6-parameters">TEMP6_</a><a href="#g-temp7-parameters">TEMP7_</a><a href="#g-temp8-parameters">TEMP8_</a><a href="#g-temp9-parameters">TEMP9_</a><a href="#g-temp10-parameters">TEMP10_</a><a href="#g-temp11-parameters">TEMP11_</a><a href="#g-temp12-parameters">TEMP12_</a><a href="#g-temp13-parameters">TEMP13_</a><a href="#g-temp14-parameters">TEMP14_</a><a href="#g-temp15-parameters">TEMP15_</a><a href="#g-terrain-parameters">TERRAIN_</a><a href="#g-tkoff-parameters">TKOFF_</a><a href="#g-tune-parameters">TUNE_</a><a href="#g-viso-parameters">VISO</a><a href="#g-vtx-parameters">VTX_</a><a href="#g-yaw-parameters">YAW</a></nav>
   <section class="grp" id="g-arduplane-parameters"><h2>ArduPlane Parameters</h2><article class="p" id="FORMAT_VERSION" data-k="format_version eeprom format version number (arduplane:format_version)"><h3><a href="#FORMAT_VERSION">FORMAT_VERSION</a> <span>Eeprom format version number</span></h3><em>Note: This parameter is for advanced users</em><br>
 
@@ -94,7 +94,7 @@ footer{color:var(--muted);font-size:13px}
 
 </article><article class="p" id="KFF_THR2PTCH" data-k="kff_thr2ptch throttle to pitch mix (arduplane:kff_thr2ptch)"><h3><a href="#KFF_THR2PTCH">KFF_THR2PTCH</a> <span>Throttle to Pitch Mix</span></h3><em>Note: This parameter is for advanced users</em><br>
 
-<p>Pitch up to add in proportion to throttle. 100% throttle will add this number of degrees to the pitch target.</p>
+<p>Pitch up to add in proportion to throttle. 100% throttle will add this number of degrees to the pitch target. Ignored while the adaptive pitch trim curve (PTCH_TRIM_SPD1) is active since that does the same job by airspeed.</p>
 <ul>
 <li>Range: -5 5</li>
 <li>Increment: 0.01</li>
@@ -1489,7 +1489,7 @@ footer{color:var(--muted);font-size:13px}
 <p>Max sink rate in RTL mode. Set to 0 to use TECS_SINK_MAX.</p>
 <ul>
 <li>Units: meters per second</li>
-<li>Range: 1 20</li>
+<li>Range: 0 20</li>
 <li>Increment: 0.5</li>
 </ul>
 
@@ -1499,7 +1499,7 @@ footer{color:var(--muted);font-size:13px}
 <p>Max climb rate in RTL mode. Set to 0 to use TECS_CLMB_MAX.</p>
 <ul>
 <li>Units: meters per second</li>
-<li>Range: 1 20</li>
+<li>Range: 0 20</li>
 <li>Increment: 0.5</li>
 </ul>
 
@@ -1509,7 +1509,7 @@ footer{color:var(--muted);font-size:13px}
 <p>Max sink rate in auto mode. Set to 0 to use TECS_SINK_MAX.</p>
 <ul>
 <li>Units: meters per second</li>
-<li>Range: 1 20</li>
+<li>Range: 0 20</li>
 <li>Increment: 0.5</li>
 </ul>
 
@@ -1519,7 +1519,7 @@ footer{color:var(--muted);font-size:13px}
 <p>Max climb rate in auto mode. Set to 0 to use TECS_CLMB_MAX.</p>
 <ul>
 <li>Units: meters per second</li>
-<li>Range: 1 20</li>
+<li>Range: 0 20</li>
 <li>Increment: 0.5</li>
 </ul>
 
@@ -17407,9 +17407,11 @@ footer{color:var(--muted);font-size:13px}
 <tr><td>217</td><td>Mount2 Yaw</td></tr>
 <tr><td>218</td><td>Loweheiser throttle</td></tr>
 <tr><td>200</td><td>Servos Auto Trim</td></tr>
+<tr><td>250</td><td>Tuning Set Select</td></tr>
 <tr><td>251</td><td>RTL Autoland Commit</td></tr>
 <tr><td>252</td><td>Mount1 Head Track Enable</td></tr>
 <tr><td>253</td><td>Mount1 Head Track Center Lock</td></tr>
+<tr><td>254</td><td>Adaptive Pitch Trim</td></tr>
 <tr><td>300</td><td>Scripting1</td></tr>
 <tr><td>301</td><td>Scripting2</td></tr>
 <tr><td>302</td><td>Scripting3</td></tr>
@@ -17539,9 +17541,11 @@ footer{color:var(--muted);font-size:13px}
 <tr><td>217</td><td>Mount2 Yaw</td></tr>
 <tr><td>218</td><td>Loweheiser throttle</td></tr>
 <tr><td>200</td><td>Servos Auto Trim</td></tr>
+<tr><td>250</td><td>Tuning Set Select</td></tr>
 <tr><td>251</td><td>RTL Autoland Commit</td></tr>
 <tr><td>252</td><td>Mount1 Head Track Enable</td></tr>
 <tr><td>253</td><td>Mount1 Head Track Center Lock</td></tr>
+<tr><td>254</td><td>Adaptive Pitch Trim</td></tr>
 <tr><td>300</td><td>Scripting1</td></tr>
 <tr><td>301</td><td>Scripting2</td></tr>
 <tr><td>302</td><td>Scripting3</td></tr>
@@ -17671,9 +17675,11 @@ footer{color:var(--muted);font-size:13px}
 <tr><td>217</td><td>Mount2 Yaw</td></tr>
 <tr><td>218</td><td>Loweheiser throttle</td></tr>
 <tr><td>200</td><td>Servos Auto Trim</td></tr>
+<tr><td>250</td><td>Tuning Set Select</td></tr>
 <tr><td>251</td><td>RTL Autoland Commit</td></tr>
 <tr><td>252</td><td>Mount1 Head Track Enable</td></tr>
 <tr><td>253</td><td>Mount1 Head Track Center Lock</td></tr>
+<tr><td>254</td><td>Adaptive Pitch Trim</td></tr>
 <tr><td>300</td><td>Scripting1</td></tr>
 <tr><td>301</td><td>Scripting2</td></tr>
 <tr><td>302</td><td>Scripting3</td></tr>
@@ -17803,9 +17809,11 @@ footer{color:var(--muted);font-size:13px}
 <tr><td>217</td><td>Mount2 Yaw</td></tr>
 <tr><td>218</td><td>Loweheiser throttle</td></tr>
 <tr><td>200</td><td>Servos Auto Trim</td></tr>
+<tr><td>250</td><td>Tuning Set Select</td></tr>
 <tr><td>251</td><td>RTL Autoland Commit</td></tr>
 <tr><td>252</td><td>Mount1 Head Track Enable</td></tr>
 <tr><td>253</td><td>Mount1 Head Track Center Lock</td></tr>
+<tr><td>254</td><td>Adaptive Pitch Trim</td></tr>
 <tr><td>300</td><td>Scripting1</td></tr>
 <tr><td>301</td><td>Scripting2</td></tr>
 <tr><td>302</td><td>Scripting3</td></tr>
@@ -18532,6 +18540,7 @@ footer{color:var(--muted);font-size:13px}
 <tr><td>48</td><td>PPP</td></tr>
 <tr><td>49</td><td>i-BUS Telemetry</td></tr>
 <tr><td>50</td><td>IOMCU</td></tr>
+<tr><td>51</td><td>CADDX HeadTracker</td></tr>
 </table>
 </ul>
 
@@ -18646,6 +18655,7 @@ footer{color:var(--muted);font-size:13px}
 <tr><td>48</td><td>PPP</td></tr>
 <tr><td>49</td><td>i-BUS Telemetry</td></tr>
 <tr><td>50</td><td>IOMCU</td></tr>
+<tr><td>51</td><td>CADDX HeadTracker</td></tr>
 </table>
 </ul>
 
@@ -18760,6 +18770,7 @@ footer{color:var(--muted);font-size:13px}
 <tr><td>48</td><td>PPP</td></tr>
 <tr><td>49</td><td>i-BUS Telemetry</td></tr>
 <tr><td>50</td><td>IOMCU</td></tr>
+<tr><td>51</td><td>CADDX HeadTracker</td></tr>
 </table>
 </ul>
 
@@ -19058,6 +19069,7 @@ footer{color:var(--muted);font-size:13px}
 <tr><td>48</td><td>PPP</td></tr>
 <tr><td>49</td><td>i-BUS Telemetry</td></tr>
 <tr><td>50</td><td>IOMCU</td></tr>
+<tr><td>51</td><td>CADDX HeadTracker</td></tr>
 </table>
 </ul>
 
@@ -19172,6 +19184,7 @@ footer{color:var(--muted);font-size:13px}
 <tr><td>48</td><td>PPP</td></tr>
 <tr><td>49</td><td>i-BUS Telemetry</td></tr>
 <tr><td>50</td><td>IOMCU</td></tr>
+<tr><td>51</td><td>CADDX HeadTracker</td></tr>
 </table>
 </ul>
 
@@ -19286,6 +19299,7 @@ footer{color:var(--muted);font-size:13px}
 <tr><td>48</td><td>PPP</td></tr>
 <tr><td>49</td><td>i-BUS Telemetry</td></tr>
 <tr><td>50</td><td>IOMCU</td></tr>
+<tr><td>51</td><td>CADDX HeadTracker</td></tr>
 </table>
 </ul>
 
@@ -19584,6 +19598,7 @@ footer{color:var(--muted);font-size:13px}
 <tr><td>48</td><td>PPP</td></tr>
 <tr><td>49</td><td>i-BUS Telemetry</td></tr>
 <tr><td>50</td><td>IOMCU</td></tr>
+<tr><td>51</td><td>CADDX HeadTracker</td></tr>
 </table>
 </ul>
 
@@ -19698,6 +19713,7 @@ footer{color:var(--muted);font-size:13px}
 <tr><td>48</td><td>PPP</td></tr>
 <tr><td>49</td><td>i-BUS Telemetry</td></tr>
 <tr><td>50</td><td>IOMCU</td></tr>
+<tr><td>51</td><td>CADDX HeadTracker</td></tr>
 </table>
 </ul>
 
@@ -19812,6 +19828,7 @@ footer{color:var(--muted);font-size:13px}
 <tr><td>48</td><td>PPP</td></tr>
 <tr><td>49</td><td>i-BUS Telemetry</td></tr>
 <tr><td>50</td><td>IOMCU</td></tr>
+<tr><td>51</td><td>CADDX HeadTracker</td></tr>
 </table>
 </ul>
 
@@ -23497,7 +23514,7 @@ footer{color:var(--muted);font-size:13px}
 
 </article><article class="p" id="FOLL_SYSID" data-k="foll_sysid follow target&#x27;s mavlink system id (foll_sysid)"><h3><a href="#FOLL_SYSID">FOLL_SYSID</a> <span>Follow target's mavlink system id</span></h3>
 
-<p>Follow target&#x27;s mavlink system id</p>
+<p>Follow target&#x27;s mavlink system id. Zero means no target has been selected and following is inactive.</p>
 <ul>
 <li>Range: 0 255</li>
 </ul>
@@ -32357,6 +32374,7 @@ footer{color:var(--muted);font-size:13px}
 <tr><td>48</td><td>PPP</td></tr>
 <tr><td>49</td><td>i-BUS Telemetry</td></tr>
 <tr><td>50</td><td>IOMCU</td></tr>
+<tr><td>51</td><td>CADDX HeadTracker</td></tr>
 </table>
 </ul>
 
@@ -32475,6 +32493,7 @@ footer{color:var(--muted);font-size:13px}
 <tr><td>48</td><td>PPP</td></tr>
 <tr><td>49</td><td>i-BUS Telemetry</td></tr>
 <tr><td>50</td><td>IOMCU</td></tr>
+<tr><td>51</td><td>CADDX HeadTracker</td></tr>
 </table>
 </ul>
 
@@ -32593,6 +32612,7 @@ footer{color:var(--muted);font-size:13px}
 <tr><td>48</td><td>PPP</td></tr>
 <tr><td>49</td><td>i-BUS Telemetry</td></tr>
 <tr><td>50</td><td>IOMCU</td></tr>
+<tr><td>51</td><td>CADDX HeadTracker</td></tr>
 </table>
 </ul>
 
@@ -32711,6 +32731,7 @@ footer{color:var(--muted);font-size:13px}
 <tr><td>48</td><td>PPP</td></tr>
 <tr><td>49</td><td>i-BUS Telemetry</td></tr>
 <tr><td>50</td><td>IOMCU</td></tr>
+<tr><td>51</td><td>CADDX HeadTracker</td></tr>
 </table>
 </ul>
 
@@ -33208,6 +33229,24 @@ footer{color:var(--muted);font-size:13px}
 <ul>
 <li>Range: 0 20</li>
 <li>Units: standard acceleration due to gravity</li>
+</ul>
+
+
+</article><article class="p" id="OSD_W_ADSB_DIST" data-k="osd_w_adsb_dist ads-b traffic warn distance (osd_w_adsb_dist)"><h3><a href="#OSD_W_ADSB_DIST">OSD_W_ADSB_DIST</a> <span>ADS-B traffic warn distance</span></h3>
+
+<p>The ADSB OSD item flashes when the nearest ADS-B aircraft is closer than this horizontal distance. 0 disables. See also OSD_W_ADSB_ALT.</p>
+<ul>
+<li>Range: 0 10000</li>
+<li>Units: meters</li>
+</ul>
+
+
+</article><article class="p" id="OSD_W_ADSB_ALT" data-k="osd_w_adsb_alt ads-b traffic warn height band (osd_w_adsb_alt)"><h3><a href="#OSD_W_ADSB_ALT">OSD_W_ADSB_ALT</a> <span>ADS-B traffic warn height band</span></h3>
+
+<p>With OSD_W_ADSB_DIST set, the ADSB OSD item only flashes when the nearest aircraft is also within this height above or below this aircraft. 0 warns at any height. Traffic without a valid altitude counts as inside the band.</p>
+<ul>
+<li>Range: 0 5000</li>
+<li>Units: meters</li>
 </ul>
 
 
@@ -35552,7 +35591,7 @@ footer{color:var(--muted);font-size:13px}
 
 </article><article class="p" id="OSD1_RADAR_EN" data-k="osd1_radar_en radar_en (osd1_radar_en)"><h3><a href="#OSD1_RADAR_EN">OSD1_RADAR_EN</a> <span>RADAR_EN</span></h3>
 
-<p>Displays iNav Radar / FormationFlight peer-aircraft info (callsign letter A..F + bearing arrow + distance + relative altitude). Cycles through healthy peers every 2 seconds.</p>
+<p>Displays iNav Radar / FormationFlight peer-aircraft info (callsign letter A..F + bearing arrow + distance + relative altitude). RADAR_OSD_MODE picks the peer shown: cycle through all peers every 2 seconds or always show the nearest.</p>
 <ul>
 <table><th>Value</th><th>Meaning</th>
 <tr><td>0</td><td>Disabled</td></tr>
@@ -35579,7 +35618,7 @@ footer{color:var(--muted);font-size:13px}
 
 </article><article class="p" id="OSD1_ADSB_EN" data-k="osd1_adsb_en adsb_en (osd1_adsb_en)"><h3><a href="#OSD1_ADSB_EN">OSD1_ADSB_EN</a> <span>ADSB_EN</span></h3>
 
-<p>Displays the nearest ADS-B aircraft: a bearing arrow and horizontal distance, with its altitude relative to this aircraft on the line below. Only aircraft within ADSB_LIST_RADIUS and ADSB_LIST_ALT are considered. Blank when none is tracked. Needs an ADS-B receiver (ADSB_TYPE).</p>
+<p>Displays the nearest ADS-B aircraft: a bearing arrow and horizontal distance, with its altitude relative to this aircraft on the line below. Only aircraft within ADSB_LIST_RADIUS and ADSB_LIST_ALT are considered. Blank when none is tracked. Flashes when the aircraft is inside OSD_W_ADSB_DIST (and OSD_W_ADSB_ALT). Needs an ADS-B receiver (ADSB_TYPE).</p>
 <ul>
 <table><th>Value</th><th>Meaning</th>
 <tr><td>0</td><td>Disabled</td></tr>
@@ -37875,7 +37914,7 @@ footer{color:var(--muted);font-size:13px}
 
 </article><article class="p" id="OSD2_RADAR_EN" data-k="osd2_radar_en radar_en (osd2_radar_en)"><h3><a href="#OSD2_RADAR_EN">OSD2_RADAR_EN</a> <span>RADAR_EN</span></h3>
 
-<p>Displays iNav Radar / FormationFlight peer-aircraft info (callsign letter A..F + bearing arrow + distance + relative altitude). Cycles through healthy peers every 2 seconds.</p>
+<p>Displays iNav Radar / FormationFlight peer-aircraft info (callsign letter A..F + bearing arrow + distance + relative altitude). RADAR_OSD_MODE picks the peer shown: cycle through all peers every 2 seconds or always show the nearest.</p>
 <ul>
 <table><th>Value</th><th>Meaning</th>
 <tr><td>0</td><td>Disabled</td></tr>
@@ -37902,7 +37941,7 @@ footer{color:var(--muted);font-size:13px}
 
 </article><article class="p" id="OSD2_ADSB_EN" data-k="osd2_adsb_en adsb_en (osd2_adsb_en)"><h3><a href="#OSD2_ADSB_EN">OSD2_ADSB_EN</a> <span>ADSB_EN</span></h3>
 
-<p>Displays the nearest ADS-B aircraft: a bearing arrow and horizontal distance, with its altitude relative to this aircraft on the line below. Only aircraft within ADSB_LIST_RADIUS and ADSB_LIST_ALT are considered. Blank when none is tracked. Needs an ADS-B receiver (ADSB_TYPE).</p>
+<p>Displays the nearest ADS-B aircraft: a bearing arrow and horizontal distance, with its altitude relative to this aircraft on the line below. Only aircraft within ADSB_LIST_RADIUS and ADSB_LIST_ALT are considered. Blank when none is tracked. Flashes when the aircraft is inside OSD_W_ADSB_DIST (and OSD_W_ADSB_ALT). Needs an ADS-B receiver (ADSB_TYPE).</p>
 <ul>
 <table><th>Value</th><th>Meaning</th>
 <tr><td>0</td><td>Disabled</td></tr>
@@ -40198,7 +40237,7 @@ footer{color:var(--muted);font-size:13px}
 
 </article><article class="p" id="OSD3_RADAR_EN" data-k="osd3_radar_en radar_en (osd3_radar_en)"><h3><a href="#OSD3_RADAR_EN">OSD3_RADAR_EN</a> <span>RADAR_EN</span></h3>
 
-<p>Displays iNav Radar / FormationFlight peer-aircraft info (callsign letter A..F + bearing arrow + distance + relative altitude). Cycles through healthy peers every 2 seconds.</p>
+<p>Displays iNav Radar / FormationFlight peer-aircraft info (callsign letter A..F + bearing arrow + distance + relative altitude). RADAR_OSD_MODE picks the peer shown: cycle through all peers every 2 seconds or always show the nearest.</p>
 <ul>
 <table><th>Value</th><th>Meaning</th>
 <tr><td>0</td><td>Disabled</td></tr>
@@ -40225,7 +40264,7 @@ footer{color:var(--muted);font-size:13px}
 
 </article><article class="p" id="OSD3_ADSB_EN" data-k="osd3_adsb_en adsb_en (osd3_adsb_en)"><h3><a href="#OSD3_ADSB_EN">OSD3_ADSB_EN</a> <span>ADSB_EN</span></h3>
 
-<p>Displays the nearest ADS-B aircraft: a bearing arrow and horizontal distance, with its altitude relative to this aircraft on the line below. Only aircraft within ADSB_LIST_RADIUS and ADSB_LIST_ALT are considered. Blank when none is tracked. Needs an ADS-B receiver (ADSB_TYPE).</p>
+<p>Displays the nearest ADS-B aircraft: a bearing arrow and horizontal distance, with its altitude relative to this aircraft on the line below. Only aircraft within ADSB_LIST_RADIUS and ADSB_LIST_ALT are considered. Blank when none is tracked. Flashes when the aircraft is inside OSD_W_ADSB_DIST (and OSD_W_ADSB_ALT). Needs an ADS-B receiver (ADSB_TYPE).</p>
 <ul>
 <table><th>Value</th><th>Meaning</th>
 <tr><td>0</td><td>Disabled</td></tr>
@@ -42521,7 +42560,7 @@ footer{color:var(--muted);font-size:13px}
 
 </article><article class="p" id="OSD4_RADAR_EN" data-k="osd4_radar_en radar_en (osd4_radar_en)"><h3><a href="#OSD4_RADAR_EN">OSD4_RADAR_EN</a> <span>RADAR_EN</span></h3>
 
-<p>Displays iNav Radar / FormationFlight peer-aircraft info (callsign letter A..F + bearing arrow + distance + relative altitude). Cycles through healthy peers every 2 seconds.</p>
+<p>Displays iNav Radar / FormationFlight peer-aircraft info (callsign letter A..F + bearing arrow + distance + relative altitude). RADAR_OSD_MODE picks the peer shown: cycle through all peers every 2 seconds or always show the nearest.</p>
 <ul>
 <table><th>Value</th><th>Meaning</th>
 <tr><td>0</td><td>Disabled</td></tr>
@@ -42548,7 +42587,7 @@ footer{color:var(--muted);font-size:13px}
 
 </article><article class="p" id="OSD4_ADSB_EN" data-k="osd4_adsb_en adsb_en (osd4_adsb_en)"><h3><a href="#OSD4_ADSB_EN">OSD4_ADSB_EN</a> <span>ADSB_EN</span></h3>
 
-<p>Displays the nearest ADS-B aircraft: a bearing arrow and horizontal distance, with its altitude relative to this aircraft on the line below. Only aircraft within ADSB_LIST_RADIUS and ADSB_LIST_ALT are considered. Blank when none is tracked. Needs an ADS-B receiver (ADSB_TYPE).</p>
+<p>Displays the nearest ADS-B aircraft: a bearing arrow and horizontal distance, with its altitude relative to this aircraft on the line below. Only aircraft within ADSB_LIST_RADIUS and ADSB_LIST_ALT are considered. Blank when none is tracked. Flashes when the aircraft is inside OSD_W_ADSB_DIST (and OSD_W_ADSB_ALT). Needs an ADS-B receiver (ADSB_TYPE).</p>
 <ul>
 <table><th>Value</th><th>Meaning</th>
 <tr><td>0</td><td>Disabled</td></tr>
@@ -44844,7 +44883,7 @@ footer{color:var(--muted);font-size:13px}
 
 </article><article class="p" id="OSD5_RADAR_EN" data-k="osd5_radar_en radar_en (osd5_radar_en)"><h3><a href="#OSD5_RADAR_EN">OSD5_RADAR_EN</a> <span>RADAR_EN</span></h3>
 
-<p>Displays iNav Radar / FormationFlight peer-aircraft info (callsign letter A..F + bearing arrow + distance + relative altitude). Cycles through healthy peers every 2 seconds.</p>
+<p>Displays iNav Radar / FormationFlight peer-aircraft info (callsign letter A..F + bearing arrow + distance + relative altitude). RADAR_OSD_MODE picks the peer shown: cycle through all peers every 2 seconds or always show the nearest.</p>
 <ul>
 <table><th>Value</th><th>Meaning</th>
 <tr><td>0</td><td>Disabled</td></tr>
@@ -44871,7 +44910,7 @@ footer{color:var(--muted);font-size:13px}
 
 </article><article class="p" id="OSD5_ADSB_EN" data-k="osd5_adsb_en adsb_en (osd5_adsb_en)"><h3><a href="#OSD5_ADSB_EN">OSD5_ADSB_EN</a> <span>ADSB_EN</span></h3>
 
-<p>Displays the nearest ADS-B aircraft: a bearing arrow and horizontal distance, with its altitude relative to this aircraft on the line below. Only aircraft within ADSB_LIST_RADIUS and ADSB_LIST_ALT are considered. Blank when none is tracked. Needs an ADS-B receiver (ADSB_TYPE).</p>
+<p>Displays the nearest ADS-B aircraft: a bearing arrow and horizontal distance, with its altitude relative to this aircraft on the line below. Only aircraft within ADSB_LIST_RADIUS and ADSB_LIST_ALT are considered. Blank when none is tracked. Flashes when the aircraft is inside OSD_W_ADSB_DIST (and OSD_W_ADSB_ALT). Needs an ADS-B receiver (ADSB_TYPE).</p>
 <ul>
 <table><th>Value</th><th>Meaning</th>
 <tr><td>0</td><td>Disabled</td></tr>
@@ -46710,6 +46749,66 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
+</article></section><section class="grp" id="g-ptch-trim-parameters"><h2>PTCH_TRIM_ Parameters</h2><article class="p" id="PTCH_TRIM_SPD1" data-k="ptch_trim_spd1 pitch trim schedule speed 1 (ptch_trim_spd1)"><h3><a href="#PTCH_TRIM_SPD1">PTCH_TRIM_SPD1</a> <span>Pitch trim schedule speed 1</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>Lowest airspeed point of the airspeed-scheduled pitch trim. At or below this airspeed PTCH_TRIM_OFS1 is added to PTCH_TRIM_DEG. Set 0 to disable the schedule. The three speeds must increase. Can be learned in flight with the Pitch Trim Learn switch (RCx_OPTION 254). Near the stall the schedule is tapered: from 1.25 x AIRSPEED_MIN down to AIRSPEED_MIN the extra trim fades to the least nose-up of the three offsets, so it never raises the nose to hold altitude while slowing towards the stall. KFF_THR2PTCH is ignored while the schedule is active (it adds pitch with throttle and would apply the same correction a second time) and applies again when the schedule is off.</p>
+<ul>
+<li>Units: meters per second</li>
+<li>Range: 0 60</li>
+<li>Increment: 0.1</li>
+</ul>
+
+
+</article><article class="p" id="PTCH_TRIM_SPD2" data-k="ptch_trim_spd2 pitch trim schedule speed 2 (ptch_trim_spd2)"><h3><a href="#PTCH_TRIM_SPD2">PTCH_TRIM_SPD2</a> <span>Pitch trim schedule speed 2</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>Middle airspeed point of the airspeed-scheduled pitch trim. The extra trim is blended linearly between the points.</p>
+<ul>
+<li>Units: meters per second</li>
+<li>Range: 0 60</li>
+<li>Increment: 0.1</li>
+</ul>
+
+
+</article><article class="p" id="PTCH_TRIM_SPD3" data-k="ptch_trim_spd3 pitch trim schedule speed 3 (ptch_trim_spd3)"><h3><a href="#PTCH_TRIM_SPD3">PTCH_TRIM_SPD3</a> <span>Pitch trim schedule speed 3</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>Highest airspeed point of the airspeed-scheduled pitch trim. At or above this airspeed PTCH_TRIM_OFS3 is added to PTCH_TRIM_DEG.</p>
+<ul>
+<li>Units: meters per second</li>
+<li>Range: 0 60</li>
+<li>Increment: 0.1</li>
+</ul>
+
+
+</article><article class="p" id="PTCH_TRIM_OFS1" data-k="ptch_trim_ofs1 pitch trim schedule offset 1 (ptch_trim_ofs1)"><h3><a href="#PTCH_TRIM_OFS1">PTCH_TRIM_OFS1</a> <span>Pitch trim schedule offset 1</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>Pitch trim added to PTCH_TRIM_DEG at PTCH_TRIM_SPD1 and below. Positive is nose up.</p>
+<ul>
+<li>Units: degrees</li>
+<li>Range: -10 10</li>
+<li>Increment: 0.1</li>
+</ul>
+
+
+</article><article class="p" id="PTCH_TRIM_OFS2" data-k="ptch_trim_ofs2 pitch trim schedule offset 2 (ptch_trim_ofs2)"><h3><a href="#PTCH_TRIM_OFS2">PTCH_TRIM_OFS2</a> <span>Pitch trim schedule offset 2</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>Pitch trim added to PTCH_TRIM_DEG at PTCH_TRIM_SPD2. Positive is nose up.</p>
+<ul>
+<li>Units: degrees</li>
+<li>Range: -10 10</li>
+<li>Increment: 0.1</li>
+</ul>
+
+
+</article><article class="p" id="PTCH_TRIM_OFS3" data-k="ptch_trim_ofs3 pitch trim schedule offset 3 (ptch_trim_ofs3)"><h3><a href="#PTCH_TRIM_OFS3">PTCH_TRIM_OFS3</a> <span>Pitch trim schedule offset 3</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>Pitch trim added to PTCH_TRIM_DEG at PTCH_TRIM_SPD3 and above. Positive is nose up.</p>
+<ul>
+<li>Units: degrees</li>
+<li>Range: -10 10</li>
+<li>Increment: 0.1</li>
+</ul>
+
+
 </article></section><section class="grp" id="g-pup-parameters"><h2>PUP_ Parameters</h2><article class="p" id="PUP_ENABLE" data-k="pup_enable enable pullup after altitude wait (pup_enable)"><h3><a href="#PUP_ENABLE">PUP_ENABLE</a> <span>Enable pullup after altitude wait</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Enable pullup after altitude wait</p>
@@ -47473,6 +47572,16 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
+</article><article class="p" id="Q_FS_EKF_HOLD" data-k="q_fs_ekf_hold quadplane ekf failsafe transition hold (q_fs_ekf_hold)"><h3><a href="#Q_FS_EKF_HOLD">Q_FS_EKF_HOLD</a> <span>Quadplane EKF failsafe transition hold</span></h3>
+
+<p>After an EKF failsafe in a VTOL mode, refuse pilot and GCS mode changes from a VTOL mode to a fixed-wing mode (which would start a forward transition) for this many seconds. The time counts from when the EKF is last over FS_EKF_THRESH, in any mode, so the hold lasts while the EKF stays bad. Changes between VTOL modes such as QSTABILIZE and QLAND stay allowed, and failsafe actions are not affected. If Q_ASSIST_ALT is set the hold applies only below that height, otherwise at any height. A refused RC mode switch must be moved again once the hold ends. 0 disables.</p>
+<ul>
+<li>Units: seconds</li>
+<li>Range: 0 60</li>
+<li>Increment: 1</li>
+</ul>
+
+
 </article><article class="p" id="Q_TRIM_ROLL" data-k="q_trim_roll quadplane ahrs trim roll (q_trim_roll)"><h3><a href="#Q_TRIM_ROLL">Q_TRIM_ROLL</a> <span>Quadplane AHRS trim roll</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Hover-only roll trim: the roll angle the VTOL attitude controller holds as level, relative to calibrated AHRS level. Positive values make the vehicle roll right in VTOL flight. Forward flight is not affected. Set by the VTOL AutoTrim switch (RCx_OPTION 182) or by hand. Not applied on tailsitters.</p>
@@ -48075,7 +48184,6 @@ footer{color:var(--muted);font-size:13px}
 <p>Yaw Target notch filter index</p>
 <ul>
 <li>Range: 1 8</li>
-<li>Units: hertz</li>
 </ul>
 
 
@@ -49251,6 +49359,17 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
+</article><article class="p" id="RADAR_OSD_MODE" data-k="radar_osd_mode radar osd peer selection (radar_osd_mode)"><h3><a href="#RADAR_OSD_MODE">RADAR_OSD_MODE</a> <span>Radar OSD peer selection</span></h3>
+
+<p>Which peer the radar OSD element shows. Cycle steps through every peer heard in the last 3 seconds and shows each one for 2 seconds. Nearest always shows the closest peer that reports a position; another peer only takes its place once it is at least 10 percent closer so two aircraft at similar range do not flicker. Peers without a position cannot be ranked so Nearest falls back to cycling until one has a fix.</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Cycle through all peers</td></tr>
+<tr><td>1</td><td>Nearest peer</td></tr>
+</table>
+</ul>
+
+
 </article></section><section class="grp" id="g-rally-parameters"><h2>RALLY_ Parameters</h2><article class="p" id="RALLY_TOTAL" data-k="rally_total rally total (rally_total)"><h3><a href="#RALLY_TOTAL">RALLY_TOTAL</a> <span>Rally Total</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>Number of rally points currently loaded</p>
@@ -49309,6 +49428,18 @@ footer{color:var(--muted);font-size:13px}
 <ul>
 <li>Range: 0.1 10.0</li>
 <li>Units: seconds</li>
+</ul>
+
+
+</article><article class="p" id="RC_32CH_ENABLE" data-k="rc_32ch_enable enable rc channels 17 to 32 (rc_32ch_enable)"><h3><a href="#RC_32CH_ENABLE">RC_32CH_ENABLE</a> <span>Enable RC channels 17 to 32</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>Accept RC input on channels 17 to 32 and show their RC17_ to RC32_ parameters. Needs a receiver link that carries more than 16 channels to the autopilot - such as mLRS in MAVLink mode (RADIO_RC_CHANNELS) or CRSF up to 24. Refresh the parameter list after enabling. When disabled the autopilot uses channels 1 to 16 exactly as before.</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Disabled (16 channels)</td></tr>
+<tr><td>1</td><td>Enabled (32 channels)</td></tr>
+</table>
+<li>RebootRequired: True</li>
 </ul>
 
 
@@ -49470,9 +49601,11 @@ footer{color:var(--muted);font-size:13px}
 <tr><td>217</td><td>Mount2 Yaw</td></tr>
 <tr><td>218</td><td>Loweheiser throttle</td></tr>
 <tr><td>200</td><td>Servos Auto Trim</td></tr>
+<tr><td>250</td><td>Tuning Set Select</td></tr>
 <tr><td>251</td><td>RTL Autoland Commit</td></tr>
 <tr><td>252</td><td>Mount1 Head Track Enable</td></tr>
 <tr><td>253</td><td>Mount1 Head Track Center Lock</td></tr>
+<tr><td>254</td><td>Adaptive Pitch Trim</td></tr>
 <tr><td>300</td><td>Scripting1</td></tr>
 <tr><td>301</td><td>Scripting2</td></tr>
 <tr><td>302</td><td>Scripting3</td></tr>
@@ -49652,9 +49785,11 @@ footer{color:var(--muted);font-size:13px}
 <tr><td>217</td><td>Mount2 Yaw</td></tr>
 <tr><td>218</td><td>Loweheiser throttle</td></tr>
 <tr><td>200</td><td>Servos Auto Trim</td></tr>
+<tr><td>250</td><td>Tuning Set Select</td></tr>
 <tr><td>251</td><td>RTL Autoland Commit</td></tr>
 <tr><td>252</td><td>Mount1 Head Track Enable</td></tr>
 <tr><td>253</td><td>Mount1 Head Track Center Lock</td></tr>
+<tr><td>254</td><td>Adaptive Pitch Trim</td></tr>
 <tr><td>300</td><td>Scripting1</td></tr>
 <tr><td>301</td><td>Scripting2</td></tr>
 <tr><td>302</td><td>Scripting3</td></tr>
@@ -49834,9 +49969,11 @@ footer{color:var(--muted);font-size:13px}
 <tr><td>217</td><td>Mount2 Yaw</td></tr>
 <tr><td>218</td><td>Loweheiser throttle</td></tr>
 <tr><td>200</td><td>Servos Auto Trim</td></tr>
+<tr><td>250</td><td>Tuning Set Select</td></tr>
 <tr><td>251</td><td>RTL Autoland Commit</td></tr>
 <tr><td>252</td><td>Mount1 Head Track Enable</td></tr>
 <tr><td>253</td><td>Mount1 Head Track Center Lock</td></tr>
+<tr><td>254</td><td>Adaptive Pitch Trim</td></tr>
 <tr><td>300</td><td>Scripting1</td></tr>
 <tr><td>301</td><td>Scripting2</td></tr>
 <tr><td>302</td><td>Scripting3</td></tr>
@@ -50016,9 +50153,11 @@ footer{color:var(--muted);font-size:13px}
 <tr><td>217</td><td>Mount2 Yaw</td></tr>
 <tr><td>218</td><td>Loweheiser throttle</td></tr>
 <tr><td>200</td><td>Servos Auto Trim</td></tr>
+<tr><td>250</td><td>Tuning Set Select</td></tr>
 <tr><td>251</td><td>RTL Autoland Commit</td></tr>
 <tr><td>252</td><td>Mount1 Head Track Enable</td></tr>
 <tr><td>253</td><td>Mount1 Head Track Center Lock</td></tr>
+<tr><td>254</td><td>Adaptive Pitch Trim</td></tr>
 <tr><td>300</td><td>Scripting1</td></tr>
 <tr><td>301</td><td>Scripting2</td></tr>
 <tr><td>302</td><td>Scripting3</td></tr>
@@ -50198,9 +50337,11 @@ footer{color:var(--muted);font-size:13px}
 <tr><td>217</td><td>Mount2 Yaw</td></tr>
 <tr><td>218</td><td>Loweheiser throttle</td></tr>
 <tr><td>200</td><td>Servos Auto Trim</td></tr>
+<tr><td>250</td><td>Tuning Set Select</td></tr>
 <tr><td>251</td><td>RTL Autoland Commit</td></tr>
 <tr><td>252</td><td>Mount1 Head Track Enable</td></tr>
 <tr><td>253</td><td>Mount1 Head Track Center Lock</td></tr>
+<tr><td>254</td><td>Adaptive Pitch Trim</td></tr>
 <tr><td>300</td><td>Scripting1</td></tr>
 <tr><td>301</td><td>Scripting2</td></tr>
 <tr><td>302</td><td>Scripting3</td></tr>
@@ -50380,9 +50521,11 @@ footer{color:var(--muted);font-size:13px}
 <tr><td>217</td><td>Mount2 Yaw</td></tr>
 <tr><td>218</td><td>Loweheiser throttle</td></tr>
 <tr><td>200</td><td>Servos Auto Trim</td></tr>
+<tr><td>250</td><td>Tuning Set Select</td></tr>
 <tr><td>251</td><td>RTL Autoland Commit</td></tr>
 <tr><td>252</td><td>Mount1 Head Track Enable</td></tr>
 <tr><td>253</td><td>Mount1 Head Track Center Lock</td></tr>
+<tr><td>254</td><td>Adaptive Pitch Trim</td></tr>
 <tr><td>300</td><td>Scripting1</td></tr>
 <tr><td>301</td><td>Scripting2</td></tr>
 <tr><td>302</td><td>Scripting3</td></tr>
@@ -50562,9 +50705,11 @@ footer{color:var(--muted);font-size:13px}
 <tr><td>217</td><td>Mount2 Yaw</td></tr>
 <tr><td>218</td><td>Loweheiser throttle</td></tr>
 <tr><td>200</td><td>Servos Auto Trim</td></tr>
+<tr><td>250</td><td>Tuning Set Select</td></tr>
 <tr><td>251</td><td>RTL Autoland Commit</td></tr>
 <tr><td>252</td><td>Mount1 Head Track Enable</td></tr>
 <tr><td>253</td><td>Mount1 Head Track Center Lock</td></tr>
+<tr><td>254</td><td>Adaptive Pitch Trim</td></tr>
 <tr><td>300</td><td>Scripting1</td></tr>
 <tr><td>301</td><td>Scripting2</td></tr>
 <tr><td>302</td><td>Scripting3</td></tr>
@@ -50744,9 +50889,11 @@ footer{color:var(--muted);font-size:13px}
 <tr><td>217</td><td>Mount2 Yaw</td></tr>
 <tr><td>218</td><td>Loweheiser throttle</td></tr>
 <tr><td>200</td><td>Servos Auto Trim</td></tr>
+<tr><td>250</td><td>Tuning Set Select</td></tr>
 <tr><td>251</td><td>RTL Autoland Commit</td></tr>
 <tr><td>252</td><td>Mount1 Head Track Enable</td></tr>
 <tr><td>253</td><td>Mount1 Head Track Center Lock</td></tr>
+<tr><td>254</td><td>Adaptive Pitch Trim</td></tr>
 <tr><td>300</td><td>Scripting1</td></tr>
 <tr><td>301</td><td>Scripting2</td></tr>
 <tr><td>302</td><td>Scripting3</td></tr>
@@ -50926,9 +51073,11 @@ footer{color:var(--muted);font-size:13px}
 <tr><td>217</td><td>Mount2 Yaw</td></tr>
 <tr><td>218</td><td>Loweheiser throttle</td></tr>
 <tr><td>200</td><td>Servos Auto Trim</td></tr>
+<tr><td>250</td><td>Tuning Set Select</td></tr>
 <tr><td>251</td><td>RTL Autoland Commit</td></tr>
 <tr><td>252</td><td>Mount1 Head Track Enable</td></tr>
 <tr><td>253</td><td>Mount1 Head Track Center Lock</td></tr>
+<tr><td>254</td><td>Adaptive Pitch Trim</td></tr>
 <tr><td>300</td><td>Scripting1</td></tr>
 <tr><td>301</td><td>Scripting2</td></tr>
 <tr><td>302</td><td>Scripting3</td></tr>
@@ -51108,9 +51257,11 @@ footer{color:var(--muted);font-size:13px}
 <tr><td>217</td><td>Mount2 Yaw</td></tr>
 <tr><td>218</td><td>Loweheiser throttle</td></tr>
 <tr><td>200</td><td>Servos Auto Trim</td></tr>
+<tr><td>250</td><td>Tuning Set Select</td></tr>
 <tr><td>251</td><td>RTL Autoland Commit</td></tr>
 <tr><td>252</td><td>Mount1 Head Track Enable</td></tr>
 <tr><td>253</td><td>Mount1 Head Track Center Lock</td></tr>
+<tr><td>254</td><td>Adaptive Pitch Trim</td></tr>
 <tr><td>300</td><td>Scripting1</td></tr>
 <tr><td>301</td><td>Scripting2</td></tr>
 <tr><td>302</td><td>Scripting3</td></tr>
@@ -51290,9 +51441,11 @@ footer{color:var(--muted);font-size:13px}
 <tr><td>217</td><td>Mount2 Yaw</td></tr>
 <tr><td>218</td><td>Loweheiser throttle</td></tr>
 <tr><td>200</td><td>Servos Auto Trim</td></tr>
+<tr><td>250</td><td>Tuning Set Select</td></tr>
 <tr><td>251</td><td>RTL Autoland Commit</td></tr>
 <tr><td>252</td><td>Mount1 Head Track Enable</td></tr>
 <tr><td>253</td><td>Mount1 Head Track Center Lock</td></tr>
+<tr><td>254</td><td>Adaptive Pitch Trim</td></tr>
 <tr><td>300</td><td>Scripting1</td></tr>
 <tr><td>301</td><td>Scripting2</td></tr>
 <tr><td>302</td><td>Scripting3</td></tr>
@@ -51472,9 +51625,11 @@ footer{color:var(--muted);font-size:13px}
 <tr><td>217</td><td>Mount2 Yaw</td></tr>
 <tr><td>218</td><td>Loweheiser throttle</td></tr>
 <tr><td>200</td><td>Servos Auto Trim</td></tr>
+<tr><td>250</td><td>Tuning Set Select</td></tr>
 <tr><td>251</td><td>RTL Autoland Commit</td></tr>
 <tr><td>252</td><td>Mount1 Head Track Enable</td></tr>
 <tr><td>253</td><td>Mount1 Head Track Center Lock</td></tr>
+<tr><td>254</td><td>Adaptive Pitch Trim</td></tr>
 <tr><td>300</td><td>Scripting1</td></tr>
 <tr><td>301</td><td>Scripting2</td></tr>
 <tr><td>302</td><td>Scripting3</td></tr>
@@ -51654,9 +51809,11 @@ footer{color:var(--muted);font-size:13px}
 <tr><td>217</td><td>Mount2 Yaw</td></tr>
 <tr><td>218</td><td>Loweheiser throttle</td></tr>
 <tr><td>200</td><td>Servos Auto Trim</td></tr>
+<tr><td>250</td><td>Tuning Set Select</td></tr>
 <tr><td>251</td><td>RTL Autoland Commit</td></tr>
 <tr><td>252</td><td>Mount1 Head Track Enable</td></tr>
 <tr><td>253</td><td>Mount1 Head Track Center Lock</td></tr>
+<tr><td>254</td><td>Adaptive Pitch Trim</td></tr>
 <tr><td>300</td><td>Scripting1</td></tr>
 <tr><td>301</td><td>Scripting2</td></tr>
 <tr><td>302</td><td>Scripting3</td></tr>
@@ -51836,9 +51993,11 @@ footer{color:var(--muted);font-size:13px}
 <tr><td>217</td><td>Mount2 Yaw</td></tr>
 <tr><td>218</td><td>Loweheiser throttle</td></tr>
 <tr><td>200</td><td>Servos Auto Trim</td></tr>
+<tr><td>250</td><td>Tuning Set Select</td></tr>
 <tr><td>251</td><td>RTL Autoland Commit</td></tr>
 <tr><td>252</td><td>Mount1 Head Track Enable</td></tr>
 <tr><td>253</td><td>Mount1 Head Track Center Lock</td></tr>
+<tr><td>254</td><td>Adaptive Pitch Trim</td></tr>
 <tr><td>300</td><td>Scripting1</td></tr>
 <tr><td>301</td><td>Scripting2</td></tr>
 <tr><td>302</td><td>Scripting3</td></tr>
@@ -52018,9 +52177,11 @@ footer{color:var(--muted);font-size:13px}
 <tr><td>217</td><td>Mount2 Yaw</td></tr>
 <tr><td>218</td><td>Loweheiser throttle</td></tr>
 <tr><td>200</td><td>Servos Auto Trim</td></tr>
+<tr><td>250</td><td>Tuning Set Select</td></tr>
 <tr><td>251</td><td>RTL Autoland Commit</td></tr>
 <tr><td>252</td><td>Mount1 Head Track Enable</td></tr>
 <tr><td>253</td><td>Mount1 Head Track Center Lock</td></tr>
+<tr><td>254</td><td>Adaptive Pitch Trim</td></tr>
 <tr><td>300</td><td>Scripting1</td></tr>
 <tr><td>301</td><td>Scripting2</td></tr>
 <tr><td>302</td><td>Scripting3</td></tr>
@@ -52200,9 +52361,2955 @@ footer{color:var(--muted);font-size:13px}
 <tr><td>217</td><td>Mount2 Yaw</td></tr>
 <tr><td>218</td><td>Loweheiser throttle</td></tr>
 <tr><td>200</td><td>Servos Auto Trim</td></tr>
+<tr><td>250</td><td>Tuning Set Select</td></tr>
 <tr><td>251</td><td>RTL Autoland Commit</td></tr>
 <tr><td>252</td><td>Mount1 Head Track Enable</td></tr>
 <tr><td>253</td><td>Mount1 Head Track Center Lock</td></tr>
+<tr><td>254</td><td>Adaptive Pitch Trim</td></tr>
+<tr><td>300</td><td>Scripting1</td></tr>
+<tr><td>301</td><td>Scripting2</td></tr>
+<tr><td>302</td><td>Scripting3</td></tr>
+<tr><td>303</td><td>Scripting4</td></tr>
+<tr><td>304</td><td>Scripting5</td></tr>
+<tr><td>305</td><td>Scripting6</td></tr>
+<tr><td>306</td><td>Scripting7</td></tr>
+<tr><td>307</td><td>Scripting8</td></tr>
+<tr><td>308</td><td>Scripting9</td></tr>
+<tr><td>309</td><td>Scripting10</td></tr>
+<tr><td>310</td><td>Scripting11</td></tr>
+<tr><td>311</td><td>Scripting12</td></tr>
+<tr><td>312</td><td>Scripting13</td></tr>
+<tr><td>313</td><td>Scripting14</td></tr>
+<tr><td>314</td><td>Scripting15</td></tr>
+<tr><td>315</td><td>Scripting16</td></tr>
+<tr><td>316</td><td>Stop-Restart Scripting</td></tr>
+</table>
+</ul>
+
+
+</article></section><section class="grp" id="g-rc17-parameters"><h2>RC17_ Parameters</h2><article class="p" id="RC17_MIN" data-k="rc17_min rc min pwm (rc17_min)"><h3><a href="#RC17_MIN">RC17_MIN</a> <span>RC min PWM</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>RC minimum PWM pulse width in microseconds. Typically 1000 is lower limit, 1500 is neutral and 2000 is upper limit.</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 800 2200</li>
+<li>Increment: 1</li>
+</ul>
+
+
+</article><article class="p" id="RC17_TRIM" data-k="rc17_trim rc trim pwm (rc17_trim)"><h3><a href="#RC17_TRIM">RC17_TRIM</a> <span>RC trim PWM</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>RC trim (neutral) PWM pulse width in microseconds. Typically 1000 is lower limit, 1500 is neutral and 2000 is upper limit.</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 800 2200</li>
+<li>Increment: 1</li>
+</ul>
+
+
+</article><article class="p" id="RC17_MAX" data-k="rc17_max rc max pwm (rc17_max)"><h3><a href="#RC17_MAX">RC17_MAX</a> <span>RC max PWM</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>RC maximum PWM pulse width in microseconds. Typically 1000 is lower limit, 1500 is neutral and 2000 is upper limit.</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 800 2200</li>
+<li>Increment: 1</li>
+</ul>
+
+
+</article><article class="p" id="RC17_REVERSED" data-k="rc17_reversed rc reversed (rc17_reversed)"><h3><a href="#RC17_REVERSED">RC17_REVERSED</a> <span>RC reversed</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>Reverse channel input. Set to 0 for normal operation. Set to 1 to reverse this input channel.</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Normal</td></tr>
+<tr><td>1</td><td>Reversed</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="RC17_DZ" data-k="rc17_dz rc dead-zone (rc17_dz)"><h3><a href="#RC17_DZ">RC17_DZ</a> <span>RC dead-zone</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>PWM dead zone in microseconds around trim or bottom</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 0 200</li>
+</ul>
+
+
+</article><article class="p" id="RC17_OPTION" data-k="rc17_option rc input option (rc17_option)"><h3><a href="#RC17_OPTION">RC17_OPTION</a> <span>RC input option</span></h3>
+
+<p>Function assigned to this RC channel</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Do Nothing</td></tr>
+<tr><td>4</td><td>RTL</td></tr>
+<tr><td>9</td><td>Camera Trigger</td></tr>
+<tr><td>11</td><td>Fence Enable</td></tr>
+<tr><td>16</td><td>AUTO Mode</td></tr>
+<tr><td>17</td><td>AUTOTUNE Mode</td></tr>
+<tr><td>22</td><td>Parachute Release</td></tr>
+<tr><td>24</td><td>Auto Mission Reset</td></tr>
+<tr><td>27</td><td>Retract Mount1</td></tr>
+<tr><td>28</td><td>Relay1 On/Off</td></tr>
+<tr><td>29</td><td>Landing Gear</td></tr>
+<tr><td>30</td><td>Lost Plane Sound</td></tr>
+<tr><td>31</td><td>Motor Emergency Stop</td></tr>
+<tr><td>34</td><td>Relay2 On/Off</td></tr>
+<tr><td>35</td><td>Relay3 On/Off</td></tr>
+<tr><td>36</td><td>Relay4 On/Off</td></tr>
+<tr><td>38</td><td>ADSB Avoidance Enable</td></tr>
+<tr><td>41</td><td>ArmDisarm (4.1 and lower)</td></tr>
+<tr><td>43</td><td>InvertedFlight Enable</td></tr>
+<tr><td>46</td><td>RC Override Enable</td></tr>
+<tr><td>51</td><td>MANUAL Mode</td></tr>
+<tr><td>52</td><td>ACRO Mode</td></tr>
+<tr><td>55</td><td>GUIDED Mode</td></tr>
+<tr><td>56</td><td>LOITER Mode</td></tr>
+<tr><td>58</td><td>Clear Waypoints</td></tr>
+<tr><td>62</td><td>Compass Learn</td></tr>
+<tr><td>64</td><td>Reverse Throttle</td></tr>
+<tr><td>65</td><td>GPS Disable</td></tr>
+<tr><td>66</td><td>Relay5 On/Off</td></tr>
+<tr><td>67</td><td>Relay6 On/Off</td></tr>
+<tr><td>72</td><td>CIRCLE Mode</td></tr>
+<tr><td>77</td><td>TAKEOFF Mode</td></tr>
+<tr><td>78</td><td>RunCam Control</td></tr>
+<tr><td>79</td><td>RunCam OSD Control</td></tr>
+<tr><td>81</td><td>Disarm</td></tr>
+<tr><td>82</td><td>QAssist 3pos</td></tr>
+<tr><td>84</td><td>AirMode</td></tr>
+<tr><td>85</td><td>Generator</td></tr>
+<tr><td>86</td><td>Non Auto Terrain Follow Disable</td></tr>
+<tr><td>87</td><td>Crow Select</td></tr>
+<tr><td>88</td><td>Soaring Enable</td></tr>
+<tr><td>89</td><td>Landing Flare</td></tr>
+<tr><td>90</td><td>EKF Source Set</td></tr>
+<tr><td>91</td><td>Airspeed Ratio Calibration</td></tr>
+<tr><td>92</td><td>FBWA Mode</td></tr>
+<tr><td>94</td><td>VTX Power</td></tr>
+<tr><td>95</td><td>FBWA taildragger takeoff mode</td></tr>
+<tr><td>96</td><td>Trigger re-reading of mode switch</td></tr>
+<tr><td>98</td><td>TRAINING Mode</td></tr>
+<tr><td>100</td><td>KillIMU1</td></tr>
+<tr><td>101</td><td>KillIMU2</td></tr>
+<tr><td>102</td><td>Camera Mode Toggle</td></tr>
+<tr><td>103</td><td>EKF lane switch attempt</td></tr>
+<tr><td>104</td><td>EKF yaw reset</td></tr>
+<tr><td>105</td><td>GPS Disable Yaw</td></tr>
+<tr><td>106</td><td>Disable Airspeed Use</td></tr>
+<tr><td>107</td><td>Enable FW Autotune</td></tr>
+<tr><td>108</td><td>QRTL Mode</td></tr>
+<tr><td>110</td><td>KillIMU3</td></tr>
+<tr><td>111</td><td>Loweheiser starter</td></tr>
+<tr><td>112</td><td>SwitchExternalAHRS</td></tr>
+<tr><td>113</td><td>Retract Mount2</td></tr>
+<tr><td>150</td><td>CRUISE Mode</td></tr>
+<tr><td>153</td><td>ArmDisarm (4.2 and higher)</td></tr>
+<tr><td>154</td><td>ArmDisarm with Quadplane AirMode (4.2 and higher)</td></tr>
+<tr><td>155</td><td>Set roll pitch and yaw trim to current servo and RC</td></tr>
+<tr><td>157</td><td>Force FS Action to FBWA</td></tr>
+<tr><td>158</td><td>Optflow Calibration</td></tr>
+<tr><td>160</td><td>Weathervane Enable</td></tr>
+<tr><td>162</td><td>FFT Tune</td></tr>
+<tr><td>163</td><td>Mount Yaw Lock</td></tr>
+<tr><td>164</td><td>Pause Stream Logging</td></tr>
+<tr><td>165</td><td>Arm/Emergency Motor Stop</td></tr>
+<tr><td>166</td><td>Camera Record Video</td></tr>
+<tr><td>167</td><td>Camera Zoom</td></tr>
+<tr><td>168</td><td>Camera Manual Focus</td></tr>
+<tr><td>169</td><td>Camera Auto Focus</td></tr>
+<tr><td>170</td><td>QSTABILIZE Mode</td></tr>
+<tr><td>171</td><td>Calibrate Compasses</td></tr>
+<tr><td>172</td><td>Battery MPPT Enable</td></tr>
+<tr><td>173</td><td>Plane AUTO Mode Landing Abort</td></tr>
+<tr><td>174</td><td>Camera Image Tracking</td></tr>
+<tr><td>175</td><td>Camera Lens</td></tr>
+<tr><td>176</td><td>Quadplane Fwd Throttle Override enable</td></tr>
+<tr><td>177</td><td>Mount LRF enable</td></tr>
+<tr><td>179</td><td>ICEngine start / stop</td></tr>
+<tr><td>180</td><td>Test autotuned gains after tune is complete</td></tr>
+<tr><td>181</td><td>QuickTune</td></tr>
+<tr><td>182</td><td>VTOL AutoTrim</td></tr>
+<tr><td>184</td><td>System ID Chirp</td></tr>
+<tr><td>185</td><td>Mount Roll/Pitch Lock</td></tr>
+<tr><td>186</td><td>Mount POI Lock</td></tr>
+<tr><td>208</td><td>Flap</td></tr>
+<tr><td>209</td><td>VTOL Forward Throttle</td></tr>
+<tr><td>210</td><td>Airbrakes</td></tr>
+<tr><td>212</td><td>Mount1 Roll</td></tr>
+<tr><td>213</td><td>Mount1 Pitch</td></tr>
+<tr><td>214</td><td>Mount1 Yaw</td></tr>
+<tr><td>215</td><td>Mount2 Roll</td></tr>
+<tr><td>216</td><td>Mount2 Pitch</td></tr>
+<tr><td>217</td><td>Mount2 Yaw</td></tr>
+<tr><td>218</td><td>Loweheiser throttle</td></tr>
+<tr><td>200</td><td>Servos Auto Trim</td></tr>
+<tr><td>250</td><td>Tuning Set Select</td></tr>
+<tr><td>251</td><td>RTL Autoland Commit</td></tr>
+<tr><td>252</td><td>Mount1 Head Track Enable</td></tr>
+<tr><td>253</td><td>Mount1 Head Track Center Lock</td></tr>
+<tr><td>254</td><td>Adaptive Pitch Trim</td></tr>
+<tr><td>300</td><td>Scripting1</td></tr>
+<tr><td>301</td><td>Scripting2</td></tr>
+<tr><td>302</td><td>Scripting3</td></tr>
+<tr><td>303</td><td>Scripting4</td></tr>
+<tr><td>304</td><td>Scripting5</td></tr>
+<tr><td>305</td><td>Scripting6</td></tr>
+<tr><td>306</td><td>Scripting7</td></tr>
+<tr><td>307</td><td>Scripting8</td></tr>
+<tr><td>308</td><td>Scripting9</td></tr>
+<tr><td>309</td><td>Scripting10</td></tr>
+<tr><td>310</td><td>Scripting11</td></tr>
+<tr><td>311</td><td>Scripting12</td></tr>
+<tr><td>312</td><td>Scripting13</td></tr>
+<tr><td>313</td><td>Scripting14</td></tr>
+<tr><td>314</td><td>Scripting15</td></tr>
+<tr><td>315</td><td>Scripting16</td></tr>
+<tr><td>316</td><td>Stop-Restart Scripting</td></tr>
+</table>
+</ul>
+
+
+</article></section><section class="grp" id="g-rc18-parameters"><h2>RC18_ Parameters</h2><article class="p" id="RC18_MIN" data-k="rc18_min rc min pwm (rc18_min)"><h3><a href="#RC18_MIN">RC18_MIN</a> <span>RC min PWM</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>RC minimum PWM pulse width in microseconds. Typically 1000 is lower limit, 1500 is neutral and 2000 is upper limit.</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 800 2200</li>
+<li>Increment: 1</li>
+</ul>
+
+
+</article><article class="p" id="RC18_TRIM" data-k="rc18_trim rc trim pwm (rc18_trim)"><h3><a href="#RC18_TRIM">RC18_TRIM</a> <span>RC trim PWM</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>RC trim (neutral) PWM pulse width in microseconds. Typically 1000 is lower limit, 1500 is neutral and 2000 is upper limit.</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 800 2200</li>
+<li>Increment: 1</li>
+</ul>
+
+
+</article><article class="p" id="RC18_MAX" data-k="rc18_max rc max pwm (rc18_max)"><h3><a href="#RC18_MAX">RC18_MAX</a> <span>RC max PWM</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>RC maximum PWM pulse width in microseconds. Typically 1000 is lower limit, 1500 is neutral and 2000 is upper limit.</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 800 2200</li>
+<li>Increment: 1</li>
+</ul>
+
+
+</article><article class="p" id="RC18_REVERSED" data-k="rc18_reversed rc reversed (rc18_reversed)"><h3><a href="#RC18_REVERSED">RC18_REVERSED</a> <span>RC reversed</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>Reverse channel input. Set to 0 for normal operation. Set to 1 to reverse this input channel.</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Normal</td></tr>
+<tr><td>1</td><td>Reversed</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="RC18_DZ" data-k="rc18_dz rc dead-zone (rc18_dz)"><h3><a href="#RC18_DZ">RC18_DZ</a> <span>RC dead-zone</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>PWM dead zone in microseconds around trim or bottom</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 0 200</li>
+</ul>
+
+
+</article><article class="p" id="RC18_OPTION" data-k="rc18_option rc input option (rc18_option)"><h3><a href="#RC18_OPTION">RC18_OPTION</a> <span>RC input option</span></h3>
+
+<p>Function assigned to this RC channel</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Do Nothing</td></tr>
+<tr><td>4</td><td>RTL</td></tr>
+<tr><td>9</td><td>Camera Trigger</td></tr>
+<tr><td>11</td><td>Fence Enable</td></tr>
+<tr><td>16</td><td>AUTO Mode</td></tr>
+<tr><td>17</td><td>AUTOTUNE Mode</td></tr>
+<tr><td>22</td><td>Parachute Release</td></tr>
+<tr><td>24</td><td>Auto Mission Reset</td></tr>
+<tr><td>27</td><td>Retract Mount1</td></tr>
+<tr><td>28</td><td>Relay1 On/Off</td></tr>
+<tr><td>29</td><td>Landing Gear</td></tr>
+<tr><td>30</td><td>Lost Plane Sound</td></tr>
+<tr><td>31</td><td>Motor Emergency Stop</td></tr>
+<tr><td>34</td><td>Relay2 On/Off</td></tr>
+<tr><td>35</td><td>Relay3 On/Off</td></tr>
+<tr><td>36</td><td>Relay4 On/Off</td></tr>
+<tr><td>38</td><td>ADSB Avoidance Enable</td></tr>
+<tr><td>41</td><td>ArmDisarm (4.1 and lower)</td></tr>
+<tr><td>43</td><td>InvertedFlight Enable</td></tr>
+<tr><td>46</td><td>RC Override Enable</td></tr>
+<tr><td>51</td><td>MANUAL Mode</td></tr>
+<tr><td>52</td><td>ACRO Mode</td></tr>
+<tr><td>55</td><td>GUIDED Mode</td></tr>
+<tr><td>56</td><td>LOITER Mode</td></tr>
+<tr><td>58</td><td>Clear Waypoints</td></tr>
+<tr><td>62</td><td>Compass Learn</td></tr>
+<tr><td>64</td><td>Reverse Throttle</td></tr>
+<tr><td>65</td><td>GPS Disable</td></tr>
+<tr><td>66</td><td>Relay5 On/Off</td></tr>
+<tr><td>67</td><td>Relay6 On/Off</td></tr>
+<tr><td>72</td><td>CIRCLE Mode</td></tr>
+<tr><td>77</td><td>TAKEOFF Mode</td></tr>
+<tr><td>78</td><td>RunCam Control</td></tr>
+<tr><td>79</td><td>RunCam OSD Control</td></tr>
+<tr><td>81</td><td>Disarm</td></tr>
+<tr><td>82</td><td>QAssist 3pos</td></tr>
+<tr><td>84</td><td>AirMode</td></tr>
+<tr><td>85</td><td>Generator</td></tr>
+<tr><td>86</td><td>Non Auto Terrain Follow Disable</td></tr>
+<tr><td>87</td><td>Crow Select</td></tr>
+<tr><td>88</td><td>Soaring Enable</td></tr>
+<tr><td>89</td><td>Landing Flare</td></tr>
+<tr><td>90</td><td>EKF Source Set</td></tr>
+<tr><td>91</td><td>Airspeed Ratio Calibration</td></tr>
+<tr><td>92</td><td>FBWA Mode</td></tr>
+<tr><td>94</td><td>VTX Power</td></tr>
+<tr><td>95</td><td>FBWA taildragger takeoff mode</td></tr>
+<tr><td>96</td><td>Trigger re-reading of mode switch</td></tr>
+<tr><td>98</td><td>TRAINING Mode</td></tr>
+<tr><td>100</td><td>KillIMU1</td></tr>
+<tr><td>101</td><td>KillIMU2</td></tr>
+<tr><td>102</td><td>Camera Mode Toggle</td></tr>
+<tr><td>103</td><td>EKF lane switch attempt</td></tr>
+<tr><td>104</td><td>EKF yaw reset</td></tr>
+<tr><td>105</td><td>GPS Disable Yaw</td></tr>
+<tr><td>106</td><td>Disable Airspeed Use</td></tr>
+<tr><td>107</td><td>Enable FW Autotune</td></tr>
+<tr><td>108</td><td>QRTL Mode</td></tr>
+<tr><td>110</td><td>KillIMU3</td></tr>
+<tr><td>111</td><td>Loweheiser starter</td></tr>
+<tr><td>112</td><td>SwitchExternalAHRS</td></tr>
+<tr><td>113</td><td>Retract Mount2</td></tr>
+<tr><td>150</td><td>CRUISE Mode</td></tr>
+<tr><td>153</td><td>ArmDisarm (4.2 and higher)</td></tr>
+<tr><td>154</td><td>ArmDisarm with Quadplane AirMode (4.2 and higher)</td></tr>
+<tr><td>155</td><td>Set roll pitch and yaw trim to current servo and RC</td></tr>
+<tr><td>157</td><td>Force FS Action to FBWA</td></tr>
+<tr><td>158</td><td>Optflow Calibration</td></tr>
+<tr><td>160</td><td>Weathervane Enable</td></tr>
+<tr><td>162</td><td>FFT Tune</td></tr>
+<tr><td>163</td><td>Mount Yaw Lock</td></tr>
+<tr><td>164</td><td>Pause Stream Logging</td></tr>
+<tr><td>165</td><td>Arm/Emergency Motor Stop</td></tr>
+<tr><td>166</td><td>Camera Record Video</td></tr>
+<tr><td>167</td><td>Camera Zoom</td></tr>
+<tr><td>168</td><td>Camera Manual Focus</td></tr>
+<tr><td>169</td><td>Camera Auto Focus</td></tr>
+<tr><td>170</td><td>QSTABILIZE Mode</td></tr>
+<tr><td>171</td><td>Calibrate Compasses</td></tr>
+<tr><td>172</td><td>Battery MPPT Enable</td></tr>
+<tr><td>173</td><td>Plane AUTO Mode Landing Abort</td></tr>
+<tr><td>174</td><td>Camera Image Tracking</td></tr>
+<tr><td>175</td><td>Camera Lens</td></tr>
+<tr><td>176</td><td>Quadplane Fwd Throttle Override enable</td></tr>
+<tr><td>177</td><td>Mount LRF enable</td></tr>
+<tr><td>179</td><td>ICEngine start / stop</td></tr>
+<tr><td>180</td><td>Test autotuned gains after tune is complete</td></tr>
+<tr><td>181</td><td>QuickTune</td></tr>
+<tr><td>182</td><td>VTOL AutoTrim</td></tr>
+<tr><td>184</td><td>System ID Chirp</td></tr>
+<tr><td>185</td><td>Mount Roll/Pitch Lock</td></tr>
+<tr><td>186</td><td>Mount POI Lock</td></tr>
+<tr><td>208</td><td>Flap</td></tr>
+<tr><td>209</td><td>VTOL Forward Throttle</td></tr>
+<tr><td>210</td><td>Airbrakes</td></tr>
+<tr><td>212</td><td>Mount1 Roll</td></tr>
+<tr><td>213</td><td>Mount1 Pitch</td></tr>
+<tr><td>214</td><td>Mount1 Yaw</td></tr>
+<tr><td>215</td><td>Mount2 Roll</td></tr>
+<tr><td>216</td><td>Mount2 Pitch</td></tr>
+<tr><td>217</td><td>Mount2 Yaw</td></tr>
+<tr><td>218</td><td>Loweheiser throttle</td></tr>
+<tr><td>200</td><td>Servos Auto Trim</td></tr>
+<tr><td>250</td><td>Tuning Set Select</td></tr>
+<tr><td>251</td><td>RTL Autoland Commit</td></tr>
+<tr><td>252</td><td>Mount1 Head Track Enable</td></tr>
+<tr><td>253</td><td>Mount1 Head Track Center Lock</td></tr>
+<tr><td>254</td><td>Adaptive Pitch Trim</td></tr>
+<tr><td>300</td><td>Scripting1</td></tr>
+<tr><td>301</td><td>Scripting2</td></tr>
+<tr><td>302</td><td>Scripting3</td></tr>
+<tr><td>303</td><td>Scripting4</td></tr>
+<tr><td>304</td><td>Scripting5</td></tr>
+<tr><td>305</td><td>Scripting6</td></tr>
+<tr><td>306</td><td>Scripting7</td></tr>
+<tr><td>307</td><td>Scripting8</td></tr>
+<tr><td>308</td><td>Scripting9</td></tr>
+<tr><td>309</td><td>Scripting10</td></tr>
+<tr><td>310</td><td>Scripting11</td></tr>
+<tr><td>311</td><td>Scripting12</td></tr>
+<tr><td>312</td><td>Scripting13</td></tr>
+<tr><td>313</td><td>Scripting14</td></tr>
+<tr><td>314</td><td>Scripting15</td></tr>
+<tr><td>315</td><td>Scripting16</td></tr>
+<tr><td>316</td><td>Stop-Restart Scripting</td></tr>
+</table>
+</ul>
+
+
+</article></section><section class="grp" id="g-rc19-parameters"><h2>RC19_ Parameters</h2><article class="p" id="RC19_MIN" data-k="rc19_min rc min pwm (rc19_min)"><h3><a href="#RC19_MIN">RC19_MIN</a> <span>RC min PWM</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>RC minimum PWM pulse width in microseconds. Typically 1000 is lower limit, 1500 is neutral and 2000 is upper limit.</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 800 2200</li>
+<li>Increment: 1</li>
+</ul>
+
+
+</article><article class="p" id="RC19_TRIM" data-k="rc19_trim rc trim pwm (rc19_trim)"><h3><a href="#RC19_TRIM">RC19_TRIM</a> <span>RC trim PWM</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>RC trim (neutral) PWM pulse width in microseconds. Typically 1000 is lower limit, 1500 is neutral and 2000 is upper limit.</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 800 2200</li>
+<li>Increment: 1</li>
+</ul>
+
+
+</article><article class="p" id="RC19_MAX" data-k="rc19_max rc max pwm (rc19_max)"><h3><a href="#RC19_MAX">RC19_MAX</a> <span>RC max PWM</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>RC maximum PWM pulse width in microseconds. Typically 1000 is lower limit, 1500 is neutral and 2000 is upper limit.</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 800 2200</li>
+<li>Increment: 1</li>
+</ul>
+
+
+</article><article class="p" id="RC19_REVERSED" data-k="rc19_reversed rc reversed (rc19_reversed)"><h3><a href="#RC19_REVERSED">RC19_REVERSED</a> <span>RC reversed</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>Reverse channel input. Set to 0 for normal operation. Set to 1 to reverse this input channel.</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Normal</td></tr>
+<tr><td>1</td><td>Reversed</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="RC19_DZ" data-k="rc19_dz rc dead-zone (rc19_dz)"><h3><a href="#RC19_DZ">RC19_DZ</a> <span>RC dead-zone</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>PWM dead zone in microseconds around trim or bottom</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 0 200</li>
+</ul>
+
+
+</article><article class="p" id="RC19_OPTION" data-k="rc19_option rc input option (rc19_option)"><h3><a href="#RC19_OPTION">RC19_OPTION</a> <span>RC input option</span></h3>
+
+<p>Function assigned to this RC channel</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Do Nothing</td></tr>
+<tr><td>4</td><td>RTL</td></tr>
+<tr><td>9</td><td>Camera Trigger</td></tr>
+<tr><td>11</td><td>Fence Enable</td></tr>
+<tr><td>16</td><td>AUTO Mode</td></tr>
+<tr><td>17</td><td>AUTOTUNE Mode</td></tr>
+<tr><td>22</td><td>Parachute Release</td></tr>
+<tr><td>24</td><td>Auto Mission Reset</td></tr>
+<tr><td>27</td><td>Retract Mount1</td></tr>
+<tr><td>28</td><td>Relay1 On/Off</td></tr>
+<tr><td>29</td><td>Landing Gear</td></tr>
+<tr><td>30</td><td>Lost Plane Sound</td></tr>
+<tr><td>31</td><td>Motor Emergency Stop</td></tr>
+<tr><td>34</td><td>Relay2 On/Off</td></tr>
+<tr><td>35</td><td>Relay3 On/Off</td></tr>
+<tr><td>36</td><td>Relay4 On/Off</td></tr>
+<tr><td>38</td><td>ADSB Avoidance Enable</td></tr>
+<tr><td>41</td><td>ArmDisarm (4.1 and lower)</td></tr>
+<tr><td>43</td><td>InvertedFlight Enable</td></tr>
+<tr><td>46</td><td>RC Override Enable</td></tr>
+<tr><td>51</td><td>MANUAL Mode</td></tr>
+<tr><td>52</td><td>ACRO Mode</td></tr>
+<tr><td>55</td><td>GUIDED Mode</td></tr>
+<tr><td>56</td><td>LOITER Mode</td></tr>
+<tr><td>58</td><td>Clear Waypoints</td></tr>
+<tr><td>62</td><td>Compass Learn</td></tr>
+<tr><td>64</td><td>Reverse Throttle</td></tr>
+<tr><td>65</td><td>GPS Disable</td></tr>
+<tr><td>66</td><td>Relay5 On/Off</td></tr>
+<tr><td>67</td><td>Relay6 On/Off</td></tr>
+<tr><td>72</td><td>CIRCLE Mode</td></tr>
+<tr><td>77</td><td>TAKEOFF Mode</td></tr>
+<tr><td>78</td><td>RunCam Control</td></tr>
+<tr><td>79</td><td>RunCam OSD Control</td></tr>
+<tr><td>81</td><td>Disarm</td></tr>
+<tr><td>82</td><td>QAssist 3pos</td></tr>
+<tr><td>84</td><td>AirMode</td></tr>
+<tr><td>85</td><td>Generator</td></tr>
+<tr><td>86</td><td>Non Auto Terrain Follow Disable</td></tr>
+<tr><td>87</td><td>Crow Select</td></tr>
+<tr><td>88</td><td>Soaring Enable</td></tr>
+<tr><td>89</td><td>Landing Flare</td></tr>
+<tr><td>90</td><td>EKF Source Set</td></tr>
+<tr><td>91</td><td>Airspeed Ratio Calibration</td></tr>
+<tr><td>92</td><td>FBWA Mode</td></tr>
+<tr><td>94</td><td>VTX Power</td></tr>
+<tr><td>95</td><td>FBWA taildragger takeoff mode</td></tr>
+<tr><td>96</td><td>Trigger re-reading of mode switch</td></tr>
+<tr><td>98</td><td>TRAINING Mode</td></tr>
+<tr><td>100</td><td>KillIMU1</td></tr>
+<tr><td>101</td><td>KillIMU2</td></tr>
+<tr><td>102</td><td>Camera Mode Toggle</td></tr>
+<tr><td>103</td><td>EKF lane switch attempt</td></tr>
+<tr><td>104</td><td>EKF yaw reset</td></tr>
+<tr><td>105</td><td>GPS Disable Yaw</td></tr>
+<tr><td>106</td><td>Disable Airspeed Use</td></tr>
+<tr><td>107</td><td>Enable FW Autotune</td></tr>
+<tr><td>108</td><td>QRTL Mode</td></tr>
+<tr><td>110</td><td>KillIMU3</td></tr>
+<tr><td>111</td><td>Loweheiser starter</td></tr>
+<tr><td>112</td><td>SwitchExternalAHRS</td></tr>
+<tr><td>113</td><td>Retract Mount2</td></tr>
+<tr><td>150</td><td>CRUISE Mode</td></tr>
+<tr><td>153</td><td>ArmDisarm (4.2 and higher)</td></tr>
+<tr><td>154</td><td>ArmDisarm with Quadplane AirMode (4.2 and higher)</td></tr>
+<tr><td>155</td><td>Set roll pitch and yaw trim to current servo and RC</td></tr>
+<tr><td>157</td><td>Force FS Action to FBWA</td></tr>
+<tr><td>158</td><td>Optflow Calibration</td></tr>
+<tr><td>160</td><td>Weathervane Enable</td></tr>
+<tr><td>162</td><td>FFT Tune</td></tr>
+<tr><td>163</td><td>Mount Yaw Lock</td></tr>
+<tr><td>164</td><td>Pause Stream Logging</td></tr>
+<tr><td>165</td><td>Arm/Emergency Motor Stop</td></tr>
+<tr><td>166</td><td>Camera Record Video</td></tr>
+<tr><td>167</td><td>Camera Zoom</td></tr>
+<tr><td>168</td><td>Camera Manual Focus</td></tr>
+<tr><td>169</td><td>Camera Auto Focus</td></tr>
+<tr><td>170</td><td>QSTABILIZE Mode</td></tr>
+<tr><td>171</td><td>Calibrate Compasses</td></tr>
+<tr><td>172</td><td>Battery MPPT Enable</td></tr>
+<tr><td>173</td><td>Plane AUTO Mode Landing Abort</td></tr>
+<tr><td>174</td><td>Camera Image Tracking</td></tr>
+<tr><td>175</td><td>Camera Lens</td></tr>
+<tr><td>176</td><td>Quadplane Fwd Throttle Override enable</td></tr>
+<tr><td>177</td><td>Mount LRF enable</td></tr>
+<tr><td>179</td><td>ICEngine start / stop</td></tr>
+<tr><td>180</td><td>Test autotuned gains after tune is complete</td></tr>
+<tr><td>181</td><td>QuickTune</td></tr>
+<tr><td>182</td><td>VTOL AutoTrim</td></tr>
+<tr><td>184</td><td>System ID Chirp</td></tr>
+<tr><td>185</td><td>Mount Roll/Pitch Lock</td></tr>
+<tr><td>186</td><td>Mount POI Lock</td></tr>
+<tr><td>208</td><td>Flap</td></tr>
+<tr><td>209</td><td>VTOL Forward Throttle</td></tr>
+<tr><td>210</td><td>Airbrakes</td></tr>
+<tr><td>212</td><td>Mount1 Roll</td></tr>
+<tr><td>213</td><td>Mount1 Pitch</td></tr>
+<tr><td>214</td><td>Mount1 Yaw</td></tr>
+<tr><td>215</td><td>Mount2 Roll</td></tr>
+<tr><td>216</td><td>Mount2 Pitch</td></tr>
+<tr><td>217</td><td>Mount2 Yaw</td></tr>
+<tr><td>218</td><td>Loweheiser throttle</td></tr>
+<tr><td>200</td><td>Servos Auto Trim</td></tr>
+<tr><td>250</td><td>Tuning Set Select</td></tr>
+<tr><td>251</td><td>RTL Autoland Commit</td></tr>
+<tr><td>252</td><td>Mount1 Head Track Enable</td></tr>
+<tr><td>253</td><td>Mount1 Head Track Center Lock</td></tr>
+<tr><td>254</td><td>Adaptive Pitch Trim</td></tr>
+<tr><td>300</td><td>Scripting1</td></tr>
+<tr><td>301</td><td>Scripting2</td></tr>
+<tr><td>302</td><td>Scripting3</td></tr>
+<tr><td>303</td><td>Scripting4</td></tr>
+<tr><td>304</td><td>Scripting5</td></tr>
+<tr><td>305</td><td>Scripting6</td></tr>
+<tr><td>306</td><td>Scripting7</td></tr>
+<tr><td>307</td><td>Scripting8</td></tr>
+<tr><td>308</td><td>Scripting9</td></tr>
+<tr><td>309</td><td>Scripting10</td></tr>
+<tr><td>310</td><td>Scripting11</td></tr>
+<tr><td>311</td><td>Scripting12</td></tr>
+<tr><td>312</td><td>Scripting13</td></tr>
+<tr><td>313</td><td>Scripting14</td></tr>
+<tr><td>314</td><td>Scripting15</td></tr>
+<tr><td>315</td><td>Scripting16</td></tr>
+<tr><td>316</td><td>Stop-Restart Scripting</td></tr>
+</table>
+</ul>
+
+
+</article></section><section class="grp" id="g-rc20-parameters"><h2>RC20_ Parameters</h2><article class="p" id="RC20_MIN" data-k="rc20_min rc min pwm (rc20_min)"><h3><a href="#RC20_MIN">RC20_MIN</a> <span>RC min PWM</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>RC minimum PWM pulse width in microseconds. Typically 1000 is lower limit, 1500 is neutral and 2000 is upper limit.</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 800 2200</li>
+<li>Increment: 1</li>
+</ul>
+
+
+</article><article class="p" id="RC20_TRIM" data-k="rc20_trim rc trim pwm (rc20_trim)"><h3><a href="#RC20_TRIM">RC20_TRIM</a> <span>RC trim PWM</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>RC trim (neutral) PWM pulse width in microseconds. Typically 1000 is lower limit, 1500 is neutral and 2000 is upper limit.</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 800 2200</li>
+<li>Increment: 1</li>
+</ul>
+
+
+</article><article class="p" id="RC20_MAX" data-k="rc20_max rc max pwm (rc20_max)"><h3><a href="#RC20_MAX">RC20_MAX</a> <span>RC max PWM</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>RC maximum PWM pulse width in microseconds. Typically 1000 is lower limit, 1500 is neutral and 2000 is upper limit.</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 800 2200</li>
+<li>Increment: 1</li>
+</ul>
+
+
+</article><article class="p" id="RC20_REVERSED" data-k="rc20_reversed rc reversed (rc20_reversed)"><h3><a href="#RC20_REVERSED">RC20_REVERSED</a> <span>RC reversed</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>Reverse channel input. Set to 0 for normal operation. Set to 1 to reverse this input channel.</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Normal</td></tr>
+<tr><td>1</td><td>Reversed</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="RC20_DZ" data-k="rc20_dz rc dead-zone (rc20_dz)"><h3><a href="#RC20_DZ">RC20_DZ</a> <span>RC dead-zone</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>PWM dead zone in microseconds around trim or bottom</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 0 200</li>
+</ul>
+
+
+</article><article class="p" id="RC20_OPTION" data-k="rc20_option rc input option (rc20_option)"><h3><a href="#RC20_OPTION">RC20_OPTION</a> <span>RC input option</span></h3>
+
+<p>Function assigned to this RC channel</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Do Nothing</td></tr>
+<tr><td>4</td><td>RTL</td></tr>
+<tr><td>9</td><td>Camera Trigger</td></tr>
+<tr><td>11</td><td>Fence Enable</td></tr>
+<tr><td>16</td><td>AUTO Mode</td></tr>
+<tr><td>17</td><td>AUTOTUNE Mode</td></tr>
+<tr><td>22</td><td>Parachute Release</td></tr>
+<tr><td>24</td><td>Auto Mission Reset</td></tr>
+<tr><td>27</td><td>Retract Mount1</td></tr>
+<tr><td>28</td><td>Relay1 On/Off</td></tr>
+<tr><td>29</td><td>Landing Gear</td></tr>
+<tr><td>30</td><td>Lost Plane Sound</td></tr>
+<tr><td>31</td><td>Motor Emergency Stop</td></tr>
+<tr><td>34</td><td>Relay2 On/Off</td></tr>
+<tr><td>35</td><td>Relay3 On/Off</td></tr>
+<tr><td>36</td><td>Relay4 On/Off</td></tr>
+<tr><td>38</td><td>ADSB Avoidance Enable</td></tr>
+<tr><td>41</td><td>ArmDisarm (4.1 and lower)</td></tr>
+<tr><td>43</td><td>InvertedFlight Enable</td></tr>
+<tr><td>46</td><td>RC Override Enable</td></tr>
+<tr><td>51</td><td>MANUAL Mode</td></tr>
+<tr><td>52</td><td>ACRO Mode</td></tr>
+<tr><td>55</td><td>GUIDED Mode</td></tr>
+<tr><td>56</td><td>LOITER Mode</td></tr>
+<tr><td>58</td><td>Clear Waypoints</td></tr>
+<tr><td>62</td><td>Compass Learn</td></tr>
+<tr><td>64</td><td>Reverse Throttle</td></tr>
+<tr><td>65</td><td>GPS Disable</td></tr>
+<tr><td>66</td><td>Relay5 On/Off</td></tr>
+<tr><td>67</td><td>Relay6 On/Off</td></tr>
+<tr><td>72</td><td>CIRCLE Mode</td></tr>
+<tr><td>77</td><td>TAKEOFF Mode</td></tr>
+<tr><td>78</td><td>RunCam Control</td></tr>
+<tr><td>79</td><td>RunCam OSD Control</td></tr>
+<tr><td>81</td><td>Disarm</td></tr>
+<tr><td>82</td><td>QAssist 3pos</td></tr>
+<tr><td>84</td><td>AirMode</td></tr>
+<tr><td>85</td><td>Generator</td></tr>
+<tr><td>86</td><td>Non Auto Terrain Follow Disable</td></tr>
+<tr><td>87</td><td>Crow Select</td></tr>
+<tr><td>88</td><td>Soaring Enable</td></tr>
+<tr><td>89</td><td>Landing Flare</td></tr>
+<tr><td>90</td><td>EKF Source Set</td></tr>
+<tr><td>91</td><td>Airspeed Ratio Calibration</td></tr>
+<tr><td>92</td><td>FBWA Mode</td></tr>
+<tr><td>94</td><td>VTX Power</td></tr>
+<tr><td>95</td><td>FBWA taildragger takeoff mode</td></tr>
+<tr><td>96</td><td>Trigger re-reading of mode switch</td></tr>
+<tr><td>98</td><td>TRAINING Mode</td></tr>
+<tr><td>100</td><td>KillIMU1</td></tr>
+<tr><td>101</td><td>KillIMU2</td></tr>
+<tr><td>102</td><td>Camera Mode Toggle</td></tr>
+<tr><td>103</td><td>EKF lane switch attempt</td></tr>
+<tr><td>104</td><td>EKF yaw reset</td></tr>
+<tr><td>105</td><td>GPS Disable Yaw</td></tr>
+<tr><td>106</td><td>Disable Airspeed Use</td></tr>
+<tr><td>107</td><td>Enable FW Autotune</td></tr>
+<tr><td>108</td><td>QRTL Mode</td></tr>
+<tr><td>110</td><td>KillIMU3</td></tr>
+<tr><td>111</td><td>Loweheiser starter</td></tr>
+<tr><td>112</td><td>SwitchExternalAHRS</td></tr>
+<tr><td>113</td><td>Retract Mount2</td></tr>
+<tr><td>150</td><td>CRUISE Mode</td></tr>
+<tr><td>153</td><td>ArmDisarm (4.2 and higher)</td></tr>
+<tr><td>154</td><td>ArmDisarm with Quadplane AirMode (4.2 and higher)</td></tr>
+<tr><td>155</td><td>Set roll pitch and yaw trim to current servo and RC</td></tr>
+<tr><td>157</td><td>Force FS Action to FBWA</td></tr>
+<tr><td>158</td><td>Optflow Calibration</td></tr>
+<tr><td>160</td><td>Weathervane Enable</td></tr>
+<tr><td>162</td><td>FFT Tune</td></tr>
+<tr><td>163</td><td>Mount Yaw Lock</td></tr>
+<tr><td>164</td><td>Pause Stream Logging</td></tr>
+<tr><td>165</td><td>Arm/Emergency Motor Stop</td></tr>
+<tr><td>166</td><td>Camera Record Video</td></tr>
+<tr><td>167</td><td>Camera Zoom</td></tr>
+<tr><td>168</td><td>Camera Manual Focus</td></tr>
+<tr><td>169</td><td>Camera Auto Focus</td></tr>
+<tr><td>170</td><td>QSTABILIZE Mode</td></tr>
+<tr><td>171</td><td>Calibrate Compasses</td></tr>
+<tr><td>172</td><td>Battery MPPT Enable</td></tr>
+<tr><td>173</td><td>Plane AUTO Mode Landing Abort</td></tr>
+<tr><td>174</td><td>Camera Image Tracking</td></tr>
+<tr><td>175</td><td>Camera Lens</td></tr>
+<tr><td>176</td><td>Quadplane Fwd Throttle Override enable</td></tr>
+<tr><td>177</td><td>Mount LRF enable</td></tr>
+<tr><td>179</td><td>ICEngine start / stop</td></tr>
+<tr><td>180</td><td>Test autotuned gains after tune is complete</td></tr>
+<tr><td>181</td><td>QuickTune</td></tr>
+<tr><td>182</td><td>VTOL AutoTrim</td></tr>
+<tr><td>184</td><td>System ID Chirp</td></tr>
+<tr><td>185</td><td>Mount Roll/Pitch Lock</td></tr>
+<tr><td>186</td><td>Mount POI Lock</td></tr>
+<tr><td>208</td><td>Flap</td></tr>
+<tr><td>209</td><td>VTOL Forward Throttle</td></tr>
+<tr><td>210</td><td>Airbrakes</td></tr>
+<tr><td>212</td><td>Mount1 Roll</td></tr>
+<tr><td>213</td><td>Mount1 Pitch</td></tr>
+<tr><td>214</td><td>Mount1 Yaw</td></tr>
+<tr><td>215</td><td>Mount2 Roll</td></tr>
+<tr><td>216</td><td>Mount2 Pitch</td></tr>
+<tr><td>217</td><td>Mount2 Yaw</td></tr>
+<tr><td>218</td><td>Loweheiser throttle</td></tr>
+<tr><td>200</td><td>Servos Auto Trim</td></tr>
+<tr><td>250</td><td>Tuning Set Select</td></tr>
+<tr><td>251</td><td>RTL Autoland Commit</td></tr>
+<tr><td>252</td><td>Mount1 Head Track Enable</td></tr>
+<tr><td>253</td><td>Mount1 Head Track Center Lock</td></tr>
+<tr><td>254</td><td>Adaptive Pitch Trim</td></tr>
+<tr><td>300</td><td>Scripting1</td></tr>
+<tr><td>301</td><td>Scripting2</td></tr>
+<tr><td>302</td><td>Scripting3</td></tr>
+<tr><td>303</td><td>Scripting4</td></tr>
+<tr><td>304</td><td>Scripting5</td></tr>
+<tr><td>305</td><td>Scripting6</td></tr>
+<tr><td>306</td><td>Scripting7</td></tr>
+<tr><td>307</td><td>Scripting8</td></tr>
+<tr><td>308</td><td>Scripting9</td></tr>
+<tr><td>309</td><td>Scripting10</td></tr>
+<tr><td>310</td><td>Scripting11</td></tr>
+<tr><td>311</td><td>Scripting12</td></tr>
+<tr><td>312</td><td>Scripting13</td></tr>
+<tr><td>313</td><td>Scripting14</td></tr>
+<tr><td>314</td><td>Scripting15</td></tr>
+<tr><td>315</td><td>Scripting16</td></tr>
+<tr><td>316</td><td>Stop-Restart Scripting</td></tr>
+</table>
+</ul>
+
+
+</article></section><section class="grp" id="g-rc21-parameters"><h2>RC21_ Parameters</h2><article class="p" id="RC21_MIN" data-k="rc21_min rc min pwm (rc21_min)"><h3><a href="#RC21_MIN">RC21_MIN</a> <span>RC min PWM</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>RC minimum PWM pulse width in microseconds. Typically 1000 is lower limit, 1500 is neutral and 2000 is upper limit.</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 800 2200</li>
+<li>Increment: 1</li>
+</ul>
+
+
+</article><article class="p" id="RC21_TRIM" data-k="rc21_trim rc trim pwm (rc21_trim)"><h3><a href="#RC21_TRIM">RC21_TRIM</a> <span>RC trim PWM</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>RC trim (neutral) PWM pulse width in microseconds. Typically 1000 is lower limit, 1500 is neutral and 2000 is upper limit.</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 800 2200</li>
+<li>Increment: 1</li>
+</ul>
+
+
+</article><article class="p" id="RC21_MAX" data-k="rc21_max rc max pwm (rc21_max)"><h3><a href="#RC21_MAX">RC21_MAX</a> <span>RC max PWM</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>RC maximum PWM pulse width in microseconds. Typically 1000 is lower limit, 1500 is neutral and 2000 is upper limit.</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 800 2200</li>
+<li>Increment: 1</li>
+</ul>
+
+
+</article><article class="p" id="RC21_REVERSED" data-k="rc21_reversed rc reversed (rc21_reversed)"><h3><a href="#RC21_REVERSED">RC21_REVERSED</a> <span>RC reversed</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>Reverse channel input. Set to 0 for normal operation. Set to 1 to reverse this input channel.</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Normal</td></tr>
+<tr><td>1</td><td>Reversed</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="RC21_DZ" data-k="rc21_dz rc dead-zone (rc21_dz)"><h3><a href="#RC21_DZ">RC21_DZ</a> <span>RC dead-zone</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>PWM dead zone in microseconds around trim or bottom</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 0 200</li>
+</ul>
+
+
+</article><article class="p" id="RC21_OPTION" data-k="rc21_option rc input option (rc21_option)"><h3><a href="#RC21_OPTION">RC21_OPTION</a> <span>RC input option</span></h3>
+
+<p>Function assigned to this RC channel</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Do Nothing</td></tr>
+<tr><td>4</td><td>RTL</td></tr>
+<tr><td>9</td><td>Camera Trigger</td></tr>
+<tr><td>11</td><td>Fence Enable</td></tr>
+<tr><td>16</td><td>AUTO Mode</td></tr>
+<tr><td>17</td><td>AUTOTUNE Mode</td></tr>
+<tr><td>22</td><td>Parachute Release</td></tr>
+<tr><td>24</td><td>Auto Mission Reset</td></tr>
+<tr><td>27</td><td>Retract Mount1</td></tr>
+<tr><td>28</td><td>Relay1 On/Off</td></tr>
+<tr><td>29</td><td>Landing Gear</td></tr>
+<tr><td>30</td><td>Lost Plane Sound</td></tr>
+<tr><td>31</td><td>Motor Emergency Stop</td></tr>
+<tr><td>34</td><td>Relay2 On/Off</td></tr>
+<tr><td>35</td><td>Relay3 On/Off</td></tr>
+<tr><td>36</td><td>Relay4 On/Off</td></tr>
+<tr><td>38</td><td>ADSB Avoidance Enable</td></tr>
+<tr><td>41</td><td>ArmDisarm (4.1 and lower)</td></tr>
+<tr><td>43</td><td>InvertedFlight Enable</td></tr>
+<tr><td>46</td><td>RC Override Enable</td></tr>
+<tr><td>51</td><td>MANUAL Mode</td></tr>
+<tr><td>52</td><td>ACRO Mode</td></tr>
+<tr><td>55</td><td>GUIDED Mode</td></tr>
+<tr><td>56</td><td>LOITER Mode</td></tr>
+<tr><td>58</td><td>Clear Waypoints</td></tr>
+<tr><td>62</td><td>Compass Learn</td></tr>
+<tr><td>64</td><td>Reverse Throttle</td></tr>
+<tr><td>65</td><td>GPS Disable</td></tr>
+<tr><td>66</td><td>Relay5 On/Off</td></tr>
+<tr><td>67</td><td>Relay6 On/Off</td></tr>
+<tr><td>72</td><td>CIRCLE Mode</td></tr>
+<tr><td>77</td><td>TAKEOFF Mode</td></tr>
+<tr><td>78</td><td>RunCam Control</td></tr>
+<tr><td>79</td><td>RunCam OSD Control</td></tr>
+<tr><td>81</td><td>Disarm</td></tr>
+<tr><td>82</td><td>QAssist 3pos</td></tr>
+<tr><td>84</td><td>AirMode</td></tr>
+<tr><td>85</td><td>Generator</td></tr>
+<tr><td>86</td><td>Non Auto Terrain Follow Disable</td></tr>
+<tr><td>87</td><td>Crow Select</td></tr>
+<tr><td>88</td><td>Soaring Enable</td></tr>
+<tr><td>89</td><td>Landing Flare</td></tr>
+<tr><td>90</td><td>EKF Source Set</td></tr>
+<tr><td>91</td><td>Airspeed Ratio Calibration</td></tr>
+<tr><td>92</td><td>FBWA Mode</td></tr>
+<tr><td>94</td><td>VTX Power</td></tr>
+<tr><td>95</td><td>FBWA taildragger takeoff mode</td></tr>
+<tr><td>96</td><td>Trigger re-reading of mode switch</td></tr>
+<tr><td>98</td><td>TRAINING Mode</td></tr>
+<tr><td>100</td><td>KillIMU1</td></tr>
+<tr><td>101</td><td>KillIMU2</td></tr>
+<tr><td>102</td><td>Camera Mode Toggle</td></tr>
+<tr><td>103</td><td>EKF lane switch attempt</td></tr>
+<tr><td>104</td><td>EKF yaw reset</td></tr>
+<tr><td>105</td><td>GPS Disable Yaw</td></tr>
+<tr><td>106</td><td>Disable Airspeed Use</td></tr>
+<tr><td>107</td><td>Enable FW Autotune</td></tr>
+<tr><td>108</td><td>QRTL Mode</td></tr>
+<tr><td>110</td><td>KillIMU3</td></tr>
+<tr><td>111</td><td>Loweheiser starter</td></tr>
+<tr><td>112</td><td>SwitchExternalAHRS</td></tr>
+<tr><td>113</td><td>Retract Mount2</td></tr>
+<tr><td>150</td><td>CRUISE Mode</td></tr>
+<tr><td>153</td><td>ArmDisarm (4.2 and higher)</td></tr>
+<tr><td>154</td><td>ArmDisarm with Quadplane AirMode (4.2 and higher)</td></tr>
+<tr><td>155</td><td>Set roll pitch and yaw trim to current servo and RC</td></tr>
+<tr><td>157</td><td>Force FS Action to FBWA</td></tr>
+<tr><td>158</td><td>Optflow Calibration</td></tr>
+<tr><td>160</td><td>Weathervane Enable</td></tr>
+<tr><td>162</td><td>FFT Tune</td></tr>
+<tr><td>163</td><td>Mount Yaw Lock</td></tr>
+<tr><td>164</td><td>Pause Stream Logging</td></tr>
+<tr><td>165</td><td>Arm/Emergency Motor Stop</td></tr>
+<tr><td>166</td><td>Camera Record Video</td></tr>
+<tr><td>167</td><td>Camera Zoom</td></tr>
+<tr><td>168</td><td>Camera Manual Focus</td></tr>
+<tr><td>169</td><td>Camera Auto Focus</td></tr>
+<tr><td>170</td><td>QSTABILIZE Mode</td></tr>
+<tr><td>171</td><td>Calibrate Compasses</td></tr>
+<tr><td>172</td><td>Battery MPPT Enable</td></tr>
+<tr><td>173</td><td>Plane AUTO Mode Landing Abort</td></tr>
+<tr><td>174</td><td>Camera Image Tracking</td></tr>
+<tr><td>175</td><td>Camera Lens</td></tr>
+<tr><td>176</td><td>Quadplane Fwd Throttle Override enable</td></tr>
+<tr><td>177</td><td>Mount LRF enable</td></tr>
+<tr><td>179</td><td>ICEngine start / stop</td></tr>
+<tr><td>180</td><td>Test autotuned gains after tune is complete</td></tr>
+<tr><td>181</td><td>QuickTune</td></tr>
+<tr><td>182</td><td>VTOL AutoTrim</td></tr>
+<tr><td>184</td><td>System ID Chirp</td></tr>
+<tr><td>185</td><td>Mount Roll/Pitch Lock</td></tr>
+<tr><td>186</td><td>Mount POI Lock</td></tr>
+<tr><td>208</td><td>Flap</td></tr>
+<tr><td>209</td><td>VTOL Forward Throttle</td></tr>
+<tr><td>210</td><td>Airbrakes</td></tr>
+<tr><td>212</td><td>Mount1 Roll</td></tr>
+<tr><td>213</td><td>Mount1 Pitch</td></tr>
+<tr><td>214</td><td>Mount1 Yaw</td></tr>
+<tr><td>215</td><td>Mount2 Roll</td></tr>
+<tr><td>216</td><td>Mount2 Pitch</td></tr>
+<tr><td>217</td><td>Mount2 Yaw</td></tr>
+<tr><td>218</td><td>Loweheiser throttle</td></tr>
+<tr><td>200</td><td>Servos Auto Trim</td></tr>
+<tr><td>250</td><td>Tuning Set Select</td></tr>
+<tr><td>251</td><td>RTL Autoland Commit</td></tr>
+<tr><td>252</td><td>Mount1 Head Track Enable</td></tr>
+<tr><td>253</td><td>Mount1 Head Track Center Lock</td></tr>
+<tr><td>254</td><td>Adaptive Pitch Trim</td></tr>
+<tr><td>300</td><td>Scripting1</td></tr>
+<tr><td>301</td><td>Scripting2</td></tr>
+<tr><td>302</td><td>Scripting3</td></tr>
+<tr><td>303</td><td>Scripting4</td></tr>
+<tr><td>304</td><td>Scripting5</td></tr>
+<tr><td>305</td><td>Scripting6</td></tr>
+<tr><td>306</td><td>Scripting7</td></tr>
+<tr><td>307</td><td>Scripting8</td></tr>
+<tr><td>308</td><td>Scripting9</td></tr>
+<tr><td>309</td><td>Scripting10</td></tr>
+<tr><td>310</td><td>Scripting11</td></tr>
+<tr><td>311</td><td>Scripting12</td></tr>
+<tr><td>312</td><td>Scripting13</td></tr>
+<tr><td>313</td><td>Scripting14</td></tr>
+<tr><td>314</td><td>Scripting15</td></tr>
+<tr><td>315</td><td>Scripting16</td></tr>
+<tr><td>316</td><td>Stop-Restart Scripting</td></tr>
+</table>
+</ul>
+
+
+</article></section><section class="grp" id="g-rc22-parameters"><h2>RC22_ Parameters</h2><article class="p" id="RC22_MIN" data-k="rc22_min rc min pwm (rc22_min)"><h3><a href="#RC22_MIN">RC22_MIN</a> <span>RC min PWM</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>RC minimum PWM pulse width in microseconds. Typically 1000 is lower limit, 1500 is neutral and 2000 is upper limit.</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 800 2200</li>
+<li>Increment: 1</li>
+</ul>
+
+
+</article><article class="p" id="RC22_TRIM" data-k="rc22_trim rc trim pwm (rc22_trim)"><h3><a href="#RC22_TRIM">RC22_TRIM</a> <span>RC trim PWM</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>RC trim (neutral) PWM pulse width in microseconds. Typically 1000 is lower limit, 1500 is neutral and 2000 is upper limit.</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 800 2200</li>
+<li>Increment: 1</li>
+</ul>
+
+
+</article><article class="p" id="RC22_MAX" data-k="rc22_max rc max pwm (rc22_max)"><h3><a href="#RC22_MAX">RC22_MAX</a> <span>RC max PWM</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>RC maximum PWM pulse width in microseconds. Typically 1000 is lower limit, 1500 is neutral and 2000 is upper limit.</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 800 2200</li>
+<li>Increment: 1</li>
+</ul>
+
+
+</article><article class="p" id="RC22_REVERSED" data-k="rc22_reversed rc reversed (rc22_reversed)"><h3><a href="#RC22_REVERSED">RC22_REVERSED</a> <span>RC reversed</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>Reverse channel input. Set to 0 for normal operation. Set to 1 to reverse this input channel.</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Normal</td></tr>
+<tr><td>1</td><td>Reversed</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="RC22_DZ" data-k="rc22_dz rc dead-zone (rc22_dz)"><h3><a href="#RC22_DZ">RC22_DZ</a> <span>RC dead-zone</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>PWM dead zone in microseconds around trim or bottom</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 0 200</li>
+</ul>
+
+
+</article><article class="p" id="RC22_OPTION" data-k="rc22_option rc input option (rc22_option)"><h3><a href="#RC22_OPTION">RC22_OPTION</a> <span>RC input option</span></h3>
+
+<p>Function assigned to this RC channel</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Do Nothing</td></tr>
+<tr><td>4</td><td>RTL</td></tr>
+<tr><td>9</td><td>Camera Trigger</td></tr>
+<tr><td>11</td><td>Fence Enable</td></tr>
+<tr><td>16</td><td>AUTO Mode</td></tr>
+<tr><td>17</td><td>AUTOTUNE Mode</td></tr>
+<tr><td>22</td><td>Parachute Release</td></tr>
+<tr><td>24</td><td>Auto Mission Reset</td></tr>
+<tr><td>27</td><td>Retract Mount1</td></tr>
+<tr><td>28</td><td>Relay1 On/Off</td></tr>
+<tr><td>29</td><td>Landing Gear</td></tr>
+<tr><td>30</td><td>Lost Plane Sound</td></tr>
+<tr><td>31</td><td>Motor Emergency Stop</td></tr>
+<tr><td>34</td><td>Relay2 On/Off</td></tr>
+<tr><td>35</td><td>Relay3 On/Off</td></tr>
+<tr><td>36</td><td>Relay4 On/Off</td></tr>
+<tr><td>38</td><td>ADSB Avoidance Enable</td></tr>
+<tr><td>41</td><td>ArmDisarm (4.1 and lower)</td></tr>
+<tr><td>43</td><td>InvertedFlight Enable</td></tr>
+<tr><td>46</td><td>RC Override Enable</td></tr>
+<tr><td>51</td><td>MANUAL Mode</td></tr>
+<tr><td>52</td><td>ACRO Mode</td></tr>
+<tr><td>55</td><td>GUIDED Mode</td></tr>
+<tr><td>56</td><td>LOITER Mode</td></tr>
+<tr><td>58</td><td>Clear Waypoints</td></tr>
+<tr><td>62</td><td>Compass Learn</td></tr>
+<tr><td>64</td><td>Reverse Throttle</td></tr>
+<tr><td>65</td><td>GPS Disable</td></tr>
+<tr><td>66</td><td>Relay5 On/Off</td></tr>
+<tr><td>67</td><td>Relay6 On/Off</td></tr>
+<tr><td>72</td><td>CIRCLE Mode</td></tr>
+<tr><td>77</td><td>TAKEOFF Mode</td></tr>
+<tr><td>78</td><td>RunCam Control</td></tr>
+<tr><td>79</td><td>RunCam OSD Control</td></tr>
+<tr><td>81</td><td>Disarm</td></tr>
+<tr><td>82</td><td>QAssist 3pos</td></tr>
+<tr><td>84</td><td>AirMode</td></tr>
+<tr><td>85</td><td>Generator</td></tr>
+<tr><td>86</td><td>Non Auto Terrain Follow Disable</td></tr>
+<tr><td>87</td><td>Crow Select</td></tr>
+<tr><td>88</td><td>Soaring Enable</td></tr>
+<tr><td>89</td><td>Landing Flare</td></tr>
+<tr><td>90</td><td>EKF Source Set</td></tr>
+<tr><td>91</td><td>Airspeed Ratio Calibration</td></tr>
+<tr><td>92</td><td>FBWA Mode</td></tr>
+<tr><td>94</td><td>VTX Power</td></tr>
+<tr><td>95</td><td>FBWA taildragger takeoff mode</td></tr>
+<tr><td>96</td><td>Trigger re-reading of mode switch</td></tr>
+<tr><td>98</td><td>TRAINING Mode</td></tr>
+<tr><td>100</td><td>KillIMU1</td></tr>
+<tr><td>101</td><td>KillIMU2</td></tr>
+<tr><td>102</td><td>Camera Mode Toggle</td></tr>
+<tr><td>103</td><td>EKF lane switch attempt</td></tr>
+<tr><td>104</td><td>EKF yaw reset</td></tr>
+<tr><td>105</td><td>GPS Disable Yaw</td></tr>
+<tr><td>106</td><td>Disable Airspeed Use</td></tr>
+<tr><td>107</td><td>Enable FW Autotune</td></tr>
+<tr><td>108</td><td>QRTL Mode</td></tr>
+<tr><td>110</td><td>KillIMU3</td></tr>
+<tr><td>111</td><td>Loweheiser starter</td></tr>
+<tr><td>112</td><td>SwitchExternalAHRS</td></tr>
+<tr><td>113</td><td>Retract Mount2</td></tr>
+<tr><td>150</td><td>CRUISE Mode</td></tr>
+<tr><td>153</td><td>ArmDisarm (4.2 and higher)</td></tr>
+<tr><td>154</td><td>ArmDisarm with Quadplane AirMode (4.2 and higher)</td></tr>
+<tr><td>155</td><td>Set roll pitch and yaw trim to current servo and RC</td></tr>
+<tr><td>157</td><td>Force FS Action to FBWA</td></tr>
+<tr><td>158</td><td>Optflow Calibration</td></tr>
+<tr><td>160</td><td>Weathervane Enable</td></tr>
+<tr><td>162</td><td>FFT Tune</td></tr>
+<tr><td>163</td><td>Mount Yaw Lock</td></tr>
+<tr><td>164</td><td>Pause Stream Logging</td></tr>
+<tr><td>165</td><td>Arm/Emergency Motor Stop</td></tr>
+<tr><td>166</td><td>Camera Record Video</td></tr>
+<tr><td>167</td><td>Camera Zoom</td></tr>
+<tr><td>168</td><td>Camera Manual Focus</td></tr>
+<tr><td>169</td><td>Camera Auto Focus</td></tr>
+<tr><td>170</td><td>QSTABILIZE Mode</td></tr>
+<tr><td>171</td><td>Calibrate Compasses</td></tr>
+<tr><td>172</td><td>Battery MPPT Enable</td></tr>
+<tr><td>173</td><td>Plane AUTO Mode Landing Abort</td></tr>
+<tr><td>174</td><td>Camera Image Tracking</td></tr>
+<tr><td>175</td><td>Camera Lens</td></tr>
+<tr><td>176</td><td>Quadplane Fwd Throttle Override enable</td></tr>
+<tr><td>177</td><td>Mount LRF enable</td></tr>
+<tr><td>179</td><td>ICEngine start / stop</td></tr>
+<tr><td>180</td><td>Test autotuned gains after tune is complete</td></tr>
+<tr><td>181</td><td>QuickTune</td></tr>
+<tr><td>182</td><td>VTOL AutoTrim</td></tr>
+<tr><td>184</td><td>System ID Chirp</td></tr>
+<tr><td>185</td><td>Mount Roll/Pitch Lock</td></tr>
+<tr><td>186</td><td>Mount POI Lock</td></tr>
+<tr><td>208</td><td>Flap</td></tr>
+<tr><td>209</td><td>VTOL Forward Throttle</td></tr>
+<tr><td>210</td><td>Airbrakes</td></tr>
+<tr><td>212</td><td>Mount1 Roll</td></tr>
+<tr><td>213</td><td>Mount1 Pitch</td></tr>
+<tr><td>214</td><td>Mount1 Yaw</td></tr>
+<tr><td>215</td><td>Mount2 Roll</td></tr>
+<tr><td>216</td><td>Mount2 Pitch</td></tr>
+<tr><td>217</td><td>Mount2 Yaw</td></tr>
+<tr><td>218</td><td>Loweheiser throttle</td></tr>
+<tr><td>200</td><td>Servos Auto Trim</td></tr>
+<tr><td>250</td><td>Tuning Set Select</td></tr>
+<tr><td>251</td><td>RTL Autoland Commit</td></tr>
+<tr><td>252</td><td>Mount1 Head Track Enable</td></tr>
+<tr><td>253</td><td>Mount1 Head Track Center Lock</td></tr>
+<tr><td>254</td><td>Adaptive Pitch Trim</td></tr>
+<tr><td>300</td><td>Scripting1</td></tr>
+<tr><td>301</td><td>Scripting2</td></tr>
+<tr><td>302</td><td>Scripting3</td></tr>
+<tr><td>303</td><td>Scripting4</td></tr>
+<tr><td>304</td><td>Scripting5</td></tr>
+<tr><td>305</td><td>Scripting6</td></tr>
+<tr><td>306</td><td>Scripting7</td></tr>
+<tr><td>307</td><td>Scripting8</td></tr>
+<tr><td>308</td><td>Scripting9</td></tr>
+<tr><td>309</td><td>Scripting10</td></tr>
+<tr><td>310</td><td>Scripting11</td></tr>
+<tr><td>311</td><td>Scripting12</td></tr>
+<tr><td>312</td><td>Scripting13</td></tr>
+<tr><td>313</td><td>Scripting14</td></tr>
+<tr><td>314</td><td>Scripting15</td></tr>
+<tr><td>315</td><td>Scripting16</td></tr>
+<tr><td>316</td><td>Stop-Restart Scripting</td></tr>
+</table>
+</ul>
+
+
+</article></section><section class="grp" id="g-rc23-parameters"><h2>RC23_ Parameters</h2><article class="p" id="RC23_MIN" data-k="rc23_min rc min pwm (rc23_min)"><h3><a href="#RC23_MIN">RC23_MIN</a> <span>RC min PWM</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>RC minimum PWM pulse width in microseconds. Typically 1000 is lower limit, 1500 is neutral and 2000 is upper limit.</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 800 2200</li>
+<li>Increment: 1</li>
+</ul>
+
+
+</article><article class="p" id="RC23_TRIM" data-k="rc23_trim rc trim pwm (rc23_trim)"><h3><a href="#RC23_TRIM">RC23_TRIM</a> <span>RC trim PWM</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>RC trim (neutral) PWM pulse width in microseconds. Typically 1000 is lower limit, 1500 is neutral and 2000 is upper limit.</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 800 2200</li>
+<li>Increment: 1</li>
+</ul>
+
+
+</article><article class="p" id="RC23_MAX" data-k="rc23_max rc max pwm (rc23_max)"><h3><a href="#RC23_MAX">RC23_MAX</a> <span>RC max PWM</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>RC maximum PWM pulse width in microseconds. Typically 1000 is lower limit, 1500 is neutral and 2000 is upper limit.</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 800 2200</li>
+<li>Increment: 1</li>
+</ul>
+
+
+</article><article class="p" id="RC23_REVERSED" data-k="rc23_reversed rc reversed (rc23_reversed)"><h3><a href="#RC23_REVERSED">RC23_REVERSED</a> <span>RC reversed</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>Reverse channel input. Set to 0 for normal operation. Set to 1 to reverse this input channel.</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Normal</td></tr>
+<tr><td>1</td><td>Reversed</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="RC23_DZ" data-k="rc23_dz rc dead-zone (rc23_dz)"><h3><a href="#RC23_DZ">RC23_DZ</a> <span>RC dead-zone</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>PWM dead zone in microseconds around trim or bottom</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 0 200</li>
+</ul>
+
+
+</article><article class="p" id="RC23_OPTION" data-k="rc23_option rc input option (rc23_option)"><h3><a href="#RC23_OPTION">RC23_OPTION</a> <span>RC input option</span></h3>
+
+<p>Function assigned to this RC channel</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Do Nothing</td></tr>
+<tr><td>4</td><td>RTL</td></tr>
+<tr><td>9</td><td>Camera Trigger</td></tr>
+<tr><td>11</td><td>Fence Enable</td></tr>
+<tr><td>16</td><td>AUTO Mode</td></tr>
+<tr><td>17</td><td>AUTOTUNE Mode</td></tr>
+<tr><td>22</td><td>Parachute Release</td></tr>
+<tr><td>24</td><td>Auto Mission Reset</td></tr>
+<tr><td>27</td><td>Retract Mount1</td></tr>
+<tr><td>28</td><td>Relay1 On/Off</td></tr>
+<tr><td>29</td><td>Landing Gear</td></tr>
+<tr><td>30</td><td>Lost Plane Sound</td></tr>
+<tr><td>31</td><td>Motor Emergency Stop</td></tr>
+<tr><td>34</td><td>Relay2 On/Off</td></tr>
+<tr><td>35</td><td>Relay3 On/Off</td></tr>
+<tr><td>36</td><td>Relay4 On/Off</td></tr>
+<tr><td>38</td><td>ADSB Avoidance Enable</td></tr>
+<tr><td>41</td><td>ArmDisarm (4.1 and lower)</td></tr>
+<tr><td>43</td><td>InvertedFlight Enable</td></tr>
+<tr><td>46</td><td>RC Override Enable</td></tr>
+<tr><td>51</td><td>MANUAL Mode</td></tr>
+<tr><td>52</td><td>ACRO Mode</td></tr>
+<tr><td>55</td><td>GUIDED Mode</td></tr>
+<tr><td>56</td><td>LOITER Mode</td></tr>
+<tr><td>58</td><td>Clear Waypoints</td></tr>
+<tr><td>62</td><td>Compass Learn</td></tr>
+<tr><td>64</td><td>Reverse Throttle</td></tr>
+<tr><td>65</td><td>GPS Disable</td></tr>
+<tr><td>66</td><td>Relay5 On/Off</td></tr>
+<tr><td>67</td><td>Relay6 On/Off</td></tr>
+<tr><td>72</td><td>CIRCLE Mode</td></tr>
+<tr><td>77</td><td>TAKEOFF Mode</td></tr>
+<tr><td>78</td><td>RunCam Control</td></tr>
+<tr><td>79</td><td>RunCam OSD Control</td></tr>
+<tr><td>81</td><td>Disarm</td></tr>
+<tr><td>82</td><td>QAssist 3pos</td></tr>
+<tr><td>84</td><td>AirMode</td></tr>
+<tr><td>85</td><td>Generator</td></tr>
+<tr><td>86</td><td>Non Auto Terrain Follow Disable</td></tr>
+<tr><td>87</td><td>Crow Select</td></tr>
+<tr><td>88</td><td>Soaring Enable</td></tr>
+<tr><td>89</td><td>Landing Flare</td></tr>
+<tr><td>90</td><td>EKF Source Set</td></tr>
+<tr><td>91</td><td>Airspeed Ratio Calibration</td></tr>
+<tr><td>92</td><td>FBWA Mode</td></tr>
+<tr><td>94</td><td>VTX Power</td></tr>
+<tr><td>95</td><td>FBWA taildragger takeoff mode</td></tr>
+<tr><td>96</td><td>Trigger re-reading of mode switch</td></tr>
+<tr><td>98</td><td>TRAINING Mode</td></tr>
+<tr><td>100</td><td>KillIMU1</td></tr>
+<tr><td>101</td><td>KillIMU2</td></tr>
+<tr><td>102</td><td>Camera Mode Toggle</td></tr>
+<tr><td>103</td><td>EKF lane switch attempt</td></tr>
+<tr><td>104</td><td>EKF yaw reset</td></tr>
+<tr><td>105</td><td>GPS Disable Yaw</td></tr>
+<tr><td>106</td><td>Disable Airspeed Use</td></tr>
+<tr><td>107</td><td>Enable FW Autotune</td></tr>
+<tr><td>108</td><td>QRTL Mode</td></tr>
+<tr><td>110</td><td>KillIMU3</td></tr>
+<tr><td>111</td><td>Loweheiser starter</td></tr>
+<tr><td>112</td><td>SwitchExternalAHRS</td></tr>
+<tr><td>113</td><td>Retract Mount2</td></tr>
+<tr><td>150</td><td>CRUISE Mode</td></tr>
+<tr><td>153</td><td>ArmDisarm (4.2 and higher)</td></tr>
+<tr><td>154</td><td>ArmDisarm with Quadplane AirMode (4.2 and higher)</td></tr>
+<tr><td>155</td><td>Set roll pitch and yaw trim to current servo and RC</td></tr>
+<tr><td>157</td><td>Force FS Action to FBWA</td></tr>
+<tr><td>158</td><td>Optflow Calibration</td></tr>
+<tr><td>160</td><td>Weathervane Enable</td></tr>
+<tr><td>162</td><td>FFT Tune</td></tr>
+<tr><td>163</td><td>Mount Yaw Lock</td></tr>
+<tr><td>164</td><td>Pause Stream Logging</td></tr>
+<tr><td>165</td><td>Arm/Emergency Motor Stop</td></tr>
+<tr><td>166</td><td>Camera Record Video</td></tr>
+<tr><td>167</td><td>Camera Zoom</td></tr>
+<tr><td>168</td><td>Camera Manual Focus</td></tr>
+<tr><td>169</td><td>Camera Auto Focus</td></tr>
+<tr><td>170</td><td>QSTABILIZE Mode</td></tr>
+<tr><td>171</td><td>Calibrate Compasses</td></tr>
+<tr><td>172</td><td>Battery MPPT Enable</td></tr>
+<tr><td>173</td><td>Plane AUTO Mode Landing Abort</td></tr>
+<tr><td>174</td><td>Camera Image Tracking</td></tr>
+<tr><td>175</td><td>Camera Lens</td></tr>
+<tr><td>176</td><td>Quadplane Fwd Throttle Override enable</td></tr>
+<tr><td>177</td><td>Mount LRF enable</td></tr>
+<tr><td>179</td><td>ICEngine start / stop</td></tr>
+<tr><td>180</td><td>Test autotuned gains after tune is complete</td></tr>
+<tr><td>181</td><td>QuickTune</td></tr>
+<tr><td>182</td><td>VTOL AutoTrim</td></tr>
+<tr><td>184</td><td>System ID Chirp</td></tr>
+<tr><td>185</td><td>Mount Roll/Pitch Lock</td></tr>
+<tr><td>186</td><td>Mount POI Lock</td></tr>
+<tr><td>208</td><td>Flap</td></tr>
+<tr><td>209</td><td>VTOL Forward Throttle</td></tr>
+<tr><td>210</td><td>Airbrakes</td></tr>
+<tr><td>212</td><td>Mount1 Roll</td></tr>
+<tr><td>213</td><td>Mount1 Pitch</td></tr>
+<tr><td>214</td><td>Mount1 Yaw</td></tr>
+<tr><td>215</td><td>Mount2 Roll</td></tr>
+<tr><td>216</td><td>Mount2 Pitch</td></tr>
+<tr><td>217</td><td>Mount2 Yaw</td></tr>
+<tr><td>218</td><td>Loweheiser throttle</td></tr>
+<tr><td>200</td><td>Servos Auto Trim</td></tr>
+<tr><td>250</td><td>Tuning Set Select</td></tr>
+<tr><td>251</td><td>RTL Autoland Commit</td></tr>
+<tr><td>252</td><td>Mount1 Head Track Enable</td></tr>
+<tr><td>253</td><td>Mount1 Head Track Center Lock</td></tr>
+<tr><td>254</td><td>Adaptive Pitch Trim</td></tr>
+<tr><td>300</td><td>Scripting1</td></tr>
+<tr><td>301</td><td>Scripting2</td></tr>
+<tr><td>302</td><td>Scripting3</td></tr>
+<tr><td>303</td><td>Scripting4</td></tr>
+<tr><td>304</td><td>Scripting5</td></tr>
+<tr><td>305</td><td>Scripting6</td></tr>
+<tr><td>306</td><td>Scripting7</td></tr>
+<tr><td>307</td><td>Scripting8</td></tr>
+<tr><td>308</td><td>Scripting9</td></tr>
+<tr><td>309</td><td>Scripting10</td></tr>
+<tr><td>310</td><td>Scripting11</td></tr>
+<tr><td>311</td><td>Scripting12</td></tr>
+<tr><td>312</td><td>Scripting13</td></tr>
+<tr><td>313</td><td>Scripting14</td></tr>
+<tr><td>314</td><td>Scripting15</td></tr>
+<tr><td>315</td><td>Scripting16</td></tr>
+<tr><td>316</td><td>Stop-Restart Scripting</td></tr>
+</table>
+</ul>
+
+
+</article></section><section class="grp" id="g-rc24-parameters"><h2>RC24_ Parameters</h2><article class="p" id="RC24_MIN" data-k="rc24_min rc min pwm (rc24_min)"><h3><a href="#RC24_MIN">RC24_MIN</a> <span>RC min PWM</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>RC minimum PWM pulse width in microseconds. Typically 1000 is lower limit, 1500 is neutral and 2000 is upper limit.</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 800 2200</li>
+<li>Increment: 1</li>
+</ul>
+
+
+</article><article class="p" id="RC24_TRIM" data-k="rc24_trim rc trim pwm (rc24_trim)"><h3><a href="#RC24_TRIM">RC24_TRIM</a> <span>RC trim PWM</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>RC trim (neutral) PWM pulse width in microseconds. Typically 1000 is lower limit, 1500 is neutral and 2000 is upper limit.</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 800 2200</li>
+<li>Increment: 1</li>
+</ul>
+
+
+</article><article class="p" id="RC24_MAX" data-k="rc24_max rc max pwm (rc24_max)"><h3><a href="#RC24_MAX">RC24_MAX</a> <span>RC max PWM</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>RC maximum PWM pulse width in microseconds. Typically 1000 is lower limit, 1500 is neutral and 2000 is upper limit.</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 800 2200</li>
+<li>Increment: 1</li>
+</ul>
+
+
+</article><article class="p" id="RC24_REVERSED" data-k="rc24_reversed rc reversed (rc24_reversed)"><h3><a href="#RC24_REVERSED">RC24_REVERSED</a> <span>RC reversed</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>Reverse channel input. Set to 0 for normal operation. Set to 1 to reverse this input channel.</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Normal</td></tr>
+<tr><td>1</td><td>Reversed</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="RC24_DZ" data-k="rc24_dz rc dead-zone (rc24_dz)"><h3><a href="#RC24_DZ">RC24_DZ</a> <span>RC dead-zone</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>PWM dead zone in microseconds around trim or bottom</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 0 200</li>
+</ul>
+
+
+</article><article class="p" id="RC24_OPTION" data-k="rc24_option rc input option (rc24_option)"><h3><a href="#RC24_OPTION">RC24_OPTION</a> <span>RC input option</span></h3>
+
+<p>Function assigned to this RC channel</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Do Nothing</td></tr>
+<tr><td>4</td><td>RTL</td></tr>
+<tr><td>9</td><td>Camera Trigger</td></tr>
+<tr><td>11</td><td>Fence Enable</td></tr>
+<tr><td>16</td><td>AUTO Mode</td></tr>
+<tr><td>17</td><td>AUTOTUNE Mode</td></tr>
+<tr><td>22</td><td>Parachute Release</td></tr>
+<tr><td>24</td><td>Auto Mission Reset</td></tr>
+<tr><td>27</td><td>Retract Mount1</td></tr>
+<tr><td>28</td><td>Relay1 On/Off</td></tr>
+<tr><td>29</td><td>Landing Gear</td></tr>
+<tr><td>30</td><td>Lost Plane Sound</td></tr>
+<tr><td>31</td><td>Motor Emergency Stop</td></tr>
+<tr><td>34</td><td>Relay2 On/Off</td></tr>
+<tr><td>35</td><td>Relay3 On/Off</td></tr>
+<tr><td>36</td><td>Relay4 On/Off</td></tr>
+<tr><td>38</td><td>ADSB Avoidance Enable</td></tr>
+<tr><td>41</td><td>ArmDisarm (4.1 and lower)</td></tr>
+<tr><td>43</td><td>InvertedFlight Enable</td></tr>
+<tr><td>46</td><td>RC Override Enable</td></tr>
+<tr><td>51</td><td>MANUAL Mode</td></tr>
+<tr><td>52</td><td>ACRO Mode</td></tr>
+<tr><td>55</td><td>GUIDED Mode</td></tr>
+<tr><td>56</td><td>LOITER Mode</td></tr>
+<tr><td>58</td><td>Clear Waypoints</td></tr>
+<tr><td>62</td><td>Compass Learn</td></tr>
+<tr><td>64</td><td>Reverse Throttle</td></tr>
+<tr><td>65</td><td>GPS Disable</td></tr>
+<tr><td>66</td><td>Relay5 On/Off</td></tr>
+<tr><td>67</td><td>Relay6 On/Off</td></tr>
+<tr><td>72</td><td>CIRCLE Mode</td></tr>
+<tr><td>77</td><td>TAKEOFF Mode</td></tr>
+<tr><td>78</td><td>RunCam Control</td></tr>
+<tr><td>79</td><td>RunCam OSD Control</td></tr>
+<tr><td>81</td><td>Disarm</td></tr>
+<tr><td>82</td><td>QAssist 3pos</td></tr>
+<tr><td>84</td><td>AirMode</td></tr>
+<tr><td>85</td><td>Generator</td></tr>
+<tr><td>86</td><td>Non Auto Terrain Follow Disable</td></tr>
+<tr><td>87</td><td>Crow Select</td></tr>
+<tr><td>88</td><td>Soaring Enable</td></tr>
+<tr><td>89</td><td>Landing Flare</td></tr>
+<tr><td>90</td><td>EKF Source Set</td></tr>
+<tr><td>91</td><td>Airspeed Ratio Calibration</td></tr>
+<tr><td>92</td><td>FBWA Mode</td></tr>
+<tr><td>94</td><td>VTX Power</td></tr>
+<tr><td>95</td><td>FBWA taildragger takeoff mode</td></tr>
+<tr><td>96</td><td>Trigger re-reading of mode switch</td></tr>
+<tr><td>98</td><td>TRAINING Mode</td></tr>
+<tr><td>100</td><td>KillIMU1</td></tr>
+<tr><td>101</td><td>KillIMU2</td></tr>
+<tr><td>102</td><td>Camera Mode Toggle</td></tr>
+<tr><td>103</td><td>EKF lane switch attempt</td></tr>
+<tr><td>104</td><td>EKF yaw reset</td></tr>
+<tr><td>105</td><td>GPS Disable Yaw</td></tr>
+<tr><td>106</td><td>Disable Airspeed Use</td></tr>
+<tr><td>107</td><td>Enable FW Autotune</td></tr>
+<tr><td>108</td><td>QRTL Mode</td></tr>
+<tr><td>110</td><td>KillIMU3</td></tr>
+<tr><td>111</td><td>Loweheiser starter</td></tr>
+<tr><td>112</td><td>SwitchExternalAHRS</td></tr>
+<tr><td>113</td><td>Retract Mount2</td></tr>
+<tr><td>150</td><td>CRUISE Mode</td></tr>
+<tr><td>153</td><td>ArmDisarm (4.2 and higher)</td></tr>
+<tr><td>154</td><td>ArmDisarm with Quadplane AirMode (4.2 and higher)</td></tr>
+<tr><td>155</td><td>Set roll pitch and yaw trim to current servo and RC</td></tr>
+<tr><td>157</td><td>Force FS Action to FBWA</td></tr>
+<tr><td>158</td><td>Optflow Calibration</td></tr>
+<tr><td>160</td><td>Weathervane Enable</td></tr>
+<tr><td>162</td><td>FFT Tune</td></tr>
+<tr><td>163</td><td>Mount Yaw Lock</td></tr>
+<tr><td>164</td><td>Pause Stream Logging</td></tr>
+<tr><td>165</td><td>Arm/Emergency Motor Stop</td></tr>
+<tr><td>166</td><td>Camera Record Video</td></tr>
+<tr><td>167</td><td>Camera Zoom</td></tr>
+<tr><td>168</td><td>Camera Manual Focus</td></tr>
+<tr><td>169</td><td>Camera Auto Focus</td></tr>
+<tr><td>170</td><td>QSTABILIZE Mode</td></tr>
+<tr><td>171</td><td>Calibrate Compasses</td></tr>
+<tr><td>172</td><td>Battery MPPT Enable</td></tr>
+<tr><td>173</td><td>Plane AUTO Mode Landing Abort</td></tr>
+<tr><td>174</td><td>Camera Image Tracking</td></tr>
+<tr><td>175</td><td>Camera Lens</td></tr>
+<tr><td>176</td><td>Quadplane Fwd Throttle Override enable</td></tr>
+<tr><td>177</td><td>Mount LRF enable</td></tr>
+<tr><td>179</td><td>ICEngine start / stop</td></tr>
+<tr><td>180</td><td>Test autotuned gains after tune is complete</td></tr>
+<tr><td>181</td><td>QuickTune</td></tr>
+<tr><td>182</td><td>VTOL AutoTrim</td></tr>
+<tr><td>184</td><td>System ID Chirp</td></tr>
+<tr><td>185</td><td>Mount Roll/Pitch Lock</td></tr>
+<tr><td>186</td><td>Mount POI Lock</td></tr>
+<tr><td>208</td><td>Flap</td></tr>
+<tr><td>209</td><td>VTOL Forward Throttle</td></tr>
+<tr><td>210</td><td>Airbrakes</td></tr>
+<tr><td>212</td><td>Mount1 Roll</td></tr>
+<tr><td>213</td><td>Mount1 Pitch</td></tr>
+<tr><td>214</td><td>Mount1 Yaw</td></tr>
+<tr><td>215</td><td>Mount2 Roll</td></tr>
+<tr><td>216</td><td>Mount2 Pitch</td></tr>
+<tr><td>217</td><td>Mount2 Yaw</td></tr>
+<tr><td>218</td><td>Loweheiser throttle</td></tr>
+<tr><td>200</td><td>Servos Auto Trim</td></tr>
+<tr><td>250</td><td>Tuning Set Select</td></tr>
+<tr><td>251</td><td>RTL Autoland Commit</td></tr>
+<tr><td>252</td><td>Mount1 Head Track Enable</td></tr>
+<tr><td>253</td><td>Mount1 Head Track Center Lock</td></tr>
+<tr><td>254</td><td>Adaptive Pitch Trim</td></tr>
+<tr><td>300</td><td>Scripting1</td></tr>
+<tr><td>301</td><td>Scripting2</td></tr>
+<tr><td>302</td><td>Scripting3</td></tr>
+<tr><td>303</td><td>Scripting4</td></tr>
+<tr><td>304</td><td>Scripting5</td></tr>
+<tr><td>305</td><td>Scripting6</td></tr>
+<tr><td>306</td><td>Scripting7</td></tr>
+<tr><td>307</td><td>Scripting8</td></tr>
+<tr><td>308</td><td>Scripting9</td></tr>
+<tr><td>309</td><td>Scripting10</td></tr>
+<tr><td>310</td><td>Scripting11</td></tr>
+<tr><td>311</td><td>Scripting12</td></tr>
+<tr><td>312</td><td>Scripting13</td></tr>
+<tr><td>313</td><td>Scripting14</td></tr>
+<tr><td>314</td><td>Scripting15</td></tr>
+<tr><td>315</td><td>Scripting16</td></tr>
+<tr><td>316</td><td>Stop-Restart Scripting</td></tr>
+</table>
+</ul>
+
+
+</article></section><section class="grp" id="g-rc25-parameters"><h2>RC25_ Parameters</h2><article class="p" id="RC25_MIN" data-k="rc25_min rc min pwm (rc25_min)"><h3><a href="#RC25_MIN">RC25_MIN</a> <span>RC min PWM</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>RC minimum PWM pulse width in microseconds. Typically 1000 is lower limit, 1500 is neutral and 2000 is upper limit.</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 800 2200</li>
+<li>Increment: 1</li>
+</ul>
+
+
+</article><article class="p" id="RC25_TRIM" data-k="rc25_trim rc trim pwm (rc25_trim)"><h3><a href="#RC25_TRIM">RC25_TRIM</a> <span>RC trim PWM</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>RC trim (neutral) PWM pulse width in microseconds. Typically 1000 is lower limit, 1500 is neutral and 2000 is upper limit.</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 800 2200</li>
+<li>Increment: 1</li>
+</ul>
+
+
+</article><article class="p" id="RC25_MAX" data-k="rc25_max rc max pwm (rc25_max)"><h3><a href="#RC25_MAX">RC25_MAX</a> <span>RC max PWM</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>RC maximum PWM pulse width in microseconds. Typically 1000 is lower limit, 1500 is neutral and 2000 is upper limit.</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 800 2200</li>
+<li>Increment: 1</li>
+</ul>
+
+
+</article><article class="p" id="RC25_REVERSED" data-k="rc25_reversed rc reversed (rc25_reversed)"><h3><a href="#RC25_REVERSED">RC25_REVERSED</a> <span>RC reversed</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>Reverse channel input. Set to 0 for normal operation. Set to 1 to reverse this input channel.</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Normal</td></tr>
+<tr><td>1</td><td>Reversed</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="RC25_DZ" data-k="rc25_dz rc dead-zone (rc25_dz)"><h3><a href="#RC25_DZ">RC25_DZ</a> <span>RC dead-zone</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>PWM dead zone in microseconds around trim or bottom</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 0 200</li>
+</ul>
+
+
+</article><article class="p" id="RC25_OPTION" data-k="rc25_option rc input option (rc25_option)"><h3><a href="#RC25_OPTION">RC25_OPTION</a> <span>RC input option</span></h3>
+
+<p>Function assigned to this RC channel</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Do Nothing</td></tr>
+<tr><td>4</td><td>RTL</td></tr>
+<tr><td>9</td><td>Camera Trigger</td></tr>
+<tr><td>11</td><td>Fence Enable</td></tr>
+<tr><td>16</td><td>AUTO Mode</td></tr>
+<tr><td>17</td><td>AUTOTUNE Mode</td></tr>
+<tr><td>22</td><td>Parachute Release</td></tr>
+<tr><td>24</td><td>Auto Mission Reset</td></tr>
+<tr><td>27</td><td>Retract Mount1</td></tr>
+<tr><td>28</td><td>Relay1 On/Off</td></tr>
+<tr><td>29</td><td>Landing Gear</td></tr>
+<tr><td>30</td><td>Lost Plane Sound</td></tr>
+<tr><td>31</td><td>Motor Emergency Stop</td></tr>
+<tr><td>34</td><td>Relay2 On/Off</td></tr>
+<tr><td>35</td><td>Relay3 On/Off</td></tr>
+<tr><td>36</td><td>Relay4 On/Off</td></tr>
+<tr><td>38</td><td>ADSB Avoidance Enable</td></tr>
+<tr><td>41</td><td>ArmDisarm (4.1 and lower)</td></tr>
+<tr><td>43</td><td>InvertedFlight Enable</td></tr>
+<tr><td>46</td><td>RC Override Enable</td></tr>
+<tr><td>51</td><td>MANUAL Mode</td></tr>
+<tr><td>52</td><td>ACRO Mode</td></tr>
+<tr><td>55</td><td>GUIDED Mode</td></tr>
+<tr><td>56</td><td>LOITER Mode</td></tr>
+<tr><td>58</td><td>Clear Waypoints</td></tr>
+<tr><td>62</td><td>Compass Learn</td></tr>
+<tr><td>64</td><td>Reverse Throttle</td></tr>
+<tr><td>65</td><td>GPS Disable</td></tr>
+<tr><td>66</td><td>Relay5 On/Off</td></tr>
+<tr><td>67</td><td>Relay6 On/Off</td></tr>
+<tr><td>72</td><td>CIRCLE Mode</td></tr>
+<tr><td>77</td><td>TAKEOFF Mode</td></tr>
+<tr><td>78</td><td>RunCam Control</td></tr>
+<tr><td>79</td><td>RunCam OSD Control</td></tr>
+<tr><td>81</td><td>Disarm</td></tr>
+<tr><td>82</td><td>QAssist 3pos</td></tr>
+<tr><td>84</td><td>AirMode</td></tr>
+<tr><td>85</td><td>Generator</td></tr>
+<tr><td>86</td><td>Non Auto Terrain Follow Disable</td></tr>
+<tr><td>87</td><td>Crow Select</td></tr>
+<tr><td>88</td><td>Soaring Enable</td></tr>
+<tr><td>89</td><td>Landing Flare</td></tr>
+<tr><td>90</td><td>EKF Source Set</td></tr>
+<tr><td>91</td><td>Airspeed Ratio Calibration</td></tr>
+<tr><td>92</td><td>FBWA Mode</td></tr>
+<tr><td>94</td><td>VTX Power</td></tr>
+<tr><td>95</td><td>FBWA taildragger takeoff mode</td></tr>
+<tr><td>96</td><td>Trigger re-reading of mode switch</td></tr>
+<tr><td>98</td><td>TRAINING Mode</td></tr>
+<tr><td>100</td><td>KillIMU1</td></tr>
+<tr><td>101</td><td>KillIMU2</td></tr>
+<tr><td>102</td><td>Camera Mode Toggle</td></tr>
+<tr><td>103</td><td>EKF lane switch attempt</td></tr>
+<tr><td>104</td><td>EKF yaw reset</td></tr>
+<tr><td>105</td><td>GPS Disable Yaw</td></tr>
+<tr><td>106</td><td>Disable Airspeed Use</td></tr>
+<tr><td>107</td><td>Enable FW Autotune</td></tr>
+<tr><td>108</td><td>QRTL Mode</td></tr>
+<tr><td>110</td><td>KillIMU3</td></tr>
+<tr><td>111</td><td>Loweheiser starter</td></tr>
+<tr><td>112</td><td>SwitchExternalAHRS</td></tr>
+<tr><td>113</td><td>Retract Mount2</td></tr>
+<tr><td>150</td><td>CRUISE Mode</td></tr>
+<tr><td>153</td><td>ArmDisarm (4.2 and higher)</td></tr>
+<tr><td>154</td><td>ArmDisarm with Quadplane AirMode (4.2 and higher)</td></tr>
+<tr><td>155</td><td>Set roll pitch and yaw trim to current servo and RC</td></tr>
+<tr><td>157</td><td>Force FS Action to FBWA</td></tr>
+<tr><td>158</td><td>Optflow Calibration</td></tr>
+<tr><td>160</td><td>Weathervane Enable</td></tr>
+<tr><td>162</td><td>FFT Tune</td></tr>
+<tr><td>163</td><td>Mount Yaw Lock</td></tr>
+<tr><td>164</td><td>Pause Stream Logging</td></tr>
+<tr><td>165</td><td>Arm/Emergency Motor Stop</td></tr>
+<tr><td>166</td><td>Camera Record Video</td></tr>
+<tr><td>167</td><td>Camera Zoom</td></tr>
+<tr><td>168</td><td>Camera Manual Focus</td></tr>
+<tr><td>169</td><td>Camera Auto Focus</td></tr>
+<tr><td>170</td><td>QSTABILIZE Mode</td></tr>
+<tr><td>171</td><td>Calibrate Compasses</td></tr>
+<tr><td>172</td><td>Battery MPPT Enable</td></tr>
+<tr><td>173</td><td>Plane AUTO Mode Landing Abort</td></tr>
+<tr><td>174</td><td>Camera Image Tracking</td></tr>
+<tr><td>175</td><td>Camera Lens</td></tr>
+<tr><td>176</td><td>Quadplane Fwd Throttle Override enable</td></tr>
+<tr><td>177</td><td>Mount LRF enable</td></tr>
+<tr><td>179</td><td>ICEngine start / stop</td></tr>
+<tr><td>180</td><td>Test autotuned gains after tune is complete</td></tr>
+<tr><td>181</td><td>QuickTune</td></tr>
+<tr><td>182</td><td>VTOL AutoTrim</td></tr>
+<tr><td>184</td><td>System ID Chirp</td></tr>
+<tr><td>185</td><td>Mount Roll/Pitch Lock</td></tr>
+<tr><td>186</td><td>Mount POI Lock</td></tr>
+<tr><td>208</td><td>Flap</td></tr>
+<tr><td>209</td><td>VTOL Forward Throttle</td></tr>
+<tr><td>210</td><td>Airbrakes</td></tr>
+<tr><td>212</td><td>Mount1 Roll</td></tr>
+<tr><td>213</td><td>Mount1 Pitch</td></tr>
+<tr><td>214</td><td>Mount1 Yaw</td></tr>
+<tr><td>215</td><td>Mount2 Roll</td></tr>
+<tr><td>216</td><td>Mount2 Pitch</td></tr>
+<tr><td>217</td><td>Mount2 Yaw</td></tr>
+<tr><td>218</td><td>Loweheiser throttle</td></tr>
+<tr><td>200</td><td>Servos Auto Trim</td></tr>
+<tr><td>250</td><td>Tuning Set Select</td></tr>
+<tr><td>251</td><td>RTL Autoland Commit</td></tr>
+<tr><td>252</td><td>Mount1 Head Track Enable</td></tr>
+<tr><td>253</td><td>Mount1 Head Track Center Lock</td></tr>
+<tr><td>254</td><td>Adaptive Pitch Trim</td></tr>
+<tr><td>300</td><td>Scripting1</td></tr>
+<tr><td>301</td><td>Scripting2</td></tr>
+<tr><td>302</td><td>Scripting3</td></tr>
+<tr><td>303</td><td>Scripting4</td></tr>
+<tr><td>304</td><td>Scripting5</td></tr>
+<tr><td>305</td><td>Scripting6</td></tr>
+<tr><td>306</td><td>Scripting7</td></tr>
+<tr><td>307</td><td>Scripting8</td></tr>
+<tr><td>308</td><td>Scripting9</td></tr>
+<tr><td>309</td><td>Scripting10</td></tr>
+<tr><td>310</td><td>Scripting11</td></tr>
+<tr><td>311</td><td>Scripting12</td></tr>
+<tr><td>312</td><td>Scripting13</td></tr>
+<tr><td>313</td><td>Scripting14</td></tr>
+<tr><td>314</td><td>Scripting15</td></tr>
+<tr><td>315</td><td>Scripting16</td></tr>
+<tr><td>316</td><td>Stop-Restart Scripting</td></tr>
+</table>
+</ul>
+
+
+</article></section><section class="grp" id="g-rc26-parameters"><h2>RC26_ Parameters</h2><article class="p" id="RC26_MIN" data-k="rc26_min rc min pwm (rc26_min)"><h3><a href="#RC26_MIN">RC26_MIN</a> <span>RC min PWM</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>RC minimum PWM pulse width in microseconds. Typically 1000 is lower limit, 1500 is neutral and 2000 is upper limit.</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 800 2200</li>
+<li>Increment: 1</li>
+</ul>
+
+
+</article><article class="p" id="RC26_TRIM" data-k="rc26_trim rc trim pwm (rc26_trim)"><h3><a href="#RC26_TRIM">RC26_TRIM</a> <span>RC trim PWM</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>RC trim (neutral) PWM pulse width in microseconds. Typically 1000 is lower limit, 1500 is neutral and 2000 is upper limit.</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 800 2200</li>
+<li>Increment: 1</li>
+</ul>
+
+
+</article><article class="p" id="RC26_MAX" data-k="rc26_max rc max pwm (rc26_max)"><h3><a href="#RC26_MAX">RC26_MAX</a> <span>RC max PWM</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>RC maximum PWM pulse width in microseconds. Typically 1000 is lower limit, 1500 is neutral and 2000 is upper limit.</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 800 2200</li>
+<li>Increment: 1</li>
+</ul>
+
+
+</article><article class="p" id="RC26_REVERSED" data-k="rc26_reversed rc reversed (rc26_reversed)"><h3><a href="#RC26_REVERSED">RC26_REVERSED</a> <span>RC reversed</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>Reverse channel input. Set to 0 for normal operation. Set to 1 to reverse this input channel.</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Normal</td></tr>
+<tr><td>1</td><td>Reversed</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="RC26_DZ" data-k="rc26_dz rc dead-zone (rc26_dz)"><h3><a href="#RC26_DZ">RC26_DZ</a> <span>RC dead-zone</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>PWM dead zone in microseconds around trim or bottom</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 0 200</li>
+</ul>
+
+
+</article><article class="p" id="RC26_OPTION" data-k="rc26_option rc input option (rc26_option)"><h3><a href="#RC26_OPTION">RC26_OPTION</a> <span>RC input option</span></h3>
+
+<p>Function assigned to this RC channel</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Do Nothing</td></tr>
+<tr><td>4</td><td>RTL</td></tr>
+<tr><td>9</td><td>Camera Trigger</td></tr>
+<tr><td>11</td><td>Fence Enable</td></tr>
+<tr><td>16</td><td>AUTO Mode</td></tr>
+<tr><td>17</td><td>AUTOTUNE Mode</td></tr>
+<tr><td>22</td><td>Parachute Release</td></tr>
+<tr><td>24</td><td>Auto Mission Reset</td></tr>
+<tr><td>27</td><td>Retract Mount1</td></tr>
+<tr><td>28</td><td>Relay1 On/Off</td></tr>
+<tr><td>29</td><td>Landing Gear</td></tr>
+<tr><td>30</td><td>Lost Plane Sound</td></tr>
+<tr><td>31</td><td>Motor Emergency Stop</td></tr>
+<tr><td>34</td><td>Relay2 On/Off</td></tr>
+<tr><td>35</td><td>Relay3 On/Off</td></tr>
+<tr><td>36</td><td>Relay4 On/Off</td></tr>
+<tr><td>38</td><td>ADSB Avoidance Enable</td></tr>
+<tr><td>41</td><td>ArmDisarm (4.1 and lower)</td></tr>
+<tr><td>43</td><td>InvertedFlight Enable</td></tr>
+<tr><td>46</td><td>RC Override Enable</td></tr>
+<tr><td>51</td><td>MANUAL Mode</td></tr>
+<tr><td>52</td><td>ACRO Mode</td></tr>
+<tr><td>55</td><td>GUIDED Mode</td></tr>
+<tr><td>56</td><td>LOITER Mode</td></tr>
+<tr><td>58</td><td>Clear Waypoints</td></tr>
+<tr><td>62</td><td>Compass Learn</td></tr>
+<tr><td>64</td><td>Reverse Throttle</td></tr>
+<tr><td>65</td><td>GPS Disable</td></tr>
+<tr><td>66</td><td>Relay5 On/Off</td></tr>
+<tr><td>67</td><td>Relay6 On/Off</td></tr>
+<tr><td>72</td><td>CIRCLE Mode</td></tr>
+<tr><td>77</td><td>TAKEOFF Mode</td></tr>
+<tr><td>78</td><td>RunCam Control</td></tr>
+<tr><td>79</td><td>RunCam OSD Control</td></tr>
+<tr><td>81</td><td>Disarm</td></tr>
+<tr><td>82</td><td>QAssist 3pos</td></tr>
+<tr><td>84</td><td>AirMode</td></tr>
+<tr><td>85</td><td>Generator</td></tr>
+<tr><td>86</td><td>Non Auto Terrain Follow Disable</td></tr>
+<tr><td>87</td><td>Crow Select</td></tr>
+<tr><td>88</td><td>Soaring Enable</td></tr>
+<tr><td>89</td><td>Landing Flare</td></tr>
+<tr><td>90</td><td>EKF Source Set</td></tr>
+<tr><td>91</td><td>Airspeed Ratio Calibration</td></tr>
+<tr><td>92</td><td>FBWA Mode</td></tr>
+<tr><td>94</td><td>VTX Power</td></tr>
+<tr><td>95</td><td>FBWA taildragger takeoff mode</td></tr>
+<tr><td>96</td><td>Trigger re-reading of mode switch</td></tr>
+<tr><td>98</td><td>TRAINING Mode</td></tr>
+<tr><td>100</td><td>KillIMU1</td></tr>
+<tr><td>101</td><td>KillIMU2</td></tr>
+<tr><td>102</td><td>Camera Mode Toggle</td></tr>
+<tr><td>103</td><td>EKF lane switch attempt</td></tr>
+<tr><td>104</td><td>EKF yaw reset</td></tr>
+<tr><td>105</td><td>GPS Disable Yaw</td></tr>
+<tr><td>106</td><td>Disable Airspeed Use</td></tr>
+<tr><td>107</td><td>Enable FW Autotune</td></tr>
+<tr><td>108</td><td>QRTL Mode</td></tr>
+<tr><td>110</td><td>KillIMU3</td></tr>
+<tr><td>111</td><td>Loweheiser starter</td></tr>
+<tr><td>112</td><td>SwitchExternalAHRS</td></tr>
+<tr><td>113</td><td>Retract Mount2</td></tr>
+<tr><td>150</td><td>CRUISE Mode</td></tr>
+<tr><td>153</td><td>ArmDisarm (4.2 and higher)</td></tr>
+<tr><td>154</td><td>ArmDisarm with Quadplane AirMode (4.2 and higher)</td></tr>
+<tr><td>155</td><td>Set roll pitch and yaw trim to current servo and RC</td></tr>
+<tr><td>157</td><td>Force FS Action to FBWA</td></tr>
+<tr><td>158</td><td>Optflow Calibration</td></tr>
+<tr><td>160</td><td>Weathervane Enable</td></tr>
+<tr><td>162</td><td>FFT Tune</td></tr>
+<tr><td>163</td><td>Mount Yaw Lock</td></tr>
+<tr><td>164</td><td>Pause Stream Logging</td></tr>
+<tr><td>165</td><td>Arm/Emergency Motor Stop</td></tr>
+<tr><td>166</td><td>Camera Record Video</td></tr>
+<tr><td>167</td><td>Camera Zoom</td></tr>
+<tr><td>168</td><td>Camera Manual Focus</td></tr>
+<tr><td>169</td><td>Camera Auto Focus</td></tr>
+<tr><td>170</td><td>QSTABILIZE Mode</td></tr>
+<tr><td>171</td><td>Calibrate Compasses</td></tr>
+<tr><td>172</td><td>Battery MPPT Enable</td></tr>
+<tr><td>173</td><td>Plane AUTO Mode Landing Abort</td></tr>
+<tr><td>174</td><td>Camera Image Tracking</td></tr>
+<tr><td>175</td><td>Camera Lens</td></tr>
+<tr><td>176</td><td>Quadplane Fwd Throttle Override enable</td></tr>
+<tr><td>177</td><td>Mount LRF enable</td></tr>
+<tr><td>179</td><td>ICEngine start / stop</td></tr>
+<tr><td>180</td><td>Test autotuned gains after tune is complete</td></tr>
+<tr><td>181</td><td>QuickTune</td></tr>
+<tr><td>182</td><td>VTOL AutoTrim</td></tr>
+<tr><td>184</td><td>System ID Chirp</td></tr>
+<tr><td>185</td><td>Mount Roll/Pitch Lock</td></tr>
+<tr><td>186</td><td>Mount POI Lock</td></tr>
+<tr><td>208</td><td>Flap</td></tr>
+<tr><td>209</td><td>VTOL Forward Throttle</td></tr>
+<tr><td>210</td><td>Airbrakes</td></tr>
+<tr><td>212</td><td>Mount1 Roll</td></tr>
+<tr><td>213</td><td>Mount1 Pitch</td></tr>
+<tr><td>214</td><td>Mount1 Yaw</td></tr>
+<tr><td>215</td><td>Mount2 Roll</td></tr>
+<tr><td>216</td><td>Mount2 Pitch</td></tr>
+<tr><td>217</td><td>Mount2 Yaw</td></tr>
+<tr><td>218</td><td>Loweheiser throttle</td></tr>
+<tr><td>200</td><td>Servos Auto Trim</td></tr>
+<tr><td>250</td><td>Tuning Set Select</td></tr>
+<tr><td>251</td><td>RTL Autoland Commit</td></tr>
+<tr><td>252</td><td>Mount1 Head Track Enable</td></tr>
+<tr><td>253</td><td>Mount1 Head Track Center Lock</td></tr>
+<tr><td>254</td><td>Adaptive Pitch Trim</td></tr>
+<tr><td>300</td><td>Scripting1</td></tr>
+<tr><td>301</td><td>Scripting2</td></tr>
+<tr><td>302</td><td>Scripting3</td></tr>
+<tr><td>303</td><td>Scripting4</td></tr>
+<tr><td>304</td><td>Scripting5</td></tr>
+<tr><td>305</td><td>Scripting6</td></tr>
+<tr><td>306</td><td>Scripting7</td></tr>
+<tr><td>307</td><td>Scripting8</td></tr>
+<tr><td>308</td><td>Scripting9</td></tr>
+<tr><td>309</td><td>Scripting10</td></tr>
+<tr><td>310</td><td>Scripting11</td></tr>
+<tr><td>311</td><td>Scripting12</td></tr>
+<tr><td>312</td><td>Scripting13</td></tr>
+<tr><td>313</td><td>Scripting14</td></tr>
+<tr><td>314</td><td>Scripting15</td></tr>
+<tr><td>315</td><td>Scripting16</td></tr>
+<tr><td>316</td><td>Stop-Restart Scripting</td></tr>
+</table>
+</ul>
+
+
+</article></section><section class="grp" id="g-rc27-parameters"><h2>RC27_ Parameters</h2><article class="p" id="RC27_MIN" data-k="rc27_min rc min pwm (rc27_min)"><h3><a href="#RC27_MIN">RC27_MIN</a> <span>RC min PWM</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>RC minimum PWM pulse width in microseconds. Typically 1000 is lower limit, 1500 is neutral and 2000 is upper limit.</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 800 2200</li>
+<li>Increment: 1</li>
+</ul>
+
+
+</article><article class="p" id="RC27_TRIM" data-k="rc27_trim rc trim pwm (rc27_trim)"><h3><a href="#RC27_TRIM">RC27_TRIM</a> <span>RC trim PWM</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>RC trim (neutral) PWM pulse width in microseconds. Typically 1000 is lower limit, 1500 is neutral and 2000 is upper limit.</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 800 2200</li>
+<li>Increment: 1</li>
+</ul>
+
+
+</article><article class="p" id="RC27_MAX" data-k="rc27_max rc max pwm (rc27_max)"><h3><a href="#RC27_MAX">RC27_MAX</a> <span>RC max PWM</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>RC maximum PWM pulse width in microseconds. Typically 1000 is lower limit, 1500 is neutral and 2000 is upper limit.</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 800 2200</li>
+<li>Increment: 1</li>
+</ul>
+
+
+</article><article class="p" id="RC27_REVERSED" data-k="rc27_reversed rc reversed (rc27_reversed)"><h3><a href="#RC27_REVERSED">RC27_REVERSED</a> <span>RC reversed</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>Reverse channel input. Set to 0 for normal operation. Set to 1 to reverse this input channel.</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Normal</td></tr>
+<tr><td>1</td><td>Reversed</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="RC27_DZ" data-k="rc27_dz rc dead-zone (rc27_dz)"><h3><a href="#RC27_DZ">RC27_DZ</a> <span>RC dead-zone</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>PWM dead zone in microseconds around trim or bottom</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 0 200</li>
+</ul>
+
+
+</article><article class="p" id="RC27_OPTION" data-k="rc27_option rc input option (rc27_option)"><h3><a href="#RC27_OPTION">RC27_OPTION</a> <span>RC input option</span></h3>
+
+<p>Function assigned to this RC channel</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Do Nothing</td></tr>
+<tr><td>4</td><td>RTL</td></tr>
+<tr><td>9</td><td>Camera Trigger</td></tr>
+<tr><td>11</td><td>Fence Enable</td></tr>
+<tr><td>16</td><td>AUTO Mode</td></tr>
+<tr><td>17</td><td>AUTOTUNE Mode</td></tr>
+<tr><td>22</td><td>Parachute Release</td></tr>
+<tr><td>24</td><td>Auto Mission Reset</td></tr>
+<tr><td>27</td><td>Retract Mount1</td></tr>
+<tr><td>28</td><td>Relay1 On/Off</td></tr>
+<tr><td>29</td><td>Landing Gear</td></tr>
+<tr><td>30</td><td>Lost Plane Sound</td></tr>
+<tr><td>31</td><td>Motor Emergency Stop</td></tr>
+<tr><td>34</td><td>Relay2 On/Off</td></tr>
+<tr><td>35</td><td>Relay3 On/Off</td></tr>
+<tr><td>36</td><td>Relay4 On/Off</td></tr>
+<tr><td>38</td><td>ADSB Avoidance Enable</td></tr>
+<tr><td>41</td><td>ArmDisarm (4.1 and lower)</td></tr>
+<tr><td>43</td><td>InvertedFlight Enable</td></tr>
+<tr><td>46</td><td>RC Override Enable</td></tr>
+<tr><td>51</td><td>MANUAL Mode</td></tr>
+<tr><td>52</td><td>ACRO Mode</td></tr>
+<tr><td>55</td><td>GUIDED Mode</td></tr>
+<tr><td>56</td><td>LOITER Mode</td></tr>
+<tr><td>58</td><td>Clear Waypoints</td></tr>
+<tr><td>62</td><td>Compass Learn</td></tr>
+<tr><td>64</td><td>Reverse Throttle</td></tr>
+<tr><td>65</td><td>GPS Disable</td></tr>
+<tr><td>66</td><td>Relay5 On/Off</td></tr>
+<tr><td>67</td><td>Relay6 On/Off</td></tr>
+<tr><td>72</td><td>CIRCLE Mode</td></tr>
+<tr><td>77</td><td>TAKEOFF Mode</td></tr>
+<tr><td>78</td><td>RunCam Control</td></tr>
+<tr><td>79</td><td>RunCam OSD Control</td></tr>
+<tr><td>81</td><td>Disarm</td></tr>
+<tr><td>82</td><td>QAssist 3pos</td></tr>
+<tr><td>84</td><td>AirMode</td></tr>
+<tr><td>85</td><td>Generator</td></tr>
+<tr><td>86</td><td>Non Auto Terrain Follow Disable</td></tr>
+<tr><td>87</td><td>Crow Select</td></tr>
+<tr><td>88</td><td>Soaring Enable</td></tr>
+<tr><td>89</td><td>Landing Flare</td></tr>
+<tr><td>90</td><td>EKF Source Set</td></tr>
+<tr><td>91</td><td>Airspeed Ratio Calibration</td></tr>
+<tr><td>92</td><td>FBWA Mode</td></tr>
+<tr><td>94</td><td>VTX Power</td></tr>
+<tr><td>95</td><td>FBWA taildragger takeoff mode</td></tr>
+<tr><td>96</td><td>Trigger re-reading of mode switch</td></tr>
+<tr><td>98</td><td>TRAINING Mode</td></tr>
+<tr><td>100</td><td>KillIMU1</td></tr>
+<tr><td>101</td><td>KillIMU2</td></tr>
+<tr><td>102</td><td>Camera Mode Toggle</td></tr>
+<tr><td>103</td><td>EKF lane switch attempt</td></tr>
+<tr><td>104</td><td>EKF yaw reset</td></tr>
+<tr><td>105</td><td>GPS Disable Yaw</td></tr>
+<tr><td>106</td><td>Disable Airspeed Use</td></tr>
+<tr><td>107</td><td>Enable FW Autotune</td></tr>
+<tr><td>108</td><td>QRTL Mode</td></tr>
+<tr><td>110</td><td>KillIMU3</td></tr>
+<tr><td>111</td><td>Loweheiser starter</td></tr>
+<tr><td>112</td><td>SwitchExternalAHRS</td></tr>
+<tr><td>113</td><td>Retract Mount2</td></tr>
+<tr><td>150</td><td>CRUISE Mode</td></tr>
+<tr><td>153</td><td>ArmDisarm (4.2 and higher)</td></tr>
+<tr><td>154</td><td>ArmDisarm with Quadplane AirMode (4.2 and higher)</td></tr>
+<tr><td>155</td><td>Set roll pitch and yaw trim to current servo and RC</td></tr>
+<tr><td>157</td><td>Force FS Action to FBWA</td></tr>
+<tr><td>158</td><td>Optflow Calibration</td></tr>
+<tr><td>160</td><td>Weathervane Enable</td></tr>
+<tr><td>162</td><td>FFT Tune</td></tr>
+<tr><td>163</td><td>Mount Yaw Lock</td></tr>
+<tr><td>164</td><td>Pause Stream Logging</td></tr>
+<tr><td>165</td><td>Arm/Emergency Motor Stop</td></tr>
+<tr><td>166</td><td>Camera Record Video</td></tr>
+<tr><td>167</td><td>Camera Zoom</td></tr>
+<tr><td>168</td><td>Camera Manual Focus</td></tr>
+<tr><td>169</td><td>Camera Auto Focus</td></tr>
+<tr><td>170</td><td>QSTABILIZE Mode</td></tr>
+<tr><td>171</td><td>Calibrate Compasses</td></tr>
+<tr><td>172</td><td>Battery MPPT Enable</td></tr>
+<tr><td>173</td><td>Plane AUTO Mode Landing Abort</td></tr>
+<tr><td>174</td><td>Camera Image Tracking</td></tr>
+<tr><td>175</td><td>Camera Lens</td></tr>
+<tr><td>176</td><td>Quadplane Fwd Throttle Override enable</td></tr>
+<tr><td>177</td><td>Mount LRF enable</td></tr>
+<tr><td>179</td><td>ICEngine start / stop</td></tr>
+<tr><td>180</td><td>Test autotuned gains after tune is complete</td></tr>
+<tr><td>181</td><td>QuickTune</td></tr>
+<tr><td>182</td><td>VTOL AutoTrim</td></tr>
+<tr><td>184</td><td>System ID Chirp</td></tr>
+<tr><td>185</td><td>Mount Roll/Pitch Lock</td></tr>
+<tr><td>186</td><td>Mount POI Lock</td></tr>
+<tr><td>208</td><td>Flap</td></tr>
+<tr><td>209</td><td>VTOL Forward Throttle</td></tr>
+<tr><td>210</td><td>Airbrakes</td></tr>
+<tr><td>212</td><td>Mount1 Roll</td></tr>
+<tr><td>213</td><td>Mount1 Pitch</td></tr>
+<tr><td>214</td><td>Mount1 Yaw</td></tr>
+<tr><td>215</td><td>Mount2 Roll</td></tr>
+<tr><td>216</td><td>Mount2 Pitch</td></tr>
+<tr><td>217</td><td>Mount2 Yaw</td></tr>
+<tr><td>218</td><td>Loweheiser throttle</td></tr>
+<tr><td>200</td><td>Servos Auto Trim</td></tr>
+<tr><td>250</td><td>Tuning Set Select</td></tr>
+<tr><td>251</td><td>RTL Autoland Commit</td></tr>
+<tr><td>252</td><td>Mount1 Head Track Enable</td></tr>
+<tr><td>253</td><td>Mount1 Head Track Center Lock</td></tr>
+<tr><td>254</td><td>Adaptive Pitch Trim</td></tr>
+<tr><td>300</td><td>Scripting1</td></tr>
+<tr><td>301</td><td>Scripting2</td></tr>
+<tr><td>302</td><td>Scripting3</td></tr>
+<tr><td>303</td><td>Scripting4</td></tr>
+<tr><td>304</td><td>Scripting5</td></tr>
+<tr><td>305</td><td>Scripting6</td></tr>
+<tr><td>306</td><td>Scripting7</td></tr>
+<tr><td>307</td><td>Scripting8</td></tr>
+<tr><td>308</td><td>Scripting9</td></tr>
+<tr><td>309</td><td>Scripting10</td></tr>
+<tr><td>310</td><td>Scripting11</td></tr>
+<tr><td>311</td><td>Scripting12</td></tr>
+<tr><td>312</td><td>Scripting13</td></tr>
+<tr><td>313</td><td>Scripting14</td></tr>
+<tr><td>314</td><td>Scripting15</td></tr>
+<tr><td>315</td><td>Scripting16</td></tr>
+<tr><td>316</td><td>Stop-Restart Scripting</td></tr>
+</table>
+</ul>
+
+
+</article></section><section class="grp" id="g-rc28-parameters"><h2>RC28_ Parameters</h2><article class="p" id="RC28_MIN" data-k="rc28_min rc min pwm (rc28_min)"><h3><a href="#RC28_MIN">RC28_MIN</a> <span>RC min PWM</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>RC minimum PWM pulse width in microseconds. Typically 1000 is lower limit, 1500 is neutral and 2000 is upper limit.</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 800 2200</li>
+<li>Increment: 1</li>
+</ul>
+
+
+</article><article class="p" id="RC28_TRIM" data-k="rc28_trim rc trim pwm (rc28_trim)"><h3><a href="#RC28_TRIM">RC28_TRIM</a> <span>RC trim PWM</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>RC trim (neutral) PWM pulse width in microseconds. Typically 1000 is lower limit, 1500 is neutral and 2000 is upper limit.</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 800 2200</li>
+<li>Increment: 1</li>
+</ul>
+
+
+</article><article class="p" id="RC28_MAX" data-k="rc28_max rc max pwm (rc28_max)"><h3><a href="#RC28_MAX">RC28_MAX</a> <span>RC max PWM</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>RC maximum PWM pulse width in microseconds. Typically 1000 is lower limit, 1500 is neutral and 2000 is upper limit.</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 800 2200</li>
+<li>Increment: 1</li>
+</ul>
+
+
+</article><article class="p" id="RC28_REVERSED" data-k="rc28_reversed rc reversed (rc28_reversed)"><h3><a href="#RC28_REVERSED">RC28_REVERSED</a> <span>RC reversed</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>Reverse channel input. Set to 0 for normal operation. Set to 1 to reverse this input channel.</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Normal</td></tr>
+<tr><td>1</td><td>Reversed</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="RC28_DZ" data-k="rc28_dz rc dead-zone (rc28_dz)"><h3><a href="#RC28_DZ">RC28_DZ</a> <span>RC dead-zone</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>PWM dead zone in microseconds around trim or bottom</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 0 200</li>
+</ul>
+
+
+</article><article class="p" id="RC28_OPTION" data-k="rc28_option rc input option (rc28_option)"><h3><a href="#RC28_OPTION">RC28_OPTION</a> <span>RC input option</span></h3>
+
+<p>Function assigned to this RC channel</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Do Nothing</td></tr>
+<tr><td>4</td><td>RTL</td></tr>
+<tr><td>9</td><td>Camera Trigger</td></tr>
+<tr><td>11</td><td>Fence Enable</td></tr>
+<tr><td>16</td><td>AUTO Mode</td></tr>
+<tr><td>17</td><td>AUTOTUNE Mode</td></tr>
+<tr><td>22</td><td>Parachute Release</td></tr>
+<tr><td>24</td><td>Auto Mission Reset</td></tr>
+<tr><td>27</td><td>Retract Mount1</td></tr>
+<tr><td>28</td><td>Relay1 On/Off</td></tr>
+<tr><td>29</td><td>Landing Gear</td></tr>
+<tr><td>30</td><td>Lost Plane Sound</td></tr>
+<tr><td>31</td><td>Motor Emergency Stop</td></tr>
+<tr><td>34</td><td>Relay2 On/Off</td></tr>
+<tr><td>35</td><td>Relay3 On/Off</td></tr>
+<tr><td>36</td><td>Relay4 On/Off</td></tr>
+<tr><td>38</td><td>ADSB Avoidance Enable</td></tr>
+<tr><td>41</td><td>ArmDisarm (4.1 and lower)</td></tr>
+<tr><td>43</td><td>InvertedFlight Enable</td></tr>
+<tr><td>46</td><td>RC Override Enable</td></tr>
+<tr><td>51</td><td>MANUAL Mode</td></tr>
+<tr><td>52</td><td>ACRO Mode</td></tr>
+<tr><td>55</td><td>GUIDED Mode</td></tr>
+<tr><td>56</td><td>LOITER Mode</td></tr>
+<tr><td>58</td><td>Clear Waypoints</td></tr>
+<tr><td>62</td><td>Compass Learn</td></tr>
+<tr><td>64</td><td>Reverse Throttle</td></tr>
+<tr><td>65</td><td>GPS Disable</td></tr>
+<tr><td>66</td><td>Relay5 On/Off</td></tr>
+<tr><td>67</td><td>Relay6 On/Off</td></tr>
+<tr><td>72</td><td>CIRCLE Mode</td></tr>
+<tr><td>77</td><td>TAKEOFF Mode</td></tr>
+<tr><td>78</td><td>RunCam Control</td></tr>
+<tr><td>79</td><td>RunCam OSD Control</td></tr>
+<tr><td>81</td><td>Disarm</td></tr>
+<tr><td>82</td><td>QAssist 3pos</td></tr>
+<tr><td>84</td><td>AirMode</td></tr>
+<tr><td>85</td><td>Generator</td></tr>
+<tr><td>86</td><td>Non Auto Terrain Follow Disable</td></tr>
+<tr><td>87</td><td>Crow Select</td></tr>
+<tr><td>88</td><td>Soaring Enable</td></tr>
+<tr><td>89</td><td>Landing Flare</td></tr>
+<tr><td>90</td><td>EKF Source Set</td></tr>
+<tr><td>91</td><td>Airspeed Ratio Calibration</td></tr>
+<tr><td>92</td><td>FBWA Mode</td></tr>
+<tr><td>94</td><td>VTX Power</td></tr>
+<tr><td>95</td><td>FBWA taildragger takeoff mode</td></tr>
+<tr><td>96</td><td>Trigger re-reading of mode switch</td></tr>
+<tr><td>98</td><td>TRAINING Mode</td></tr>
+<tr><td>100</td><td>KillIMU1</td></tr>
+<tr><td>101</td><td>KillIMU2</td></tr>
+<tr><td>102</td><td>Camera Mode Toggle</td></tr>
+<tr><td>103</td><td>EKF lane switch attempt</td></tr>
+<tr><td>104</td><td>EKF yaw reset</td></tr>
+<tr><td>105</td><td>GPS Disable Yaw</td></tr>
+<tr><td>106</td><td>Disable Airspeed Use</td></tr>
+<tr><td>107</td><td>Enable FW Autotune</td></tr>
+<tr><td>108</td><td>QRTL Mode</td></tr>
+<tr><td>110</td><td>KillIMU3</td></tr>
+<tr><td>111</td><td>Loweheiser starter</td></tr>
+<tr><td>112</td><td>SwitchExternalAHRS</td></tr>
+<tr><td>113</td><td>Retract Mount2</td></tr>
+<tr><td>150</td><td>CRUISE Mode</td></tr>
+<tr><td>153</td><td>ArmDisarm (4.2 and higher)</td></tr>
+<tr><td>154</td><td>ArmDisarm with Quadplane AirMode (4.2 and higher)</td></tr>
+<tr><td>155</td><td>Set roll pitch and yaw trim to current servo and RC</td></tr>
+<tr><td>157</td><td>Force FS Action to FBWA</td></tr>
+<tr><td>158</td><td>Optflow Calibration</td></tr>
+<tr><td>160</td><td>Weathervane Enable</td></tr>
+<tr><td>162</td><td>FFT Tune</td></tr>
+<tr><td>163</td><td>Mount Yaw Lock</td></tr>
+<tr><td>164</td><td>Pause Stream Logging</td></tr>
+<tr><td>165</td><td>Arm/Emergency Motor Stop</td></tr>
+<tr><td>166</td><td>Camera Record Video</td></tr>
+<tr><td>167</td><td>Camera Zoom</td></tr>
+<tr><td>168</td><td>Camera Manual Focus</td></tr>
+<tr><td>169</td><td>Camera Auto Focus</td></tr>
+<tr><td>170</td><td>QSTABILIZE Mode</td></tr>
+<tr><td>171</td><td>Calibrate Compasses</td></tr>
+<tr><td>172</td><td>Battery MPPT Enable</td></tr>
+<tr><td>173</td><td>Plane AUTO Mode Landing Abort</td></tr>
+<tr><td>174</td><td>Camera Image Tracking</td></tr>
+<tr><td>175</td><td>Camera Lens</td></tr>
+<tr><td>176</td><td>Quadplane Fwd Throttle Override enable</td></tr>
+<tr><td>177</td><td>Mount LRF enable</td></tr>
+<tr><td>179</td><td>ICEngine start / stop</td></tr>
+<tr><td>180</td><td>Test autotuned gains after tune is complete</td></tr>
+<tr><td>181</td><td>QuickTune</td></tr>
+<tr><td>182</td><td>VTOL AutoTrim</td></tr>
+<tr><td>184</td><td>System ID Chirp</td></tr>
+<tr><td>185</td><td>Mount Roll/Pitch Lock</td></tr>
+<tr><td>186</td><td>Mount POI Lock</td></tr>
+<tr><td>208</td><td>Flap</td></tr>
+<tr><td>209</td><td>VTOL Forward Throttle</td></tr>
+<tr><td>210</td><td>Airbrakes</td></tr>
+<tr><td>212</td><td>Mount1 Roll</td></tr>
+<tr><td>213</td><td>Mount1 Pitch</td></tr>
+<tr><td>214</td><td>Mount1 Yaw</td></tr>
+<tr><td>215</td><td>Mount2 Roll</td></tr>
+<tr><td>216</td><td>Mount2 Pitch</td></tr>
+<tr><td>217</td><td>Mount2 Yaw</td></tr>
+<tr><td>218</td><td>Loweheiser throttle</td></tr>
+<tr><td>200</td><td>Servos Auto Trim</td></tr>
+<tr><td>250</td><td>Tuning Set Select</td></tr>
+<tr><td>251</td><td>RTL Autoland Commit</td></tr>
+<tr><td>252</td><td>Mount1 Head Track Enable</td></tr>
+<tr><td>253</td><td>Mount1 Head Track Center Lock</td></tr>
+<tr><td>254</td><td>Adaptive Pitch Trim</td></tr>
+<tr><td>300</td><td>Scripting1</td></tr>
+<tr><td>301</td><td>Scripting2</td></tr>
+<tr><td>302</td><td>Scripting3</td></tr>
+<tr><td>303</td><td>Scripting4</td></tr>
+<tr><td>304</td><td>Scripting5</td></tr>
+<tr><td>305</td><td>Scripting6</td></tr>
+<tr><td>306</td><td>Scripting7</td></tr>
+<tr><td>307</td><td>Scripting8</td></tr>
+<tr><td>308</td><td>Scripting9</td></tr>
+<tr><td>309</td><td>Scripting10</td></tr>
+<tr><td>310</td><td>Scripting11</td></tr>
+<tr><td>311</td><td>Scripting12</td></tr>
+<tr><td>312</td><td>Scripting13</td></tr>
+<tr><td>313</td><td>Scripting14</td></tr>
+<tr><td>314</td><td>Scripting15</td></tr>
+<tr><td>315</td><td>Scripting16</td></tr>
+<tr><td>316</td><td>Stop-Restart Scripting</td></tr>
+</table>
+</ul>
+
+
+</article></section><section class="grp" id="g-rc29-parameters"><h2>RC29_ Parameters</h2><article class="p" id="RC29_MIN" data-k="rc29_min rc min pwm (rc29_min)"><h3><a href="#RC29_MIN">RC29_MIN</a> <span>RC min PWM</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>RC minimum PWM pulse width in microseconds. Typically 1000 is lower limit, 1500 is neutral and 2000 is upper limit.</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 800 2200</li>
+<li>Increment: 1</li>
+</ul>
+
+
+</article><article class="p" id="RC29_TRIM" data-k="rc29_trim rc trim pwm (rc29_trim)"><h3><a href="#RC29_TRIM">RC29_TRIM</a> <span>RC trim PWM</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>RC trim (neutral) PWM pulse width in microseconds. Typically 1000 is lower limit, 1500 is neutral and 2000 is upper limit.</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 800 2200</li>
+<li>Increment: 1</li>
+</ul>
+
+
+</article><article class="p" id="RC29_MAX" data-k="rc29_max rc max pwm (rc29_max)"><h3><a href="#RC29_MAX">RC29_MAX</a> <span>RC max PWM</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>RC maximum PWM pulse width in microseconds. Typically 1000 is lower limit, 1500 is neutral and 2000 is upper limit.</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 800 2200</li>
+<li>Increment: 1</li>
+</ul>
+
+
+</article><article class="p" id="RC29_REVERSED" data-k="rc29_reversed rc reversed (rc29_reversed)"><h3><a href="#RC29_REVERSED">RC29_REVERSED</a> <span>RC reversed</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>Reverse channel input. Set to 0 for normal operation. Set to 1 to reverse this input channel.</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Normal</td></tr>
+<tr><td>1</td><td>Reversed</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="RC29_DZ" data-k="rc29_dz rc dead-zone (rc29_dz)"><h3><a href="#RC29_DZ">RC29_DZ</a> <span>RC dead-zone</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>PWM dead zone in microseconds around trim or bottom</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 0 200</li>
+</ul>
+
+
+</article><article class="p" id="RC29_OPTION" data-k="rc29_option rc input option (rc29_option)"><h3><a href="#RC29_OPTION">RC29_OPTION</a> <span>RC input option</span></h3>
+
+<p>Function assigned to this RC channel</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Do Nothing</td></tr>
+<tr><td>4</td><td>RTL</td></tr>
+<tr><td>9</td><td>Camera Trigger</td></tr>
+<tr><td>11</td><td>Fence Enable</td></tr>
+<tr><td>16</td><td>AUTO Mode</td></tr>
+<tr><td>17</td><td>AUTOTUNE Mode</td></tr>
+<tr><td>22</td><td>Parachute Release</td></tr>
+<tr><td>24</td><td>Auto Mission Reset</td></tr>
+<tr><td>27</td><td>Retract Mount1</td></tr>
+<tr><td>28</td><td>Relay1 On/Off</td></tr>
+<tr><td>29</td><td>Landing Gear</td></tr>
+<tr><td>30</td><td>Lost Plane Sound</td></tr>
+<tr><td>31</td><td>Motor Emergency Stop</td></tr>
+<tr><td>34</td><td>Relay2 On/Off</td></tr>
+<tr><td>35</td><td>Relay3 On/Off</td></tr>
+<tr><td>36</td><td>Relay4 On/Off</td></tr>
+<tr><td>38</td><td>ADSB Avoidance Enable</td></tr>
+<tr><td>41</td><td>ArmDisarm (4.1 and lower)</td></tr>
+<tr><td>43</td><td>InvertedFlight Enable</td></tr>
+<tr><td>46</td><td>RC Override Enable</td></tr>
+<tr><td>51</td><td>MANUAL Mode</td></tr>
+<tr><td>52</td><td>ACRO Mode</td></tr>
+<tr><td>55</td><td>GUIDED Mode</td></tr>
+<tr><td>56</td><td>LOITER Mode</td></tr>
+<tr><td>58</td><td>Clear Waypoints</td></tr>
+<tr><td>62</td><td>Compass Learn</td></tr>
+<tr><td>64</td><td>Reverse Throttle</td></tr>
+<tr><td>65</td><td>GPS Disable</td></tr>
+<tr><td>66</td><td>Relay5 On/Off</td></tr>
+<tr><td>67</td><td>Relay6 On/Off</td></tr>
+<tr><td>72</td><td>CIRCLE Mode</td></tr>
+<tr><td>77</td><td>TAKEOFF Mode</td></tr>
+<tr><td>78</td><td>RunCam Control</td></tr>
+<tr><td>79</td><td>RunCam OSD Control</td></tr>
+<tr><td>81</td><td>Disarm</td></tr>
+<tr><td>82</td><td>QAssist 3pos</td></tr>
+<tr><td>84</td><td>AirMode</td></tr>
+<tr><td>85</td><td>Generator</td></tr>
+<tr><td>86</td><td>Non Auto Terrain Follow Disable</td></tr>
+<tr><td>87</td><td>Crow Select</td></tr>
+<tr><td>88</td><td>Soaring Enable</td></tr>
+<tr><td>89</td><td>Landing Flare</td></tr>
+<tr><td>90</td><td>EKF Source Set</td></tr>
+<tr><td>91</td><td>Airspeed Ratio Calibration</td></tr>
+<tr><td>92</td><td>FBWA Mode</td></tr>
+<tr><td>94</td><td>VTX Power</td></tr>
+<tr><td>95</td><td>FBWA taildragger takeoff mode</td></tr>
+<tr><td>96</td><td>Trigger re-reading of mode switch</td></tr>
+<tr><td>98</td><td>TRAINING Mode</td></tr>
+<tr><td>100</td><td>KillIMU1</td></tr>
+<tr><td>101</td><td>KillIMU2</td></tr>
+<tr><td>102</td><td>Camera Mode Toggle</td></tr>
+<tr><td>103</td><td>EKF lane switch attempt</td></tr>
+<tr><td>104</td><td>EKF yaw reset</td></tr>
+<tr><td>105</td><td>GPS Disable Yaw</td></tr>
+<tr><td>106</td><td>Disable Airspeed Use</td></tr>
+<tr><td>107</td><td>Enable FW Autotune</td></tr>
+<tr><td>108</td><td>QRTL Mode</td></tr>
+<tr><td>110</td><td>KillIMU3</td></tr>
+<tr><td>111</td><td>Loweheiser starter</td></tr>
+<tr><td>112</td><td>SwitchExternalAHRS</td></tr>
+<tr><td>113</td><td>Retract Mount2</td></tr>
+<tr><td>150</td><td>CRUISE Mode</td></tr>
+<tr><td>153</td><td>ArmDisarm (4.2 and higher)</td></tr>
+<tr><td>154</td><td>ArmDisarm with Quadplane AirMode (4.2 and higher)</td></tr>
+<tr><td>155</td><td>Set roll pitch and yaw trim to current servo and RC</td></tr>
+<tr><td>157</td><td>Force FS Action to FBWA</td></tr>
+<tr><td>158</td><td>Optflow Calibration</td></tr>
+<tr><td>160</td><td>Weathervane Enable</td></tr>
+<tr><td>162</td><td>FFT Tune</td></tr>
+<tr><td>163</td><td>Mount Yaw Lock</td></tr>
+<tr><td>164</td><td>Pause Stream Logging</td></tr>
+<tr><td>165</td><td>Arm/Emergency Motor Stop</td></tr>
+<tr><td>166</td><td>Camera Record Video</td></tr>
+<tr><td>167</td><td>Camera Zoom</td></tr>
+<tr><td>168</td><td>Camera Manual Focus</td></tr>
+<tr><td>169</td><td>Camera Auto Focus</td></tr>
+<tr><td>170</td><td>QSTABILIZE Mode</td></tr>
+<tr><td>171</td><td>Calibrate Compasses</td></tr>
+<tr><td>172</td><td>Battery MPPT Enable</td></tr>
+<tr><td>173</td><td>Plane AUTO Mode Landing Abort</td></tr>
+<tr><td>174</td><td>Camera Image Tracking</td></tr>
+<tr><td>175</td><td>Camera Lens</td></tr>
+<tr><td>176</td><td>Quadplane Fwd Throttle Override enable</td></tr>
+<tr><td>177</td><td>Mount LRF enable</td></tr>
+<tr><td>179</td><td>ICEngine start / stop</td></tr>
+<tr><td>180</td><td>Test autotuned gains after tune is complete</td></tr>
+<tr><td>181</td><td>QuickTune</td></tr>
+<tr><td>182</td><td>VTOL AutoTrim</td></tr>
+<tr><td>184</td><td>System ID Chirp</td></tr>
+<tr><td>185</td><td>Mount Roll/Pitch Lock</td></tr>
+<tr><td>186</td><td>Mount POI Lock</td></tr>
+<tr><td>208</td><td>Flap</td></tr>
+<tr><td>209</td><td>VTOL Forward Throttle</td></tr>
+<tr><td>210</td><td>Airbrakes</td></tr>
+<tr><td>212</td><td>Mount1 Roll</td></tr>
+<tr><td>213</td><td>Mount1 Pitch</td></tr>
+<tr><td>214</td><td>Mount1 Yaw</td></tr>
+<tr><td>215</td><td>Mount2 Roll</td></tr>
+<tr><td>216</td><td>Mount2 Pitch</td></tr>
+<tr><td>217</td><td>Mount2 Yaw</td></tr>
+<tr><td>218</td><td>Loweheiser throttle</td></tr>
+<tr><td>200</td><td>Servos Auto Trim</td></tr>
+<tr><td>250</td><td>Tuning Set Select</td></tr>
+<tr><td>251</td><td>RTL Autoland Commit</td></tr>
+<tr><td>252</td><td>Mount1 Head Track Enable</td></tr>
+<tr><td>253</td><td>Mount1 Head Track Center Lock</td></tr>
+<tr><td>254</td><td>Adaptive Pitch Trim</td></tr>
+<tr><td>300</td><td>Scripting1</td></tr>
+<tr><td>301</td><td>Scripting2</td></tr>
+<tr><td>302</td><td>Scripting3</td></tr>
+<tr><td>303</td><td>Scripting4</td></tr>
+<tr><td>304</td><td>Scripting5</td></tr>
+<tr><td>305</td><td>Scripting6</td></tr>
+<tr><td>306</td><td>Scripting7</td></tr>
+<tr><td>307</td><td>Scripting8</td></tr>
+<tr><td>308</td><td>Scripting9</td></tr>
+<tr><td>309</td><td>Scripting10</td></tr>
+<tr><td>310</td><td>Scripting11</td></tr>
+<tr><td>311</td><td>Scripting12</td></tr>
+<tr><td>312</td><td>Scripting13</td></tr>
+<tr><td>313</td><td>Scripting14</td></tr>
+<tr><td>314</td><td>Scripting15</td></tr>
+<tr><td>315</td><td>Scripting16</td></tr>
+<tr><td>316</td><td>Stop-Restart Scripting</td></tr>
+</table>
+</ul>
+
+
+</article></section><section class="grp" id="g-rc30-parameters"><h2>RC30_ Parameters</h2><article class="p" id="RC30_MIN" data-k="rc30_min rc min pwm (rc30_min)"><h3><a href="#RC30_MIN">RC30_MIN</a> <span>RC min PWM</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>RC minimum PWM pulse width in microseconds. Typically 1000 is lower limit, 1500 is neutral and 2000 is upper limit.</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 800 2200</li>
+<li>Increment: 1</li>
+</ul>
+
+
+</article><article class="p" id="RC30_TRIM" data-k="rc30_trim rc trim pwm (rc30_trim)"><h3><a href="#RC30_TRIM">RC30_TRIM</a> <span>RC trim PWM</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>RC trim (neutral) PWM pulse width in microseconds. Typically 1000 is lower limit, 1500 is neutral and 2000 is upper limit.</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 800 2200</li>
+<li>Increment: 1</li>
+</ul>
+
+
+</article><article class="p" id="RC30_MAX" data-k="rc30_max rc max pwm (rc30_max)"><h3><a href="#RC30_MAX">RC30_MAX</a> <span>RC max PWM</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>RC maximum PWM pulse width in microseconds. Typically 1000 is lower limit, 1500 is neutral and 2000 is upper limit.</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 800 2200</li>
+<li>Increment: 1</li>
+</ul>
+
+
+</article><article class="p" id="RC30_REVERSED" data-k="rc30_reversed rc reversed (rc30_reversed)"><h3><a href="#RC30_REVERSED">RC30_REVERSED</a> <span>RC reversed</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>Reverse channel input. Set to 0 for normal operation. Set to 1 to reverse this input channel.</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Normal</td></tr>
+<tr><td>1</td><td>Reversed</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="RC30_DZ" data-k="rc30_dz rc dead-zone (rc30_dz)"><h3><a href="#RC30_DZ">RC30_DZ</a> <span>RC dead-zone</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>PWM dead zone in microseconds around trim or bottom</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 0 200</li>
+</ul>
+
+
+</article><article class="p" id="RC30_OPTION" data-k="rc30_option rc input option (rc30_option)"><h3><a href="#RC30_OPTION">RC30_OPTION</a> <span>RC input option</span></h3>
+
+<p>Function assigned to this RC channel</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Do Nothing</td></tr>
+<tr><td>4</td><td>RTL</td></tr>
+<tr><td>9</td><td>Camera Trigger</td></tr>
+<tr><td>11</td><td>Fence Enable</td></tr>
+<tr><td>16</td><td>AUTO Mode</td></tr>
+<tr><td>17</td><td>AUTOTUNE Mode</td></tr>
+<tr><td>22</td><td>Parachute Release</td></tr>
+<tr><td>24</td><td>Auto Mission Reset</td></tr>
+<tr><td>27</td><td>Retract Mount1</td></tr>
+<tr><td>28</td><td>Relay1 On/Off</td></tr>
+<tr><td>29</td><td>Landing Gear</td></tr>
+<tr><td>30</td><td>Lost Plane Sound</td></tr>
+<tr><td>31</td><td>Motor Emergency Stop</td></tr>
+<tr><td>34</td><td>Relay2 On/Off</td></tr>
+<tr><td>35</td><td>Relay3 On/Off</td></tr>
+<tr><td>36</td><td>Relay4 On/Off</td></tr>
+<tr><td>38</td><td>ADSB Avoidance Enable</td></tr>
+<tr><td>41</td><td>ArmDisarm (4.1 and lower)</td></tr>
+<tr><td>43</td><td>InvertedFlight Enable</td></tr>
+<tr><td>46</td><td>RC Override Enable</td></tr>
+<tr><td>51</td><td>MANUAL Mode</td></tr>
+<tr><td>52</td><td>ACRO Mode</td></tr>
+<tr><td>55</td><td>GUIDED Mode</td></tr>
+<tr><td>56</td><td>LOITER Mode</td></tr>
+<tr><td>58</td><td>Clear Waypoints</td></tr>
+<tr><td>62</td><td>Compass Learn</td></tr>
+<tr><td>64</td><td>Reverse Throttle</td></tr>
+<tr><td>65</td><td>GPS Disable</td></tr>
+<tr><td>66</td><td>Relay5 On/Off</td></tr>
+<tr><td>67</td><td>Relay6 On/Off</td></tr>
+<tr><td>72</td><td>CIRCLE Mode</td></tr>
+<tr><td>77</td><td>TAKEOFF Mode</td></tr>
+<tr><td>78</td><td>RunCam Control</td></tr>
+<tr><td>79</td><td>RunCam OSD Control</td></tr>
+<tr><td>81</td><td>Disarm</td></tr>
+<tr><td>82</td><td>QAssist 3pos</td></tr>
+<tr><td>84</td><td>AirMode</td></tr>
+<tr><td>85</td><td>Generator</td></tr>
+<tr><td>86</td><td>Non Auto Terrain Follow Disable</td></tr>
+<tr><td>87</td><td>Crow Select</td></tr>
+<tr><td>88</td><td>Soaring Enable</td></tr>
+<tr><td>89</td><td>Landing Flare</td></tr>
+<tr><td>90</td><td>EKF Source Set</td></tr>
+<tr><td>91</td><td>Airspeed Ratio Calibration</td></tr>
+<tr><td>92</td><td>FBWA Mode</td></tr>
+<tr><td>94</td><td>VTX Power</td></tr>
+<tr><td>95</td><td>FBWA taildragger takeoff mode</td></tr>
+<tr><td>96</td><td>Trigger re-reading of mode switch</td></tr>
+<tr><td>98</td><td>TRAINING Mode</td></tr>
+<tr><td>100</td><td>KillIMU1</td></tr>
+<tr><td>101</td><td>KillIMU2</td></tr>
+<tr><td>102</td><td>Camera Mode Toggle</td></tr>
+<tr><td>103</td><td>EKF lane switch attempt</td></tr>
+<tr><td>104</td><td>EKF yaw reset</td></tr>
+<tr><td>105</td><td>GPS Disable Yaw</td></tr>
+<tr><td>106</td><td>Disable Airspeed Use</td></tr>
+<tr><td>107</td><td>Enable FW Autotune</td></tr>
+<tr><td>108</td><td>QRTL Mode</td></tr>
+<tr><td>110</td><td>KillIMU3</td></tr>
+<tr><td>111</td><td>Loweheiser starter</td></tr>
+<tr><td>112</td><td>SwitchExternalAHRS</td></tr>
+<tr><td>113</td><td>Retract Mount2</td></tr>
+<tr><td>150</td><td>CRUISE Mode</td></tr>
+<tr><td>153</td><td>ArmDisarm (4.2 and higher)</td></tr>
+<tr><td>154</td><td>ArmDisarm with Quadplane AirMode (4.2 and higher)</td></tr>
+<tr><td>155</td><td>Set roll pitch and yaw trim to current servo and RC</td></tr>
+<tr><td>157</td><td>Force FS Action to FBWA</td></tr>
+<tr><td>158</td><td>Optflow Calibration</td></tr>
+<tr><td>160</td><td>Weathervane Enable</td></tr>
+<tr><td>162</td><td>FFT Tune</td></tr>
+<tr><td>163</td><td>Mount Yaw Lock</td></tr>
+<tr><td>164</td><td>Pause Stream Logging</td></tr>
+<tr><td>165</td><td>Arm/Emergency Motor Stop</td></tr>
+<tr><td>166</td><td>Camera Record Video</td></tr>
+<tr><td>167</td><td>Camera Zoom</td></tr>
+<tr><td>168</td><td>Camera Manual Focus</td></tr>
+<tr><td>169</td><td>Camera Auto Focus</td></tr>
+<tr><td>170</td><td>QSTABILIZE Mode</td></tr>
+<tr><td>171</td><td>Calibrate Compasses</td></tr>
+<tr><td>172</td><td>Battery MPPT Enable</td></tr>
+<tr><td>173</td><td>Plane AUTO Mode Landing Abort</td></tr>
+<tr><td>174</td><td>Camera Image Tracking</td></tr>
+<tr><td>175</td><td>Camera Lens</td></tr>
+<tr><td>176</td><td>Quadplane Fwd Throttle Override enable</td></tr>
+<tr><td>177</td><td>Mount LRF enable</td></tr>
+<tr><td>179</td><td>ICEngine start / stop</td></tr>
+<tr><td>180</td><td>Test autotuned gains after tune is complete</td></tr>
+<tr><td>181</td><td>QuickTune</td></tr>
+<tr><td>182</td><td>VTOL AutoTrim</td></tr>
+<tr><td>184</td><td>System ID Chirp</td></tr>
+<tr><td>185</td><td>Mount Roll/Pitch Lock</td></tr>
+<tr><td>186</td><td>Mount POI Lock</td></tr>
+<tr><td>208</td><td>Flap</td></tr>
+<tr><td>209</td><td>VTOL Forward Throttle</td></tr>
+<tr><td>210</td><td>Airbrakes</td></tr>
+<tr><td>212</td><td>Mount1 Roll</td></tr>
+<tr><td>213</td><td>Mount1 Pitch</td></tr>
+<tr><td>214</td><td>Mount1 Yaw</td></tr>
+<tr><td>215</td><td>Mount2 Roll</td></tr>
+<tr><td>216</td><td>Mount2 Pitch</td></tr>
+<tr><td>217</td><td>Mount2 Yaw</td></tr>
+<tr><td>218</td><td>Loweheiser throttle</td></tr>
+<tr><td>200</td><td>Servos Auto Trim</td></tr>
+<tr><td>250</td><td>Tuning Set Select</td></tr>
+<tr><td>251</td><td>RTL Autoland Commit</td></tr>
+<tr><td>252</td><td>Mount1 Head Track Enable</td></tr>
+<tr><td>253</td><td>Mount1 Head Track Center Lock</td></tr>
+<tr><td>254</td><td>Adaptive Pitch Trim</td></tr>
+<tr><td>300</td><td>Scripting1</td></tr>
+<tr><td>301</td><td>Scripting2</td></tr>
+<tr><td>302</td><td>Scripting3</td></tr>
+<tr><td>303</td><td>Scripting4</td></tr>
+<tr><td>304</td><td>Scripting5</td></tr>
+<tr><td>305</td><td>Scripting6</td></tr>
+<tr><td>306</td><td>Scripting7</td></tr>
+<tr><td>307</td><td>Scripting8</td></tr>
+<tr><td>308</td><td>Scripting9</td></tr>
+<tr><td>309</td><td>Scripting10</td></tr>
+<tr><td>310</td><td>Scripting11</td></tr>
+<tr><td>311</td><td>Scripting12</td></tr>
+<tr><td>312</td><td>Scripting13</td></tr>
+<tr><td>313</td><td>Scripting14</td></tr>
+<tr><td>314</td><td>Scripting15</td></tr>
+<tr><td>315</td><td>Scripting16</td></tr>
+<tr><td>316</td><td>Stop-Restart Scripting</td></tr>
+</table>
+</ul>
+
+
+</article></section><section class="grp" id="g-rc31-parameters"><h2>RC31_ Parameters</h2><article class="p" id="RC31_MIN" data-k="rc31_min rc min pwm (rc31_min)"><h3><a href="#RC31_MIN">RC31_MIN</a> <span>RC min PWM</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>RC minimum PWM pulse width in microseconds. Typically 1000 is lower limit, 1500 is neutral and 2000 is upper limit.</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 800 2200</li>
+<li>Increment: 1</li>
+</ul>
+
+
+</article><article class="p" id="RC31_TRIM" data-k="rc31_trim rc trim pwm (rc31_trim)"><h3><a href="#RC31_TRIM">RC31_TRIM</a> <span>RC trim PWM</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>RC trim (neutral) PWM pulse width in microseconds. Typically 1000 is lower limit, 1500 is neutral and 2000 is upper limit.</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 800 2200</li>
+<li>Increment: 1</li>
+</ul>
+
+
+</article><article class="p" id="RC31_MAX" data-k="rc31_max rc max pwm (rc31_max)"><h3><a href="#RC31_MAX">RC31_MAX</a> <span>RC max PWM</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>RC maximum PWM pulse width in microseconds. Typically 1000 is lower limit, 1500 is neutral and 2000 is upper limit.</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 800 2200</li>
+<li>Increment: 1</li>
+</ul>
+
+
+</article><article class="p" id="RC31_REVERSED" data-k="rc31_reversed rc reversed (rc31_reversed)"><h3><a href="#RC31_REVERSED">RC31_REVERSED</a> <span>RC reversed</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>Reverse channel input. Set to 0 for normal operation. Set to 1 to reverse this input channel.</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Normal</td></tr>
+<tr><td>1</td><td>Reversed</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="RC31_DZ" data-k="rc31_dz rc dead-zone (rc31_dz)"><h3><a href="#RC31_DZ">RC31_DZ</a> <span>RC dead-zone</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>PWM dead zone in microseconds around trim or bottom</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 0 200</li>
+</ul>
+
+
+</article><article class="p" id="RC31_OPTION" data-k="rc31_option rc input option (rc31_option)"><h3><a href="#RC31_OPTION">RC31_OPTION</a> <span>RC input option</span></h3>
+
+<p>Function assigned to this RC channel</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Do Nothing</td></tr>
+<tr><td>4</td><td>RTL</td></tr>
+<tr><td>9</td><td>Camera Trigger</td></tr>
+<tr><td>11</td><td>Fence Enable</td></tr>
+<tr><td>16</td><td>AUTO Mode</td></tr>
+<tr><td>17</td><td>AUTOTUNE Mode</td></tr>
+<tr><td>22</td><td>Parachute Release</td></tr>
+<tr><td>24</td><td>Auto Mission Reset</td></tr>
+<tr><td>27</td><td>Retract Mount1</td></tr>
+<tr><td>28</td><td>Relay1 On/Off</td></tr>
+<tr><td>29</td><td>Landing Gear</td></tr>
+<tr><td>30</td><td>Lost Plane Sound</td></tr>
+<tr><td>31</td><td>Motor Emergency Stop</td></tr>
+<tr><td>34</td><td>Relay2 On/Off</td></tr>
+<tr><td>35</td><td>Relay3 On/Off</td></tr>
+<tr><td>36</td><td>Relay4 On/Off</td></tr>
+<tr><td>38</td><td>ADSB Avoidance Enable</td></tr>
+<tr><td>41</td><td>ArmDisarm (4.1 and lower)</td></tr>
+<tr><td>43</td><td>InvertedFlight Enable</td></tr>
+<tr><td>46</td><td>RC Override Enable</td></tr>
+<tr><td>51</td><td>MANUAL Mode</td></tr>
+<tr><td>52</td><td>ACRO Mode</td></tr>
+<tr><td>55</td><td>GUIDED Mode</td></tr>
+<tr><td>56</td><td>LOITER Mode</td></tr>
+<tr><td>58</td><td>Clear Waypoints</td></tr>
+<tr><td>62</td><td>Compass Learn</td></tr>
+<tr><td>64</td><td>Reverse Throttle</td></tr>
+<tr><td>65</td><td>GPS Disable</td></tr>
+<tr><td>66</td><td>Relay5 On/Off</td></tr>
+<tr><td>67</td><td>Relay6 On/Off</td></tr>
+<tr><td>72</td><td>CIRCLE Mode</td></tr>
+<tr><td>77</td><td>TAKEOFF Mode</td></tr>
+<tr><td>78</td><td>RunCam Control</td></tr>
+<tr><td>79</td><td>RunCam OSD Control</td></tr>
+<tr><td>81</td><td>Disarm</td></tr>
+<tr><td>82</td><td>QAssist 3pos</td></tr>
+<tr><td>84</td><td>AirMode</td></tr>
+<tr><td>85</td><td>Generator</td></tr>
+<tr><td>86</td><td>Non Auto Terrain Follow Disable</td></tr>
+<tr><td>87</td><td>Crow Select</td></tr>
+<tr><td>88</td><td>Soaring Enable</td></tr>
+<tr><td>89</td><td>Landing Flare</td></tr>
+<tr><td>90</td><td>EKF Source Set</td></tr>
+<tr><td>91</td><td>Airspeed Ratio Calibration</td></tr>
+<tr><td>92</td><td>FBWA Mode</td></tr>
+<tr><td>94</td><td>VTX Power</td></tr>
+<tr><td>95</td><td>FBWA taildragger takeoff mode</td></tr>
+<tr><td>96</td><td>Trigger re-reading of mode switch</td></tr>
+<tr><td>98</td><td>TRAINING Mode</td></tr>
+<tr><td>100</td><td>KillIMU1</td></tr>
+<tr><td>101</td><td>KillIMU2</td></tr>
+<tr><td>102</td><td>Camera Mode Toggle</td></tr>
+<tr><td>103</td><td>EKF lane switch attempt</td></tr>
+<tr><td>104</td><td>EKF yaw reset</td></tr>
+<tr><td>105</td><td>GPS Disable Yaw</td></tr>
+<tr><td>106</td><td>Disable Airspeed Use</td></tr>
+<tr><td>107</td><td>Enable FW Autotune</td></tr>
+<tr><td>108</td><td>QRTL Mode</td></tr>
+<tr><td>110</td><td>KillIMU3</td></tr>
+<tr><td>111</td><td>Loweheiser starter</td></tr>
+<tr><td>112</td><td>SwitchExternalAHRS</td></tr>
+<tr><td>113</td><td>Retract Mount2</td></tr>
+<tr><td>150</td><td>CRUISE Mode</td></tr>
+<tr><td>153</td><td>ArmDisarm (4.2 and higher)</td></tr>
+<tr><td>154</td><td>ArmDisarm with Quadplane AirMode (4.2 and higher)</td></tr>
+<tr><td>155</td><td>Set roll pitch and yaw trim to current servo and RC</td></tr>
+<tr><td>157</td><td>Force FS Action to FBWA</td></tr>
+<tr><td>158</td><td>Optflow Calibration</td></tr>
+<tr><td>160</td><td>Weathervane Enable</td></tr>
+<tr><td>162</td><td>FFT Tune</td></tr>
+<tr><td>163</td><td>Mount Yaw Lock</td></tr>
+<tr><td>164</td><td>Pause Stream Logging</td></tr>
+<tr><td>165</td><td>Arm/Emergency Motor Stop</td></tr>
+<tr><td>166</td><td>Camera Record Video</td></tr>
+<tr><td>167</td><td>Camera Zoom</td></tr>
+<tr><td>168</td><td>Camera Manual Focus</td></tr>
+<tr><td>169</td><td>Camera Auto Focus</td></tr>
+<tr><td>170</td><td>QSTABILIZE Mode</td></tr>
+<tr><td>171</td><td>Calibrate Compasses</td></tr>
+<tr><td>172</td><td>Battery MPPT Enable</td></tr>
+<tr><td>173</td><td>Plane AUTO Mode Landing Abort</td></tr>
+<tr><td>174</td><td>Camera Image Tracking</td></tr>
+<tr><td>175</td><td>Camera Lens</td></tr>
+<tr><td>176</td><td>Quadplane Fwd Throttle Override enable</td></tr>
+<tr><td>177</td><td>Mount LRF enable</td></tr>
+<tr><td>179</td><td>ICEngine start / stop</td></tr>
+<tr><td>180</td><td>Test autotuned gains after tune is complete</td></tr>
+<tr><td>181</td><td>QuickTune</td></tr>
+<tr><td>182</td><td>VTOL AutoTrim</td></tr>
+<tr><td>184</td><td>System ID Chirp</td></tr>
+<tr><td>185</td><td>Mount Roll/Pitch Lock</td></tr>
+<tr><td>186</td><td>Mount POI Lock</td></tr>
+<tr><td>208</td><td>Flap</td></tr>
+<tr><td>209</td><td>VTOL Forward Throttle</td></tr>
+<tr><td>210</td><td>Airbrakes</td></tr>
+<tr><td>212</td><td>Mount1 Roll</td></tr>
+<tr><td>213</td><td>Mount1 Pitch</td></tr>
+<tr><td>214</td><td>Mount1 Yaw</td></tr>
+<tr><td>215</td><td>Mount2 Roll</td></tr>
+<tr><td>216</td><td>Mount2 Pitch</td></tr>
+<tr><td>217</td><td>Mount2 Yaw</td></tr>
+<tr><td>218</td><td>Loweheiser throttle</td></tr>
+<tr><td>200</td><td>Servos Auto Trim</td></tr>
+<tr><td>250</td><td>Tuning Set Select</td></tr>
+<tr><td>251</td><td>RTL Autoland Commit</td></tr>
+<tr><td>252</td><td>Mount1 Head Track Enable</td></tr>
+<tr><td>253</td><td>Mount1 Head Track Center Lock</td></tr>
+<tr><td>254</td><td>Adaptive Pitch Trim</td></tr>
+<tr><td>300</td><td>Scripting1</td></tr>
+<tr><td>301</td><td>Scripting2</td></tr>
+<tr><td>302</td><td>Scripting3</td></tr>
+<tr><td>303</td><td>Scripting4</td></tr>
+<tr><td>304</td><td>Scripting5</td></tr>
+<tr><td>305</td><td>Scripting6</td></tr>
+<tr><td>306</td><td>Scripting7</td></tr>
+<tr><td>307</td><td>Scripting8</td></tr>
+<tr><td>308</td><td>Scripting9</td></tr>
+<tr><td>309</td><td>Scripting10</td></tr>
+<tr><td>310</td><td>Scripting11</td></tr>
+<tr><td>311</td><td>Scripting12</td></tr>
+<tr><td>312</td><td>Scripting13</td></tr>
+<tr><td>313</td><td>Scripting14</td></tr>
+<tr><td>314</td><td>Scripting15</td></tr>
+<tr><td>315</td><td>Scripting16</td></tr>
+<tr><td>316</td><td>Stop-Restart Scripting</td></tr>
+</table>
+</ul>
+
+
+</article></section><section class="grp" id="g-rc32-parameters"><h2>RC32_ Parameters</h2><article class="p" id="RC32_MIN" data-k="rc32_min rc min pwm (rc32_min)"><h3><a href="#RC32_MIN">RC32_MIN</a> <span>RC min PWM</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>RC minimum PWM pulse width in microseconds. Typically 1000 is lower limit, 1500 is neutral and 2000 is upper limit.</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 800 2200</li>
+<li>Increment: 1</li>
+</ul>
+
+
+</article><article class="p" id="RC32_TRIM" data-k="rc32_trim rc trim pwm (rc32_trim)"><h3><a href="#RC32_TRIM">RC32_TRIM</a> <span>RC trim PWM</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>RC trim (neutral) PWM pulse width in microseconds. Typically 1000 is lower limit, 1500 is neutral and 2000 is upper limit.</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 800 2200</li>
+<li>Increment: 1</li>
+</ul>
+
+
+</article><article class="p" id="RC32_MAX" data-k="rc32_max rc max pwm (rc32_max)"><h3><a href="#RC32_MAX">RC32_MAX</a> <span>RC max PWM</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>RC maximum PWM pulse width in microseconds. Typically 1000 is lower limit, 1500 is neutral and 2000 is upper limit.</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 800 2200</li>
+<li>Increment: 1</li>
+</ul>
+
+
+</article><article class="p" id="RC32_REVERSED" data-k="rc32_reversed rc reversed (rc32_reversed)"><h3><a href="#RC32_REVERSED">RC32_REVERSED</a> <span>RC reversed</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>Reverse channel input. Set to 0 for normal operation. Set to 1 to reverse this input channel.</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Normal</td></tr>
+<tr><td>1</td><td>Reversed</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="RC32_DZ" data-k="rc32_dz rc dead-zone (rc32_dz)"><h3><a href="#RC32_DZ">RC32_DZ</a> <span>RC dead-zone</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>PWM dead zone in microseconds around trim or bottom</p>
+<ul>
+<li>Units: PWM in microseconds</li>
+<li>Range: 0 200</li>
+</ul>
+
+
+</article><article class="p" id="RC32_OPTION" data-k="rc32_option rc input option (rc32_option)"><h3><a href="#RC32_OPTION">RC32_OPTION</a> <span>RC input option</span></h3>
+
+<p>Function assigned to this RC channel</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Do Nothing</td></tr>
+<tr><td>4</td><td>RTL</td></tr>
+<tr><td>9</td><td>Camera Trigger</td></tr>
+<tr><td>11</td><td>Fence Enable</td></tr>
+<tr><td>16</td><td>AUTO Mode</td></tr>
+<tr><td>17</td><td>AUTOTUNE Mode</td></tr>
+<tr><td>22</td><td>Parachute Release</td></tr>
+<tr><td>24</td><td>Auto Mission Reset</td></tr>
+<tr><td>27</td><td>Retract Mount1</td></tr>
+<tr><td>28</td><td>Relay1 On/Off</td></tr>
+<tr><td>29</td><td>Landing Gear</td></tr>
+<tr><td>30</td><td>Lost Plane Sound</td></tr>
+<tr><td>31</td><td>Motor Emergency Stop</td></tr>
+<tr><td>34</td><td>Relay2 On/Off</td></tr>
+<tr><td>35</td><td>Relay3 On/Off</td></tr>
+<tr><td>36</td><td>Relay4 On/Off</td></tr>
+<tr><td>38</td><td>ADSB Avoidance Enable</td></tr>
+<tr><td>41</td><td>ArmDisarm (4.1 and lower)</td></tr>
+<tr><td>43</td><td>InvertedFlight Enable</td></tr>
+<tr><td>46</td><td>RC Override Enable</td></tr>
+<tr><td>51</td><td>MANUAL Mode</td></tr>
+<tr><td>52</td><td>ACRO Mode</td></tr>
+<tr><td>55</td><td>GUIDED Mode</td></tr>
+<tr><td>56</td><td>LOITER Mode</td></tr>
+<tr><td>58</td><td>Clear Waypoints</td></tr>
+<tr><td>62</td><td>Compass Learn</td></tr>
+<tr><td>64</td><td>Reverse Throttle</td></tr>
+<tr><td>65</td><td>GPS Disable</td></tr>
+<tr><td>66</td><td>Relay5 On/Off</td></tr>
+<tr><td>67</td><td>Relay6 On/Off</td></tr>
+<tr><td>72</td><td>CIRCLE Mode</td></tr>
+<tr><td>77</td><td>TAKEOFF Mode</td></tr>
+<tr><td>78</td><td>RunCam Control</td></tr>
+<tr><td>79</td><td>RunCam OSD Control</td></tr>
+<tr><td>81</td><td>Disarm</td></tr>
+<tr><td>82</td><td>QAssist 3pos</td></tr>
+<tr><td>84</td><td>AirMode</td></tr>
+<tr><td>85</td><td>Generator</td></tr>
+<tr><td>86</td><td>Non Auto Terrain Follow Disable</td></tr>
+<tr><td>87</td><td>Crow Select</td></tr>
+<tr><td>88</td><td>Soaring Enable</td></tr>
+<tr><td>89</td><td>Landing Flare</td></tr>
+<tr><td>90</td><td>EKF Source Set</td></tr>
+<tr><td>91</td><td>Airspeed Ratio Calibration</td></tr>
+<tr><td>92</td><td>FBWA Mode</td></tr>
+<tr><td>94</td><td>VTX Power</td></tr>
+<tr><td>95</td><td>FBWA taildragger takeoff mode</td></tr>
+<tr><td>96</td><td>Trigger re-reading of mode switch</td></tr>
+<tr><td>98</td><td>TRAINING Mode</td></tr>
+<tr><td>100</td><td>KillIMU1</td></tr>
+<tr><td>101</td><td>KillIMU2</td></tr>
+<tr><td>102</td><td>Camera Mode Toggle</td></tr>
+<tr><td>103</td><td>EKF lane switch attempt</td></tr>
+<tr><td>104</td><td>EKF yaw reset</td></tr>
+<tr><td>105</td><td>GPS Disable Yaw</td></tr>
+<tr><td>106</td><td>Disable Airspeed Use</td></tr>
+<tr><td>107</td><td>Enable FW Autotune</td></tr>
+<tr><td>108</td><td>QRTL Mode</td></tr>
+<tr><td>110</td><td>KillIMU3</td></tr>
+<tr><td>111</td><td>Loweheiser starter</td></tr>
+<tr><td>112</td><td>SwitchExternalAHRS</td></tr>
+<tr><td>113</td><td>Retract Mount2</td></tr>
+<tr><td>150</td><td>CRUISE Mode</td></tr>
+<tr><td>153</td><td>ArmDisarm (4.2 and higher)</td></tr>
+<tr><td>154</td><td>ArmDisarm with Quadplane AirMode (4.2 and higher)</td></tr>
+<tr><td>155</td><td>Set roll pitch and yaw trim to current servo and RC</td></tr>
+<tr><td>157</td><td>Force FS Action to FBWA</td></tr>
+<tr><td>158</td><td>Optflow Calibration</td></tr>
+<tr><td>160</td><td>Weathervane Enable</td></tr>
+<tr><td>162</td><td>FFT Tune</td></tr>
+<tr><td>163</td><td>Mount Yaw Lock</td></tr>
+<tr><td>164</td><td>Pause Stream Logging</td></tr>
+<tr><td>165</td><td>Arm/Emergency Motor Stop</td></tr>
+<tr><td>166</td><td>Camera Record Video</td></tr>
+<tr><td>167</td><td>Camera Zoom</td></tr>
+<tr><td>168</td><td>Camera Manual Focus</td></tr>
+<tr><td>169</td><td>Camera Auto Focus</td></tr>
+<tr><td>170</td><td>QSTABILIZE Mode</td></tr>
+<tr><td>171</td><td>Calibrate Compasses</td></tr>
+<tr><td>172</td><td>Battery MPPT Enable</td></tr>
+<tr><td>173</td><td>Plane AUTO Mode Landing Abort</td></tr>
+<tr><td>174</td><td>Camera Image Tracking</td></tr>
+<tr><td>175</td><td>Camera Lens</td></tr>
+<tr><td>176</td><td>Quadplane Fwd Throttle Override enable</td></tr>
+<tr><td>177</td><td>Mount LRF enable</td></tr>
+<tr><td>179</td><td>ICEngine start / stop</td></tr>
+<tr><td>180</td><td>Test autotuned gains after tune is complete</td></tr>
+<tr><td>181</td><td>QuickTune</td></tr>
+<tr><td>182</td><td>VTOL AutoTrim</td></tr>
+<tr><td>184</td><td>System ID Chirp</td></tr>
+<tr><td>185</td><td>Mount Roll/Pitch Lock</td></tr>
+<tr><td>186</td><td>Mount POI Lock</td></tr>
+<tr><td>208</td><td>Flap</td></tr>
+<tr><td>209</td><td>VTOL Forward Throttle</td></tr>
+<tr><td>210</td><td>Airbrakes</td></tr>
+<tr><td>212</td><td>Mount1 Roll</td></tr>
+<tr><td>213</td><td>Mount1 Pitch</td></tr>
+<tr><td>214</td><td>Mount1 Yaw</td></tr>
+<tr><td>215</td><td>Mount2 Roll</td></tr>
+<tr><td>216</td><td>Mount2 Pitch</td></tr>
+<tr><td>217</td><td>Mount2 Yaw</td></tr>
+<tr><td>218</td><td>Loweheiser throttle</td></tr>
+<tr><td>200</td><td>Servos Auto Trim</td></tr>
+<tr><td>250</td><td>Tuning Set Select</td></tr>
+<tr><td>251</td><td>RTL Autoland Commit</td></tr>
+<tr><td>252</td><td>Mount1 Head Track Enable</td></tr>
+<tr><td>253</td><td>Mount1 Head Track Center Lock</td></tr>
+<tr><td>254</td><td>Adaptive Pitch Trim</td></tr>
 <tr><td>300</td><td>Scripting1</td></tr>
 <tr><td>301</td><td>Scripting2</td></tr>
 <tr><td>302</td><td>Scripting3</td></tr>
@@ -58116,6 +61223,7 @@ footer{color:var(--muted);font-size:13px}
 <tr><td>48</td><td>PPP</td></tr>
 <tr><td>49</td><td>i-BUS Telemetry</td></tr>
 <tr><td>50</td><td>IOMCU</td></tr>
+<tr><td>51</td><td>CADDX HeadTracker</td></tr>
 </table>
 </ul>
 
@@ -58174,6 +61282,7 @@ footer{color:var(--muted);font-size:13px}
 <tr><td>48</td><td>PPP</td></tr>
 <tr><td>49</td><td>i-BUS Telemetry</td></tr>
 <tr><td>50</td><td>IOMCU</td></tr>
+<tr><td>51</td><td>CADDX HeadTracker</td></tr>
 </table>
 </ul>
 
@@ -58232,6 +61341,7 @@ footer{color:var(--muted);font-size:13px}
 <tr><td>48</td><td>PPP</td></tr>
 <tr><td>49</td><td>i-BUS Telemetry</td></tr>
 <tr><td>50</td><td>IOMCU</td></tr>
+<tr><td>51</td><td>CADDX HeadTracker</td></tr>
 </table>
 </ul>
 
@@ -58328,6 +61438,7 @@ footer{color:var(--muted);font-size:13px}
 <tr><td>48</td><td>PPP</td></tr>
 <tr><td>49</td><td>i-BUS Telemetry</td></tr>
 <tr><td>50</td><td>IOMCU</td></tr>
+<tr><td>51</td><td>CADDX HeadTracker</td></tr>
 </table>
 <li>RebootRequired: True</li>
 </ul>
@@ -58414,6 +61525,7 @@ footer{color:var(--muted);font-size:13px}
 <tr><td>48</td><td>PPP</td></tr>
 <tr><td>49</td><td>i-BUS Telemetry</td></tr>
 <tr><td>50</td><td>IOMCU</td></tr>
+<tr><td>51</td><td>CADDX HeadTracker</td></tr>
 </table>
 </ul>
 
@@ -58499,6 +61611,7 @@ footer{color:var(--muted);font-size:13px}
 <tr><td>48</td><td>PPP</td></tr>
 <tr><td>49</td><td>i-BUS Telemetry</td></tr>
 <tr><td>50</td><td>IOMCU</td></tr>
+<tr><td>51</td><td>CADDX HeadTracker</td></tr>
 </table>
 </ul>
 
@@ -58584,6 +61697,7 @@ footer{color:var(--muted);font-size:13px}
 <tr><td>48</td><td>PPP</td></tr>
 <tr><td>49</td><td>i-BUS Telemetry</td></tr>
 <tr><td>50</td><td>IOMCU</td></tr>
+<tr><td>51</td><td>CADDX HeadTracker</td></tr>
 </table>
 </ul>
 
@@ -58669,6 +61783,7 @@ footer{color:var(--muted);font-size:13px}
 <tr><td>48</td><td>PPP</td></tr>
 <tr><td>49</td><td>i-BUS Telemetry</td></tr>
 <tr><td>50</td><td>IOMCU</td></tr>
+<tr><td>51</td><td>CADDX HeadTracker</td></tr>
 </table>
 </ul>
 
@@ -58754,6 +61869,7 @@ footer{color:var(--muted);font-size:13px}
 <tr><td>48</td><td>PPP</td></tr>
 <tr><td>49</td><td>i-BUS Telemetry</td></tr>
 <tr><td>50</td><td>IOMCU</td></tr>
+<tr><td>51</td><td>CADDX HeadTracker</td></tr>
 </table>
 </ul>
 
@@ -58936,6 +62052,7 @@ footer{color:var(--muted);font-size:13px}
 <tr><td>48</td><td>PPP</td></tr>
 <tr><td>49</td><td>i-BUS Telemetry</td></tr>
 <tr><td>50</td><td>IOMCU</td></tr>
+<tr><td>51</td><td>CADDX HeadTracker</td></tr>
 </table>
 </ul>
 
@@ -59030,6 +62147,7 @@ footer{color:var(--muted);font-size:13px}
 <tr><td>48</td><td>PPP</td></tr>
 <tr><td>49</td><td>i-BUS Telemetry</td></tr>
 <tr><td>50</td><td>IOMCU</td></tr>
+<tr><td>51</td><td>CADDX HeadTracker</td></tr>
 </table>
 </ul>
 
@@ -59124,6 +62242,7 @@ footer{color:var(--muted);font-size:13px}
 <tr><td>48</td><td>PPP</td></tr>
 <tr><td>49</td><td>i-BUS Telemetry</td></tr>
 <tr><td>50</td><td>IOMCU</td></tr>
+<tr><td>51</td><td>CADDX HeadTracker</td></tr>
 </table>
 </ul>
 
@@ -75001,7 +78120,7 @@ footer{color:var(--muted);font-size:13px}
     if(!texts)texts=arts.map(a=>a.textContent.toLowerCase());
     for(let i=0;i<arts.length;i++){const a=arts[i],k=texts[i];const ok=terms.every(w=>k.includes(w));a.hidden=!ok;if(ok)shown++}
     for(const g of grps)g.hidden=!g.querySelector('article.p:not([hidden])');
-    n.textContent=terms.length?shown+' of 6704 entries':'6,482 parameters';
+    n.textContent=terms.length?shown+' of 6811 entries':'6,589 parameters';
   }
 })();
 </script>
