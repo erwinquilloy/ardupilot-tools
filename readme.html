@@ -78,7 +78,7 @@ hr{border:0;border-top:1px solid var(--line);margin:2em 0}
   <nav class="toc" aria-label="Outline"><p class="label">Outline</p><ul><li class="g"><a href="#arduplane-stratos">ArduPlane Stratos</a><ul><li><a href="#whats-new-in-v21">What's new in v2.1</a></li><li><a href="#contents">Contents</a></li><li><a href="#why-flash-this-instead-of-stock-arduplane-472">Why flash this instead of stock ArduPlane 4.7.2?</a></li><li><a href="#building">Building</a></li></ul></li><li class="g"><a href="#what-this-fork-adds">What this fork adds</a><ul><li><a href="#flight-modes">Flight modes</a></li><li><a href="#arming--takeoff">Arming &amp; takeoff</a></li><li><a href="#vtol-transition">VTOL transition</a></li><li><a href="#pitch-trim--tuning-knob">Pitch trim &amp; tuning knob</a></li><li><a href="#rtl--failsafe-behaviour">RTL &amp; failsafe behaviour</a></li><li><a href="#pilot-control-of-loiter-radius-and-direction-loiter-rtl-takeoff">Pilot control of loiter radius and direction (LOITER, RTL, TAKEOFF)</a></li><li><a href="#emergency-landing-rc-failsafe">Emergency landing (RC failsafe)</a></li><li><a href="#auto-trim-improvements">Auto-trim improvements</a></li><li><a href="#move-sticks-to-cancel-auto-launch">Move sticks to cancel auto launch</a></li><li><a href="#manual-airspeed-control-in-nav-modes">Manual airspeed control in nav modes</a></li><li><a href="#throttle-output-deadzone">Throttle output deadzone</a></li><li><a href="#throttle-voltage-compensation-in-manual-mode">Throttle voltage compensation in MANUAL mode</a></li><li><a href="#revert-to-manual-after-disarming">Revert to MANUAL after disarming</a></li><li><a href="#smarter-rc-relays">Smarter RC relays</a></li><li><a href="#32-rc-channels-v21">32 RC channels (v2.1)</a></li><li><a href="#mlrs-mavlink-rc-radio_rc_channels-on-every-board-v21">mLRS MAVLink RC (RADIO_RC_CHANNELS) on every board (v2.1)</a></li><li><a href="#steering-assist-supports-reverse-driving">Steering assist supports reverse driving</a></li><li><a href="#mavftp-reliability-on-low-ram-f4-boards">MAVFTP reliability on low-RAM F4 boards</a></li><li><a href="#ekf3-allocation-failed-on-1-mb-f4--allocation-order-and-the-fix">EKF3 allocation failed on 1 MB F4 — allocation order and the fix</a></li><li><a href="#serial-port-numbering-matched-to-chip-uart-numbers">Serial port numbering matched to chip UART numbers</a></li><li><a href="#is_flying-heuristic--fixed-thresholds">is_flying heuristic — fixed thresholds</a></li><li><a href="#stick-mixing-default">Stick mixing default</a></li><li><a href="#aileron--elevator-differential-throws">Aileron / elevator differential throws</a></li><li><a href="#throttle--flap--elevator-pwm-offset-mixes">Throttle / flap → elevator PWM offset mixes</a></li></ul></li><li class="g"><a href="#walksnail-headtracking-via-msp-and-serial-gimbal">Walksnail Headtracking via MSP and Serial Gimbal</a><ul><li><a href="#how-it-flows">How it flows</a></li><li><a href="#setup">Setup</a></li><li><a href="#controls">Controls</a></li><li><a href="#poi-lock-with-head-tracking">POI lock with head tracking</a></li><li><a href="#head-tracking-from-the-vtx-gimbal-port-serialn_protocol-51">Head tracking from the VTX gimbal port (SERIALn_PROTOCOL 51)</a></li><li><a href="#notes">Notes</a></li></ul></li><li class="g"><a href="#osd-additions">OSD additions</a><ul><li><a href="#new-elements">New elements</a></li><li><a href="#ads-b-traffic-element-osdx_adsb">ADS-B traffic element (OSDx_ADSB)</a></li><li><a href="#osd-options-osd_options-bits">OSD options (OSD_OPTIONS bits)</a></li><li><a href="#tunables-added">Tunables added</a></li><li><a href="#display-polish">Display polish</a></li><li><a href="#setting-up-cell-voltage-on-the-osd">Setting up cell voltage on the OSD</a></li><li><a href="#stats-grid">Stats grid</a></li></ul></li><li class="g"><a href="#peer-aircraft-radar-inav-radar--formationflight">Peer-aircraft radar (iNav Radar / FormationFlight)</a><ul><li><a href="#setup-1">Setup</a></li><li><a href="#osd-element">OSD element</a></li><li><a href="#build-gating">Build gating</a></li><li><a href="#peer-callsigns-on-the-radar-osd">Peer callsigns on the radar OSD</a></li><li><a href="#which-file-in-the-zip-do-i-flash">Which file in the zip do I flash?</a></li><li><a href="#release-fleets-full-v21--light-v21">Release fleets (full-v2.1 / light-v2.1)</a></li><li><a href="#limitations--scope">Limitations / scope</a></li></ul></li><li class="g"><a href="#quadplane--vtol">Quadplane / VTOL</a><ul><li><a href="#q_trim_pitch-is-now-knob-tunable">Q_TRIM_PITCH is now knob-tunable</a></li><li><a href="#vtol-autotrim--learn-the-hover-level-in-qhover-rcx_option--182">VTOL AutoTrim — learn the hover level in QHOVER (RCx_OPTION = 182)</a></li><li><a href="#q_m_frtb_ratio--tri-frame-frontrear-thrust-balance">Q_M_FRTB_RATIO — Tri-frame front/rear thrust balance</a></li></ul></li><li class="g"><a href="#battery-monitoring-ap_battmonitor">Battery monitoring (AP_BattMonitor)</a><ul><li><a href="#new-params">New params</a></li><li><a href="#behaviour-changes">Behaviour changes</a></li></ul></li><li class="g"><a href="#stats-ap_stats">Stats (AP_Stats)</a></li><li class="g"><a href="#tecs--throttle">TECS / throttle</a><ul><li><a href="#default-changes">Default changes</a></li><li><a href="#new-params-1">New params</a></li><li><a href="#behaviour-changes-1">Behaviour changes</a></li></ul></li><li class="g"><a href="#ekf--state-estimator">EKF / state estimator</a></li><li class="g"><a href="#sensors">Sensors</a><ul><li><a href="#lightware-sf000b-rangefinder-over-i2c">LightWare SF000/B rangefinder over I2C</a></li></ul></li><li class="g"><a href="#telemetry">Telemetry</a><ul><li><a href="#crsf">CRSF</a></li><li><a href="#msp--dji">MSP / DJI</a></li><li><a href="#frsky-sport-passthrough">FrSky SPort passthrough</a></li><li><a href="#common">Common</a></li></ul></li><li class="g"><a href="#behaviour-changes-vs-upstream--migration-notes">Behaviour changes vs upstream — migration notes</a><ul><li><a href="#upgrading-from-v11-arduplane-463-base">Upgrading from v1.1 (ArduPlane 4.6.3 base)</a></li></ul></li><li class="g"><a href="#deliberately-not-included">Deliberately not included</a></li><li class="g"><a href="#documentation-and-tooling">Documentation and tooling</a><ul><li><a href="#full-parameter-reference">Full parameter reference</a></li><li><a href="#bitmask-calculator">Bitmask calculator</a></li><li><a href="#tecs-tuning-helper-ethos--edgetx">TECS tuning helper (Ethos / EdgeTX)</a></li><li><a href="#yaapu-course-hold-telemetry-pack">Yaapu Course Hold telemetry pack</a></li></ul></li><li class="g"><a href="#branch--repository-layout">Branch / repository layout</a></li><li class="g"><a href="#credits">Credits</a></li></ul></nav>
   <details class="mtoc"><summary>Outline</summary><ul><li class="g"><a href="#arduplane-stratos">ArduPlane Stratos</a><ul><li><a href="#whats-new-in-v21">What's new in v2.1</a></li><li><a href="#contents">Contents</a></li><li><a href="#why-flash-this-instead-of-stock-arduplane-472">Why flash this instead of stock ArduPlane 4.7.2?</a></li><li><a href="#building">Building</a></li></ul></li><li class="g"><a href="#what-this-fork-adds">What this fork adds</a><ul><li><a href="#flight-modes">Flight modes</a></li><li><a href="#arming--takeoff">Arming &amp; takeoff</a></li><li><a href="#vtol-transition">VTOL transition</a></li><li><a href="#pitch-trim--tuning-knob">Pitch trim &amp; tuning knob</a></li><li><a href="#rtl--failsafe-behaviour">RTL &amp; failsafe behaviour</a></li><li><a href="#pilot-control-of-loiter-radius-and-direction-loiter-rtl-takeoff">Pilot control of loiter radius and direction (LOITER, RTL, TAKEOFF)</a></li><li><a href="#emergency-landing-rc-failsafe">Emergency landing (RC failsafe)</a></li><li><a href="#auto-trim-improvements">Auto-trim improvements</a></li><li><a href="#move-sticks-to-cancel-auto-launch">Move sticks to cancel auto launch</a></li><li><a href="#manual-airspeed-control-in-nav-modes">Manual airspeed control in nav modes</a></li><li><a href="#throttle-output-deadzone">Throttle output deadzone</a></li><li><a href="#throttle-voltage-compensation-in-manual-mode">Throttle voltage compensation in MANUAL mode</a></li><li><a href="#revert-to-manual-after-disarming">Revert to MANUAL after disarming</a></li><li><a href="#smarter-rc-relays">Smarter RC relays</a></li><li><a href="#32-rc-channels-v21">32 RC channels (v2.1)</a></li><li><a href="#mlrs-mavlink-rc-radio_rc_channels-on-every-board-v21">mLRS MAVLink RC (RADIO_RC_CHANNELS) on every board (v2.1)</a></li><li><a href="#steering-assist-supports-reverse-driving">Steering assist supports reverse driving</a></li><li><a href="#mavftp-reliability-on-low-ram-f4-boards">MAVFTP reliability on low-RAM F4 boards</a></li><li><a href="#ekf3-allocation-failed-on-1-mb-f4--allocation-order-and-the-fix">EKF3 allocation failed on 1 MB F4 — allocation order and the fix</a></li><li><a href="#serial-port-numbering-matched-to-chip-uart-numbers">Serial port numbering matched to chip UART numbers</a></li><li><a href="#is_flying-heuristic--fixed-thresholds">is_flying heuristic — fixed thresholds</a></li><li><a href="#stick-mixing-default">Stick mixing default</a></li><li><a href="#aileron--elevator-differential-throws">Aileron / elevator differential throws</a></li><li><a href="#throttle--flap--elevator-pwm-offset-mixes">Throttle / flap → elevator PWM offset mixes</a></li></ul></li><li class="g"><a href="#walksnail-headtracking-via-msp-and-serial-gimbal">Walksnail Headtracking via MSP and Serial Gimbal</a><ul><li><a href="#how-it-flows">How it flows</a></li><li><a href="#setup">Setup</a></li><li><a href="#controls">Controls</a></li><li><a href="#poi-lock-with-head-tracking">POI lock with head tracking</a></li><li><a href="#head-tracking-from-the-vtx-gimbal-port-serialn_protocol-51">Head tracking from the VTX gimbal port (SERIALn_PROTOCOL 51)</a></li><li><a href="#notes">Notes</a></li></ul></li><li class="g"><a href="#osd-additions">OSD additions</a><ul><li><a href="#new-elements">New elements</a></li><li><a href="#ads-b-traffic-element-osdx_adsb">ADS-B traffic element (OSDx_ADSB)</a></li><li><a href="#osd-options-osd_options-bits">OSD options (OSD_OPTIONS bits)</a></li><li><a href="#tunables-added">Tunables added</a></li><li><a href="#display-polish">Display polish</a></li><li><a href="#setting-up-cell-voltage-on-the-osd">Setting up cell voltage on the OSD</a></li><li><a href="#stats-grid">Stats grid</a></li></ul></li><li class="g"><a href="#peer-aircraft-radar-inav-radar--formationflight">Peer-aircraft radar (iNav Radar / FormationFlight)</a><ul><li><a href="#setup-1">Setup</a></li><li><a href="#osd-element">OSD element</a></li><li><a href="#build-gating">Build gating</a></li><li><a href="#peer-callsigns-on-the-radar-osd">Peer callsigns on the radar OSD</a></li><li><a href="#which-file-in-the-zip-do-i-flash">Which file in the zip do I flash?</a></li><li><a href="#release-fleets-full-v21--light-v21">Release fleets (full-v2.1 / light-v2.1)</a></li><li><a href="#limitations--scope">Limitations / scope</a></li></ul></li><li class="g"><a href="#quadplane--vtol">Quadplane / VTOL</a><ul><li><a href="#q_trim_pitch-is-now-knob-tunable">Q_TRIM_PITCH is now knob-tunable</a></li><li><a href="#vtol-autotrim--learn-the-hover-level-in-qhover-rcx_option--182">VTOL AutoTrim — learn the hover level in QHOVER (RCx_OPTION = 182)</a></li><li><a href="#q_m_frtb_ratio--tri-frame-frontrear-thrust-balance">Q_M_FRTB_RATIO — Tri-frame front/rear thrust balance</a></li></ul></li><li class="g"><a href="#battery-monitoring-ap_battmonitor">Battery monitoring (AP_BattMonitor)</a><ul><li><a href="#new-params">New params</a></li><li><a href="#behaviour-changes">Behaviour changes</a></li></ul></li><li class="g"><a href="#stats-ap_stats">Stats (AP_Stats)</a></li><li class="g"><a href="#tecs--throttle">TECS / throttle</a><ul><li><a href="#default-changes">Default changes</a></li><li><a href="#new-params-1">New params</a></li><li><a href="#behaviour-changes-1">Behaviour changes</a></li></ul></li><li class="g"><a href="#ekf--state-estimator">EKF / state estimator</a></li><li class="g"><a href="#sensors">Sensors</a><ul><li><a href="#lightware-sf000b-rangefinder-over-i2c">LightWare SF000/B rangefinder over I2C</a></li></ul></li><li class="g"><a href="#telemetry">Telemetry</a><ul><li><a href="#crsf">CRSF</a></li><li><a href="#msp--dji">MSP / DJI</a></li><li><a href="#frsky-sport-passthrough">FrSky SPort passthrough</a></li><li><a href="#common">Common</a></li></ul></li><li class="g"><a href="#behaviour-changes-vs-upstream--migration-notes">Behaviour changes vs upstream — migration notes</a><ul><li><a href="#upgrading-from-v11-arduplane-463-base">Upgrading from v1.1 (ArduPlane 4.6.3 base)</a></li></ul></li><li class="g"><a href="#deliberately-not-included">Deliberately not included</a></li><li class="g"><a href="#documentation-and-tooling">Documentation and tooling</a><ul><li><a href="#full-parameter-reference">Full parameter reference</a></li><li><a href="#bitmask-calculator">Bitmask calculator</a></li><li><a href="#tecs-tuning-helper-ethos--edgetx">TECS tuning helper (Ethos / EdgeTX)</a></li><li><a href="#yaapu-course-hold-telemetry-pack">Yaapu Course Hold telemetry pack</a></li></ul></li><li class="g"><a href="#branch--repository-layout">Branch / repository layout</a></li><li class="g"><a href="#credits">Credits</a></li></ul></details>
   <main>
-    <div class="banner"><a class="apt-back-link" href="./">← ArduPilot Tools</a> · <b>ArduPlane Stratos v2.1</b> on ArduPlane 4.7.2 · README at commit <code>129aa56</code> · <a href="https://github.com/erwinquilloy/ardupilot/blob/master_custom_4.7.2/README_CUSTOM.md" target="_blank" rel="noopener">source on GitHub</a></div>
+    <div class="banner"><a class="apt-back-link" href="./">← ArduPilot Tools</a> · <b>ArduPlane Stratos v2.1</b> on ArduPlane 4.7.2 · README at commit <code>9538827</code> · <a href="https://github.com/erwinquilloy/ardupilot/blob/master_custom_4.7.2/README_CUSTOM.md" target="_blank" rel="noopener">source on GitHub</a></div>
     <article><h1 id="arduplane-stratos">ArduPlane Stratos</h1>
 <p><em>Formerly ArduPlane Custom. Same firmware and release tracks; v2.1 is the first release under the new name.</em></p>
 <p>📖 <strong>Easier to read:</strong> <a href="https://erwinquilloy.github.io/ardupilot-tools/readme.html" target="_blank" rel="noopener">this README as a page with an outline</a> on the ArduPilot Tools site, with every section one click away.</p>
@@ -1150,11 +1150,6 @@ above the EKF's own error scores went back to normal 1 s into the
 transition and stayed there while it descended. The fix for that is in the
 setup: <code>EK3_SRC1_VELZ 0</code> (don't use GPS vertical speed), <code>GPS_AUTO_CONFIG 1</code>,
 and transitions from at least 20 m.</p>
-<p>Tested in SITL only (quadplane, EKF failsafe forced in a QLOITER hover):
-FBWB refused from the GCS and from the RC mode switch, QSTABILIZE allowed,
-FBWB still refused 40 s later while the EKF stayed bad, and allowed once it
-had been healthy for the hold time. Above <code>Q_ASSIST_ALT</code>, and with the
-parameter at 0, FBWB was accepted as in stock.</p>
 <h2 id="pitch-trim--tuning-knob">Pitch trim &amp; tuning knob</h2>
 <h3 id="ptch_trim_deg-is-now-knob-tunable"><code>PTCH_TRIM_DEG</code> is now knob-tunable</h3>
 <p><code>PTCH_TRIM_DEG</code> can be assigned to the in-flight tuning knob via
@@ -2699,9 +2694,7 @@ firmware can use all 32.</p>
 Channels 17–32 keep their value from the last 32-channel frame, so they don't
 drop to zero between frames (switches, passthrough servos and gimbal inputs on
 17–32 stay steady). If 32-channel frames stop for 1 s, for example when
-32-channel mode is turned off in mLRS, channels 17–32 return to "no input".
-Tested in SITL; not yet flown with an mLRS receiver delivering more than 16
-channels.</p>
+32-channel mode is turned off in mLRS, channels 17–32 return to "no input".</p>
 <h3 id="32-rc-channels-and-the-16-channel-msp-output">32 RC channels and the 16-channel MSP output</h3>
 <p>These are two separate features that are easy to mix up. They work on
 channels going in <strong>opposite directions</strong>:</p>
@@ -2778,7 +2771,7 @@ are sent the same way as any other receiver's.</p>
 when the FC itself has to act on channels above 16. The goggles then also see
 channels 17 and 18.</p>
 <h2 id="mlrs-mavlink-rc-radio_rc_channels-on-every-board-v21">mLRS MAVLink RC (<code>RADIO_RC_CHANNELS</code>) on every board (v2.1)</h2>
-<p><em>New in v2.1. Bench-tested on a SpeedyBee F405 Wing (light build) with mLRS.</em></p>
+<p><em>New in v2.1.</em></p>
 <p>mLRS can send the RC channels inside the MAVLink stream (<code>radio_rc_channels</code>),
 so one serial port carries both RC and telemetry, with no separate CRSF/SBUS
 wire. Stock ArduPilot builds this input only on 2 MB boards; the mLRS docs tell
@@ -3405,8 +3398,7 @@ pan/tilt/roll) camera mount on the FC's PWM outputs. Set <code>MNT1_TYPE 1</code
 (Servo) and give the servo outputs <code>SERVOn_FUNCTION</code> <code>6</code> (pan), <code>7</code> (tilt)
 and <code>8</code> (roll, if fitted). Only the <code>51</code> port's <strong>RX</strong> is wired (VTX gimbal
 TX → FC RX); its TX pad stays free. Set <code>MNT1_*_MIN/MAX</code> to the servos' real
-travel (see <em>Differences from the MSP source</em> below). Bench-verified with a
-servo pan/tilt.</p>
+travel (see <em>Differences from the MSP source</em> below).</p>
 </blockquote>
 <p><strong>Wiring — one UART for both.</strong> Set a spare UART to <code>SERIALn_PROTOCOL 51</code>
 (CADDX HeadTracker). Its <strong>RX</strong> pad listens to the VTX gimbal port; with a CADDX
@@ -3473,8 +3465,7 @@ first valid frame arrives, so you can confirm the wiring.</p>
   re-zeroed angles.
 - <strong>MSP goggles keep working.</strong> Both inputs are in the same firmware; with
   goggles that send head tracking over MSP, the gimbal-port wire is optional.</p>
-<p>Bench-verified with an Ascent VTX and a CADDX GM3 v2, and with a servo pan/tilt.
-<code>51</code> is a fork-only protocol number; stock ArduPilot doesn't have it.</p>
+<p><code>51</code> is a fork-only protocol number; stock ArduPilot doesn't have it.</p>
 <h2 id="notes">Notes</h2>
 <ul>
 <li>Head-tracker yaw is body-frame, so the usable range is <strong>±180°</strong> (±180 is
@@ -4334,7 +4325,7 @@ is a genuine STM32H7, not the AT32 "Lucid Pro". Serial ports already follow
 SBUS on the HD VTX connector, <code>SERIAL3</code> DisplayPort, <code>SERIAL4</code> RC input,
 <code>SERIAL6</code> GPS, <code>SERIAL7</code> ESC telemetry (RX only), <code>SERIAL8</code> MAVLink2. Outputs
 1–7 plus 13 (LED strip by default). Coming from INAV or Betaflight, flash
-<code>arduplane_with_bl.hex</code> over DFU first. Not flown on this firmware yet. See
+<code>arduplane_with_bl.hex</code> over DFU first. See
 <a href="https://github.com/erwinquilloy/ardupilot/blob/master_custom_4.7.2/libraries/AP_HAL_ChibiOS/hwdef/TBS_LUCID_H7_WING_AIO/README.md" target="_blank" rel="noopener">the board README</a>.</p>
 </blockquote>
 <h3 id="light-track--15-boards-all-1-mb-f4">Light track — 15 boards (all 1 MB F4)</h3>
@@ -4475,7 +4466,7 @@ SBUS input, <code>SERIAL3</code> VTX, <code>SERIAL4</code> telemetry, <code>SERI
 input. Outputs: Wing V2 S1–S11 plus the <code>LED</code> pad, bidirectional DShot on
 1–4; Wing Mini V2 S1–S9, no bidirectional DShot. CoreWing's definitions
 already re-enable the gimbal mount (servo + CADDX), and also landing gear and
-QAUTOTUNE; the fork adds nothing to them. Not flown on this firmware yet. See
+QAUTOTUNE; the fork adds nothing to them. See
 <a href="https://github.com/erwinquilloy/ardupilot/blob/master_custom_4.7.2/libraries/AP_HAL_ChibiOS/hwdef/CoreWingF405WingV2/README.md" target="_blank" rel="noopener">Wing V2</a> and
 <a href="https://github.com/erwinquilloy/ardupilot/blob/master_custom_4.7.2/libraries/AP_HAL_ChibiOS/hwdef/CoreWingF405WMiniV2/README.md" target="_blank" rel="noopener">Wing Mini V2</a>.</p>
 <p><strong><code>MatekF405-Wing-PWM10</code></strong> is <code>MatekF405-Wing-bdshot</code> with the <code>LED</code> pad
@@ -4488,7 +4479,7 @@ UART3 (with UART1) is the full-DMA port to use for an ELRS/CRSF receiver.
 Relay 1 has no default pin on this build (<code>RELAY1_PIN -1</code>); to keep a
 relay, point <code>RELAY1_PIN</code> at a spare output's GPIO (50–59) and set that
 <code>SERVOn_FUNCTION</code> to -1. Same board ID, so the <code>.apj</code> flashes over the
-stock bootloader. Built and DMA-checked; not flown.</p>
+stock bootloader.</p>
 </blockquote>
 <p><code>MatekF405-Wing-bdshot</code> and <code>-PWM10</code> are the canary boards — first to bump the
 1 MB ceiling in any future upstream rebase or feature add. Every board on
@@ -4626,8 +4617,7 @@ notes and wiring photos live in the board's <code>Readme.md</code>.</p>
 <p><strong>v0.2-beta fleet change vs v0.1-beta:</strong>
 - <strong>Added:</strong> <code>MatekF405-STD</code> — a standard (non-bdshot) alternative
   in the F4 lineup, comfortable ~47 KB free headroom.
-- <strong>Dropped:</strong> <code>LongBowF405WING</code> (was unmeasured in v0.1-beta and
-  no bench-verified data yet) and <code>KakuteH7-Wing</code> (2 MB H7 board,
+- <strong>Dropped:</strong> <code>LongBowF405WING</code> (was unmeasured in v0.1-beta) and <code>KakuteH7-Wing</code> (2 MB H7 board,
   outside the "tight 1 MB F4" focus of the light variant).</p>
 <p><strong>Post-v0.2-beta fleet addition:</strong>
 - <strong>Added:</strong> <code>omnibusf4pro</code> (Omnibus F4 Pro) — user-requested. A stock
@@ -4684,11 +4674,8 @@ notes and wiring photos live in the board's <code>Readme.md</code>.</p>
 <p>If a 1 MB F4 board overflows, the cheapest first trim is
 <code>define HAL_SOARING_ENABLED 0</code> in that board's hwdef (Plane soaring
 is on by default and unused on twin-motor FPV wings; buys ~8–12 KB).</p>
-<p><strong>Bench-tested end-to-end</strong> on a SpeedyBee F405 WING with a
-FormationFlight ESP32 module — peer detection works in the
-FormationFlight web UI, OSD element draws correctly once both planes
-have GPS lock (the element stays blank without lock by design — see
-"Limitations" below).</p>
+<p>The OSD element draws once both planes have GPS lock; without lock it
+stays blank by design (see "Limitations" below).</p>
 <h2 id="limitations--scope">Limitations / scope</h2>
 <ul>
 <li><strong>GPS lock required on both planes for the element to draw.</strong> Your
@@ -4767,10 +4754,7 @@ VTOL AutoTrim learns the correction in flight and stores it in the
 </ul>
 <p><code>Q_TRIM_ROLL</code> can also be set by hand: positive rolls the aircraft right in
 VTOL flight, matching <code>Q_TRIM_PITCH</code>'s positive = nose up.</p>
-<p>Validated in SITL with a deliberately tilted hover: a 2.86° roll / 2.01°
-pitch error was learned as −2.91° / −2.04°, and a −4.01° / −2.86° error as
-+3.90° / +2.84°; hands-off drift fell from 2.41 to 0.21 m/s and from 9.19 to
-0.52 m/s. Costs about 0.7 KB of flash.</p>
+<p>Costs about 0.7 KB of flash.</p>
 <p>Flight-tested on a KakuteH7-Wing quad-X VTOL: a full learn-and-save run in
 QHOVER. It refused to start in QLOITER, ran about 85 s in QHOVER and saved
 <code>Q_TRIM_ROLL</code> 0.4° / <code>Q_TRIM_PITCH</code> −4.1°, with <code>AHRS_TRIM_X/Y</code> untouched;
