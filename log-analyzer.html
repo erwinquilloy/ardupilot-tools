@@ -430,6 +430,7 @@ tr.grp td { font-family: var(--f-mono); font-size: .68rem; letter-spacing: .1em;
         <label for="af-lb">Blades<input id="af-lb" type="number" min="2" max="6" step="1"></label>
       </div></div>
       <div class="fset" id="af-fwd-set"><span class="lbl">Forward motor (plane / pusher)</span><div class="fgrid">
+        <label for="af-fn">Number of forward motors<input id="af-fn" type="number" min="1" max="8" step="1"></label>
         <label for="af-fkv">Motor kV (rpm/V)<input id="af-fkv" type="number" min="10" step="10"></label>
         <label for="af-fmax">Motor max current (A)<input id="af-fmax" type="number" min="1" step="1"></label>
         <label for="af-fd">Prop diameter (in)<input id="af-fd" type="number" min="1" step="0.5"></label>
@@ -822,11 +823,15 @@ var DF = (function () {
     var pk2 = { total: 0, vtol: 0, push: 0, vMin: Infinity }, armedNow = false;
     for (i = 0; i < N; i++) { if (I[i] > pk2.total) pk2.total = I[i]; if (vtolA[i] > pk2.vtol) pk2.vtol = vtolA[i]; if (pushA[i] > pk2.push) pk2.push = pushA[i]; if (I[i] > 1 && V[i] > 1 && V[i] < pk2.vMin) pk2.vMin = V[i]; }
     /* forward-motor RPM if the ESC telemetry includes the forward motor's output */
-    var pushRpm = null;
+    var pushRpm = null, pushRpms = [];
     if (E && pushCh.length) {
-      var pI = pushCh[0] - 1, pr = [], pt = [];
-      for (i = 0; i < E.t.length; i++) if (E.Instance[i] === pI && E.RPM[i] > 0) { pr.push(E.RPM[i]); pt.push(E.t[i]); }
-      if (pr.length > 50) { var srt = pr.slice().sort(function (a, b) { return a - b; }); pushRpm = { max: r(srt[srt.length - 1], 0), p95: r(quant(srt, .95), 0), n: pr.length }; }
+      /* one entry per forward motor (twin: SERVOn_FUNCTION 73 + 74) that has RPM telemetry */
+      pushCh.forEach(function (ch) {
+        var pI = ch - 1, pr = [];
+        for (i = 0; i < E.t.length; i++) if (E.Instance[i] === pI && E.RPM[i] > 0) pr.push(E.RPM[i]);
+        if (pr.length > 50) { var srt = pr.slice().sort(function (a, b) { return a - b; }); pushRpms.push({ ch: ch, max: r(srt[srt.length - 1], 0), p95: r(quant(srt, .95), 0), n: pr.length }); }
+      });
+      pushRpm = pushRpms[0] || null;
     }
     var keep = {};
     ['Q_ENABLE', 'AIRSPEED_CRUISE', 'AIRSPEED_MIN', 'AIRSPEED_STALL', 'TRIM_THROTTLE', 'THR_MAX', 'TKOFF_THR_MAX', 'Q_ASSIST_ALT', 'Q_ASSIST_SPEED', 'BATT_CAPACITY', 'ARSPD_TYPE'].forEach(function (k) { if (prm[k] !== undefined) keep[k] = r(prm[k], 3); });
@@ -838,7 +843,7 @@ var DF = (function () {
         capacity: prm.BATT_CAPACITY || null },
       model: model, escCurrNote: escCurrWhy, params: keep, opts: o, timeline: tl, transitions: trans, landings: landings, takeoffs: takeoffs,
       eff: { n: effIdx.length, bins: bins, pts: pts },
-      hover: hov, peaks: { total: r(pk2.total, 1), vtol: r(pk2.vtol, 1), push: r(pk2.push, 1), vMin: r(pk2.vMin, 2) }, pushRpm: pushRpm,
+      hover: hov, peaks: { total: r(pk2.total, 1), vtol: r(pk2.vtol, 1), push: r(pk2.push, 1), vMin: r(pk2.vMin, 2) }, pushRpm: pushRpm, pushRpms: pushRpms,
       escKeys: escKeys.map(Number)
     };
   }
@@ -2518,11 +2523,18 @@ var APC = (function () {
   }
 
   /* ---------------- airframe, motors, props, flight time ---------------- */
-  var AF = ['cells', 'cap', 'chem', 'usable', 'auw', 'wing', 'to', 'land', 'ln', 'lkv', 'lmax', 'ld', 'lp', 'lb', 'fkv', 'fmax', 'fd', 'fp', 'fb'];
+  var AF = ['cells', 'cap', 'chem', 'usable', 'auw', 'wing', 'to', 'land', 'ln', 'lkv', 'lmax', 'ld', 'lp', 'lb', 'fn', 'fkv', 'fmax', 'fd', 'fp', 'fb'];
+  var LOG_OWNED = ['cells', 'cap', 'ln', 'fn', 'to', 'land'];
   var afSaved = store('fll.airframe') || {};
+  /* forward motors = throttle outputs (70 Throttle, 73/74 Throttle Left/Right on a twin) */
+  function fwdMotorCount(R) {
+    var n = 0; for (var s = 1; s <= 32; s++) { var f = R.params['SERVO' + s + '_FUNCTION']; if (f === 70 || f === 73 || f === 74) n++; }
+    return n || null;
+  }
   function logDefaults() {
     var R = state.R, Pw = R.power, d = { cells: R.bat && R.bat.cells, cap: R.bat && R.bat.capacity, chem: '3.7', usable: 80, lb: 2, fb: 2 };
     if (R.motors) d.ln = R.motors.ch.length;
+    if (R.meta.vehicle === 'plane') d.fn = fwdMotorCount(R);
     if (Pw) { var to = median(Pw.takeoffs.map(function (x) { return x.wh; })), la = median(Pw.landings.map(function (x) { return x.wh; })); if (to !== null) d.to = +to.toFixed(1); if (la !== null) d.land = +la.toFixed(1); }
     return d;
   }
@@ -2531,13 +2543,13 @@ var APC = (function () {
     AF.forEach(function (k) {
       var el = $('af-' + k); if (!el) return;
       /* battery, motor count and measured takeoff/landing energy follow the log; airframe/motor/prop specs are the user's */
-      var logOwned = ['cells', 'cap', 'ln', 'to', 'land'].indexOf(k) >= 0;
+      var logOwned = LOG_OWNED.indexOf(k) >= 0;
       var v = (fromLog && logOwned && d[k] !== undefined && d[k] !== null) ? d[k] : (afSaved[k] !== undefined && afSaved[k] !== '' ? afSaved[k] : d[k]);
       el.value = v === undefined || v === null ? '' : v;
     });
   }
   AF.forEach(function (k) { var el = $('af-' + k); if (el) el.addEventListener('input', function () { afSaved[k] = el.value; store('fll.airframe', afSaved); if (state.R) renderAirframe(); }); });
-  $('af-reset').addEventListener('click', function () { var d = logDefaults(); ['cells', 'cap', 'ln', 'to', 'land'].forEach(function (k) { if (d[k] !== undefined && d[k] !== null) { $('af-' + k).value = d[k]; afSaved[k] = d[k]; } }); store('fll.airframe', afSaved); renderAirframe(); });
+  $('af-reset').addEventListener('click', function () { var d = logDefaults(); LOG_OWNED.forEach(function (k) { if (d[k] !== undefined && d[k] !== null) { $('af-' + k).value = d[k]; afSaved[k] = d[k]; } }); store('fll.airframe', afSaved); renderAirframe(); });
   /* APC prop data: parsed tables kept in this browser */
   var props = store('fll.props') || { lift: null, fwd: [], flown: '' };
   function saveProps() { store('fll.props', props); }
@@ -2564,6 +2576,7 @@ var APC = (function () {
     var R = state.R, Pw = R.power, out = [], rho = 1.225, g0 = 9.80665;
     var isVtol = R.meta.vehicle === 'copter' || (R.params.Q_ENABLE > 0), isPlane = R.meta.vehicle === 'plane';
     $('af-lift-set').hidden = !isVtol; $('af-fwd-set').hidden = !isPlane;
+    var nF = isPlane ? Math.round(num('fn') || 1) : 1;
     var cells = num('cells'), cap = num('cap'), vc = parseFloat($('af-chem').value), us = (num('usable') || 80) / 100, auw = num('auw'), wing = num('wing');
     var eNom = cells && cap ? cells * vc * cap / 1000 : null, eUse = eNom !== null ? eNom * us : null;
     var to = parseFloat($('af-to').value) || 0, land = parseFloat($('af-land').value) || 0;
@@ -2617,7 +2630,11 @@ var APC = (function () {
     if (isPlane) {
       var fkv = num('fkv'), fmax = num('fmax'), fd = num('fd'), fp = num('fp'), f = '<dl class="kv">';
       var pk = Pw && Pw.peaks ? (Pw.model.ok ? Pw.peaks.push : Pw.peaks.total) : null;
-      if (pk !== null) f += '<dt class="m">Peak forward-motor current' + (Pw.model.ok ? ' (total − VTOL model)' : '') + '</dt><dd>' + fx(pk, 1) + ' A ' + pillFor(pct(pk, fmax), 80, 100) + '</dd>';
+      if (pk !== null) {
+        /* the battery sees all forward motors together; split evenly per motor */
+        if (nF > 1) f += '<dt class="m">Peak forward current, all ' + nF + ' motors' + (Pw.model.ok ? ' (total − VTOL model)' : '') + '</dt><dd>' + fx(pk, 1) + ' A</dd><dt class="m">Peak current per motor (shared evenly)</dt><dd>' + fx(pk / nF, 1) + ' A ' + pillFor(pct(pk / nF, fmax), 80, 100) + '</dd>';
+        else f += '<dt class="m">Peak forward-motor current' + (Pw.model.ok ? ' (total − VTOL model)' : '') + '</dt><dd>' + fx(pk, 1) + ' A ' + pillFor(pct(pk, fmax), 80, 100) + '</dd>';
+      }
       var asMax = R.timeline.as ? Math.max.apply(null, R.timeline.as.filter(function (x) { return x !== null; })) : null, gsMax = R.meta.maxSpd;
       var vNom = cells ? cells * vc : null;
       if (fkv && fp && vNom) {
@@ -2627,11 +2644,15 @@ var APC = (function () {
         if (best) f += '<dt>Best-range cruise</dt><dd>' + fx(best.c, 1) + ' m/s · ' + fx(best.c / ps * 100, 0) + ' % of pitch speed</dd>';
         if (fd) { var tip2 = Math.PI * fd * 0.0254 * rpmNL / 60; f += '<dt>Tip speed at no-load RPM</dt><dd>' + fx(tip2, 0) + ' m/s · Mach ' + fx(tip2 / 343, 2) + '</dd><dt>Pitch / diameter</dt><dd>' + fx(fp / fd, 2) + '</dd>'; }
       }
-      if (Pw && Pw.pushRpm && fp) f += '<div class="sep"></div><dt class="m">Forward RPM (p95)</dt><dd>' + fx(Pw.pushRpm.p95, 0) + ' rpm · pitch speed ' + fx(Pw.pushRpm.p95 * fp * 0.0254 / 60, 1) + ' m/s</dd>';
+      var pRpms = Pw && Pw.pushRpms && Pw.pushRpms.length ? Pw.pushRpms : (Pw && Pw.pushRpm ? [Pw.pushRpm] : []);
+      if (pRpms.length && fp) {
+        f += '<div class="sep"></div>';
+        pRpms.forEach(function (q) { f += '<dt class="m">Forward RPM (p95)' + (pRpms.length > 1 ? ', output ' + q.ch : '') + '</dt><dd>' + fx(q.p95, 0) + ' rpm · pitch speed ' + fx(q.p95 * fp * 0.0254 / 60, 1) + ' m/s</dd>'; });
+      }
       if (auw && wing) f += '<div class="sep"></div><dt>Wing loading</dt><dd>' + fx(auw * 1000 / wing, 1) + ' g/dm²</dd>';
       if (auw && best) f += '<dt>Cruise efficiency</dt><dd>' + fx(auw * 1000 / best.P[1], 1) + ' g/W at ' + fx(best.c, 1) + ' m/s</dd>';
-      f += '</dl><p class="note">' + (Pw && Pw.pushRpm ? 'Forward-motor RPM is in the ESC telemetry.' : 'No forward-motor RPM in this log, so pitch speed uses the no-load RPM; loaded RPM is lower.') + ' A prop that runs close to its pitch speed is unloaded and inefficient; well below it is working hard.</p>';
-      out.push('<div class="card"><h3>Forward motor and prop</h3>' + f + '</div>');
+      f += '</dl><p class="note">' + (pRpms.length ? 'Forward-motor RPM is in the ESC telemetry' + (nF > 1 && pRpms.length < nF ? ' for ' + pRpms.length + ' of the ' + nF + ' motors' : '') + '.' : 'No forward-motor RPM in this log, so pitch speed uses the no-load RPM; loaded RPM is lower.') + (nF > 1 ? ' Motor and prop specs are per motor; the battery current is shared evenly between the ' + nF + ' motors.' : '') + ' A prop that runs close to its pitch speed is unloaded and inefficient; well below it is working hard.</p>';
+      out.push('<div class="card"><h3>Forward motor' + (nF > 1 ? 's' : '') + ' and prop' + (nF > 1 ? 's <small>' + nF + ' motors</small>' : '') + '</h3>' + f + '</div>');
     }
 
     /* ---- APC prop data ---- */
@@ -2657,19 +2678,20 @@ var APC = (function () {
     }
     if (isPlane && props.fwd.length && best) {
       var Vc = best.c, Pel = best.P[1], F = props.fwd.filter(function (q) { return q.name === props.flown; })[0] || props.fwd[0];
-      var sF = APC.solve(F, Vc, 'P', etaM * Pel), c2 = '';
-      if (!sF || !sF.rpm) c2 = '<p class="note">The flown prop ' + esc(F.name) + ' cannot absorb ' + fx(etaM * Pel, 0) + ' W at ' + fx(Vc, 1) + ' m/s inside its table (' + F.rpmMin + '–' + F.rpmMax + ' rpm). Check the prop file and the motor efficiency.</p>';
+      /* each of the nF props takes an equal share of the measured power and of the drag */
+      var sF = APC.solve(F, Vc, 'P', etaM * Pel / nF), c2 = '';
+      if (!sF || !sF.rpm) c2 = '<p class="note">The flown prop ' + esc(F.name) + ' cannot absorb ' + fx(etaM * Pel / nF, 0) + ' W' + (nF > 1 ? ' (one of ' + nF + ')' : '') + ' at ' + fx(Vc, 1) + ' m/s inside its table (' + F.rpmMin + '–' + F.rpmMax + ' rpm). Check the prop file, the motor efficiency and the number of forward motors.</p>';
       else {
-        var drag = sF.T, vNom2 = cells ? cells * vc : null, fkv2 = num('fkv');
-        c2 = '<dl class="kv"><dt class="m">Best-range cruise in this log</dt><dd>' + fx(Vc, 1) + ' m/s · ' + fx(Pel, 0) + ' W</dd><dt>' + esc(F.name) + ' (flown): RPM there</dt><dd>' + fx(sF.rpm, 0) + ' rpm · prop efficiency ' + fx(sF.eta * 100, 0) + ' %</dd><dt>Thrust = airframe drag at that speed</dt><dd class="big">' + fx(drag, 2) + ' N</dd></dl>';
+        var drag = nF * sF.T, vNom2 = cells ? cells * vc : null, fkv2 = num('fkv');
+        c2 = '<dl class="kv"><dt class="m">Best-range cruise in this log</dt><dd>' + fx(Vc, 1) + ' m/s · ' + fx(Pel, 0) + ' W' + (nF > 1 ? ' (' + fx(Pel / nF, 0) + ' W per motor)' : '') + '</dd><dt>' + esc(F.name) + ' (flown): RPM there</dt><dd>' + fx(sF.rpm, 0) + ' rpm · prop efficiency ' + fx(sF.eta * 100, 0) + ' %</dd><dt>Thrust = airframe drag at that speed</dt><dd class="big">' + fx(drag, 2) + ' N</dd>' + (nF > 1 ? '<dt>per prop</dt><dd>' + fx(sF.T, 2) + ' N</dd>' : '') + '</dl>';
         var rows = props.fwd.map(function (q) {
-          var s2 = APC.solve(q, Vc, 'T', drag);
-          if (!s2 || !s2.rpm) return '<tr><td class="txt">' + esc(q.name) + '</td><td colspan="6" class="txt">' + (s2 && s2.out === 'above' ? 'cannot make ' + fx(drag, 1) + ' N at ' + fx(Vc, 1) + ' m/s below ' + q.rpmMax + ' rpm' : 'outside the table') + '</td></tr>';
-          var Pe2 = s2.P / etaM, d = (Pe2 / Pel - 1) * 100, nl = fkv2 && vNom2 ? s2.rpm / (fkv2 * vNom2) * 100 : null;
+          var s2 = APC.solve(q, Vc, 'T', drag / nF);
+          if (!s2 || !s2.rpm) return '<tr><td class="txt">' + esc(q.name) + '</td><td colspan="6" class="txt">' + (s2 && s2.out === 'above' ? 'cannot make ' + fx(drag / nF, 1) + ' N' + (nF > 1 ? ' per prop' : '') + ' at ' + fx(Vc, 1) + ' m/s below ' + q.rpmMax + ' rpm' : 'outside the table') + '</td></tr>';
+          var Pe2 = nF * s2.P / etaM, d = (Pe2 / Pel - 1) * 100, nl = fkv2 && vNom2 ? s2.rpm / (fkv2 * vNom2) * 100 : null;
           return '<tr' + (q === F ? ' class="sel"' : '') + '><td class="txt">' + esc(q.name) + (q === F ? ' <span class="tag">flown</span>' : '') + '</td><td>' + fx(s2.rpm, 0) + '</td><td>' + fx(s2.eta * 100, 0) + ' %</td><td>' + fx(Pe2, 0) + ' W</td><td>' + (q === F ? '–' : (d >= 0 ? '+' : '') + fx(d, 1) + ' %') + '</td><td>' + fx(Pe2 / (Vc * 3.6), 3) + '</td><td>' + (nl !== null ? fx(nl, 0) + ' %' : '–') + '</td></tr>';
         }).join('');
         c2 += '<div class="tablewrap"><table><thead><tr><th class="txt">Prop</th><th>RPM</th><th>Prop efficiency</th><th>Cruise power</th><th>vs flown</th><th>Wh/km</th><th>of no-load RPM</th></tr></thead><tbody>' + rows + '</tbody></table></div>';
-        c2 += '<p class="note">Each prop must make the same thrust (the drag found with the flown prop) at the same airspeed; power from the APC table divided by the motor + ESC efficiency you set (kept the same for every prop, although it really varies with RPM). "Of no-load RPM" needs the motor kV and battery above; past about 85 % the motor may not reach that RPM. ' + (R.params.ARSPD_TYPE === 0 ? 'This log has no airspeed sensor, so cruise speed is an EKF estimate (about ±2 m/s). ' : '') + 'Use it to rank props, then confirm with a flight.</p>';
+        c2 += '<p class="note">Each prop must make the same thrust (the drag found with the flown prop) at the same airspeed' + (nF > 1 ? ', split evenly over the ' + nF + ' forward props; cruise power is for all ' + nF + ' together' : '') + '; power from the APC table divided by the motor + ESC efficiency you set (kept the same for every prop, although it really varies with RPM). "Of no-load RPM" needs the motor kV and battery above; past about 85 % the motor may not reach that RPM. ' + (R.params.ARSPD_TYPE === 0 ? 'This log has no airspeed sensor, so cruise speed is an EKF estimate (about ±2 m/s). ' : '') + 'Use it to rank props, then confirm with a flight.</p>';
       }
       out.push('<div class="card" style="grid-column:1/-1"><h3>Forward prop comparison <small>APC data, at this log\'s cruise</small></h3>' + c2 + '</div>');
     } else if (isPlane && props.fwd.length && !best) out.push('<div class="card"><h3>Forward prop comparison</h3><p class="note">This log has no steady level cruise, so there is no measured cruise point to compare props at.</p></div>');
