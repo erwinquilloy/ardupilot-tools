@@ -162,6 +162,7 @@ footer{font-size:.8rem;color:var(--muted)}
       <label class="hint" id="winrow" hidden style="display:inline-flex;gap:6px;align-items:center"><input type="checkbox" id="onlywin" checked> Only the learn window (switch HIGH), to match what the aircraft saved</label>
     </div>
     <div class="status" id="fitstatus">No log loaded.</div>
+    <div class="status" id="fitqual" hidden></div>
     <div id="fitout" hidden style="display:flex;flex-direction:column;gap:12px">
       <div class="scroll"><table><thead><tr><th class="n">Speed band</th><th class="n">Samples</th><th class="n">Mean pitch</th><th class="n">Offset (pitch − trim)</th></tr></thead><tbody id="bins"></tbody></table></div>
       <div class="btns"><button type="button" class="primary" id="usefit">Use this fitted curve</button><button type="button" id="copyp">Copy as .param lines</button></div>
@@ -492,6 +493,12 @@ function fitFromLog(D, allModes, win){
   }
   res.s = [vmin, vc, vmax];
   res.o = res.s.map(function(v){ var x = v - vc; return Math.max(-10, Math.min(10, a + b2*x + c2*x*x - base)); });
+  // quality check, not part of the firmware learner: straight-line trend of
+  // the band means and how far they scatter around it
+  var W=0, mx=0, my=0; good.forEach(function(g){ var w=Math.min(g.n,300); W+=w; mx+=w*g.v; my+=w*g.pitch; }); mx/=W; my/=W;
+  var sxy=0, sxx=0; good.forEach(function(g){ var w=Math.min(g.n,300); sxy+=w*(g.v-mx)*(g.pitch-my); sxx+=w*(g.v-mx)*(g.v-mx); });
+  var slope = sxy/sxx, rss=0; good.forEach(function(g){ var w=Math.min(g.n,300), e=g.pitch-(my+slope*(g.v-mx)); rss+=w*e*e; });
+  res.lin = {slope:slope, rms:Math.sqrt(rss/W), trend:Math.abs(slope)*(vmax-vmin)};
   res.ok = true;
   res.msg = 'Adaptive trim: '+res.s.map(function(v,i){ return v.toFixed(1)+' '+(res.o[i]>=0?'+':'')+res.o[i].toFixed(1); }).join(' ');
   return res;
@@ -518,14 +525,27 @@ function runFit(){
       st.innerHTML = '<b>'+r.msg+'</b> — '+r.good.length+' speed bands used, '+r.kept+' samples kept, from '+(win?'the last learn window ('+(win[1]-win[0]).toFixed(0)+' s; the aircraft saved <span class="mono">'+win[2]+'</span>)':'all steady level flight in the log')+'. PTCH_TRIM_DEG in the log: '+r.base.toFixed(2)+'°.';
       $('ptext').textContent = ['PTCH_TRIM_SPD2,'+r.s[1].toFixed(1),'PTCH_TRIM_SPD3,'+r.s[2].toFixed(1),'PTCH_TRIM_OFS1,'+r.o[0].toFixed(3),'PTCH_TRIM_OFS2,'+r.o[1].toFixed(3),'PTCH_TRIM_OFS3,'+r.o[2].toFixed(3),'PTCH_TRIM_SPD1,'+r.s[0].toFixed(1)].join('\n');
       $('usefit').disabled = false; $('copyp').disabled = false; $('ptext').hidden = false;
+      var L = r.lin, issues = [];
+      if (!(r.o[0] >= r.o[1] && r.o[1] >= r.o[2])) issues.push('the offsets do not fall as speed rises (OFS1 ≥ OFS2 ≥ OFS3). Level pitch normally drops with speed');
+      if (L.rms > 0.5) issues.push('the band means scatter '+L.rms.toFixed(2)+'° around a straight line'+(L.rms > L.trend ? ', more than the '+L.trend.toFixed(2)+'° the trend changes across the bands' : ''));
+      var q = $('fitqual'), trendTxt = 'Straight-line trend: '+(L.slope>=0?'+':'−')+Math.abs(L.slope).toFixed(2)+'° per m/s, band means within '+L.rms.toFixed(2)+'° of it.';
+      q.hidden = false;
+      if (issues.length){
+        q.className = 'status warn';
+        q.innerHTML = '<b>Check before using this curve:</b> '+issues.join('; ')+'. '+trendTxt+' This usually means gusts, or wind error in the airspeed estimate without a pitot. Repeat the learn flight on a calm day, fly each speed upwind and downwind, and space the speeds 4–5 m/s apart.';
+      } else {
+        q.className = 'status ok';
+        q.textContent = 'Curve shape looks right. '+trendTxt;
+      }
     } else {
+      $('fitqual').hidden = true;
       lastFit = null;
       st.className = 'status warn';
       st.innerHTML = '<b>'+r.msg+'</b> — not enough steady level flight: each band needs 30 samples (3 s) and the bands must span at least 3 m/s. '+(r.kept? r.kept+' samples passed the checks.' : 'No samples passed: check the log has FBWB or CRUISE legs, or tick the box to include FBWA.');
       $('usefit').disabled = true; $('copyp').disabled = true; $('ptext').hidden = true;
     }
   } catch (err){
-    st.className = 'status bad'; st.textContent = err.message; $('fitout').hidden = true; fitPts = null; $('lg-pts').hidden = true;
+    st.className = 'status bad'; st.textContent = err.message; $('fitout').hidden = true; $('fitqual').hidden = true; fitPts = null; $('lg-pts').hidden = true;
   }
   render();
 }
