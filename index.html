@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>ArduPilot Tools</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&family=Barlow:wght@400;500&display=swap">
@@ -16,7 +18,8 @@
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 var(--f-body)}
 .wrap{max-width:44rem;margin:0 auto;padding-inline:16px;padding-block:48px 64px;display:grid;gap:28px}
-h1{font:700 clamp(30px,5vw,40px)/1.1 var(--f-display);margin:0}
+h1{font:700 clamp(30px,5vw,40px)/1.1 var(--f-display);margin:0;display:flex;align-items:center;gap:12px}
+h1 img{width:1.15em;height:1.15em;flex:none}
 .lede{color:var(--muted);margin:8px 0 0}
 .tools{display:grid;gap:12px}
 a.tool{display:grid;gap:4px;padding:18px 20px;background:var(--panel);border:1px solid var(--line);border-radius:10px;color:inherit;text-decoration:none}
@@ -32,7 +35,7 @@ footer{color:var(--muted);font-size:13px;display:grid;gap:6px}
 <body>
 <div class="wrap">
   <header>
-    <h1>ArduPilot Tools</h1>
+    <h1><img src="favicon.png" alt="">ArduPilot Tools</h1>
     <p class="lede">Planning and tuning notes for ArduPlane Stratos (formerly ArduPlane Custom), the ArduPlane fork. Everything runs in your browser; files you load stay on your computer.</p>
   </header>
   <div class="tools">
