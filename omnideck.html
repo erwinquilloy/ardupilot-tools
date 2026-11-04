@@ -102,6 +102,7 @@ footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--line)
   <a href="#fc-setup">Flight controller setup</a>
   <a href="#settings">Settings</a>
   <a href="#tiles">Map tiles</a>
+  <a href="#missions">Missions</a>
   <a href="#voice">Voice and alarms</a>
   <a href="#trouble">Reporting a problem</a>
   <a href="#credits">Credits</a>
@@ -201,7 +202,7 @@ footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--line)
       <ul>
         <li>Attitude, GPS, altitude, speeds, battery, flight mode and ready to arm, straight from INAV.</li>
         <li>Airspeed only with a pitot, real or virtual.</li>
-        <li>Missions are downloaded from the flight controller over the telemetry link (checked against a real board over USB, not yet over a radio link).</li>
+        <li>Missions are downloaded from the flight controller over the telemetry link, checked over TBS Crossfire on a TX16S MK2 (see <a href="#missions">Missions</a>).</li>
         <li>No status messages: INAV doesn't send them over these links.</li>
         <li>Flight time counts from arming.</li>
       </ul>
@@ -364,9 +365,33 @@ footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--line)
   <ul>
     <li>Folder names are case-sensitive: <code>GOOGLE/Satellite</code>, not <code>google/satellite</code>.</li>
     <li>JPG tiles load fastest. Tiles load two per update, nearest the aircraft first.</li>
-    <li>On EdgeTX the folder is <code>IMAGES</code>, not <code>bitmaps</code>. You don't need the ETHOS Mapping Widget itself, only its tile layout.</li>
+    <li>On EdgeTX the folder is <code>IMAGES</code>, not <code>bitmaps</code>. You don't need the ETHOS Mapping Widget itself, only its tile layout. Checked on a TX16S MK2.</li>
   </ul>
-  <p class="note"><b>EdgeTX:</b> map tiles have not been tried on an EdgeTX radio yet.</p>
+</section>
+
+<section id="missions">
+  <h2>Missions</h2>
+  <div class="cols">
+    <div class="card">
+      <h3>INAV</h3>
+      <p>OmniDeck downloads the mission from the flight controller over the telemetry link (CRSF/ELRS or S.Port), a few seconds after the link comes up. Checked over TBS Crossfire on a TX16S MK2.</p>
+      <ul>
+        <li>Waypoints show numbered, holds as H and landings as L; the active waypoint is green.</li>
+        <li>A mission uploaded after the radio started shows within about 10 s while the aircraft is disarmed, without a restart.</li>
+        <li>Only the first mission on the flight controller is shown. Upload it and <b>save it to EEPROM</b> in INAV Configurator, or the flight controller won't have it after a power cycle.</li>
+        <li><b>INAV mission download</b> in the settings turns it off. The Sensor check page shows what INAV reported and how many waypoints arrived.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>ArduPilot</h3>
+      <p>ArduPilot's radio telemetry has no mission download.</p>
+      <ul>
+        <li><b>Ethos:</b> copy a Mission Planner / QGC <code>.waypoints</code> file to <code>scripts/omnideck/missions/</code> and pick it under <b>Mission file</b>. The whole route draws, with the active waypoint in green.</li>
+        <li><b>Without a file, and on EdgeTX</b> (which has no Mission file setting yet): each waypoint is placed on the map when it becomes active, from ArduPilot's distance and bearing to it, so the route builds up as you fly.</li>
+      </ul>
+      <p>Betaflight has no missions.</p>
+    </div>
+  </div>
 </section>
 
 <section id="voice">
