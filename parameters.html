@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>ArduPlane Stratos v2.1 Parameters</title>
+<title>ArduPlane Stratos v2.2 Parameters</title>
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -48,11 +48,11 @@ footer{color:var(--muted);font-size:13px}
 <div class="wrap">
   <header>
     <a class="back" href="./">← ArduPilot Tools</a>
-    <h1>ArduPlane Stratos v2.1 Parameters</h1>
-    <p class="lede">Every parameter in the ArduPlane Stratos v2.1 firmware (ArduPlane 4.7.2 base; formerly ArduPlane Custom), including the fork's own additions: 6,589 parameters in 6,811 entries, because a few backend parameters are listed once for each backend that uses them. One list covers both the full and the light release; a light board just doesn't show parameters for features it leaves out. Generated from the source with param_parse.py. Use the <a href="bitmask-calculator.html">Bitmask Calculator</a> to work out bitmask values.</p>
+    <h1>ArduPlane Stratos v2.2 Parameters</h1>
+    <p class="lede">Every parameter in the ArduPlane Stratos v2.2 firmware (ArduPlane 4.7.2 base; formerly ArduPlane Custom), including the fork's own additions: 6,632 parameters in 6,854 entries, because a few backend parameters are listed once for each backend that uses them. One list covers both the full and the light release; a light board just doesn't show parameters for features it leaves out. Generated from the source with param_parse.py. Use the <a href="bitmask-calculator.html">Bitmask Calculator</a> to work out bitmask values.</p>
   </header>
-  <div class="bar"><input id="q" type="search" placeholder="Search name or description, e.g. LAND_WIND or airspeed" aria-label="Search parameters" autocomplete="off"><output id="n">6,589 parameters</output></div>
-  <nav class="groups" aria-label="Parameter groups"><a href="#g-arduplane-parameters">ArduPlane</a><a href="#g-vehicle-parameters">VEHICLE</a><a href="#g-lua-script-parameters">Lua Script</a><a href="#g-adsb-parameters">ADSB_</a><a href="#g-afs-parameters">AFS_</a><a href="#g-ahrs-parameters">AHRS_</a><a href="#g-ais-parameters">AIS_</a><a href="#g-arming-parameters">ARMING_</a><a href="#g-arspd-parameters">ARSPD</a><a href="#g-arspd2-parameters">ARSPD2_</a><a href="#g-arspd3-parameters">ARSPD3_</a><a href="#g-arspd4-parameters">ARSPD4_</a><a href="#g-arspd5-parameters">ARSPD5_</a><a href="#g-arspd6-parameters">ARSPD6_</a><a href="#g-arspd-parameters-2">ARSPD_</a><a href="#g-autoland-parameters">AUTOLAND_</a><a href="#g-avd-parameters">AVD_</a><a href="#g-baro-parameters">BARO</a><a href="#g-baro1-wcf-parameters">BARO1_WCF_</a><a href="#g-baro2-wcf-parameters">BARO2_WCF_</a><a href="#g-baro3-wcf-parameters">BARO3_WCF_</a><a href="#g-batt2-parameters">BATT2_</a><a href="#g-batt3-parameters">BATT3_</a><a href="#g-batt4-parameters">BATT4_</a><a href="#g-batt5-parameters">BATT5_</a><a href="#g-batt6-parameters">BATT6_</a><a href="#g-batt7-parameters">BATT7_</a><a href="#g-batt8-parameters">BATT8_</a><a href="#g-batt9-parameters">BATT9_</a><a href="#g-batta-parameters">BATTA_</a><a href="#g-battb-parameters">BATTB_</a><a href="#g-battc-parameters">BATTC_</a><a href="#g-battd-parameters">BATTD_</a><a href="#g-batte-parameters">BATTE_</a><a href="#g-battf-parameters">BATTF_</a><a href="#g-battg-parameters">BATTG_</a><a href="#g-batt-parameters">BATT_</a><a href="#g-brd-parameters">BRD_</a><a href="#g-brd-radio-parameters">BRD_RADIO</a><a href="#g-brd-rtc-parameters">BRD_RTC</a><a href="#g-btn-parameters">BTN_</a><a href="#g-cam-parameters">CAM</a><a href="#g-cam1-parameters">CAM1</a><a href="#g-cam1-rc-parameters">CAM1_RC_</a><a href="#g-cam2-parameters">CAM2</a><a href="#g-cam2-rc-parameters">CAM2_RC_</a><a href="#g-can-parameters">CAN_</a><a href="#g-can-d1-parameters">CAN_D1_</a><a href="#g-can-d1-pc-parameters">CAN_D1_PC_</a><a href="#g-can-d1-uc-parameters">CAN_D1_UC_</a><a href="#g-can-d2-parameters">CAN_D2_</a><a href="#g-can-d2-pc-parameters">CAN_D2_PC_</a><a href="#g-can-d2-uc-parameters">CAN_D2_UC_</a><a href="#g-can-d3-parameters">CAN_D3_</a><a href="#g-can-d3-pc-parameters">CAN_D3_PC_</a><a href="#g-can-d3-uc-parameters">CAN_D3_UC_</a><a href="#g-can-p1-parameters">CAN_P1_</a><a href="#g-can-p2-parameters">CAN_P2_</a><a href="#g-can-p3-parameters">CAN_P3_</a><a href="#g-can-slcan-parameters">CAN_SLCAN_</a><a href="#g-chute-parameters">CHUTE_</a><a href="#g-compass-parameters">COMPASS_</a><a href="#g-compass-pmot-parameters">COMPASS_PMOT</a><a href="#g-cust-rot-parameters">CUST_ROT</a><a href="#g-cust-rot1-parameters">CUST_ROT1_</a><a href="#g-cust-rot2-parameters">CUST_ROT2_</a><a href="#g-dds-parameters">DDS</a><a href="#g-dds-ip-parameters">DDS_IP</a><a href="#g-did-parameters">DID_</a><a href="#g-eahrs-parameters">EAHRS</a><a href="#g-efi-parameters">EFI</a><a href="#g-efi-thrlin-parameters">EFI_THRLIN</a><a href="#g-ek2-parameters">EK2_</a><a href="#g-ek3-parameters">EK3_</a><a href="#g-ek3-src-parameters">EK3_SRC</a><a href="#g-esc-tlm-parameters">ESC_TLM</a><a href="#g-fence-parameters">FENCE_</a><a href="#g-fft-parameters">FFT_</a><a href="#g-filt1-parameters">FILT1_</a><a href="#g-filt2-parameters">FILT2_</a><a href="#g-filt3-parameters">FILT3_</a><a href="#g-filt4-parameters">FILT4_</a><a href="#g-filt5-parameters">FILT5_</a><a href="#g-filt6-parameters">FILT6_</a><a href="#g-filt7-parameters">FILT7_</a><a href="#g-filt8-parameters">FILT8_</a><a href="#g-flow-parameters">FLOW</a><a href="#g-foll-parameters">FOLL</a><a href="#g-frsky-parameters">FRSKY_</a><a href="#g-gen-parameters">GEN_</a><a href="#g-gen-l-parameters">GEN_L_</a><a href="#g-gps-parameters">GPS</a><a href="#g-gps1-parameters">GPS1_</a><a href="#g-gps1-mb-parameters">GPS1_MB_</a><a href="#g-gps2-parameters">GPS2_</a><a href="#g-gps2-mb-parameters">GPS2_MB_</a><a href="#g-gps-mb1-parameters">GPS_MB1_</a><a href="#g-gps-mb2-parameters">GPS_MB2_</a><a href="#g-grip-parameters">GRIP_</a><a href="#g-guided-parameters">GUIDED_</a><a href="#g-ice-parameters">ICE_</a><a href="#g-ins-parameters">INS</a><a href="#g-ins4-parameters">INS4_</a><a href="#g-ins4-tcal-parameters">INS4_TCAL_</a><a href="#g-ins5-parameters">INS5_</a><a href="#g-ins5-tcal-parameters">INS5_TCAL_</a><a href="#g-ins-hntc2-parameters">INS_HNTC2_</a><a href="#g-ins-hntc3-parameters">INS_HNTC3_</a><a href="#g-ins-hntc4-parameters">INS_HNTC4_</a><a href="#g-ins-hntch-parameters">INS_HNTCH_</a><a href="#g-ins-log-parameters">INS_LOG_</a><a href="#g-ins-tcal1-parameters">INS_TCAL1_</a><a href="#g-ins-tcal2-parameters">INS_TCAL2_</a><a href="#g-ins-tcal3-parameters">INS_TCAL3_</a><a href="#g-kde-parameters">KDE_</a><a href="#g-land-parameters">LAND_</a><a href="#g-land-ds-parameters">LAND_DS_</a><a href="#g-lgr-parameters">LGR_</a><a href="#g-log-parameters">LOG</a><a href="#g-mav-parameters">MAV</a><a href="#g-mav1-parameters">MAV1</a><a href="#g-mav2-parameters">MAV2</a><a href="#g-mav3-parameters">MAV3</a><a href="#g-mav4-parameters">MAV4</a><a href="#g-mav5-parameters">MAV5</a><a href="#g-mav6-parameters">MAV6</a><a href="#g-mav7-parameters">MAV7</a><a href="#g-mav8-parameters">MAV8</a><a href="#g-mav9-parameters">MAV9</a><a href="#g-mav10-parameters">MAV10</a><a href="#g-mav11-parameters">MAV11</a><a href="#g-mav12-parameters">MAV12</a><a href="#g-mav13-parameters">MAV13</a><a href="#g-mav14-parameters">MAV14</a><a href="#g-mav15-parameters">MAV15</a><a href="#g-mav16-parameters">MAV16</a><a href="#g-mav17-parameters">MAV17</a><a href="#g-mav18-parameters">MAV18</a><a href="#g-mav19-parameters">MAV19</a><a href="#g-mav20-parameters">MAV20</a><a href="#g-mav21-parameters">MAV21</a><a href="#g-mav22-parameters">MAV22</a><a href="#g-mav23-parameters">MAV23</a><a href="#g-mav24-parameters">MAV24</a><a href="#g-mav25-parameters">MAV25</a><a href="#g-mav26-parameters">MAV26</a><a href="#g-mav27-parameters">MAV27</a><a href="#g-mav28-parameters">MAV28</a><a href="#g-mav29-parameters">MAV29</a><a href="#g-mav30-parameters">MAV30</a><a href="#g-mav31-parameters">MAV31</a><a href="#g-mav32-parameters">MAV32</a><a href="#g-mis-parameters">MIS_</a><a href="#g-mnt1-parameters">MNT1</a><a href="#g-mnt2-parameters">MNT2</a><a href="#g-msp-parameters">MSP</a><a href="#g-navl1-parameters">NAVL1_</a><a href="#g-net-parameters">NET_</a><a href="#g-net-gwaddr-parameters">NET_GWADDR</a><a href="#g-net-ipaddr-parameters">NET_IPADDR</a><a href="#g-net-macaddr-parameters">NET_MACADDR</a><a href="#g-net-p1-parameters">NET_P1_</a><a href="#g-net-p1-ip-parameters">NET_P1_IP</a><a href="#g-net-p2-parameters">NET_P2_</a><a href="#g-net-p2-ip-parameters">NET_P2_IP</a><a href="#g-net-p3-parameters">NET_P3_</a><a href="#g-net-p3-ip-parameters">NET_P3_IP</a><a href="#g-net-p4-parameters">NET_P4_</a><a href="#g-net-p4-ip-parameters">NET_P4_IP</a><a href="#g-net-remppp-ip-parameters">NET_REMPPP_IP</a><a href="#g-net-test-ip-parameters">NET_TEST_IP</a><a href="#g-nmea-parameters">NMEA_</a><a href="#g-ntf-parameters">NTF_</a><a href="#g-osd-parameters">OSD</a><a href="#g-osd1-parameters">OSD1_</a><a href="#g-osd2-parameters">OSD2_</a><a href="#g-osd3-parameters">OSD3_</a><a href="#g-osd4-parameters">OSD4_</a><a href="#g-osd5-parameters">OSD5_</a><a href="#g-osd6-parameters">OSD6_</a><a href="#g-osd6-param1-parameters">OSD6_PARAM1</a><a href="#g-osd6-param2-parameters">OSD6_PARAM2</a><a href="#g-osd6-param3-parameters">OSD6_PARAM3</a><a href="#g-osd6-param4-parameters">OSD6_PARAM4</a><a href="#g-osd6-param5-parameters">OSD6_PARAM5</a><a href="#g-osd6-param6-parameters">OSD6_PARAM6</a><a href="#g-osd6-param7-parameters">OSD6_PARAM7</a><a href="#g-osd6-param8-parameters">OSD6_PARAM8</a><a href="#g-osd6-param9-parameters">OSD6_PARAM9</a><a href="#g-osd7-parameters">OSD7_</a><a href="#g-osd7-param1-parameters">OSD7_PARAM1</a><a href="#g-osd7-param2-parameters">OSD7_PARAM2</a><a href="#g-osd7-param3-parameters">OSD7_PARAM3</a><a href="#g-osd7-param4-parameters">OSD7_PARAM4</a><a href="#g-osd7-param5-parameters">OSD7_PARAM5</a><a href="#g-osd7-param6-parameters">OSD7_PARAM6</a><a href="#g-osd7-param7-parameters">OSD7_PARAM7</a><a href="#g-osd7-param8-parameters">OSD7_PARAM8</a><a href="#g-osd7-param9-parameters">OSD7_PARAM9</a><a href="#g-plnd-parameters">PLND_</a><a href="#g-ptch-parameters">PTCH</a><a href="#g-pup-parameters">PUP_</a><a href="#g-qwik-parameters">QWIK_</a><a href="#g-q-parameters">Q_</a><a href="#g-q-autotune-parameters">Q_AUTOTUNE_</a><a href="#g-q-a-parameters">Q_A_</a><a href="#g-q-loit-parameters">Q_LOIT_</a><a href="#g-q-m-parameters">Q_M_</a><a href="#g-q-p-parameters">Q_P</a><a href="#g-q-tailsit-parameters">Q_TAILSIT_</a><a href="#g-q-tilt-parameters">Q_TILT_</a><a href="#g-q-wp-parameters">Q_WP_</a><a href="#g-q-wvane-parameters">Q_WVANE_</a><a href="#g-radar-parameters">RADAR</a><a href="#g-rally-parameters">RALLY_</a><a href="#g-rc-parameters">RC</a><a href="#g-rc1-parameters">RC1_</a><a href="#g-rc2-parameters">RC2_</a><a href="#g-rc3-parameters">RC3_</a><a href="#g-rc4-parameters">RC4_</a><a href="#g-rc5-parameters">RC5_</a><a href="#g-rc6-parameters">RC6_</a><a href="#g-rc7-parameters">RC7_</a><a href="#g-rc8-parameters">RC8_</a><a href="#g-rc9-parameters">RC9_</a><a href="#g-rc10-parameters">RC10_</a><a href="#g-rc11-parameters">RC11_</a><a href="#g-rc12-parameters">RC12_</a><a href="#g-rc13-parameters">RC13_</a><a href="#g-rc14-parameters">RC14_</a><a href="#g-rc15-parameters">RC15_</a><a href="#g-rc16-parameters">RC16_</a><a href="#g-rcmap-parameters">RCMAP_</a><a href="#g-relay1-parameters">RELAY1_</a><a href="#g-relay2-parameters">RELAY2_</a><a href="#g-relay3-parameters">RELAY3_</a><a href="#g-relay4-parameters">RELAY4_</a><a href="#g-relay5-parameters">RELAY5_</a><a href="#g-relay6-parameters">RELAY6_</a><a href="#g-relay7-parameters">RELAY7_</a><a href="#g-relay8-parameters">RELAY8_</a><a href="#g-relay9-parameters">RELAY9_</a><a href="#g-relay10-parameters">RELAY10_</a><a href="#g-relay11-parameters">RELAY11_</a><a href="#g-relay12-parameters">RELAY12_</a><a href="#g-relay13-parameters">RELAY13_</a><a href="#g-relay14-parameters">RELAY14_</a><a href="#g-relay15-parameters">RELAY15_</a><a href="#g-relay16-parameters">RELAY16_</a><a href="#g-rll-parameters">RLL</a><a href="#g-rngfnd1-parameters">RNGFND1_</a><a href="#g-rngfnd1-grf-parameters">RNGFND1_GRF_</a><a href="#g-rngfnd1-grf-parameters-2">RNGFND1_GRF_</a><a href="#g-rngfnd2-parameters">RNGFND2_</a><a href="#g-rngfnd2-grf-parameters">RNGFND2_GRF_</a><a href="#g-rngfnd2-grf-parameters-2">RNGFND2_GRF_</a><a href="#g-rngfnd3-parameters">RNGFND3_</a><a href="#g-rngfnd3-grf-parameters">RNGFND3_GRF_</a><a href="#g-rngfnd3-grf-parameters-2">RNGFND3_GRF_</a><a href="#g-rngfnd4-parameters">RNGFND4_</a><a href="#g-rngfnd4-grf-parameters">RNGFND4_GRF_</a><a href="#g-rngfnd4-grf-parameters-2">RNGFND4_GRF_</a><a href="#g-rngfnd5-parameters">RNGFND5_</a><a href="#g-rngfnd5-grf-parameters">RNGFND5_GRF_</a><a href="#g-rngfnd5-grf-parameters-2">RNGFND5_GRF_</a><a href="#g-rngfnd6-parameters">RNGFND6_</a><a href="#g-rngfnd6-grf-parameters">RNGFND6_GRF_</a><a href="#g-rngfnd6-grf-parameters-2">RNGFND6_GRF_</a><a href="#g-rngfnd7-parameters">RNGFND7_</a><a href="#g-rngfnd7-grf-parameters">RNGFND7_GRF_</a><a href="#g-rngfnd7-grf-parameters-2">RNGFND7_GRF_</a><a href="#g-rngfnd8-parameters">RNGFND8_</a><a href="#g-rngfnd8-grf-parameters">RNGFND8_GRF_</a><a href="#g-rngfnd8-grf-parameters-2">RNGFND8_GRF_</a><a href="#g-rngfnd9-parameters">RNGFND9_</a><a href="#g-rngfnd9-grf-parameters">RNGFND9_GRF_</a><a href="#g-rngfnd9-grf-parameters-2">RNGFND9_GRF_</a><a href="#g-rngfnda-parameters">RNGFNDA_</a><a href="#g-rngfnda-grf-parameters">RNGFNDA_GRF_</a><a href="#g-rngfnda-grf-parameters-2">RNGFNDA_GRF_</a><a href="#g-rpm1-parameters">RPM1_</a><a href="#g-rpm2-parameters">RPM2_</a><a href="#g-rpm3-parameters">RPM3_</a><a href="#g-rpm4-parameters">RPM4_</a><a href="#g-rssi-parameters">RSSI_</a><a href="#g-sched-parameters">SCHED_</a><a href="#g-scr-parameters">SCR_</a><a href="#g-serial-parameters">SERIAL</a><a href="#g-servo-parameters">SERVO</a><a href="#g-servo1-parameters">SERVO1_</a><a href="#g-servo2-parameters">SERVO2_</a><a href="#g-servo3-parameters">SERVO3_</a><a href="#g-servo4-parameters">SERVO4_</a><a href="#g-servo5-parameters">SERVO5_</a><a href="#g-servo6-parameters">SERVO6_</a><a href="#g-servo7-parameters">SERVO7_</a><a href="#g-servo8-parameters">SERVO8_</a><a href="#g-servo9-parameters">SERVO9_</a><a href="#g-servo10-parameters">SERVO10_</a><a href="#g-servo11-parameters">SERVO11_</a><a href="#g-servo12-parameters">SERVO12_</a><a href="#g-servo13-parameters">SERVO13_</a><a href="#g-servo14-parameters">SERVO14_</a><a href="#g-servo15-parameters">SERVO15_</a><a href="#g-servo16-parameters">SERVO16_</a><a href="#g-servo17-parameters">SERVO17_</a><a href="#g-servo18-parameters">SERVO18_</a><a href="#g-servo19-parameters">SERVO19_</a><a href="#g-servo20-parameters">SERVO20_</a><a href="#g-servo21-parameters">SERVO21_</a><a href="#g-servo22-parameters">SERVO22_</a><a href="#g-servo23-parameters">SERVO23_</a><a href="#g-servo24-parameters">SERVO24_</a><a href="#g-servo25-parameters">SERVO25_</a><a href="#g-servo26-parameters">SERVO26_</a><a href="#g-servo27-parameters">SERVO27_</a><a href="#g-servo28-parameters">SERVO28_</a><a href="#g-servo29-parameters">SERVO29_</a><a href="#g-servo30-parameters">SERVO30_</a><a href="#g-servo31-parameters">SERVO31_</a><a href="#g-servo32-parameters">SERVO32_</a><a href="#g-servo-blh-parameters">SERVO_BLH_</a><a href="#g-servo-ftw-parameters">SERVO_FTW_</a><a href="#g-servo-rob-parameters">SERVO_ROB_</a><a href="#g-servo-sbus-parameters">SERVO_SBUS_</a><a href="#g-servo-volz-parameters">SERVO_VOLZ_</a><a href="#g-sid-parameters">SID</a><a href="#g-sim-parameters">SIM_</a><a href="#g-sim-ais-parameters">SIM_AIS_</a><a href="#g-sim-arspd2-parameters">SIM_ARSPD2_</a><a href="#g-sim-arspd-parameters">SIM_ARSPD_</a><a href="#g-sim-bar2-parameters">SIM_BAR2_</a><a href="#g-sim-bar3-parameters">SIM_BAR3_</a><a href="#g-sim-baro-parameters">SIM_BARO_</a><a href="#g-sim-bz-parameters">SIM_BZ_</a><a href="#g-sim-ftowesc-parameters">SIM_FTOWESC_</a><a href="#g-sim-gld-parameters">SIM_GLD_</a><a href="#g-sim-gps1-parameters">SIM_GPS1_</a><a href="#g-sim-gps2-parameters">SIM_GPS2_</a><a href="#g-sim-gps3-parameters">SIM_GPS3_</a><a href="#g-sim-gps4-parameters">SIM_GPS4_</a><a href="#g-sim-grpe-parameters">SIM_GRPE_</a><a href="#g-sim-grps-parameters">SIM_GRPS_</a><a href="#g-sim-ie24-parameters">SIM_IE24_</a><a href="#g-sim-para-parameters">SIM_PARA_</a><a href="#g-sim-pld-parameters">SIM_PLD_</a><a href="#g-sim-rfl-parameters">SIM_RFL_</a><a href="#g-sim-rich-parameters">SIM_RICH_</a><a href="#g-sim-sb-parameters">SIM_SB_</a><a href="#g-sim-servo-parameters">SIM_SERVO_</a><a href="#g-sim-ship-parameters">SIM_SHIP_</a><a href="#g-sim-slup-parameters">SIM_SLUP_</a><a href="#g-sim-spr-parameters">SIM_SPR_</a><a href="#g-sim-ta-parameters">SIM_TA_</a><a href="#g-sim-teth-parameters">SIM_TETH_</a><a href="#g-sim-vicon-parameters">SIM_VICON_</a><a href="#g-sim-volz-parameters">SIM_VOLZ_</a><a href="#g-soar-parameters">SOAR_</a><a href="#g-stat-parameters">STAT</a><a href="#g-steer2srv-parameters">STEER2SRV_</a><a href="#g-tecs-parameters">TECS_</a><a href="#g-temp-parameters">TEMP</a><a href="#g-temp1-parameters">TEMP1_</a><a href="#g-temp2-parameters">TEMP2_</a><a href="#g-temp3-parameters">TEMP3_</a><a href="#g-temp4-parameters">TEMP4_</a><a href="#g-temp5-parameters">TEMP5_</a><a href="#g-temp6-parameters">TEMP6_</a><a href="#g-temp7-parameters">TEMP7_</a><a href="#g-temp8-parameters">TEMP8_</a><a href="#g-temp9-parameters">TEMP9_</a><a href="#g-temp10-parameters">TEMP10_</a><a href="#g-temp11-parameters">TEMP11_</a><a href="#g-temp12-parameters">TEMP12_</a><a href="#g-temp13-parameters">TEMP13_</a><a href="#g-temp14-parameters">TEMP14_</a><a href="#g-temp15-parameters">TEMP15_</a><a href="#g-terrain-parameters">TERRAIN_</a><a href="#g-tkoff-parameters">TKOFF_</a><a href="#g-tune-parameters">TUNE_</a><a href="#g-viso-parameters">VISO</a><a href="#g-vtx-parameters">VTX_</a><a href="#g-yaw-parameters">YAW</a></nav>
+  <div class="bar"><input id="q" type="search" placeholder="Search name or description, e.g. LAND_WIND or airspeed" aria-label="Search parameters" autocomplete="off"><output id="n">6,632 parameters</output></div>
+  <nav class="groups" aria-label="Parameter groups"><a href="#g-arduplane-parameters">ArduPlane</a><a href="#g-vehicle-parameters">VEHICLE</a><a href="#g-lua-script-parameters">Lua Script</a><a href="#g-adsb-parameters">ADSB_</a><a href="#g-afs-parameters">AFS_</a><a href="#g-ahrs-parameters">AHRS_</a><a href="#g-ais-parameters">AIS_</a><a href="#g-arming-parameters">ARMING_</a><a href="#g-arspd-parameters">ARSPD</a><a href="#g-arspd2-parameters">ARSPD2_</a><a href="#g-arspd3-parameters">ARSPD3_</a><a href="#g-arspd4-parameters">ARSPD4_</a><a href="#g-arspd5-parameters">ARSPD5_</a><a href="#g-arspd6-parameters">ARSPD6_</a><a href="#g-arspd-parameters-2">ARSPD_</a><a href="#g-autoland-parameters">AUTOLAND_</a><a href="#g-avd-parameters">AVD_</a><a href="#g-baro-parameters">BARO</a><a href="#g-baro1-wcf-parameters">BARO1_WCF_</a><a href="#g-baro2-wcf-parameters">BARO2_WCF_</a><a href="#g-baro3-wcf-parameters">BARO3_WCF_</a><a href="#g-batt2-parameters">BATT2_</a><a href="#g-batt3-parameters">BATT3_</a><a href="#g-batt4-parameters">BATT4_</a><a href="#g-batt5-parameters">BATT5_</a><a href="#g-batt6-parameters">BATT6_</a><a href="#g-batt7-parameters">BATT7_</a><a href="#g-batt8-parameters">BATT8_</a><a href="#g-batt9-parameters">BATT9_</a><a href="#g-batta-parameters">BATTA_</a><a href="#g-battb-parameters">BATTB_</a><a href="#g-battc-parameters">BATTC_</a><a href="#g-battd-parameters">BATTD_</a><a href="#g-batte-parameters">BATTE_</a><a href="#g-battf-parameters">BATTF_</a><a href="#g-battg-parameters">BATTG_</a><a href="#g-batt-parameters">BATT_</a><a href="#g-brd-parameters">BRD_</a><a href="#g-brd-radio-parameters">BRD_RADIO</a><a href="#g-brd-rtc-parameters">BRD_RTC</a><a href="#g-btn-parameters">BTN_</a><a href="#g-cam-parameters">CAM</a><a href="#g-cam1-parameters">CAM1</a><a href="#g-cam1-rc-parameters">CAM1_RC_</a><a href="#g-cam2-parameters">CAM2</a><a href="#g-cam2-rc-parameters">CAM2_RC_</a><a href="#g-can-parameters">CAN_</a><a href="#g-can-d1-parameters">CAN_D1_</a><a href="#g-can-d1-pc-parameters">CAN_D1_PC_</a><a href="#g-can-d1-uc-parameters">CAN_D1_UC_</a><a href="#g-can-d2-parameters">CAN_D2_</a><a href="#g-can-d2-pc-parameters">CAN_D2_PC_</a><a href="#g-can-d2-uc-parameters">CAN_D2_UC_</a><a href="#g-can-d3-parameters">CAN_D3_</a><a href="#g-can-d3-pc-parameters">CAN_D3_PC_</a><a href="#g-can-d3-uc-parameters">CAN_D3_UC_</a><a href="#g-can-p1-parameters">CAN_P1_</a><a href="#g-can-p2-parameters">CAN_P2_</a><a href="#g-can-p3-parameters">CAN_P3_</a><a href="#g-can-slcan-parameters">CAN_SLCAN_</a><a href="#g-chute-parameters">CHUTE_</a><a href="#g-compass-parameters">COMPASS_</a><a href="#g-compass-pmot-parameters">COMPASS_PMOT</a><a href="#g-cust-rot-parameters">CUST_ROT</a><a href="#g-cust-rot1-parameters">CUST_ROT1_</a><a href="#g-cust-rot2-parameters">CUST_ROT2_</a><a href="#g-dds-parameters">DDS</a><a href="#g-dds-ip-parameters">DDS_IP</a><a href="#g-did-parameters">DID_</a><a href="#g-eahrs-parameters">EAHRS</a><a href="#g-efi-parameters">EFI</a><a href="#g-efi-thrlin-parameters">EFI_THRLIN</a><a href="#g-ek2-parameters">EK2_</a><a href="#g-ek3-parameters">EK3_</a><a href="#g-ek3-src-parameters">EK3_SRC</a><a href="#g-esc-tlm-parameters">ESC_TLM</a><a href="#g-fence-parameters">FENCE_</a><a href="#g-fft-parameters">FFT_</a><a href="#g-filt1-parameters">FILT1_</a><a href="#g-filt2-parameters">FILT2_</a><a href="#g-filt3-parameters">FILT3_</a><a href="#g-filt4-parameters">FILT4_</a><a href="#g-filt5-parameters">FILT5_</a><a href="#g-filt6-parameters">FILT6_</a><a href="#g-filt7-parameters">FILT7_</a><a href="#g-filt8-parameters">FILT8_</a><a href="#g-flow-parameters">FLOW</a><a href="#g-foll-parameters">FOLL</a><a href="#g-frsky-parameters">FRSKY_</a><a href="#g-gen-parameters">GEN_</a><a href="#g-gen-l-parameters">GEN_L_</a><a href="#g-gps-parameters">GPS</a><a href="#g-gps1-parameters">GPS1_</a><a href="#g-gps1-mb-parameters">GPS1_MB_</a><a href="#g-gps2-parameters">GPS2_</a><a href="#g-gps2-mb-parameters">GPS2_MB_</a><a href="#g-gps-mb1-parameters">GPS_MB1_</a><a href="#g-gps-mb2-parameters">GPS_MB2_</a><a href="#g-grip-parameters">GRIP_</a><a href="#g-guided-parameters">GUIDED_</a><a href="#g-ice-parameters">ICE_</a><a href="#g-ins-parameters">INS</a><a href="#g-ins4-parameters">INS4_</a><a href="#g-ins4-tcal-parameters">INS4_TCAL_</a><a href="#g-ins5-parameters">INS5_</a><a href="#g-ins5-tcal-parameters">INS5_TCAL_</a><a href="#g-ins-hntc2-parameters">INS_HNTC2_</a><a href="#g-ins-hntc3-parameters">INS_HNTC3_</a><a href="#g-ins-hntc4-parameters">INS_HNTC4_</a><a href="#g-ins-hntch-parameters">INS_HNTCH_</a><a href="#g-ins-log-parameters">INS_LOG_</a><a href="#g-ins-tcal1-parameters">INS_TCAL1_</a><a href="#g-ins-tcal2-parameters">INS_TCAL2_</a><a href="#g-ins-tcal3-parameters">INS_TCAL3_</a><a href="#g-kde-parameters">KDE_</a><a href="#g-land-parameters">LAND_</a><a href="#g-land-ds-parameters">LAND_DS_</a><a href="#g-lgr-parameters">LGR_</a><a href="#g-log-parameters">LOG</a><a href="#g-mav-parameters">MAV</a><a href="#g-mav1-parameters">MAV1</a><a href="#g-mav2-parameters">MAV2</a><a href="#g-mav3-parameters">MAV3</a><a href="#g-mav4-parameters">MAV4</a><a href="#g-mav5-parameters">MAV5</a><a href="#g-mav6-parameters">MAV6</a><a href="#g-mav7-parameters">MAV7</a><a href="#g-mav8-parameters">MAV8</a><a href="#g-mav9-parameters">MAV9</a><a href="#g-mav10-parameters">MAV10</a><a href="#g-mav11-parameters">MAV11</a><a href="#g-mav12-parameters">MAV12</a><a href="#g-mav13-parameters">MAV13</a><a href="#g-mav14-parameters">MAV14</a><a href="#g-mav15-parameters">MAV15</a><a href="#g-mav16-parameters">MAV16</a><a href="#g-mav17-parameters">MAV17</a><a href="#g-mav18-parameters">MAV18</a><a href="#g-mav19-parameters">MAV19</a><a href="#g-mav20-parameters">MAV20</a><a href="#g-mav21-parameters">MAV21</a><a href="#g-mav22-parameters">MAV22</a><a href="#g-mav23-parameters">MAV23</a><a href="#g-mav24-parameters">MAV24</a><a href="#g-mav25-parameters">MAV25</a><a href="#g-mav26-parameters">MAV26</a><a href="#g-mav27-parameters">MAV27</a><a href="#g-mav28-parameters">MAV28</a><a href="#g-mav29-parameters">MAV29</a><a href="#g-mav30-parameters">MAV30</a><a href="#g-mav31-parameters">MAV31</a><a href="#g-mav32-parameters">MAV32</a><a href="#g-mis-parameters">MIS_</a><a href="#g-mnt1-parameters">MNT1</a><a href="#g-mnt2-parameters">MNT2</a><a href="#g-msp-parameters">MSP</a><a href="#g-navl1-parameters">NAVL1_</a><a href="#g-net-parameters">NET_</a><a href="#g-net-gwaddr-parameters">NET_GWADDR</a><a href="#g-net-ipaddr-parameters">NET_IPADDR</a><a href="#g-net-macaddr-parameters">NET_MACADDR</a><a href="#g-net-p1-parameters">NET_P1_</a><a href="#g-net-p1-ip-parameters">NET_P1_IP</a><a href="#g-net-p2-parameters">NET_P2_</a><a href="#g-net-p2-ip-parameters">NET_P2_IP</a><a href="#g-net-p3-parameters">NET_P3_</a><a href="#g-net-p3-ip-parameters">NET_P3_IP</a><a href="#g-net-p4-parameters">NET_P4_</a><a href="#g-net-p4-ip-parameters">NET_P4_IP</a><a href="#g-net-remppp-ip-parameters">NET_REMPPP_IP</a><a href="#g-net-test-ip-parameters">NET_TEST_IP</a><a href="#g-nmea-parameters">NMEA_</a><a href="#g-ntf-parameters">NTF_</a><a href="#g-ntf-ls1-parameters">NTF_LS1_</a><a href="#g-ntf-ls2-parameters">NTF_LS2_</a><a href="#g-ntf-ls3-parameters">NTF_LS3_</a><a href="#g-ntf-ls4-parameters">NTF_LS4_</a><a href="#g-ntf-ls5-parameters">NTF_LS5_</a><a href="#g-ntf-ls6-parameters">NTF_LS6_</a><a href="#g-ntf-ls7-parameters">NTF_LS7_</a><a href="#g-ntf-ls8-parameters">NTF_LS8_</a><a href="#g-osd-parameters">OSD</a><a href="#g-osd1-parameters">OSD1_</a><a href="#g-osd2-parameters">OSD2_</a><a href="#g-osd3-parameters">OSD3_</a><a href="#g-osd4-parameters">OSD4_</a><a href="#g-osd5-parameters">OSD5_</a><a href="#g-osd6-parameters">OSD6_</a><a href="#g-osd6-param1-parameters">OSD6_PARAM1</a><a href="#g-osd6-param2-parameters">OSD6_PARAM2</a><a href="#g-osd6-param3-parameters">OSD6_PARAM3</a><a href="#g-osd6-param4-parameters">OSD6_PARAM4</a><a href="#g-osd6-param5-parameters">OSD6_PARAM5</a><a href="#g-osd6-param6-parameters">OSD6_PARAM6</a><a href="#g-osd6-param7-parameters">OSD6_PARAM7</a><a href="#g-osd6-param8-parameters">OSD6_PARAM8</a><a href="#g-osd6-param9-parameters">OSD6_PARAM9</a><a href="#g-osd7-parameters">OSD7_</a><a href="#g-osd7-param1-parameters">OSD7_PARAM1</a><a href="#g-osd7-param2-parameters">OSD7_PARAM2</a><a href="#g-osd7-param3-parameters">OSD7_PARAM3</a><a href="#g-osd7-param4-parameters">OSD7_PARAM4</a><a href="#g-osd7-param5-parameters">OSD7_PARAM5</a><a href="#g-osd7-param6-parameters">OSD7_PARAM6</a><a href="#g-osd7-param7-parameters">OSD7_PARAM7</a><a href="#g-osd7-param8-parameters">OSD7_PARAM8</a><a href="#g-osd7-param9-parameters">OSD7_PARAM9</a><a href="#g-plnd-parameters">PLND_</a><a href="#g-ptch-parameters">PTCH</a><a href="#g-ptch-trim-parameters">PTCH_TRIM_</a><a href="#g-pup-parameters">PUP_</a><a href="#g-qwik-parameters">QWIK_</a><a href="#g-q-parameters">Q_</a><a href="#g-q-autotune-parameters">Q_AUTOTUNE_</a><a href="#g-q-a-parameters">Q_A_</a><a href="#g-q-loit-parameters">Q_LOIT_</a><a href="#g-q-m-parameters">Q_M_</a><a href="#g-q-p-parameters">Q_P</a><a href="#g-q-tailsit-parameters">Q_TAILSIT_</a><a href="#g-q-tilt-parameters">Q_TILT_</a><a href="#g-q-wp-parameters">Q_WP_</a><a href="#g-q-wvane-parameters">Q_WVANE_</a><a href="#g-radar-parameters">RADAR</a><a href="#g-rally-parameters">RALLY_</a><a href="#g-rc-parameters">RC</a><a href="#g-rc1-parameters">RC1_</a><a href="#g-rc2-parameters">RC2_</a><a href="#g-rc3-parameters">RC3_</a><a href="#g-rc4-parameters">RC4_</a><a href="#g-rc5-parameters">RC5_</a><a href="#g-rc6-parameters">RC6_</a><a href="#g-rc7-parameters">RC7_</a><a href="#g-rc8-parameters">RC8_</a><a href="#g-rc9-parameters">RC9_</a><a href="#g-rc10-parameters">RC10_</a><a href="#g-rc11-parameters">RC11_</a><a href="#g-rc12-parameters">RC12_</a><a href="#g-rc13-parameters">RC13_</a><a href="#g-rc14-parameters">RC14_</a><a href="#g-rc15-parameters">RC15_</a><a href="#g-rc16-parameters">RC16_</a><a href="#g-rc17-parameters">RC17_</a><a href="#g-rc18-parameters">RC18_</a><a href="#g-rc19-parameters">RC19_</a><a href="#g-rc20-parameters">RC20_</a><a href="#g-rc21-parameters">RC21_</a><a href="#g-rc22-parameters">RC22_</a><a href="#g-rc23-parameters">RC23_</a><a href="#g-rc24-parameters">RC24_</a><a href="#g-rc25-parameters">RC25_</a><a href="#g-rc26-parameters">RC26_</a><a href="#g-rc27-parameters">RC27_</a><a href="#g-rc28-parameters">RC28_</a><a href="#g-rc29-parameters">RC29_</a><a href="#g-rc30-parameters">RC30_</a><a href="#g-rc31-parameters">RC31_</a><a href="#g-rc32-parameters">RC32_</a><a href="#g-rcmap-parameters">RCMAP_</a><a href="#g-relay1-parameters">RELAY1_</a><a href="#g-relay2-parameters">RELAY2_</a><a href="#g-relay3-parameters">RELAY3_</a><a href="#g-relay4-parameters">RELAY4_</a><a href="#g-relay5-parameters">RELAY5_</a><a href="#g-relay6-parameters">RELAY6_</a><a href="#g-relay7-parameters">RELAY7_</a><a href="#g-relay8-parameters">RELAY8_</a><a href="#g-relay9-parameters">RELAY9_</a><a href="#g-relay10-parameters">RELAY10_</a><a href="#g-relay11-parameters">RELAY11_</a><a href="#g-relay12-parameters">RELAY12_</a><a href="#g-relay13-parameters">RELAY13_</a><a href="#g-relay14-parameters">RELAY14_</a><a href="#g-relay15-parameters">RELAY15_</a><a href="#g-relay16-parameters">RELAY16_</a><a href="#g-rll-parameters">RLL</a><a href="#g-rngfnd1-parameters">RNGFND1_</a><a href="#g-rngfnd1-grf-parameters">RNGFND1_GRF_</a><a href="#g-rngfnd1-grf-parameters-2">RNGFND1_GRF_</a><a href="#g-rngfnd2-parameters">RNGFND2_</a><a href="#g-rngfnd2-grf-parameters">RNGFND2_GRF_</a><a href="#g-rngfnd2-grf-parameters-2">RNGFND2_GRF_</a><a href="#g-rngfnd3-parameters">RNGFND3_</a><a href="#g-rngfnd3-grf-parameters">RNGFND3_GRF_</a><a href="#g-rngfnd3-grf-parameters-2">RNGFND3_GRF_</a><a href="#g-rngfnd4-parameters">RNGFND4_</a><a href="#g-rngfnd4-grf-parameters">RNGFND4_GRF_</a><a href="#g-rngfnd4-grf-parameters-2">RNGFND4_GRF_</a><a href="#g-rngfnd5-parameters">RNGFND5_</a><a href="#g-rngfnd5-grf-parameters">RNGFND5_GRF_</a><a href="#g-rngfnd5-grf-parameters-2">RNGFND5_GRF_</a><a href="#g-rngfnd6-parameters">RNGFND6_</a><a href="#g-rngfnd6-grf-parameters">RNGFND6_GRF_</a><a href="#g-rngfnd6-grf-parameters-2">RNGFND6_GRF_</a><a href="#g-rngfnd7-parameters">RNGFND7_</a><a href="#g-rngfnd7-grf-parameters">RNGFND7_GRF_</a><a href="#g-rngfnd7-grf-parameters-2">RNGFND7_GRF_</a><a href="#g-rngfnd8-parameters">RNGFND8_</a><a href="#g-rngfnd8-grf-parameters">RNGFND8_GRF_</a><a href="#g-rngfnd8-grf-parameters-2">RNGFND8_GRF_</a><a href="#g-rngfnd9-parameters">RNGFND9_</a><a href="#g-rngfnd9-grf-parameters">RNGFND9_GRF_</a><a href="#g-rngfnd9-grf-parameters-2">RNGFND9_GRF_</a><a href="#g-rngfnda-parameters">RNGFNDA_</a><a href="#g-rngfnda-grf-parameters">RNGFNDA_GRF_</a><a href="#g-rngfnda-grf-parameters-2">RNGFNDA_GRF_</a><a href="#g-rpm1-parameters">RPM1_</a><a href="#g-rpm2-parameters">RPM2_</a><a href="#g-rpm3-parameters">RPM3_</a><a href="#g-rpm4-parameters">RPM4_</a><a href="#g-rssi-parameters">RSSI_</a><a href="#g-sched-parameters">SCHED_</a><a href="#g-scr-parameters">SCR_</a><a href="#g-serial-parameters">SERIAL</a><a href="#g-servo-parameters">SERVO</a><a href="#g-servo1-parameters">SERVO1_</a><a href="#g-servo2-parameters">SERVO2_</a><a href="#g-servo3-parameters">SERVO3_</a><a href="#g-servo4-parameters">SERVO4_</a><a href="#g-servo5-parameters">SERVO5_</a><a href="#g-servo6-parameters">SERVO6_</a><a href="#g-servo7-parameters">SERVO7_</a><a href="#g-servo8-parameters">SERVO8_</a><a href="#g-servo9-parameters">SERVO9_</a><a href="#g-servo10-parameters">SERVO10_</a><a href="#g-servo11-parameters">SERVO11_</a><a href="#g-servo12-parameters">SERVO12_</a><a href="#g-servo13-parameters">SERVO13_</a><a href="#g-servo14-parameters">SERVO14_</a><a href="#g-servo15-parameters">SERVO15_</a><a href="#g-servo16-parameters">SERVO16_</a><a href="#g-servo17-parameters">SERVO17_</a><a href="#g-servo18-parameters">SERVO18_</a><a href="#g-servo19-parameters">SERVO19_</a><a href="#g-servo20-parameters">SERVO20_</a><a href="#g-servo21-parameters">SERVO21_</a><a href="#g-servo22-parameters">SERVO22_</a><a href="#g-servo23-parameters">SERVO23_</a><a href="#g-servo24-parameters">SERVO24_</a><a href="#g-servo25-parameters">SERVO25_</a><a href="#g-servo26-parameters">SERVO26_</a><a href="#g-servo27-parameters">SERVO27_</a><a href="#g-servo28-parameters">SERVO28_</a><a href="#g-servo29-parameters">SERVO29_</a><a href="#g-servo30-parameters">SERVO30_</a><a href="#g-servo31-parameters">SERVO31_</a><a href="#g-servo32-parameters">SERVO32_</a><a href="#g-servo-blh-parameters">SERVO_BLH_</a><a href="#g-servo-ftw-parameters">SERVO_FTW_</a><a href="#g-servo-rob-parameters">SERVO_ROB_</a><a href="#g-servo-sbus-parameters">SERVO_SBUS_</a><a href="#g-servo-volz-parameters">SERVO_VOLZ_</a><a href="#g-sid-parameters">SID</a><a href="#g-sim-parameters">SIM_</a><a href="#g-sim-ais-parameters">SIM_AIS_</a><a href="#g-sim-arspd2-parameters">SIM_ARSPD2_</a><a href="#g-sim-arspd-parameters">SIM_ARSPD_</a><a href="#g-sim-bar2-parameters">SIM_BAR2_</a><a href="#g-sim-bar3-parameters">SIM_BAR3_</a><a href="#g-sim-baro-parameters">SIM_BARO_</a><a href="#g-sim-bz-parameters">SIM_BZ_</a><a href="#g-sim-ftowesc-parameters">SIM_FTOWESC_</a><a href="#g-sim-gld-parameters">SIM_GLD_</a><a href="#g-sim-gps1-parameters">SIM_GPS1_</a><a href="#g-sim-gps2-parameters">SIM_GPS2_</a><a href="#g-sim-gps3-parameters">SIM_GPS3_</a><a href="#g-sim-gps4-parameters">SIM_GPS4_</a><a href="#g-sim-grpe-parameters">SIM_GRPE_</a><a href="#g-sim-grps-parameters">SIM_GRPS_</a><a href="#g-sim-ie24-parameters">SIM_IE24_</a><a href="#g-sim-para-parameters">SIM_PARA_</a><a href="#g-sim-pld-parameters">SIM_PLD_</a><a href="#g-sim-rfl-parameters">SIM_RFL_</a><a href="#g-sim-rich-parameters">SIM_RICH_</a><a href="#g-sim-sb-parameters">SIM_SB_</a><a href="#g-sim-servo-parameters">SIM_SERVO_</a><a href="#g-sim-ship-parameters">SIM_SHIP_</a><a href="#g-sim-slup-parameters">SIM_SLUP_</a><a href="#g-sim-spr-parameters">SIM_SPR_</a><a href="#g-sim-ta-parameters">SIM_TA_</a><a href="#g-sim-teth-parameters">SIM_TETH_</a><a href="#g-sim-vicon-parameters">SIM_VICON_</a><a href="#g-sim-volz-parameters">SIM_VOLZ_</a><a href="#g-soar-parameters">SOAR_</a><a href="#g-stat-parameters">STAT</a><a href="#g-steer2srv-parameters">STEER2SRV_</a><a href="#g-tecs-parameters">TECS_</a><a href="#g-temp-parameters">TEMP</a><a href="#g-temp1-parameters">TEMP1_</a><a href="#g-temp2-parameters">TEMP2_</a><a href="#g-temp3-parameters">TEMP3_</a><a href="#g-temp4-parameters">TEMP4_</a><a href="#g-temp5-parameters">TEMP5_</a><a href="#g-temp6-parameters">TEMP6_</a><a href="#g-temp7-parameters">TEMP7_</a><a href="#g-temp8-parameters">TEMP8_</a><a href="#g-temp9-parameters">TEMP9_</a><a href="#g-temp10-parameters">TEMP10_</a><a href="#g-temp11-parameters">TEMP11_</a><a href="#g-temp12-parameters">TEMP12_</a><a href="#g-temp13-parameters">TEMP13_</a><a href="#g-temp14-parameters">TEMP14_</a><a href="#g-temp15-parameters">TEMP15_</a><a href="#g-terrain-parameters">TERRAIN_</a><a href="#g-tkoff-parameters">TKOFF_</a><a href="#g-tune-parameters">TUNE_</a><a href="#g-viso-parameters">VISO</a><a href="#g-vtx-parameters">VTX_</a><a href="#g-yaw-parameters">YAW</a></nav>
   <section class="grp" id="g-arduplane-parameters"><h2>ArduPlane Parameters</h2><article class="p" id="FORMAT_VERSION" data-k="format_version eeprom format version number (arduplane:format_version)"><h3><a href="#FORMAT_VERSION">FORMAT_VERSION</a> <span>Eeprom format version number</span></h3><em>Note: This parameter is for advanced users</em><br>
 
 <p>This value is incremented when changes are made to the eeprom format</p>
@@ -1546,7 +1546,7 @@ footer{color:var(--muted);font-size:13px}
 
 </article><article class="p" id="LAND_WIND_BIAS" data-k="land_wind_bias landing sequence wind bias (arduplane:land_wind_bias)"><h3><a href="#LAND_WIND_BIAS">LAND_WIND_BIAS</a> <span>Landing sequence wind bias</span></h3>
 
-<p>Bias the DO_LAND_START selection toward landings whose final approach faces into the wind. Applies wherever ArduPlane chooses a landing sequence -- RTL autoland, fence breach, battery failsafe, and the GCS DO_LAND_START command. 0 = pure nearest-distance (upstream default; no behaviour change). &gt; 0 = penalise tailwind candidates; full headwind earns no penalty. Falls back to nearest-distance when AHRS wind estimate &lt; 1 m/s or an approach heading cannot be derived from the mission sequence.</p>
+<p>Bias the DO_LAND_START selection toward landings whose final approach faces into the wind. Applies wherever ArduPlane chooses a landing sequence -- RTL autoland, fence breach, battery failsafe, and the GCS DO_LAND_START command. 0 = pure nearest-distance (upstream default; no behaviour change). &gt; 0 = penalise tailwind candidates; full headwind earns no penalty. Values above 1 are treated as 1. Falls back to nearest-distance when AHRS wind estimate &lt; 1 m/s or an approach heading cannot be derived from the mission sequence.</p>
 <ul>
 <li>Range: 0 1</li>
 </ul>
@@ -1849,137 +1849,7 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article></section><section class="grp" id="g-lua-script-parameters"><h2>Lua Script Parameters</h2><article class="p" id="RK9_FORCEHL" data-k="rk9_forcehl force enable high latency mode (rk9_forcehl)"><h3><a href="#RK9_FORCEHL">RK9_FORCEHL</a> <span>Force enable High Latency mode</span></h3>
-
-<p>Automatically enables High Latency mode if not already enabled</p>
-<ul>
-<table><th>Value</th><th>Meaning</th>
-<tr><td>0</td><td>Disabled</td></tr>
-<tr><td>1</td><td>Enabled</td></tr>
-<tr><td>2</td><td>Enabled on telemetry loss</td></tr>
-</table>
-</ul>
-
-
-</article><article class="p" id="RK9_PERIOD" data-k="rk9_period update rate (rk9_period)"><h3><a href="#RK9_PERIOD">RK9_PERIOD</a> <span>Update rate</span></h3>
-
-<p>When in High Latency mode, send Rockblock updates every N seconds</p>
-<ul>
-<li>Range: 0 600</li>
-<li>Units: seconds</li>
-</ul>
-
-
-</article><article class="p" id="RK9_DEBUG" data-k="rk9_debug display rockblock debugging text (rk9_debug)"><h3><a href="#RK9_DEBUG">RK9_DEBUG</a> <span>Display Rockblock debugging text</span></h3>
-
-<p>Sends Rockblock debug text to GCS via statustexts</p>
-<ul>
-<table><th>Value</th><th>Meaning</th>
-<tr><td>0</td><td>Disabled</td></tr>
-<tr><td>1</td><td>Enabled</td></tr>
-</table>
-</ul>
-
-
-</article><article class="p" id="RK9_ENABLE" data-k="rk9_enable enable message transmission (rk9_enable)"><h3><a href="#RK9_ENABLE">RK9_ENABLE</a> <span>Enable Message transmission</span></h3>
-
-<p>Enables the Rockblock sending and recieving</p>
-<ul>
-<table><th>Value</th><th>Meaning</th>
-<tr><td>0</td><td>Disabled</td></tr>
-<tr><td>1</td><td>Enabled</td></tr>
-</table>
-</ul>
-
-
-</article><article class="p" id="RK9_TIMEOUT" data-k="rk9_timeout gcs timeout to start sendin rockblock messages (rk9_timeout)"><h3><a href="#RK9_TIMEOUT">RK9_TIMEOUT</a> <span>GCS timeout to start sendin Rockblock messages</span></h3>
-
-<p>If RK9_FORCEHL=2, this is the number of seconds of GCS timeout until High Latency mode is auto-enabled</p>
-<ul>
-<li>Range: 0 600</li>
-<li>Units: seconds</li>
-</ul>
-
-
-</article><article class="p" id="RK9_SERPORT" data-k="rk9_serport rockblock serial port (rk9_serport)"><h3><a href="#RK9_SERPORT">RK9_SERPORT</a> <span>Rockblock Serial Port</span></h3>
-
-<p>Serial port number to which the Rockblock is connected.This is the index of the SERIALn_ ports that are set to 28 for &quot;scripting&quot;</p>
-<ul>
-<li>Range: 0 8</li>
-</ul>
-
-
-</article><article class="p" id="RK9_SCRPORT" data-k="rk9_scrport rockblock scripting serial port (rk9_scrport)"><h3><a href="#RK9_SCRPORT">RK9_SCRPORT</a> <span>Rockblock Scripting Serial Port</span></h3>
-
-<p>Scripting Serial port number to which the Rockblock is connected for HL2 messages This is the index of the SCR_SDEV ports that are set to 2 for &quot;MavlinkHL&quot;</p>
-<ul>
-<li>Range: 0 8</li>
-</ul>
-
-
-</article><article class="p" id="RK9_RELAY" data-k="rk9_relay rockblock power relay (rk9_relay)"><h3><a href="#RK9_RELAY">RK9_RELAY</a> <span>Rockblock Power Relay</span></h3>
-
-<p>RELAYn output to control Rockblock power. This connects to I_EN on the Rockblock header.</p>
-<ul>
-<li>Range: 1 8</li>
-</ul>
-
-
-</article><article class="p" id="RK9_BOOTED" data-k="rk9_booted rockblock booted feedback (rk9_booted)"><h3><a href="#RK9_BOOTED">RK9_BOOTED</a> <span>Rockblock booted feedback</span></h3>
-
-<p>SERVOn GPIO channel that reads the Rockblock booted state. This connects to I_BTD on the Rockblock header. Requires SERVON_FUNCTION=-1</p>
-<ul>
-<li>Range: 50 110</li>
-</ul>
-
-
-</article><article class="p" id="CAM1_THERM_PAL" data-k="cam1_therm_pal camera1 thermal palette (cam1_therm_pal)"><h3><a href="#CAM1_THERM_PAL">CAM1_THERM_PAL</a> <span>Camera1 Thermal Palette</span></h3>
-
-<p>thermal image colour palette</p>
-<ul>
-<table><th>Value</th><th>Meaning</th>
-<tr><td>-1</td><td>Leave Unchanged</td></tr>
-<tr><td>0</td><td>WhiteHot</td></tr>
-<tr><td>2</td><td>Sepia</td></tr>
-<tr><td>3</td><td>IronBow</td></tr>
-<tr><td>4</td><td>Rainbow</td></tr>
-<tr><td>5</td><td>Night</td></tr>
-<tr><td>6</td><td>Aurora</td></tr>
-<tr><td>7</td><td>RedHot</td></tr>
-<tr><td>8</td><td>Jungle</td></tr>
-<tr><td>9</td><td>Medical</td></tr>
-<tr><td>10</td><td>BlackHot</td></tr>
-<tr><td>11</td><td>GloryHot</td></tr>
-</table>
-</ul>
-
-
-</article><article class="p" id="CAM1_THERM_GAIN" data-k="cam1_therm_gain camera1 thermal gain (cam1_therm_gain)"><h3><a href="#CAM1_THERM_GAIN">CAM1_THERM_GAIN</a> <span>Camera1 Thermal Gain</span></h3>
-
-<p>thermal image temperature range</p>
-<ul>
-<table><th>Value</th><th>Meaning</th>
-<tr><td>-1</td><td>Leave Unchanged</td></tr>
-<tr><td>0</td><td>LowGain (50C to 550C)</td></tr>
-<tr><td>1</td><td>HighGain (-20C to 150C)</td></tr>
-</table>
-</ul>
-
-
-</article><article class="p" id="CAM1_THERM_RAW" data-k="cam1_therm_raw camera1 thermal raw data (cam1_therm_raw)"><h3><a href="#CAM1_THERM_RAW">CAM1_THERM_RAW</a> <span>Camera1 Thermal Raw Data</span></h3>
-
-<p>save images with raw temperatures</p>
-<ul>
-<table><th>Value</th><th>Meaning</th>
-<tr><td>-1</td><td>Leave Unchanged</td></tr>
-<tr><td>0</td><td>Disabled (30fps)</td></tr>
-<tr><td>1</td><td>Enabled (25 fps)</td></tr>
-</table>
-<li>Units: meters</li>
-</ul>
-
-
-</article><article class="p" id="AHRS_ORIG_LAT" data-k="ahrs_orig_lat ahrs/ekf origin latitude (ahrs_orig_lat)"><h3><a href="#AHRS_ORIG_LAT">AHRS_ORIG_LAT</a> <span>AHRS/EKF Origin Latitude</span></h3>
+</article></section><section class="grp" id="g-lua-script-parameters"><h2>Lua Script Parameters</h2><article class="p" id="AHRS_ORIG_LAT" data-k="ahrs_orig_lat ahrs/ekf origin latitude (ahrs_orig_lat)"><h3><a href="#AHRS_ORIG_LAT">AHRS_ORIG_LAT</a> <span>AHRS/EKF Origin Latitude</span></h3>
 
 <p>AHRS/EKF origin will be set to this latitude if not already set</p>
 <ul>
@@ -2003,239 +1873,46 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="WEB_ENABLE" data-k="web_enable enable web server (web_enable)"><h3><a href="#WEB_ENABLE">WEB_ENABLE</a> <span>enable web server</span></h3>
+</article><article class="p" id="ESRC_EXTN_THRESH" data-k="esrc_extn_thresh ekf source externalnav innovation threshold (esrc_extn_thresh)"><h3><a href="#ESRC_EXTN_THRESH">ESRC_EXTN_THRESH</a> <span>EKF Source ExternalNav Innovation Threshold</span></h3>
 
-<p>enable web server</p>
-<ul>
-<table><th>Value</th><th>Meaning</th>
-<tr><td>0</td><td>Disabled</td></tr>
-<tr><td>1</td><td>Enabled</td></tr>
-</table>
-</ul>
-
-
-</article><article class="p" id="WEB_BIND_PORT" data-k="web_bind_port web server tcp port (web_bind_port)"><h3><a href="#WEB_BIND_PORT">WEB_BIND_PORT</a> <span>web server TCP port</span></h3>
-
-<p>web server TCP port</p>
-<ul>
-<li>Range: 1 65535</li>
-</ul>
-
-
-</article><article class="p" id="WEB_DEBUG" data-k="web_debug web server debugging (web_debug)"><h3><a href="#WEB_DEBUG">WEB_DEBUG</a> <span>web server debugging</span></h3><em>Note: This parameter is for advanced users</em><br>
-
-<p>web server debugging</p>
-<ul>
-<table><th>Value</th><th>Meaning</th>
-<tr><td>0</td><td>Disabled</td></tr>
-<tr><td>1</td><td>Enabled</td></tr>
-</table>
-</ul>
-
-
-</article><article class="p" id="WEB_BLOCK_SIZE" data-k="web_block_size web server block size (web_block_size)"><h3><a href="#WEB_BLOCK_SIZE">WEB_BLOCK_SIZE</a> <span>web server block size</span></h3><em>Note: This parameter is for advanced users</em><br>
-
-<p>web server block size for download</p>
-<ul>
-<li>Range: 1 65535</li>
-</ul>
-
-
-</article><article class="p" id="WEB_TIMEOUT" data-k="web_timeout web server timeout (web_timeout)"><h3><a href="#WEB_TIMEOUT">WEB_TIMEOUT</a> <span>web server timeout</span></h3><em>Note: This parameter is for advanced users</em><br>
-
-<p>timeout for inactive connections</p>
-<ul>
-<li>Units: seconds</li>
-<li>Range: 0.1 60</li>
-</ul>
-
-
-</article><article class="p" id="WEB_SENDFILE_MIN" data-k="web_sendfile_min web server minimum file size for sendfile (web_sendfile_min)"><h3><a href="#WEB_SENDFILE_MIN">WEB_SENDFILE_MIN</a> <span>web server minimum file size for sendfile</span></h3><em>Note: This parameter is for advanced users</em><br>
-
-<p>sendfile is an offloading mechanism for faster file download. If this is non-zero and the file is larger than this size then sendfile will be used for file download</p>
-<ul>
-<li>Range: 0 10000000</li>
-</ul>
-
-
-</article><article class="p" id="TA_ACT_FN" data-k="ta_act_fn activation function for terrain avoidance (ta_act_fn)"><h3><a href="#TA_ACT_FN">TA_ACT_FN</a> <span>Activation Function for Terrain Avoidance</span></h3>
-
-<p>Setting an RC channel&#x27;s _OPTION to this value will use it for Terrain Avoidance enable/disable</p>
-<ul>
-<li>Range: 300 307</li>
-</ul>
-
-
-</article><article class="p" id="TA_PTCH_DWN_MIN" data-k="ta_ptch_dwn_min down distance minimum for pitching (ta_ptch_dwn_min)"><h3><a href="#TA_PTCH_DWN_MIN">TA_PTCH_DWN_MIN</a> <span>down distance minimum for Pitching</span></h3>
-
-<p>If the downward distance is less than this value then start Pitching up to gain altitude.</p>
-<ul>
-<li>Units: meters</li>
-</ul>
-
-
-</article><article class="p" id="TA_PTCH_FWD_MIN" data-k="ta_ptch_fwd_min forward distance minimum for pitching (ta_ptch_fwd_min)"><h3><a href="#TA_PTCH_FWD_MIN">TA_PTCH_FWD_MIN</a> <span>forward distance minimum for Pitching</span></h3>
-
-<p>If the farwardward distance is less than this value then start Pitching up to gain altitude.</p>
-<ul>
-<li>Units: meters</li>
-</ul>
-
-
-</article><article class="p" id="TA_QUAD_DWN_MIN" data-k="ta_quad_dwn_min downward distance minimum quading (ta_quad_dwn_min)"><h3><a href="#TA_QUAD_DWN_MIN">TA_QUAD_DWN_MIN</a> <span>Downward distance minimum Quading</span></h3>
-
-<p>If the downward distance is less than this value then start Quading up to gain altitude.</p>
-<ul>
-<li>Units: meters</li>
-</ul>
-
-
-</article><article class="p" id="TA_QUAD_FWD_MIN" data-k="ta_quad_fwd_min minimum forward distance for quading (ta_quad_fwd_min)"><h3><a href="#TA_QUAD_FWD_MIN">TA_QUAD_FWD_MIN</a> <span>minimum forward distance for Quading</span></h3>
-
-<p>If the farwardward distance is less than this value then start Quading up to gain altitude.</p>
-<ul>
-<li>Units: meters</li>
-</ul>
-
-
-</article><article class="p" id="TA_PTCH_GSP_MIN" data-k="ta_ptch_gsp_min minimum ground speed for pitching (ta_ptch_gsp_min)"><h3><a href="#TA_PTCH_GSP_MIN">TA_PTCH_GSP_MIN</a> <span>minimum ground speed for Pitching</span></h3>
-
-<p>Minimum Groundspeed (not airspeed) to be flying for Pitching to be used.</p>
-<ul>
-<li>Units: meters per second</li>
-</ul>
-
-
-</article><article class="p" id="TA_PTCH_TIMEOUT" data-k="ta_ptch_timeout timeout pitching (ta_ptch_timeout)"><h3><a href="#TA_PTCH_TIMEOUT">TA_PTCH_TIMEOUT</a> <span>timeout Pitching</span></h3>
-
-<p>Minimum down or forward distance must be triggered for more than this many seconds to start Pitching</p>
-<ul>
-<li>Units: seconds</li>
-</ul>
-
-
-</article><article class="p" id="TA_HOME_DIST" data-k="ta_home_dist safe distance around home (ta_home_dist)"><h3><a href="#TA_HOME_DIST">TA_HOME_DIST</a> <span>safe distance around home</span></h3>
-
-<p>Terrain avoidance will not be applied if the vehicle is less than this distance from home</p>
-<ul>
-<li>Units: meters</li>
-</ul>
-
-
-</article><article class="p" id="TA_ALT_MAX" data-k="ta_alt_max ceiling for pitching/quading (ta_alt_max)"><h3><a href="#TA_ALT_MAX">TA_ALT_MAX</a> <span>ceiling for pitching/quading</span></h3>
-
-<p>This is a limit on how high the terrain avoidane will take the vehicle. It acts a failsafe to prevent vertical flyaways.</p>
-<ul>
-<li>Range: 20 1000</li>
-<li>Units: meters</li>
-</ul>
-
-
-</article><article class="p" id="TA_GSP_MAX" data-k="ta_gsp_max maximum groundspeed (ta_gsp_max)"><h3><a href="#TA_GSP_MAX">TA_GSP_MAX</a> <span>Maximum Groundspeed</span></h3>
-
-<p>This is a limit on how fast in groundspeeed terrain avoidance will take the vehicle. This is to allow for reliable sensor readings. -1 for disabled.</p>
-<ul>
-<li>Range: 10 40</li>
-<li>Units: meters per second</li>
-</ul>
-
-
-</article><article class="p" id="TA_GSP_AIRBRAKE" data-k="ta_gsp_airbrake groudspeed airbrake limt (ta_gsp_airbrake)"><h3><a href="#TA_GSP_AIRBRAKE">TA_GSP_AIRBRAKE</a> <span>Groudspeed Airbrake limt</span></h3>
-
-<p>This is the limit for triggering airbrake to slow groundspeed as a difference between the airspeed and groundspeed. -1 for disabled.</p>
-<ul>
-<li>Range: -1 -10</li>
-<li>Units: meters per second</li>
-</ul>
-
-
-</article><article class="p" id="TA_CMTC_HGT" data-k="ta_cmtc_hgt cmtc height (ta_cmtc_hgt)"><h3><a href="#TA_CMTC_HGT">TA_CMTC_HGT</a> <span>CMTC Height</span></h3>
-
-<p>The minimum Height above terrain to maintain when following an AUTO mission or RTL. If zero(0) use TA_PTCH_DOW_MIN.</p>
-<ul>
-<li>Units: meters</li>
-</ul>
-
-
-</article><article class="p" id="TA_CMTC_ENABLE" data-k="ta_cmtc_enable cmtc enable (ta_cmtc_enable)"><h3><a href="#TA_CMTC_ENABLE">TA_CMTC_ENABLE</a> <span>CMTC Enable</span></h3>
-
-<p>Whether to enable Can&#x27;t Make That Climb while running Terrain Avoidance</p>
+<p>ExternalNav may be used if innovations are below this threshold</p>
 <ul>
 <li>Range: 0 1</li>
 </ul>
 
 
-</article><article class="p" id="TA_UPDATE_RATE" data-k="ta_update_rate frequency to process avoidance (ta_update_rate)"><h3><a href="#TA_UPDATE_RATE">TA_UPDATE_RATE</a> <span>Frequency to process avoidance</span></h3>
+</article><article class="p" id="ESRC_EXTN_QUAL" data-k="esrc_extn_qual ekf source externalnav quality threshold (esrc_extn_qual)"><h3><a href="#ESRC_EXTN_QUAL">ESRC_EXTN_QUAL</a> <span>EKF Source ExternalNav Quality Threshold</span></h3>
 
-<p>Avoidance processing rate</p>
+<p>ExternalNav may be used if quality is above this threshold</p>
 <ul>
-<li>Units: hertz</li>
+<li>Range: 0 100</li>
+<li>Units: percent</li>
 </ul>
 
 
-</article><article class="p" id="TA_CMTC_RAD" data-k="ta_cmtc_rad cmtc loiter radius (ta_cmtc_rad)"><h3><a href="#TA_CMTC_RAD">TA_CMTC_RAD</a> <span>CMTC loiter radius</span></h3>
+</article><article class="p" id="ESRC_FLOW_THRESH" data-k="esrc_flow_thresh ekf source opticalflow innovation threshold (esrc_flow_thresh)"><h3><a href="#ESRC_FLOW_THRESH">ESRC_FLOW_THRESH</a> <span>EKF Source OpticalFlow Innovation Threshold</span></h3>
 
-<p>Use this radius for the loiter when trying to gain altitude. If not set or &lt;=0 use WP_LOITER_RAD</p>
+<p>OpticalFlow may be used if innovations are below this threshold</p>
 <ul>
+<li>Range: 0 1</li>
+</ul>
+
+
+</article><article class="p" id="ESRC_FLOW_QUAL" data-k="esrc_flow_qual ekf source opticalflow quality threshold (esrc_flow_qual)"><h3><a href="#ESRC_FLOW_QUAL">ESRC_FLOW_QUAL</a> <span>EKF Source OpticalFlow Quality Threshold</span></h3>
+
+<p>OpticalFlow may be used if quality is above this threshold</p>
+<ul>
+<li>Range: 0 100</li>
+<li>Units: percent</li>
+</ul>
+
+
+</article><article class="p" id="ESRC_RNGFND_MAX" data-k="esrc_rngfnd_max ekf source rangefinder max (esrc_rngfnd_max)"><h3><a href="#ESRC_RNGFND_MAX">ESRC_RNGFND_MAX</a> <span>EKF Source Rangefinder Max</span></h3>
+
+<p>OpticalFlow may be used if rangefinder distance is below this threshold</p>
+<ul>
+<li>Range: 0 50</li>
 <li>Units: meters</li>
-</ul>
-
-
-</article><article class="p" id="THR_KILL_FUNC" data-k="thr_kill_func aux function to kill engine (thr_kill_func)"><h3><a href="#THR_KILL_FUNC">THR_KILL_FUNC</a> <span>AUX function to kill engine</span></h3>
-
-<p>AUX function to kill engine. This can be activated either with a RCn_OPTION and a R/C switch or with a ground station auxilliary function</p>
-<ul>
-<li>Range: 300 307</li>
-</ul>
-
-
-</article><article class="p" id="THR_KILL_PWM" data-k="thr_kill_pwm pwm on kill active (thr_kill_pwm)"><h3><a href="#THR_KILL_PWM">THR_KILL_PWM</a> <span>PWM on kill active</span></h3>
-
-<p>PWM on kill active</p>
-<ul>
-<li>Range: 800 2200</li>
-</ul>
-
-
-</article><article class="p" id="THR_KILL_CHAN" data-k="thr_kill_chan output channel to change on throttle kill (thr_kill_chan)"><h3><a href="#THR_KILL_CHAN">THR_KILL_CHAN</a> <span>output channel to change on throttle kill</span></h3>
-
-<p>output channel to change on throttle kill, a value of zero disables the feature</p>
-<ul>
-<li>Range: 0 32</li>
-</ul>
-
-
-</article><article class="p" id="THR_KILL_VAL" data-k="thr_kill_val auxilliary value to kill throttle (thr_kill_val)"><h3><a href="#THR_KILL_VAL">THR_KILL_VAL</a> <span>auxilliary value to kill throttle</span></h3>
-
-<p>auxilliary value to kill throttle. Set to 2 to kill the throttle when the auxilliary is high. Set to 0 to kill when auxilliary is low</p>
-<ul>
-<li>Range: 0 2</li>
-</ul>
-
-
-</article><article class="p" id="THR_KILL_DEF" data-k="thr_kill_def throttle kill default value (thr_kill_def)"><h3><a href="#THR_KILL_DEF">THR_KILL_DEF</a> <span>throttle kill default value</span></h3>
-
-<p>throttle kill default value. The default auxilliary function position on boot</p>
-<ul>
-<li>Range: 0 2</li>
-</ul>
-
-
-</article><article class="p" id="PREV_ENABLE" data-k="prev_enable parameter reversion enable (prev_enable)"><h3><a href="#PREV_ENABLE">PREV_ENABLE</a> <span>parameter reversion enable</span></h3>
-
-<p>Enable parameter reversion system</p>
-<ul>
-<table><th>Value</th><th>Meaning</th>
-<tr><td>0</td><td>Disabled</td></tr>
-<tr><td>1</td><td>Enabled</td></tr>
-</table>
-</ul>
-
-
-</article><article class="p" id="PREV_RC_FUNC" data-k="prev_rc_func param reversion rc function (prev_rc_func)"><h3><a href="#PREV_RC_FUNC">PREV_RC_FUNC</a> <span>param reversion RC function</span></h3>
-
-<p>RCn_OPTION number to used to trigger parameter reversion</p>
-<ul>
 </ul>
 
 
@@ -2553,48 +2230,6 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="PARAM_LOCK_ENAB" data-k="param_lock_enab param lockdown enable (param_lock_enab)"><h3><a href="#PARAM_LOCK_ENAB">PARAM_LOCK_ENAB</a> <span>Param Lockdown enable</span></h3>
-
-<p>Param Lockdown enable</p>
-<ul>
-<table><th>Value</th><th>Meaning</th>
-<tr><td>0</td><td>Disabled</td></tr>
-<tr><td>1</td><td>Enabled</td></tr>
-</table>
-</ul>
-
-
-</article><article class="p" id="SHIP_ENABLE" data-k="ship_enable ship landing enable (ship_enable)"><h3><a href="#SHIP_ENABLE">SHIP_ENABLE</a> <span>Ship landing enable</span></h3>
-
-<p>Enable ship landing system</p>
-<ul>
-<table><th>Value</th><th>Meaning</th>
-<tr><td>0</td><td>Disabled</td></tr>
-<tr><td>1</td><td>Enabled</td></tr>
-</table>
-</ul>
-
-
-</article><article class="p" id="SHIP_LAND_ANGLE" data-k="ship_land_angle ship landing angle (ship_land_angle)"><h3><a href="#SHIP_LAND_ANGLE">SHIP_LAND_ANGLE</a> <span>Ship landing angle</span></h3>
-
-<p>Angle from the stern of the ship for landing approach. Use this to ensure that on a go-around that ship superstructure and cables are avoided. A value of zero means to approach from the rear of the ship. A value of 90 means the landing will approach from the port (left) side of the ship. A value of -90 will mean approaching from the starboard (right) side of the ship. A value of 180 will approach from the bow of the ship. This parameter is combined with the sign of the RTL_RADIUS parameter to determine the holdoff pattern. If RTL_RADIUS is positive then a clockwise loiter is performed, if RTL_RADIUS is negative then a counter-clockwise loiter is used.</p>
-<ul>
-<li>Range: -180 180</li>
-<li>Units: degrees</li>
-</ul>
-
-
-</article><article class="p" id="SHIP_AUTO_OFS" data-k="ship_auto_ofs ship automatic offset trigger (ship_auto_ofs)"><h3><a href="#SHIP_AUTO_OFS">SHIP_AUTO_OFS</a> <span>Ship automatic offset trigger</span></h3>
-
-<p>Settings this parameter to one triggers an automatic follow offset calculation based on current position of the vehicle and the landing target. NOTE: This parameter will auto-reset to zero once the offset has been calculated.</p>
-<ul>
-<table><th>Value</th><th>Meaning</th>
-<tr><td>0</td><td>Disabled</td></tr>
-<tr><td>1</td><td>Trigger</td></tr>
-</table>
-</ul>
-
-
 </article><article class="p" id="BTAG_ENABLE" data-k="btag_enable enable battery info support (btag_enable)"><h3><a href="#BTAG_ENABLE">BTAG_ENABLE</a> <span>enable battery info support</span></h3>
 
 <p>enable battery info support</p>
@@ -2619,232 +2254,6 @@ footer{color:var(--muted);font-size:13px}
 <p>this is the highest value for battery cycles for all connected batteries</p>
 <ul>
 <li>Range: 0 10000</li>
-</ul>
-
-
-</article><article class="p" id="WINCH_RATE_UP" data-k="winch_rate_up winchcontrol rate up (winch_rate_up)"><h3><a href="#WINCH_RATE_UP">WINCH_RATE_UP</a> <span>WinchControl Rate Up</span></h3>
-
-<p>Maximum rate when retracting line</p>
-<ul>
-<li>Range: 0.1 5.0</li>
-</ul>
-
-
-</article><article class="p" id="WINCH_RATE_DN" data-k="winch_rate_dn winchcontrol rate down (winch_rate_dn)"><h3><a href="#WINCH_RATE_DN">WINCH_RATE_DN</a> <span>WinchControl Rate Down</span></h3>
-
-<p>Maximum rate when releasing line</p>
-<ul>
-<li>Range: 0.1 5.0</li>
-</ul>
-
-
-</article><article class="p" id="WINCH_RC_FUNC" data-k="winch_rc_func winch rate control rc function (winch_rc_func)"><h3><a href="#WINCH_RC_FUNC">WINCH_RC_FUNC</a> <span>Winch Rate Control RC function</span></h3>
-
-<p>RCn_OPTION number to use to control winch rate</p>
-<ul>
-<table><th>Value</th><th>Meaning</th>
-<tr><td>300</td><td>Scripting1</td></tr>
-<tr><td>301</td><td>Scripting2</td></tr>
-<tr><td>302</td><td>Scripting3</td></tr>
-<tr><td>303</td><td>Scripting4</td></tr>
-<tr><td>304</td><td>Scripting5</td></tr>
-<tr><td>305</td><td>Scripting6</td></tr>
-<tr><td>306</td><td>Scripting7</td></tr>
-<tr><td>307</td><td>Scripting8</td></tr>
-</table>
-</ul>
-
-
-</article><article class="p" id="TERR_BRK_ENABLE" data-k="terr_brk_enable terrain brake enable (terr_brk_enable)"><h3><a href="#TERR_BRK_ENABLE">TERR_BRK_ENABLE</a> <span>terrain brake enable</span></h3>
-
-<p>terrain brake enable</p>
-<ul>
-<table><th>Value</th><th>Meaning</th>
-<tr><td>0</td><td>Disabled</td></tr>
-<tr><td>1</td><td>Enabled</td></tr>
-</table>
-</ul>
-
-
-</article><article class="p" id="TERR_BRK_ALT" data-k="terr_brk_alt terrain brake altitude (terr_brk_alt)"><h3><a href="#TERR_BRK_ALT">TERR_BRK_ALT</a> <span>terrain brake altitude</span></h3>
-
-<p>terrain brake altitude. The altitude above the ground below which BRAKE mode will be engaged if in LOITER mode.</p>
-<ul>
-<li>Range: 1 100</li>
-<li>Units: meters</li>
-</ul>
-
-
-</article><article class="p" id="TERR_BRK_HDIST" data-k="terr_brk_hdist terrain brake home distance (terr_brk_hdist)"><h3><a href="#TERR_BRK_HDIST">TERR_BRK_HDIST</a> <span>terrain brake home distance</span></h3>
-
-<p>terrain brake home distance. The distance from home where the auto BRAKE will be enabled. When within this distance of home the script will not activate</p>
-<ul>
-<li>Range: 0 1000</li>
-<li>Units: meters</li>
-</ul>
-
-
-</article><article class="p" id="TERR_BRK_SPD" data-k="terr_brk_spd terrain brake speed threshold (terr_brk_spd)"><h3><a href="#TERR_BRK_SPD">TERR_BRK_SPD</a> <span>terrain brake speed threshold</span></h3>
-
-<p>terrain brake speed threshold. Don&#x27;t trigger BRAKE if both horizontal speed and descent rate are below this threshold. By setting this to a small value this can be used to allow the user to climb up to a safe altitude in LOITER mode. A value of 0.5 is recommended if you want to use LOITER to recover from an emergency terrain BRAKE mode change.</p>
-<ul>
-<li>Range: 0 5</li>
-<li>Units: meters per second</li>
-</ul>
-
-
-</article><article class="p" id="RTUN_ENABLE" data-k="rtun_enable rover quicktune enable (rtun_enable)"><h3><a href="#RTUN_ENABLE">RTUN_ENABLE</a> <span>Rover Quicktune enable</span></h3>
-
-<p>Enable quicktune system</p>
-<ul>
-<table><th>Value</th><th>Meaning</th>
-<tr><td>0</td><td>Disabled</td></tr>
-<tr><td>1</td><td>Enabled</td></tr>
-</table>
-</ul>
-
-
-</article><article class="p" id="RTUN_AXES" data-k="rtun_axes rover quicktune axes (rtun_axes)"><h3><a href="#RTUN_AXES">RTUN_AXES</a> <span>Rover Quicktune axes</span></h3>
-
-<p>axes to tune</p>
-<ul>
-<li>Bitmask: 0:Steering,1:Speed</li>
-</ul>
-
-
-</article><article class="p" id="RTUN_STR_FFRATIO" data-k="rtun_str_ffratio rover quicktune steering rate feedforward ratio (rtun_str_ffratio)"><h3><a href="#RTUN_STR_FFRATIO">RTUN_STR_FFRATIO</a> <span>Rover Quicktune Steering Rate FeedForward ratio</span></h3>
-
-<p>Ratio between measured response and FF gain. Raise this to get a higher FF gain</p>
-<ul>
-<li>Range: 0 1.0</li>
-</ul>
-
-
-</article><article class="p" id="RTUN_STR_P_RATIO" data-k="rtun_str_p_ratio rover quicktune steering ff to p ratio (rtun_str_p_ratio)"><h3><a href="#RTUN_STR_P_RATIO">RTUN_STR_P_RATIO</a> <span>Rover Quicktune Steering FF to P ratio</span></h3>
-
-<p>Ratio between steering FF and P gains. Raise this to get a higher P gain, 0 to leave P unchanged</p>
-<ul>
-<li>Range: 0 2.0</li>
-</ul>
-
-
-</article><article class="p" id="RTUN_STR_I_RATIO" data-k="rtun_str_i_ratio rover quicktune steering ff to i ratio (rtun_str_i_ratio)"><h3><a href="#RTUN_STR_I_RATIO">RTUN_STR_I_RATIO</a> <span>Rover Quicktune Steering FF to I ratio</span></h3>
-
-<p>Ratio between steering FF and I gains. Raise this to get a higher I gain, 0 to leave I unchanged</p>
-<ul>
-<li>Range: 0 2.0</li>
-</ul>
-
-
-</article><article class="p" id="RTUN_SPD_FFRATIO" data-k="rtun_spd_ffratio rover quicktune speed feedforward (equivalent) ratio (rtun_spd_ffratio)"><h3><a href="#RTUN_SPD_FFRATIO">RTUN_SPD_FFRATIO</a> <span>Rover Quicktune Speed FeedForward (equivalent) ratio</span></h3>
-
-<p>Ratio between measured response and CRUISE_THROTTLE value. Raise this to get a higher CRUISE_THROTTLE value</p>
-<ul>
-<li>Range: 0 1.0</li>
-</ul>
-
-
-</article><article class="p" id="RTUN_SPD_P_RATIO" data-k="rtun_spd_p_ratio rover quicktune speed ff to p ratio (rtun_spd_p_ratio)"><h3><a href="#RTUN_SPD_P_RATIO">RTUN_SPD_P_RATIO</a> <span>Rover Quicktune Speed FF to P ratio</span></h3>
-
-<p>Ratio between speed FF and P gain. Raise this to get a higher P gain, 0 to leave P unchanged</p>
-<ul>
-<li>Range: 0 2.0</li>
-</ul>
-
-
-</article><article class="p" id="RTUN_SPD_I_RATIO" data-k="rtun_spd_i_ratio rover quicktune speed ff to i ratio (rtun_spd_i_ratio)"><h3><a href="#RTUN_SPD_I_RATIO">RTUN_SPD_I_RATIO</a> <span>Rover Quicktune Speed FF to I ratio</span></h3>
-
-<p>Ratio between speed FF and I gain. Raise this to get a higher I gain, 0 to leave I unchanged</p>
-<ul>
-<li>Range: 0 2.0</li>
-</ul>
-
-
-</article><article class="p" id="RTUN_AUTO_FILTER" data-k="rtun_auto_filter rover quicktune auto filter enable (rtun_auto_filter)"><h3><a href="#RTUN_AUTO_FILTER">RTUN_AUTO_FILTER</a> <span>Rover Quicktune auto filter enable</span></h3>
-
-<p>When enabled the PID filter settings are automatically set based on INS_GYRO_FILTER</p>
-<ul>
-<table><th>Value</th><th>Meaning</th>
-<tr><td>0</td><td>Disabled</td></tr>
-<tr><td>1</td><td>Enabled</td></tr>
-</table>
-</ul>
-
-
-</article><article class="p" id="RTUN_AUTO_SAVE" data-k="rtun_auto_save rover quicktune auto save (rtun_auto_save)"><h3><a href="#RTUN_AUTO_SAVE">RTUN_AUTO_SAVE</a> <span>Rover Quicktune auto save</span></h3>
-
-<p>Number of seconds after completion of tune to auto-save. This is useful when using a 2 position switch for quicktune</p>
-<ul>
-<li>Units: seconds</li>
-</ul>
-
-
-</article><article class="p" id="RTUN_RC_FUNC" data-k="rtun_rc_func rover quicktune rc function (rtun_rc_func)"><h3><a href="#RTUN_RC_FUNC">RTUN_RC_FUNC</a> <span>Rover Quicktune RC function</span></h3>
-
-<p>RCn_OPTION number to use to control tuning stop/start/save</p>
-<ul>
-<table><th>Value</th><th>Meaning</th>
-<tr><td>300</td><td>Scripting1</td></tr>
-<tr><td>301</td><td>Scripting2</td></tr>
-<tr><td>302</td><td>Scripting3</td></tr>
-<tr><td>303</td><td>Scripting4</td></tr>
-<tr><td>304</td><td>Scripting5</td></tr>
-<tr><td>305</td><td>Scripting6</td></tr>
-<tr><td>306</td><td>Scripting7</td></tr>
-<tr><td>307</td><td>Scripting8</td></tr>
-</table>
-</ul>
-
-
-</article><article class="p" id="RTUN_SPEED_MIN" data-k="rtun_speed_min rover quicktune minimum speed for tuning (rtun_speed_min)"><h3><a href="#RTUN_SPEED_MIN">RTUN_SPEED_MIN</a> <span>Rover Quicktune minimum speed for tuning</span></h3>
-
-<p>The mimimum speed in m/s required for tuning to start</p>
-<ul>
-<li>Units: meters per second</li>
-<li>Range: 0.1 0.5</li>
-</ul>
-
-
-</article><article class="p" id="ESRC_EXTN_THRESH" data-k="esrc_extn_thresh ekf source externalnav innovation threshold (esrc_extn_thresh)"><h3><a href="#ESRC_EXTN_THRESH">ESRC_EXTN_THRESH</a> <span>EKF Source ExternalNav Innovation Threshold</span></h3>
-
-<p>ExternalNav may be used if innovations are below this threshold</p>
-<ul>
-<li>Range: 0 1</li>
-</ul>
-
-
-</article><article class="p" id="ESRC_EXTN_QUAL" data-k="esrc_extn_qual ekf source externalnav quality threshold (esrc_extn_qual)"><h3><a href="#ESRC_EXTN_QUAL">ESRC_EXTN_QUAL</a> <span>EKF Source ExternalNav Quality Threshold</span></h3>
-
-<p>ExternalNav may be used if quality is above this threshold</p>
-<ul>
-<li>Range: 0 100</li>
-<li>Units: percent</li>
-</ul>
-
-
-</article><article class="p" id="ESRC_FLOW_THRESH" data-k="esrc_flow_thresh ekf source opticalflow innovation threshold (esrc_flow_thresh)"><h3><a href="#ESRC_FLOW_THRESH">ESRC_FLOW_THRESH</a> <span>EKF Source OpticalFlow Innovation Threshold</span></h3>
-
-<p>OpticalFlow may be used if innovations are below this threshold</p>
-<ul>
-<li>Range: 0 1</li>
-</ul>
-
-
-</article><article class="p" id="ESRC_FLOW_QUAL" data-k="esrc_flow_qual ekf source opticalflow quality threshold (esrc_flow_qual)"><h3><a href="#ESRC_FLOW_QUAL">ESRC_FLOW_QUAL</a> <span>EKF Source OpticalFlow Quality Threshold</span></h3>
-
-<p>OpticalFlow may be used if quality is above this threshold</p>
-<ul>
-<li>Range: 0 100</li>
-<li>Units: percent</li>
-</ul>
-
-
-</article><article class="p" id="ESRC_RNGFND_MAX" data-k="esrc_rngfnd_max ekf source rangefinder max (esrc_rngfnd_max)"><h3><a href="#ESRC_RNGFND_MAX">ESRC_RNGFND_MAX</a> <span>EKF Source Rangefinder Max</span></h3>
-
-<p>OpticalFlow may be used if rangefinder distance is below this threshold</p>
-<ul>
-<li>Range: 0 50</li>
-<li>Units: meters</li>
 </ul>
 
 
@@ -3048,27 +2457,55 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="PLND_ALT_CUTOFF" data-k="plnd_alt_cutoff precland altitude cutoff (plnd_alt_cutoff)"><h3><a href="#PLND_ALT_CUTOFF">PLND_ALT_CUTOFF</a> <span>Precland altitude cutoff</span></h3>
+</article><article class="p" id="CAM1_THERM_PAL" data-k="cam1_therm_pal camera1 thermal palette (cam1_therm_pal)"><h3><a href="#CAM1_THERM_PAL">CAM1_THERM_PAL</a> <span>Camera1 Thermal Palette</span></h3>
 
-<p>The altitude (rangefinder distance) below which we stop using the precision landing sensor and continue landing</p>
+<p>thermal image colour palette</p>
 <ul>
-<li>Range: 0 20</li>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>-1</td><td>Leave Unchanged</td></tr>
+<tr><td>0</td><td>WhiteHot</td></tr>
+<tr><td>2</td><td>Sepia</td></tr>
+<tr><td>3</td><td>IronBow</td></tr>
+<tr><td>4</td><td>Rainbow</td></tr>
+<tr><td>5</td><td>Night</td></tr>
+<tr><td>6</td><td>Aurora</td></tr>
+<tr><td>7</td><td>RedHot</td></tr>
+<tr><td>8</td><td>Jungle</td></tr>
+<tr><td>9</td><td>Medical</td></tr>
+<tr><td>10</td><td>BlackHot</td></tr>
+<tr><td>11</td><td>GloryHot</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="CAM1_THERM_GAIN" data-k="cam1_therm_gain camera1 thermal gain (cam1_therm_gain)"><h3><a href="#CAM1_THERM_GAIN">CAM1_THERM_GAIN</a> <span>Camera1 Thermal Gain</span></h3>
+
+<p>thermal image temperature range</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>-1</td><td>Leave Unchanged</td></tr>
+<tr><td>0</td><td>LowGain (50C to 550C)</td></tr>
+<tr><td>1</td><td>HighGain (-20C to 150C)</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="CAM1_THERM_RAW" data-k="cam1_therm_raw camera1 thermal raw data (cam1_therm_raw)"><h3><a href="#CAM1_THERM_RAW">CAM1_THERM_RAW</a> <span>Camera1 Thermal Raw Data</span></h3>
+
+<p>save images with raw temperatures</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>-1</td><td>Leave Unchanged</td></tr>
+<tr><td>0</td><td>Disabled (30fps)</td></tr>
+<tr><td>1</td><td>Enabled (25 fps)</td></tr>
+</table>
 <li>Units: meters</li>
 </ul>
 
 
-</article><article class="p" id="DIST_CUTOFF" data-k="dist_cutoff precland distance cutoff (dist_cutoff)"><h3><a href="#DIST_CUTOFF">DIST_CUTOFF</a> <span>Precland distance cutoff</span></h3>
+</article><article class="p" id="DR_ENABLE" data-k="dr_enable deadreckoning enable (dr_enable)"><h3><a href="#DR_ENABLE">DR_ENABLE</a> <span>Deadreckoning Enable</span></h3>
 
-<p>The distance from target beyond which the target is ignored</p>
-<ul>
-<li>Range: 0 100</li>
-<li>Units: meters</li>
-</ul>
-
-
-</article><article class="p" id="QUIK_ENABLE" data-k="quik_enable quicktune enable (quik_enable)"><h3><a href="#QUIK_ENABLE">QUIK_ENABLE</a> <span>Quicktune enable</span></h3>
-
-<p>Enable quicktune system</p>
+<p>Deadreckoning Enable</p>
 <ul>
 <table><th>Value</th><th>Meaning</th>
 <tr><td>0</td><td>Disabled</td></tr>
@@ -3077,120 +2514,182 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="QUIK_AXES" data-k="quik_axes quicktune axes (quik_axes)"><h3><a href="#QUIK_AXES">QUIK_AXES</a> <span>Quicktune axes</span></h3>
+</article><article class="p" id="DR_ENABLE_DIST" data-k="dr_enable_dist deadreckoning enable distance (dr_enable_dist)"><h3><a href="#DR_ENABLE_DIST">DR_ENABLE_DIST</a> <span>Deadreckoning Enable Distance</span></h3>
 
-<p>axes to tune</p>
+<p>Distance from home (in meters) beyond which the dead reckoning will be enabled</p>
 <ul>
-<li>Bitmask: 0:Roll,1:Pitch,2:Yaw</li>
+<li>Units: meters</li>
 </ul>
 
 
-</article><article class="p" id="QUIK_DOUBLE_TIME" data-k="quik_double_time quicktune doubling time (quik_double_time)"><h3><a href="#QUIK_DOUBLE_TIME">QUIK_DOUBLE_TIME</a> <span>Quicktune doubling time</span></h3>
+</article><article class="p" id="DR_GPS_SACC_MAX" data-k="dr_gps_sacc_max deadreckoning gps speed accuracy maximum threshold (dr_gps_sacc_max)"><h3><a href="#DR_GPS_SACC_MAX">DR_GPS_SACC_MAX</a> <span>Deadreckoning GPS speed accuracy maximum threshold</span></h3>
 
-<p>Time to double a tuning parameter. Raise this for a slower tune.</p>
+<p>GPS speed accuracy maximum, above which deadreckoning home will begin (default is 0.8).  Lower values trigger with good GPS quality, higher values will allow poorer GPS before triggering. Set to 0 to disable use of GPS speed accuracy</p>
 <ul>
-<li>Range: 5 20</li>
-<li>Units: seconds</li>
+<li>Range: 0 10</li>
 </ul>
 
 
-</article><article class="p" id="QUIK_GAIN_MARGIN" data-k="quik_gain_margin quicktune gain margin (quik_gain_margin)"><h3><a href="#QUIK_GAIN_MARGIN">QUIK_GAIN_MARGIN</a> <span>Quicktune gain margin</span></h3>
+</article><article class="p" id="DR_GPS_SAT_MIN" data-k="dr_gps_sat_min deadreckoning gps satellite count min threshold (dr_gps_sat_min)"><h3><a href="#DR_GPS_SAT_MIN">DR_GPS_SAT_MIN</a> <span>Deadreckoning GPS satellite count min threshold</span></h3>
 
-<p>Reduction in gain after oscillation detected. Raise this number to get a more conservative tune</p>
+<p>GPS satellite count threshold below which deadreckoning home will begin (default is 6).  Higher values trigger with good GPS quality, Lower values trigger with worse GPS quality. Set to 0 to disable use of GPS satellite count</p>
 <ul>
-<li>Range: 20 80</li>
-<li>Units: percent</li>
+<li>Range: 0 30</li>
 </ul>
 
 
-</article><article class="p" id="QUIK_OSC_SMAX" data-k="quik_osc_smax quicktune oscillation rate threshold (quik_osc_smax)"><h3><a href="#QUIK_OSC_SMAX">QUIK_OSC_SMAX</a> <span>Quicktune oscillation rate threshold</span></h3>
+</article><article class="p" id="DR_GPS_TRIGG_SEC" data-k="dr_gps_trigg_sec deadreckoning gps check trigger seconds (dr_gps_trigg_sec)"><h3><a href="#DR_GPS_TRIGG_SEC">DR_GPS_TRIGG_SEC</a> <span>Deadreckoning GPS check trigger seconds</span></h3>
 
-<p>Threshold for oscillation detection. A lower value will lead to a more conservative tune.</p>
-<ul>
-<li>Range: 1 10</li>
-</ul>
-
-
-</article><article class="p" id="QUIK_YAW_P_MAX" data-k="quik_yaw_p_max quicktune yaw p max (quik_yaw_p_max)"><h3><a href="#QUIK_YAW_P_MAX">QUIK_YAW_P_MAX</a> <span>Quicktune Yaw P max</span></h3>
-
-<p>Maximum value for yaw P gain</p>
-<ul>
-<li>Range: 0.1 3</li>
-</ul>
-
-
-</article><article class="p" id="QUIK_YAW_D_MAX" data-k="quik_yaw_d_max quicktune yaw d max (quik_yaw_d_max)"><h3><a href="#QUIK_YAW_D_MAX">QUIK_YAW_D_MAX</a> <span>Quicktune Yaw D max</span></h3>
-
-<p>Maximum value for yaw D gain</p>
-<ul>
-<li>Range: 0.001 1</li>
-</ul>
-
-
-</article><article class="p" id="QUIK_RP_PI_RATIO" data-k="quik_rp_pi_ratio quicktune roll/pitch pi ratio (quik_rp_pi_ratio)"><h3><a href="#QUIK_RP_PI_RATIO">QUIK_RP_PI_RATIO</a> <span>Quicktune roll/pitch PI ratio</span></h3>
-
-<p>Ratio between P and I gains for roll and pitch. Raise this to get a lower I gain</p>
-<ul>
-<li>Range: 0.5 1.0</li>
-</ul>
-
-
-</article><article class="p" id="QUIK_Y_PI_RATIO" data-k="quik_y_pi_ratio quicktune yaw pi ratio (quik_y_pi_ratio)"><h3><a href="#QUIK_Y_PI_RATIO">QUIK_Y_PI_RATIO</a> <span>Quicktune Yaw PI ratio</span></h3>
-
-<p>Ratio between P and I gains for yaw. Raise this to get a lower I gain</p>
-<ul>
-<li>Range: 0.5 20</li>
-</ul>
-
-
-</article><article class="p" id="QUIK_AUTO_FILTER" data-k="quik_auto_filter quicktune auto filter enable (quik_auto_filter)"><h3><a href="#QUIK_AUTO_FILTER">QUIK_AUTO_FILTER</a> <span>Quicktune auto filter enable</span></h3>
-
-<p>When enabled the PID filter settings are automatically set based on INS_GYRO_FILTER</p>
-<ul>
-<table><th>Value</th><th>Meaning</th>
-<tr><td>0</td><td>Disabled</td></tr>
-<tr><td>1</td><td>Enabled</td></tr>
-</table>
-</ul>
-
-
-</article><article class="p" id="QUIK_AUTO_SAVE" data-k="quik_auto_save quicktune auto save (quik_auto_save)"><h3><a href="#QUIK_AUTO_SAVE">QUIK_AUTO_SAVE</a> <span>Quicktune auto save</span></h3>
-
-<p>Number of seconds after completion of tune to auto-save. This is useful when using a 2 position switch for quicktune</p>
+<p>GPS checks must fail for this many seconds before dead reckoning will be triggered</p>
 <ul>
 <li>Units: seconds</li>
 </ul>
 
 
-</article><article class="p" id="QUIK_RC_FUNC" data-k="quik_rc_func quicktune rc function (quik_rc_func)"><h3><a href="#QUIK_RC_FUNC">QUIK_RC_FUNC</a> <span>Quicktune RC function</span></h3>
+</article><article class="p" id="DR_FLY_ANGLE" data-k="dr_fly_angle deadreckoning lean angle (dr_fly_angle)"><h3><a href="#DR_FLY_ANGLE">DR_FLY_ANGLE</a> <span>Deadreckoning Lean Angle</span></h3>
 
-<p>RCn_OPTION number to use to control tuning stop/start/save</p>
-<ul>
-</ul>
-
-
-</article><article class="p" id="QUIK_MAX_REDUCE" data-k="quik_max_reduce quicktune maximum gain reduction (quik_max_reduce)"><h3><a href="#QUIK_MAX_REDUCE">QUIK_MAX_REDUCE</a> <span>Quicktune maximum gain reduction</span></h3>
-
-<p>This controls how much quicktune is allowed to lower gains from the original gains. If the vehicle already has a reasonable tune and is not oscillating then you can set this to zero to prevent gain reductions. The default of 20% is reasonable for most vehicles. Using a maximum gain reduction lowers the chance of an angle P oscillation happening if quicktune gets a false positive oscillation at a low gain, which can result in very low rate gains and a dangerous angle P oscillation.</p>
-<ul>
-<li>Units: percent</li>
-<li>Range: 0 100</li>
-</ul>
-
-
-</article><article class="p" id="QUIK_OPTIONS" data-k="quik_options quicktune options (quik_options)"><h3><a href="#QUIK_OPTIONS">QUIK_OPTIONS</a> <span>Quicktune options</span></h3>
-
-<p>Additional options. When the Two Position Switch option is enabled then a high switch position will start the tune, low will disable the tune. you should also set a QUIK_AUTO_SAVE time so that you will be able to save the tune.</p>
-<ul>
-<li>Bitmask: 0:UseTwoPositionSwitch</li>
-</ul>
-
-
-</article><article class="p" id="QUIK_ANGLE_MAX" data-k="quik_angle_max maximum angle error for tune abort (quik_angle_max)"><h3><a href="#QUIK_ANGLE_MAX">QUIK_ANGLE_MAX</a> <span>maximum angle error for tune abort</span></h3>
-
-<p>If while tuning the angle error goes over this limit then the tune will aborts to prevent a bad oscillation in the case of the tuning algorithm failing. If you get an error &quot;Tuning: attitude error ABORTING&quot; and you think it is a false positive then you can either raise this parameter or you can try increasing the QUIK_DOUBLE_TIME to do the tune more slowly. A value of zero disables this check.</p>
+<p>lean angle (in degrees) during deadreckoning</p>
 <ul>
 <li>Units: degrees</li>
+<li>Range: 0 45</li>
+</ul>
+
+
+</article><article class="p" id="DR_FLY_ALT_MIN" data-k="dr_fly_alt_min deadreckoning altitude min (dr_fly_alt_min)"><h3><a href="#DR_FLY_ALT_MIN">DR_FLY_ALT_MIN</a> <span>Deadreckoning Altitude Min</span></h3>
+
+<p>Copter will fly at at least this altitude (in meters) above home during deadreckoning</p>
+<ul>
+<li>Units: meters</li>
+<li>Range: 0 1000</li>
+</ul>
+
+
+</article><article class="p" id="DR_FLY_TIMEOUT" data-k="dr_fly_timeout deadreckoning flight timeout (dr_fly_timeout)"><h3><a href="#DR_FLY_TIMEOUT">DR_FLY_TIMEOUT</a> <span>Deadreckoning flight timeout</span></h3>
+
+<p>Copter will attempt to switch to NEXT_MODE after this many seconds of deadreckoning.  If it cannot switch modes it will continue in Guided_NoGPS.  Set to 0 to disable timeout</p>
+<ul>
+<li>Units: seconds</li>
+</ul>
+
+
+</article><article class="p" id="DR_NEXT_MODE" data-k="dr_next_mode deadreckoning next mode (dr_next_mode)"><h3><a href="#DR_NEXT_MODE">DR_NEXT_MODE</a> <span>Deadreckoning Next Mode</span></h3>
+
+<p>Copter switch to this mode after GPS recovers or DR_FLY_TIMEOUT has elapsed.  Default is 6/RTL.  Set to -1 to return to mode used before deadreckoning was triggered</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>2</td><td>AltHold</td></tr>
+<tr><td>3</td><td>Auto</td></tr>
+<tr><td>4</td><td>Guided</td></tr>
+<tr><td>5</td><td>Loiter</td></tr>
+<tr><td>6</td><td>RTL</td></tr>
+<tr><td>7</td><td>Circle</td></tr>
+<tr><td>9</td><td>Land</td></tr>
+<tr><td>16</td><td>PosHold</td></tr>
+<tr><td>17</td><td>Brake</td></tr>
+<tr><td>20</td><td>Guided_NoGPS</td></tr>
+<tr><td>21</td><td>Smart_RTL</td></tr>
+<tr><td>27</td><td>Auto RTL</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="SLUP_ENABLE" data-k="slup_enable slung payload enable (slup_enable)"><h3><a href="#SLUP_ENABLE">SLUP_ENABLE</a> <span>Slung Payload enable</span></h3>
+
+<p>Slung Payload enable</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Disabled</td></tr>
+<tr><td>1</td><td>Enabled</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="SLUP_VEL_P" data-k="slup_vel_p slung payload velocity p gain (slup_vel_p)"><h3><a href="#SLUP_VEL_P">SLUP_VEL_P</a> <span>Slung Payload Velocity P gain</span></h3>
+
+<p>Slung Payload Velocity P gain, higher values will result in faster movements in sync with payload</p>
+<ul>
+<li>Range: 0 0.8</li>
+</ul>
+
+
+</article><article class="p" id="SLUP_DIST_MAX" data-k="slup_dist_max slung payload horizontal distance max (slup_dist_max)"><h3><a href="#SLUP_DIST_MAX">SLUP_DIST_MAX</a> <span>Slung Payload horizontal distance max</span></h3>
+
+<p>Oscillation is suppressed when vehicle and payload are no more than this distance horizontally.  Set to 0 to always suppress</p>
+<ul>
+<li>Range: 0 30</li>
+</ul>
+
+
+</article><article class="p" id="SLUP_SYSID" data-k="slup_sysid slung payload mavlink system id (slup_sysid)"><h3><a href="#SLUP_SYSID">SLUP_SYSID</a> <span>Slung Payload mavlink system id</span></h3>
+
+<p>Slung Payload mavlink system id.  0 to use any/all system ids</p>
+<ul>
+<li>Range: 0 255</li>
+</ul>
+
+
+</article><article class="p" id="SLUP_WP_POS_P" data-k="slup_wp_pos_p slung payload return to wp position p gain (slup_wp_pos_p)"><h3><a href="#SLUP_WP_POS_P">SLUP_WP_POS_P</a> <span>Slung Payload return to WP position P gain</span></h3>
+
+<p>WP position P gain. higher values will result in vehicle moving more quickly back to the original waypoint</p>
+<ul>
+<li>Range: 0 1</li>
+</ul>
+
+
+</article><article class="p" id="SLUP_RESTOFS_TC" data-k="slup_restofs_tc slung payload resting offset estimate filter time constant (slup_restofs_tc)"><h3><a href="#SLUP_RESTOFS_TC">SLUP_RESTOFS_TC</a> <span>Slung Payload resting offset estimate filter time constant</span></h3>
+
+<p>payload&#x27;s position estimator&#x27;s time constant used to compensate for GPS errors and wind.  Higher values result in smoother estimate but slower response</p>
+<ul>
+<li>Range: 1 20</li>
+</ul>
+
+
+</article><article class="p" id="SLUP_DEBUG" data-k="slup_debug slung payload debug output (slup_debug)"><h3><a href="#SLUP_DEBUG">SLUP_DEBUG</a> <span>Slung Payload debug output</span></h3>
+
+<p>Slung payload debug output, set to 1 to enable debug</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Disabled</td></tr>
+<tr><td>1</td><td>Enabled</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="TERR_BRK_ENABLE" data-k="terr_brk_enable terrain brake enable (terr_brk_enable)"><h3><a href="#TERR_BRK_ENABLE">TERR_BRK_ENABLE</a> <span>terrain brake enable</span></h3>
+
+<p>terrain brake enable</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Disabled</td></tr>
+<tr><td>1</td><td>Enabled</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="TERR_BRK_ALT" data-k="terr_brk_alt terrain brake altitude (terr_brk_alt)"><h3><a href="#TERR_BRK_ALT">TERR_BRK_ALT</a> <span>terrain brake altitude</span></h3>
+
+<p>terrain brake altitude. The altitude above the ground below which BRAKE mode will be engaged if in LOITER mode.</p>
+<ul>
+<li>Range: 1 100</li>
+<li>Units: meters</li>
+</ul>
+
+
+</article><article class="p" id="TERR_BRK_HDIST" data-k="terr_brk_hdist terrain brake home distance (terr_brk_hdist)"><h3><a href="#TERR_BRK_HDIST">TERR_BRK_HDIST</a> <span>terrain brake home distance</span></h3>
+
+<p>terrain brake home distance. The distance from home where the auto BRAKE will be enabled. When within this distance of home the script will not activate</p>
+<ul>
+<li>Range: 0 1000</li>
+<li>Units: meters</li>
+</ul>
+
+
+</article><article class="p" id="TERR_BRK_SPD" data-k="terr_brk_spd terrain brake speed threshold (terr_brk_spd)"><h3><a href="#TERR_BRK_SPD">TERR_BRK_SPD</a> <span>terrain brake speed threshold</span></h3>
+
+<p>terrain brake speed threshold. Don&#x27;t trigger BRAKE if both horizontal speed and descent rate are below this threshold. By setting this to a small value this can be used to allow the user to climb up to a safe altitude in LOITER mode. A value of 0.5 is recommended if you want to use LOITER to recover from an emergency terrain BRAKE mode change.</p>
+<ul>
+<li>Range: 0 5</li>
+<li>Units: meters per second</li>
 </ul>
 
 
@@ -3213,84 +2712,77 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="RCK_FORCEHL" data-k="rck_forcehl force enable high latency mode (rck_forcehl)"><h3><a href="#RCK_FORCEHL">RCK_FORCEHL</a> <span>Force enable High Latency mode</span></h3>
+</article><article class="p" id="POI_DIST_MAX" data-k="poi_dist_max mount poi distance max (poi_dist_max)"><h3><a href="#POI_DIST_MAX">POI_DIST_MAX</a> <span>Mount POI distance max</span></h3>
 
-<p>Automatically enables High Latency mode if not already enabled</p>
+<p>POI&#x27;s max distance (in meters) from the vehicle</p>
+<ul>
+<li>Range: 0 10000</li>
+</ul>
+
+
+</article><article class="p" id="WEB_ENABLE" data-k="web_enable enable web server (web_enable)"><h3><a href="#WEB_ENABLE">WEB_ENABLE</a> <span>enable web server</span></h3>
+
+<p>enable web server</p>
 <ul>
 <table><th>Value</th><th>Meaning</th>
 <tr><td>0</td><td>Disabled</td></tr>
 <tr><td>1</td><td>Enabled</td></tr>
-<tr><td>2</td><td>Enabled on telemetry loss</td></tr>
 </table>
 </ul>
 
 
-</article><article class="p" id="RCK_PERIOD" data-k="rck_period update rate (rck_period)"><h3><a href="#RCK_PERIOD">RCK_PERIOD</a> <span>Update rate</span></h3>
+</article><article class="p" id="WEB_BIND_PORT" data-k="web_bind_port web server tcp port (web_bind_port)"><h3><a href="#WEB_BIND_PORT">WEB_BIND_PORT</a> <span>web server TCP port</span></h3>
 
-<p>When in High Latency mode, send Rockblock updates every N seconds</p>
+<p>web server TCP port</p>
 <ul>
-<li>Range: 0 600</li>
+<li>Range: 1 65535</li>
+</ul>
+
+
+</article><article class="p" id="WEB_DEBUG" data-k="web_debug web server debugging (web_debug)"><h3><a href="#WEB_DEBUG">WEB_DEBUG</a> <span>web server debugging</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>web server debugging</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Disabled</td></tr>
+<tr><td>1</td><td>Enabled</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="WEB_BLOCK_SIZE" data-k="web_block_size web server block size (web_block_size)"><h3><a href="#WEB_BLOCK_SIZE">WEB_BLOCK_SIZE</a> <span>web server block size</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>web server block size for download</p>
+<ul>
+<li>Range: 1 65535</li>
+</ul>
+
+
+</article><article class="p" id="WEB_TIMEOUT" data-k="web_timeout web server timeout (web_timeout)"><h3><a href="#WEB_TIMEOUT">WEB_TIMEOUT</a> <span>web server timeout</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>timeout for inactive connections</p>
+<ul>
 <li>Units: seconds</li>
+<li>Range: 0.1 60</li>
 </ul>
 
 
-</article><article class="p" id="RCK_DEBUG" data-k="rck_debug display rockblock debugging text (rck_debug)"><h3><a href="#RCK_DEBUG">RCK_DEBUG</a> <span>Display Rockblock debugging text</span></h3>
+</article><article class="p" id="WEB_SENDFILE_MIN" data-k="web_sendfile_min web server minimum file size for sendfile (web_sendfile_min)"><h3><a href="#WEB_SENDFILE_MIN">WEB_SENDFILE_MIN</a> <span>web server minimum file size for sendfile</span></h3><em>Note: This parameter is for advanced users</em><br>
 
-<p>Sends Rockblock debug text to GCS via statustexts</p>
+<p>sendfile is an offloading mechanism for faster file download. If this is non-zero and the file is larger than this size then sendfile will be used for file download</p>
+<ul>
+<li>Range: 0 10000000</li>
+</ul>
+
+
+</article><article class="p" id="PARAM_LOCK_ENAB" data-k="param_lock_enab param lockdown enable (param_lock_enab)"><h3><a href="#PARAM_LOCK_ENAB">PARAM_LOCK_ENAB</a> <span>Param Lockdown enable</span></h3>
+
+<p>Param Lockdown enable</p>
 <ul>
 <table><th>Value</th><th>Meaning</th>
 <tr><td>0</td><td>Disabled</td></tr>
 <tr><td>1</td><td>Enabled</td></tr>
 </table>
-</ul>
-
-
-</article><article class="p" id="RCK_ENABLE" data-k="rck_enable enable message transmission (rck_enable)"><h3><a href="#RCK_ENABLE">RCK_ENABLE</a> <span>Enable Message transmission</span></h3>
-
-<p>Enables the Rockblock sending and recieving</p>
-<ul>
-<table><th>Value</th><th>Meaning</th>
-<tr><td>0</td><td>Disabled</td></tr>
-<tr><td>1</td><td>Enabled</td></tr>
-</table>
-</ul>
-
-
-</article><article class="p" id="RCK_TIMEOUT" data-k="rck_timeout gcs timeout to start sendin rockblock messages (rck_timeout)"><h3><a href="#RCK_TIMEOUT">RCK_TIMEOUT</a> <span>GCS timeout to start sendin Rockblock messages</span></h3>
-
-<p>If RCK_FORCEHL=2, this is the number of seconds of GCS timeout until High Latency mode is auto-enabled</p>
-<ul>
-<li>Range: 0 600</li>
-<li>Units: seconds</li>
-</ul>
-
-
-</article><article class="p" id="ALAND_ENABLE" data-k="aland_enable auto land enable (aland_enable)"><h3><a href="#ALAND_ENABLE">ALAND_ENABLE</a> <span>Auto land enable</span></h3>
-
-<p>enable Auto land script action</p>
-<ul>
-<table><th>Value</th><th>Meaning</th>
-<tr><td>0</td><td>Disabled</td></tr>
-<tr><td>1</td><td>Enabled</td></tr>
-</table>
-</ul>
-
-
-</article><article class="p" id="ALAND_WP_ALT" data-k="aland_wp_alt final approach waypoint alt (aland_wp_alt)"><h3><a href="#ALAND_WP_ALT">ALAND_WP_ALT</a> <span>Final approach waypoint alt</span></h3>
-
-<p>Altitude of final approach waypoint created by script</p>
-<ul>
-<li>Range: 1 100</li>
-<li>Units: meters</li>
-</ul>
-
-
-</article><article class="p" id="ALAND_WP_DIST" data-k="aland_wp_dist final approach waypoint distance (aland_wp_dist)"><h3><a href="#ALAND_WP_DIST">ALAND_WP_DIST</a> <span>Final approach waypoint distance</span></h3>
-
-<p>Distance from landing point (HOME) to final approach waypoint created by script in the opposite direction of initial takeoff</p>
-<ul>
-<li>Range: 0 1000</li>
-<li>Units: meters</li>
 </ul>
 
 
@@ -3484,11 +2976,510 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="POI_DIST_MAX" data-k="poi_dist_max mount poi distance max (poi_dist_max)"><h3><a href="#POI_DIST_MAX">POI_DIST_MAX</a> <span>Mount POI distance max</span></h3>
+</article><article class="p" id="PLND_ALT_CUTOFF" data-k="plnd_alt_cutoff precland altitude cutoff (plnd_alt_cutoff)"><h3><a href="#PLND_ALT_CUTOFF">PLND_ALT_CUTOFF</a> <span>Precland altitude cutoff</span></h3>
 
-<p>POI&#x27;s max distance (in meters) from the vehicle</p>
+<p>The altitude (rangefinder distance) below which we stop using the precision landing sensor and continue landing</p>
 <ul>
-<li>Range: 0 10000</li>
+<li>Range: 0 20</li>
+<li>Units: meters</li>
+</ul>
+
+
+</article><article class="p" id="DIST_CUTOFF" data-k="dist_cutoff precland distance cutoff (dist_cutoff)"><h3><a href="#DIST_CUTOFF">DIST_CUTOFF</a> <span>Precland distance cutoff</span></h3>
+
+<p>The distance from target beyond which the target is ignored</p>
+<ul>
+<li>Range: 0 100</li>
+<li>Units: meters</li>
+</ul>
+
+
+</article><article class="p" id="SHIP_ENABLE" data-k="ship_enable ship landing enable (ship_enable)"><h3><a href="#SHIP_ENABLE">SHIP_ENABLE</a> <span>Ship landing enable</span></h3>
+
+<p>Enable ship landing system</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Disabled</td></tr>
+<tr><td>1</td><td>Enabled</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="SHIP_LAND_ANGLE" data-k="ship_land_angle ship landing angle (ship_land_angle)"><h3><a href="#SHIP_LAND_ANGLE">SHIP_LAND_ANGLE</a> <span>Ship landing angle</span></h3>
+
+<p>Angle from the stern of the ship for landing approach. Use this to ensure that on a go-around that ship superstructure and cables are avoided. A value of zero means to approach from the rear of the ship. A value of 90 means the landing will approach from the port (left) side of the ship. A value of -90 will mean approaching from the starboard (right) side of the ship. A value of 180 will approach from the bow of the ship. This parameter is combined with the sign of the RTL_RADIUS parameter to determine the holdoff pattern. If RTL_RADIUS is positive then a clockwise loiter is performed, if RTL_RADIUS is negative then a counter-clockwise loiter is used.</p>
+<ul>
+<li>Range: -180 180</li>
+<li>Units: degrees</li>
+</ul>
+
+
+</article><article class="p" id="SHIP_AUTO_OFS" data-k="ship_auto_ofs ship automatic offset trigger (ship_auto_ofs)"><h3><a href="#SHIP_AUTO_OFS">SHIP_AUTO_OFS</a> <span>Ship automatic offset trigger</span></h3>
+
+<p>Settings this parameter to one triggers an automatic follow offset calculation based on current position of the vehicle and the landing target. NOTE: This parameter will auto-reset to zero once the offset has been calculated.</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Disabled</td></tr>
+<tr><td>1</td><td>Trigger</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="TA_ACT_FN" data-k="ta_act_fn activation function for terrain avoidance (ta_act_fn)"><h3><a href="#TA_ACT_FN">TA_ACT_FN</a> <span>Activation Function for Terrain Avoidance</span></h3>
+
+<p>Setting an RC channel&#x27;s _OPTION to this value will use it for Terrain Avoidance enable/disable</p>
+<ul>
+<li>Range: 300 307</li>
+</ul>
+
+
+</article><article class="p" id="TA_PTCH_DWN_MIN" data-k="ta_ptch_dwn_min down distance minimum for pitching (ta_ptch_dwn_min)"><h3><a href="#TA_PTCH_DWN_MIN">TA_PTCH_DWN_MIN</a> <span>down distance minimum for Pitching</span></h3>
+
+<p>If the downward distance is less than this value then start Pitching up to gain altitude.</p>
+<ul>
+<li>Units: meters</li>
+</ul>
+
+
+</article><article class="p" id="TA_PTCH_FWD_MIN" data-k="ta_ptch_fwd_min forward distance minimum for pitching (ta_ptch_fwd_min)"><h3><a href="#TA_PTCH_FWD_MIN">TA_PTCH_FWD_MIN</a> <span>forward distance minimum for Pitching</span></h3>
+
+<p>If the farwardward distance is less than this value then start Pitching up to gain altitude.</p>
+<ul>
+<li>Units: meters</li>
+</ul>
+
+
+</article><article class="p" id="TA_QUAD_DWN_MIN" data-k="ta_quad_dwn_min downward distance minimum quading (ta_quad_dwn_min)"><h3><a href="#TA_QUAD_DWN_MIN">TA_QUAD_DWN_MIN</a> <span>Downward distance minimum Quading</span></h3>
+
+<p>If the downward distance is less than this value then start Quading up to gain altitude.</p>
+<ul>
+<li>Units: meters</li>
+</ul>
+
+
+</article><article class="p" id="TA_QUAD_FWD_MIN" data-k="ta_quad_fwd_min minimum forward distance for quading (ta_quad_fwd_min)"><h3><a href="#TA_QUAD_FWD_MIN">TA_QUAD_FWD_MIN</a> <span>minimum forward distance for Quading</span></h3>
+
+<p>If the farwardward distance is less than this value then start Quading up to gain altitude.</p>
+<ul>
+<li>Units: meters</li>
+</ul>
+
+
+</article><article class="p" id="TA_PTCH_GSP_MIN" data-k="ta_ptch_gsp_min minimum ground speed for pitching (ta_ptch_gsp_min)"><h3><a href="#TA_PTCH_GSP_MIN">TA_PTCH_GSP_MIN</a> <span>minimum ground speed for Pitching</span></h3>
+
+<p>Minimum Groundspeed (not airspeed) to be flying for Pitching to be used.</p>
+<ul>
+<li>Units: meters per second</li>
+</ul>
+
+
+</article><article class="p" id="TA_PTCH_TIMEOUT" data-k="ta_ptch_timeout timeout pitching (ta_ptch_timeout)"><h3><a href="#TA_PTCH_TIMEOUT">TA_PTCH_TIMEOUT</a> <span>timeout Pitching</span></h3>
+
+<p>Minimum down or forward distance must be triggered for more than this many seconds to start Pitching</p>
+<ul>
+<li>Units: seconds</li>
+</ul>
+
+
+</article><article class="p" id="TA_HOME_DIST" data-k="ta_home_dist safe distance around home (ta_home_dist)"><h3><a href="#TA_HOME_DIST">TA_HOME_DIST</a> <span>safe distance around home</span></h3>
+
+<p>Terrain avoidance will not be applied if the vehicle is less than this distance from home</p>
+<ul>
+<li>Units: meters</li>
+</ul>
+
+
+</article><article class="p" id="TA_ALT_MAX" data-k="ta_alt_max ceiling for pitching/quading (ta_alt_max)"><h3><a href="#TA_ALT_MAX">TA_ALT_MAX</a> <span>ceiling for pitching/quading</span></h3>
+
+<p>This is a limit on how high the terrain avoidane will take the vehicle. It acts a failsafe to prevent vertical flyaways.</p>
+<ul>
+<li>Range: 20 1000</li>
+<li>Units: meters</li>
+</ul>
+
+
+</article><article class="p" id="TA_GSP_MAX" data-k="ta_gsp_max maximum groundspeed (ta_gsp_max)"><h3><a href="#TA_GSP_MAX">TA_GSP_MAX</a> <span>Maximum Groundspeed</span></h3>
+
+<p>This is a limit on how fast in groundspeeed terrain avoidance will take the vehicle. This is to allow for reliable sensor readings. -1 for disabled.</p>
+<ul>
+<li>Range: 10 40</li>
+<li>Units: meters per second</li>
+</ul>
+
+
+</article><article class="p" id="TA_GSP_AIRBRAKE" data-k="ta_gsp_airbrake groudspeed airbrake limt (ta_gsp_airbrake)"><h3><a href="#TA_GSP_AIRBRAKE">TA_GSP_AIRBRAKE</a> <span>Groudspeed Airbrake limt</span></h3>
+
+<p>This is the limit for triggering airbrake to slow groundspeed as a difference between the airspeed and groundspeed. -1 for disabled.</p>
+<ul>
+<li>Range: -1 -10</li>
+<li>Units: meters per second</li>
+</ul>
+
+
+</article><article class="p" id="TA_CMTC_HGT" data-k="ta_cmtc_hgt cmtc height (ta_cmtc_hgt)"><h3><a href="#TA_CMTC_HGT">TA_CMTC_HGT</a> <span>CMTC Height</span></h3>
+
+<p>The minimum Height above terrain to maintain when following an AUTO mission or RTL. If zero(0) use TA_PTCH_DOW_MIN.</p>
+<ul>
+<li>Units: meters</li>
+</ul>
+
+
+</article><article class="p" id="TA_CMTC_ENABLE" data-k="ta_cmtc_enable cmtc enable (ta_cmtc_enable)"><h3><a href="#TA_CMTC_ENABLE">TA_CMTC_ENABLE</a> <span>CMTC Enable</span></h3>
+
+<p>Whether to enable Can&#x27;t Make That Climb while running Terrain Avoidance</p>
+<ul>
+<li>Range: 0 1</li>
+</ul>
+
+
+</article><article class="p" id="TA_UPDATE_RATE" data-k="ta_update_rate frequency to process avoidance (ta_update_rate)"><h3><a href="#TA_UPDATE_RATE">TA_UPDATE_RATE</a> <span>Frequency to process avoidance</span></h3>
+
+<p>Avoidance processing rate</p>
+<ul>
+<li>Units: hertz</li>
+</ul>
+
+
+</article><article class="p" id="TA_CMTC_RAD" data-k="ta_cmtc_rad cmtc loiter radius (ta_cmtc_rad)"><h3><a href="#TA_CMTC_RAD">TA_CMTC_RAD</a> <span>CMTC loiter radius</span></h3>
+
+<p>Use this radius for the loiter when trying to gain altitude. If not set or &lt;=0 use WP_LOITER_RAD</p>
+<ul>
+<li>Units: meters</li>
+</ul>
+
+
+</article><article class="p" id="PREV_ENABLE" data-k="prev_enable parameter reversion enable (prev_enable)"><h3><a href="#PREV_ENABLE">PREV_ENABLE</a> <span>parameter reversion enable</span></h3>
+
+<p>Enable parameter reversion system</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Disabled</td></tr>
+<tr><td>1</td><td>Enabled</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="PREV_RC_FUNC" data-k="prev_rc_func param reversion rc function (prev_rc_func)"><h3><a href="#PREV_RC_FUNC">PREV_RC_FUNC</a> <span>param reversion RC function</span></h3>
+
+<p>RCn_OPTION number to used to trigger parameter reversion</p>
+<ul>
+</ul>
+
+
+</article><article class="p" id="RK9_FORCEHL" data-k="rk9_forcehl force enable high latency mode (rk9_forcehl)"><h3><a href="#RK9_FORCEHL">RK9_FORCEHL</a> <span>Force enable High Latency mode</span></h3>
+
+<p>Automatically enables High Latency mode if not already enabled</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Disabled</td></tr>
+<tr><td>1</td><td>Enabled</td></tr>
+<tr><td>2</td><td>Enabled on telemetry loss</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="RK9_PERIOD" data-k="rk9_period update rate (rk9_period)"><h3><a href="#RK9_PERIOD">RK9_PERIOD</a> <span>Update rate</span></h3>
+
+<p>When in High Latency mode, send Rockblock updates every N seconds</p>
+<ul>
+<li>Range: 0 600</li>
+<li>Units: seconds</li>
+</ul>
+
+
+</article><article class="p" id="RK9_DEBUG" data-k="rk9_debug display rockblock debugging text (rk9_debug)"><h3><a href="#RK9_DEBUG">RK9_DEBUG</a> <span>Display Rockblock debugging text</span></h3>
+
+<p>Sends Rockblock debug text to GCS via statustexts</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Disabled</td></tr>
+<tr><td>1</td><td>Enabled</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="RK9_ENABLE" data-k="rk9_enable enable message transmission (rk9_enable)"><h3><a href="#RK9_ENABLE">RK9_ENABLE</a> <span>Enable Message transmission</span></h3>
+
+<p>Enables the Rockblock sending and recieving</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Disabled</td></tr>
+<tr><td>1</td><td>Enabled</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="RK9_TIMEOUT" data-k="rk9_timeout gcs timeout to start sendin rockblock messages (rk9_timeout)"><h3><a href="#RK9_TIMEOUT">RK9_TIMEOUT</a> <span>GCS timeout to start sendin Rockblock messages</span></h3>
+
+<p>If RK9_FORCEHL=2, this is the number of seconds of GCS timeout until High Latency mode is auto-enabled</p>
+<ul>
+<li>Range: 0 600</li>
+<li>Units: seconds</li>
+</ul>
+
+
+</article><article class="p" id="RK9_SERPORT" data-k="rk9_serport rockblock serial port (rk9_serport)"><h3><a href="#RK9_SERPORT">RK9_SERPORT</a> <span>Rockblock Serial Port</span></h3>
+
+<p>Serial port number to which the Rockblock is connected.This is the index of the SERIALn_ ports that are set to 28 for &quot;scripting&quot;</p>
+<ul>
+<li>Range: 0 8</li>
+</ul>
+
+
+</article><article class="p" id="RK9_SCRPORT" data-k="rk9_scrport rockblock scripting serial port (rk9_scrport)"><h3><a href="#RK9_SCRPORT">RK9_SCRPORT</a> <span>Rockblock Scripting Serial Port</span></h3>
+
+<p>Scripting Serial port number to which the Rockblock is connected for HL2 messages This is the index of the SCR_SDEV ports that are set to 2 for &quot;MavlinkHL&quot;</p>
+<ul>
+<li>Range: 0 8</li>
+</ul>
+
+
+</article><article class="p" id="RK9_RELAY" data-k="rk9_relay rockblock power relay (rk9_relay)"><h3><a href="#RK9_RELAY">RK9_RELAY</a> <span>Rockblock Power Relay</span></h3>
+
+<p>RELAYn output to control Rockblock power. This connects to I_EN on the Rockblock header.</p>
+<ul>
+<li>Range: 1 8</li>
+</ul>
+
+
+</article><article class="p" id="RK9_BOOTED" data-k="rk9_booted rockblock booted feedback (rk9_booted)"><h3><a href="#RK9_BOOTED">RK9_BOOTED</a> <span>Rockblock booted feedback</span></h3>
+
+<p>SERVOn GPIO channel that reads the Rockblock booted state. This connects to I_BTD on the Rockblock header. Requires SERVON_FUNCTION=-1</p>
+<ul>
+<li>Range: 50 110</li>
+</ul>
+
+
+</article><article class="p" id="RCK_FORCEHL" data-k="rck_forcehl force enable high latency mode (rck_forcehl)"><h3><a href="#RCK_FORCEHL">RCK_FORCEHL</a> <span>Force enable High Latency mode</span></h3>
+
+<p>Automatically enables High Latency mode if not already enabled</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Disabled</td></tr>
+<tr><td>1</td><td>Enabled</td></tr>
+<tr><td>2</td><td>Enabled on telemetry loss</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="RCK_PERIOD" data-k="rck_period update rate (rck_period)"><h3><a href="#RCK_PERIOD">RCK_PERIOD</a> <span>Update rate</span></h3>
+
+<p>When in High Latency mode, send Rockblock updates every N seconds</p>
+<ul>
+<li>Range: 0 600</li>
+<li>Units: seconds</li>
+</ul>
+
+
+</article><article class="p" id="RCK_DEBUG" data-k="rck_debug display rockblock debugging text (rck_debug)"><h3><a href="#RCK_DEBUG">RCK_DEBUG</a> <span>Display Rockblock debugging text</span></h3>
+
+<p>Sends Rockblock debug text to GCS via statustexts</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Disabled</td></tr>
+<tr><td>1</td><td>Enabled</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="RCK_ENABLE" data-k="rck_enable enable message transmission (rck_enable)"><h3><a href="#RCK_ENABLE">RCK_ENABLE</a> <span>Enable Message transmission</span></h3>
+
+<p>Enables the Rockblock sending and recieving</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Disabled</td></tr>
+<tr><td>1</td><td>Enabled</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="RCK_TIMEOUT" data-k="rck_timeout gcs timeout to start sendin rockblock messages (rck_timeout)"><h3><a href="#RCK_TIMEOUT">RCK_TIMEOUT</a> <span>GCS timeout to start sendin Rockblock messages</span></h3>
+
+<p>If RCK_FORCEHL=2, this is the number of seconds of GCS timeout until High Latency mode is auto-enabled</p>
+<ul>
+<li>Range: 0 600</li>
+<li>Units: seconds</li>
+</ul>
+
+
+</article><article class="p" id="RTUN_ENABLE" data-k="rtun_enable rover quicktune enable (rtun_enable)"><h3><a href="#RTUN_ENABLE">RTUN_ENABLE</a> <span>Rover Quicktune enable</span></h3>
+
+<p>Enable quicktune system</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Disabled</td></tr>
+<tr><td>1</td><td>Enabled</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="RTUN_AXES" data-k="rtun_axes rover quicktune axes (rtun_axes)"><h3><a href="#RTUN_AXES">RTUN_AXES</a> <span>Rover Quicktune axes</span></h3>
+
+<p>axes to tune</p>
+<ul>
+<li>Bitmask: 0:Steering,1:Speed</li>
+</ul>
+
+
+</article><article class="p" id="RTUN_STR_FFRATIO" data-k="rtun_str_ffratio rover quicktune steering rate feedforward ratio (rtun_str_ffratio)"><h3><a href="#RTUN_STR_FFRATIO">RTUN_STR_FFRATIO</a> <span>Rover Quicktune Steering Rate FeedForward ratio</span></h3>
+
+<p>Ratio between measured response and FF gain. Raise this to get a higher FF gain</p>
+<ul>
+<li>Range: 0 1.0</li>
+</ul>
+
+
+</article><article class="p" id="RTUN_STR_P_RATIO" data-k="rtun_str_p_ratio rover quicktune steering ff to p ratio (rtun_str_p_ratio)"><h3><a href="#RTUN_STR_P_RATIO">RTUN_STR_P_RATIO</a> <span>Rover Quicktune Steering FF to P ratio</span></h3>
+
+<p>Ratio between steering FF and P gains. Raise this to get a higher P gain, 0 to leave P unchanged</p>
+<ul>
+<li>Range: 0 2.0</li>
+</ul>
+
+
+</article><article class="p" id="RTUN_STR_I_RATIO" data-k="rtun_str_i_ratio rover quicktune steering ff to i ratio (rtun_str_i_ratio)"><h3><a href="#RTUN_STR_I_RATIO">RTUN_STR_I_RATIO</a> <span>Rover Quicktune Steering FF to I ratio</span></h3>
+
+<p>Ratio between steering FF and I gains. Raise this to get a higher I gain, 0 to leave I unchanged</p>
+<ul>
+<li>Range: 0 2.0</li>
+</ul>
+
+
+</article><article class="p" id="RTUN_SPD_FFRATIO" data-k="rtun_spd_ffratio rover quicktune speed feedforward (equivalent) ratio (rtun_spd_ffratio)"><h3><a href="#RTUN_SPD_FFRATIO">RTUN_SPD_FFRATIO</a> <span>Rover Quicktune Speed FeedForward (equivalent) ratio</span></h3>
+
+<p>Ratio between measured response and CRUISE_THROTTLE value. Raise this to get a higher CRUISE_THROTTLE value</p>
+<ul>
+<li>Range: 0 1.0</li>
+</ul>
+
+
+</article><article class="p" id="RTUN_SPD_P_RATIO" data-k="rtun_spd_p_ratio rover quicktune speed ff to p ratio (rtun_spd_p_ratio)"><h3><a href="#RTUN_SPD_P_RATIO">RTUN_SPD_P_RATIO</a> <span>Rover Quicktune Speed FF to P ratio</span></h3>
+
+<p>Ratio between speed FF and P gain. Raise this to get a higher P gain, 0 to leave P unchanged</p>
+<ul>
+<li>Range: 0 2.0</li>
+</ul>
+
+
+</article><article class="p" id="RTUN_SPD_I_RATIO" data-k="rtun_spd_i_ratio rover quicktune speed ff to i ratio (rtun_spd_i_ratio)"><h3><a href="#RTUN_SPD_I_RATIO">RTUN_SPD_I_RATIO</a> <span>Rover Quicktune Speed FF to I ratio</span></h3>
+
+<p>Ratio between speed FF and I gain. Raise this to get a higher I gain, 0 to leave I unchanged</p>
+<ul>
+<li>Range: 0 2.0</li>
+</ul>
+
+
+</article><article class="p" id="RTUN_AUTO_FILTER" data-k="rtun_auto_filter rover quicktune auto filter enable (rtun_auto_filter)"><h3><a href="#RTUN_AUTO_FILTER">RTUN_AUTO_FILTER</a> <span>Rover Quicktune auto filter enable</span></h3>
+
+<p>When enabled the PID filter settings are automatically set based on INS_GYRO_FILTER</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Disabled</td></tr>
+<tr><td>1</td><td>Enabled</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="RTUN_AUTO_SAVE" data-k="rtun_auto_save rover quicktune auto save (rtun_auto_save)"><h3><a href="#RTUN_AUTO_SAVE">RTUN_AUTO_SAVE</a> <span>Rover Quicktune auto save</span></h3>
+
+<p>Number of seconds after completion of tune to auto-save. This is useful when using a 2 position switch for quicktune</p>
+<ul>
+<li>Units: seconds</li>
+</ul>
+
+
+</article><article class="p" id="RTUN_RC_FUNC" data-k="rtun_rc_func rover quicktune rc function (rtun_rc_func)"><h3><a href="#RTUN_RC_FUNC">RTUN_RC_FUNC</a> <span>Rover Quicktune RC function</span></h3>
+
+<p>RCn_OPTION number to use to control tuning stop/start/save</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>300</td><td>Scripting1</td></tr>
+<tr><td>301</td><td>Scripting2</td></tr>
+<tr><td>302</td><td>Scripting3</td></tr>
+<tr><td>303</td><td>Scripting4</td></tr>
+<tr><td>304</td><td>Scripting5</td></tr>
+<tr><td>305</td><td>Scripting6</td></tr>
+<tr><td>306</td><td>Scripting7</td></tr>
+<tr><td>307</td><td>Scripting8</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="RTUN_SPEED_MIN" data-k="rtun_speed_min rover quicktune minimum speed for tuning (rtun_speed_min)"><h3><a href="#RTUN_SPEED_MIN">RTUN_SPEED_MIN</a> <span>Rover Quicktune minimum speed for tuning</span></h3>
+
+<p>The mimimum speed in m/s required for tuning to start</p>
+<ul>
+<li>Units: meters per second</li>
+<li>Range: 0.1 0.5</li>
+</ul>
+
+
+</article><article class="p" id="THR_KILL_FUNC" data-k="thr_kill_func aux function to kill engine (thr_kill_func)"><h3><a href="#THR_KILL_FUNC">THR_KILL_FUNC</a> <span>AUX function to kill engine</span></h3>
+
+<p>AUX function to kill engine. This can be activated either with a RCn_OPTION and a R/C switch or with a ground station auxilliary function</p>
+<ul>
+<li>Range: 300 307</li>
+</ul>
+
+
+</article><article class="p" id="THR_KILL_PWM" data-k="thr_kill_pwm pwm on kill active (thr_kill_pwm)"><h3><a href="#THR_KILL_PWM">THR_KILL_PWM</a> <span>PWM on kill active</span></h3>
+
+<p>PWM on kill active</p>
+<ul>
+<li>Range: 800 2200</li>
+</ul>
+
+
+</article><article class="p" id="THR_KILL_CHAN" data-k="thr_kill_chan output channel to change on throttle kill (thr_kill_chan)"><h3><a href="#THR_KILL_CHAN">THR_KILL_CHAN</a> <span>output channel to change on throttle kill</span></h3>
+
+<p>output channel to change on throttle kill, a value of zero disables the feature</p>
+<ul>
+<li>Range: 0 32</li>
+</ul>
+
+
+</article><article class="p" id="THR_KILL_VAL" data-k="thr_kill_val auxilliary value to kill throttle (thr_kill_val)"><h3><a href="#THR_KILL_VAL">THR_KILL_VAL</a> <span>auxilliary value to kill throttle</span></h3>
+
+<p>auxilliary value to kill throttle. Set to 2 to kill the throttle when the auxilliary is high. Set to 0 to kill when auxilliary is low</p>
+<ul>
+<li>Range: 0 2</li>
+</ul>
+
+
+</article><article class="p" id="THR_KILL_DEF" data-k="thr_kill_def throttle kill default value (thr_kill_def)"><h3><a href="#THR_KILL_DEF">THR_KILL_DEF</a> <span>throttle kill default value</span></h3>
+
+<p>throttle kill default value. The default auxilliary function position on boot</p>
+<ul>
+<li>Range: 0 2</li>
+</ul>
+
+
+</article><article class="p" id="ALAND_ENABLE" data-k="aland_enable auto land enable (aland_enable)"><h3><a href="#ALAND_ENABLE">ALAND_ENABLE</a> <span>Auto land enable</span></h3>
+
+<p>enable Auto land script action</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Disabled</td></tr>
+<tr><td>1</td><td>Enabled</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="ALAND_WP_ALT" data-k="aland_wp_alt final approach waypoint alt (aland_wp_alt)"><h3><a href="#ALAND_WP_ALT">ALAND_WP_ALT</a> <span>Final approach waypoint alt</span></h3>
+
+<p>Altitude of final approach waypoint created by script</p>
+<ul>
+<li>Range: 1 100</li>
+<li>Units: meters</li>
+</ul>
+
+
+</article><article class="p" id="ALAND_WP_DIST" data-k="aland_wp_dist final approach waypoint distance (aland_wp_dist)"><h3><a href="#ALAND_WP_DIST">ALAND_WP_DIST</a> <span>Final approach waypoint distance</span></h3>
+
+<p>Distance from landing point (HOME) to final approach waypoint created by script in the opposite direction of initial takeoff</p>
+<ul>
+<li>Range: 0 1000</li>
+<li>Units: meters</li>
 </ul>
 
 
@@ -3636,9 +3627,9 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="SLUP_ENABLE" data-k="slup_enable slung payload enable (slup_enable)"><h3><a href="#SLUP_ENABLE">SLUP_ENABLE</a> <span>Slung Payload enable</span></h3>
+</article><article class="p" id="QUIK_ENABLE" data-k="quik_enable quicktune enable (quik_enable)"><h3><a href="#QUIK_ENABLE">QUIK_ENABLE</a> <span>Quicktune enable</span></h3>
 
-<p>Slung Payload enable</p>
+<p>Enable quicktune system</p>
 <ul>
 <table><th>Value</th><th>Meaning</th>
 <tr><td>0</td><td>Disabled</td></tr>
@@ -3647,53 +3638,152 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="SLUP_VEL_P" data-k="slup_vel_p slung payload velocity p gain (slup_vel_p)"><h3><a href="#SLUP_VEL_P">SLUP_VEL_P</a> <span>Slung Payload Velocity P gain</span></h3>
+</article><article class="p" id="QUIK_AXES" data-k="quik_axes quicktune axes (quik_axes)"><h3><a href="#QUIK_AXES">QUIK_AXES</a> <span>Quicktune axes</span></h3>
 
-<p>Slung Payload Velocity P gain, higher values will result in faster movements in sync with payload</p>
+<p>axes to tune</p>
 <ul>
-<li>Range: 0 0.8</li>
+<li>Bitmask: 0:Roll,1:Pitch,2:Yaw</li>
 </ul>
 
 
-</article><article class="p" id="SLUP_DIST_MAX" data-k="slup_dist_max slung payload horizontal distance max (slup_dist_max)"><h3><a href="#SLUP_DIST_MAX">SLUP_DIST_MAX</a> <span>Slung Payload horizontal distance max</span></h3>
+</article><article class="p" id="QUIK_DOUBLE_TIME" data-k="quik_double_time quicktune doubling time (quik_double_time)"><h3><a href="#QUIK_DOUBLE_TIME">QUIK_DOUBLE_TIME</a> <span>Quicktune doubling time</span></h3>
 
-<p>Oscillation is suppressed when vehicle and payload are no more than this distance horizontally.  Set to 0 to always suppress</p>
+<p>Time to double a tuning parameter. Raise this for a slower tune.</p>
 <ul>
-<li>Range: 0 30</li>
+<li>Range: 5 20</li>
+<li>Units: seconds</li>
 </ul>
 
 
-</article><article class="p" id="SLUP_SYSID" data-k="slup_sysid slung payload mavlink system id (slup_sysid)"><h3><a href="#SLUP_SYSID">SLUP_SYSID</a> <span>Slung Payload mavlink system id</span></h3>
+</article><article class="p" id="QUIK_GAIN_MARGIN" data-k="quik_gain_margin quicktune gain margin (quik_gain_margin)"><h3><a href="#QUIK_GAIN_MARGIN">QUIK_GAIN_MARGIN</a> <span>Quicktune gain margin</span></h3>
 
-<p>Slung Payload mavlink system id.  0 to use any/all system ids</p>
+<p>Reduction in gain after oscillation detected. Raise this number to get a more conservative tune</p>
 <ul>
-<li>Range: 0 255</li>
+<li>Range: 20 80</li>
+<li>Units: percent</li>
 </ul>
 
 
-</article><article class="p" id="SLUP_WP_POS_P" data-k="slup_wp_pos_p slung payload return to wp position p gain (slup_wp_pos_p)"><h3><a href="#SLUP_WP_POS_P">SLUP_WP_POS_P</a> <span>Slung Payload return to WP position P gain</span></h3>
+</article><article class="p" id="QUIK_OSC_SMAX" data-k="quik_osc_smax quicktune oscillation rate threshold (quik_osc_smax)"><h3><a href="#QUIK_OSC_SMAX">QUIK_OSC_SMAX</a> <span>Quicktune oscillation rate threshold</span></h3>
 
-<p>WP position P gain. higher values will result in vehicle moving more quickly back to the original waypoint</p>
+<p>Threshold for oscillation detection. A lower value will lead to a more conservative tune.</p>
 <ul>
-<li>Range: 0 1</li>
+<li>Range: 1 10</li>
 </ul>
 
 
-</article><article class="p" id="SLUP_RESTOFS_TC" data-k="slup_restofs_tc slung payload resting offset estimate filter time constant (slup_restofs_tc)"><h3><a href="#SLUP_RESTOFS_TC">SLUP_RESTOFS_TC</a> <span>Slung Payload resting offset estimate filter time constant</span></h3>
+</article><article class="p" id="QUIK_YAW_P_MAX" data-k="quik_yaw_p_max quicktune yaw p max (quik_yaw_p_max)"><h3><a href="#QUIK_YAW_P_MAX">QUIK_YAW_P_MAX</a> <span>Quicktune Yaw P max</span></h3>
 
-<p>payload&#x27;s position estimator&#x27;s time constant used to compensate for GPS errors and wind.  Higher values result in smoother estimate but slower response</p>
+<p>Maximum value for yaw P gain</p>
 <ul>
-<li>Range: 1 20</li>
+<li>Range: 0.1 3</li>
 </ul>
 
 
-</article><article class="p" id="SLUP_DEBUG" data-k="slup_debug slung payload debug output (slup_debug)"><h3><a href="#SLUP_DEBUG">SLUP_DEBUG</a> <span>Slung Payload debug output</span></h3>
+</article><article class="p" id="QUIK_YAW_D_MAX" data-k="quik_yaw_d_max quicktune yaw d max (quik_yaw_d_max)"><h3><a href="#QUIK_YAW_D_MAX">QUIK_YAW_D_MAX</a> <span>Quicktune Yaw D max</span></h3>
 
-<p>Slung payload debug output, set to 1 to enable debug</p>
+<p>Maximum value for yaw D gain</p>
+<ul>
+<li>Range: 0.001 1</li>
+</ul>
+
+
+</article><article class="p" id="QUIK_RP_PI_RATIO" data-k="quik_rp_pi_ratio quicktune roll/pitch pi ratio (quik_rp_pi_ratio)"><h3><a href="#QUIK_RP_PI_RATIO">QUIK_RP_PI_RATIO</a> <span>Quicktune roll/pitch PI ratio</span></h3>
+
+<p>Ratio between P and I gains for roll and pitch. Raise this to get a lower I gain</p>
+<ul>
+<li>Range: 0.5 1.0</li>
+</ul>
+
+
+</article><article class="p" id="QUIK_Y_PI_RATIO" data-k="quik_y_pi_ratio quicktune yaw pi ratio (quik_y_pi_ratio)"><h3><a href="#QUIK_Y_PI_RATIO">QUIK_Y_PI_RATIO</a> <span>Quicktune Yaw PI ratio</span></h3>
+
+<p>Ratio between P and I gains for yaw. Raise this to get a lower I gain</p>
+<ul>
+<li>Range: 0.5 20</li>
+</ul>
+
+
+</article><article class="p" id="QUIK_AUTO_FILTER" data-k="quik_auto_filter quicktune auto filter enable (quik_auto_filter)"><h3><a href="#QUIK_AUTO_FILTER">QUIK_AUTO_FILTER</a> <span>Quicktune auto filter enable</span></h3>
+
+<p>When enabled the PID filter settings are automatically set based on INS_GYRO_FILTER</p>
 <ul>
 <table><th>Value</th><th>Meaning</th>
 <tr><td>0</td><td>Disabled</td></tr>
 <tr><td>1</td><td>Enabled</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="QUIK_AUTO_SAVE" data-k="quik_auto_save quicktune auto save (quik_auto_save)"><h3><a href="#QUIK_AUTO_SAVE">QUIK_AUTO_SAVE</a> <span>Quicktune auto save</span></h3>
+
+<p>Number of seconds after completion of tune to auto-save. This is useful when using a 2 position switch for quicktune</p>
+<ul>
+<li>Units: seconds</li>
+</ul>
+
+
+</article><article class="p" id="QUIK_RC_FUNC" data-k="quik_rc_func quicktune rc function (quik_rc_func)"><h3><a href="#QUIK_RC_FUNC">QUIK_RC_FUNC</a> <span>Quicktune RC function</span></h3>
+
+<p>RCn_OPTION number to use to control tuning stop/start/save</p>
+<ul>
+</ul>
+
+
+</article><article class="p" id="QUIK_MAX_REDUCE" data-k="quik_max_reduce quicktune maximum gain reduction (quik_max_reduce)"><h3><a href="#QUIK_MAX_REDUCE">QUIK_MAX_REDUCE</a> <span>Quicktune maximum gain reduction</span></h3>
+
+<p>This controls how much quicktune is allowed to lower gains from the original gains. If the vehicle already has a reasonable tune and is not oscillating then you can set this to zero to prevent gain reductions. The default of 20% is reasonable for most vehicles. Using a maximum gain reduction lowers the chance of an angle P oscillation happening if quicktune gets a false positive oscillation at a low gain, which can result in very low rate gains and a dangerous angle P oscillation.</p>
+<ul>
+<li>Units: percent</li>
+<li>Range: 0 100</li>
+</ul>
+
+
+</article><article class="p" id="QUIK_OPTIONS" data-k="quik_options quicktune options (quik_options)"><h3><a href="#QUIK_OPTIONS">QUIK_OPTIONS</a> <span>Quicktune options</span></h3>
+
+<p>Additional options. When the Two Position Switch option is enabled then a high switch position will start the tune, low will disable the tune. you should also set a QUIK_AUTO_SAVE time so that you will be able to save the tune.</p>
+<ul>
+<li>Bitmask: 0:UseTwoPositionSwitch</li>
+</ul>
+
+
+</article><article class="p" id="QUIK_ANGLE_MAX" data-k="quik_angle_max maximum angle error for tune abort (quik_angle_max)"><h3><a href="#QUIK_ANGLE_MAX">QUIK_ANGLE_MAX</a> <span>maximum angle error for tune abort</span></h3>
+
+<p>If while tuning the angle error goes over this limit then the tune will aborts to prevent a bad oscillation in the case of the tuning algorithm failing. If you get an error &quot;Tuning: attitude error ABORTING&quot; and you think it is a false positive then you can either raise this parameter or you can try increasing the QUIK_DOUBLE_TIME to do the tune more slowly. A value of zero disables this check.</p>
+<ul>
+<li>Units: degrees</li>
+</ul>
+
+
+</article><article class="p" id="WINCH_RATE_UP" data-k="winch_rate_up winchcontrol rate up (winch_rate_up)"><h3><a href="#WINCH_RATE_UP">WINCH_RATE_UP</a> <span>WinchControl Rate Up</span></h3>
+
+<p>Maximum rate when retracting line</p>
+<ul>
+<li>Range: 0.1 5.0</li>
+</ul>
+
+
+</article><article class="p" id="WINCH_RATE_DN" data-k="winch_rate_dn winchcontrol rate down (winch_rate_dn)"><h3><a href="#WINCH_RATE_DN">WINCH_RATE_DN</a> <span>WinchControl Rate Down</span></h3>
+
+<p>Maximum rate when releasing line</p>
+<ul>
+<li>Range: 0.1 5.0</li>
+</ul>
+
+
+</article><article class="p" id="WINCH_RC_FUNC" data-k="winch_rc_func winch rate control rc function (winch_rc_func)"><h3><a href="#WINCH_RC_FUNC">WINCH_RC_FUNC</a> <span>Winch Rate Control RC function</span></h3>
+
+<p>RCn_OPTION number to use to control winch rate</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>300</td><td>Scripting1</td></tr>
+<tr><td>301</td><td>Scripting2</td></tr>
+<tr><td>302</td><td>Scripting3</td></tr>
+<tr><td>303</td><td>Scripting4</td></tr>
+<tr><td>304</td><td>Scripting5</td></tr>
+<tr><td>305</td><td>Scripting6</td></tr>
+<tr><td>306</td><td>Scripting7</td></tr>
+<tr><td>307</td><td>Scripting8</td></tr>
 </table>
 </ul>
 
@@ -3703,96 +3793,6 @@ footer{color:var(--muted);font-size:13px}
 <p>The ratio between the front and back motor outputs during steady-state hover. Positive when the CoG is in front of the motors midpoint (front motors work harder).</p>
 <ul>
 <li>Range: 0.5 2</li>
-</ul>
-
-
-</article><article class="p" id="DR_ENABLE" data-k="dr_enable deadreckoning enable (dr_enable)"><h3><a href="#DR_ENABLE">DR_ENABLE</a> <span>Deadreckoning Enable</span></h3>
-
-<p>Deadreckoning Enable</p>
-<ul>
-<table><th>Value</th><th>Meaning</th>
-<tr><td>0</td><td>Disabled</td></tr>
-<tr><td>1</td><td>Enabled</td></tr>
-</table>
-</ul>
-
-
-</article><article class="p" id="DR_ENABLE_DIST" data-k="dr_enable_dist deadreckoning enable distance (dr_enable_dist)"><h3><a href="#DR_ENABLE_DIST">DR_ENABLE_DIST</a> <span>Deadreckoning Enable Distance</span></h3>
-
-<p>Distance from home (in meters) beyond which the dead reckoning will be enabled</p>
-<ul>
-<li>Units: meters</li>
-</ul>
-
-
-</article><article class="p" id="DR_GPS_SACC_MAX" data-k="dr_gps_sacc_max deadreckoning gps speed accuracy maximum threshold (dr_gps_sacc_max)"><h3><a href="#DR_GPS_SACC_MAX">DR_GPS_SACC_MAX</a> <span>Deadreckoning GPS speed accuracy maximum threshold</span></h3>
-
-<p>GPS speed accuracy maximum, above which deadreckoning home will begin (default is 0.8).  Lower values trigger with good GPS quality, higher values will allow poorer GPS before triggering. Set to 0 to disable use of GPS speed accuracy</p>
-<ul>
-<li>Range: 0 10</li>
-</ul>
-
-
-</article><article class="p" id="DR_GPS_SAT_MIN" data-k="dr_gps_sat_min deadreckoning gps satellite count min threshold (dr_gps_sat_min)"><h3><a href="#DR_GPS_SAT_MIN">DR_GPS_SAT_MIN</a> <span>Deadreckoning GPS satellite count min threshold</span></h3>
-
-<p>GPS satellite count threshold below which deadreckoning home will begin (default is 6).  Higher values trigger with good GPS quality, Lower values trigger with worse GPS quality. Set to 0 to disable use of GPS satellite count</p>
-<ul>
-<li>Range: 0 30</li>
-</ul>
-
-
-</article><article class="p" id="DR_GPS_TRIGG_SEC" data-k="dr_gps_trigg_sec deadreckoning gps check trigger seconds (dr_gps_trigg_sec)"><h3><a href="#DR_GPS_TRIGG_SEC">DR_GPS_TRIGG_SEC</a> <span>Deadreckoning GPS check trigger seconds</span></h3>
-
-<p>GPS checks must fail for this many seconds before dead reckoning will be triggered</p>
-<ul>
-<li>Units: seconds</li>
-</ul>
-
-
-</article><article class="p" id="DR_FLY_ANGLE" data-k="dr_fly_angle deadreckoning lean angle (dr_fly_angle)"><h3><a href="#DR_FLY_ANGLE">DR_FLY_ANGLE</a> <span>Deadreckoning Lean Angle</span></h3>
-
-<p>lean angle (in degrees) during deadreckoning</p>
-<ul>
-<li>Units: degrees</li>
-<li>Range: 0 45</li>
-</ul>
-
-
-</article><article class="p" id="DR_FLY_ALT_MIN" data-k="dr_fly_alt_min deadreckoning altitude min (dr_fly_alt_min)"><h3><a href="#DR_FLY_ALT_MIN">DR_FLY_ALT_MIN</a> <span>Deadreckoning Altitude Min</span></h3>
-
-<p>Copter will fly at at least this altitude (in meters) above home during deadreckoning</p>
-<ul>
-<li>Units: meters</li>
-<li>Range: 0 1000</li>
-</ul>
-
-
-</article><article class="p" id="DR_FLY_TIMEOUT" data-k="dr_fly_timeout deadreckoning flight timeout (dr_fly_timeout)"><h3><a href="#DR_FLY_TIMEOUT">DR_FLY_TIMEOUT</a> <span>Deadreckoning flight timeout</span></h3>
-
-<p>Copter will attempt to switch to NEXT_MODE after this many seconds of deadreckoning.  If it cannot switch modes it will continue in Guided_NoGPS.  Set to 0 to disable timeout</p>
-<ul>
-<li>Units: seconds</li>
-</ul>
-
-
-</article><article class="p" id="DR_NEXT_MODE" data-k="dr_next_mode deadreckoning next mode (dr_next_mode)"><h3><a href="#DR_NEXT_MODE">DR_NEXT_MODE</a> <span>Deadreckoning Next Mode</span></h3>
-
-<p>Copter switch to this mode after GPS recovers or DR_FLY_TIMEOUT has elapsed.  Default is 6/RTL.  Set to -1 to return to mode used before deadreckoning was triggered</p>
-<ul>
-<table><th>Value</th><th>Meaning</th>
-<tr><td>2</td><td>AltHold</td></tr>
-<tr><td>3</td><td>Auto</td></tr>
-<tr><td>4</td><td>Guided</td></tr>
-<tr><td>5</td><td>Loiter</td></tr>
-<tr><td>6</td><td>RTL</td></tr>
-<tr><td>7</td><td>Circle</td></tr>
-<tr><td>9</td><td>Land</td></tr>
-<tr><td>16</td><td>PosHold</td></tr>
-<tr><td>17</td><td>Brake</td></tr>
-<tr><td>20</td><td>Guided_NoGPS</td></tr>
-<tr><td>21</td><td>Smart_RTL</td></tr>
-<tr><td>27</td><td>Auto RTL</td></tr>
-</table>
 </ul>
 
 
@@ -4055,9 +4055,9 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="LTE_ENABLE" data-k="lte_enable lte enable (lte_enable)"><h3><a href="#LTE_ENABLE">LTE_ENABLE</a> <span>LTE Enable</span></h3>
+</article><article class="p" id="BATT_ANX_ENABLE" data-k="batt_anx_enable enable anx battery support (batt_anx_enable)"><h3><a href="#BATT_ANX_ENABLE">BATT_ANX_ENABLE</a> <span>Enable ANX battery support</span></h3>
 
-<p>Enable or disable the LTE modem driver</p>
+<p>Enable ANX battery support</p>
 <ul>
 <table><th>Value</th><th>Meaning</th>
 <tr><td>0</td><td>Disabled</td></tr>
@@ -4066,156 +4066,37 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="LTE_SERPORT" data-k="lte_serport serial port (lte_serport)"><h3><a href="#LTE_SERPORT">LTE_SERPORT</a> <span>Serial Port</span></h3>
+</article><article class="p" id="BATT_ANX_CANDRV" data-k="batt_anx_candrv set anx can driver (batt_anx_candrv)"><h3><a href="#BATT_ANX_CANDRV">BATT_ANX_CANDRV</a> <span>Set ANX CAN driver</span></h3>
 
-<p>Serial port to use for the LTE modem. This is the index of the SERIALn_ ports that are set to 28 for &quot;scripting&quot;</p>
-<ul>
-<li>Range: 0 8</li>
-</ul>
-
-
-</article><article class="p" id="LTE_SCRPORT" data-k="lte_scrport scripting serial port (lte_scrport)"><h3><a href="#LTE_SCRPORT">LTE_SCRPORT</a> <span>Scripting Serial Port</span></h3>
-
-<p>Scripting Serial port to use for the LTE modem. This is the index of the SCR_SDEV ports that are set to 2 for &quot;MAVLink2&quot;</p>
-<ul>
-<li>Range: 0 8</li>
-</ul>
-
-
-</article><article class="p" id="LTE_SERVER_IP0" data-k="lte_server_ip0 server ip 0 (lte_server_ip0)"><h3><a href="#LTE_SERVER_IP0">LTE_SERVER_IP0</a> <span>Server IP 0</span></h3>
-
-<p>First octet of the server IP address to connect to</p>
-<ul>
-<li>Range: 0 255</li>
-</ul>
-
-
-</article><article class="p" id="LTE_SERVER_IP1" data-k="lte_server_ip1 server ip 1 (lte_server_ip1)"><h3><a href="#LTE_SERVER_IP1">LTE_SERVER_IP1</a> <span>Server IP 1</span></h3>
-
-<p>Second octet of the server IP address to connect to</p>
-<ul>
-<li>Range: 0 255</li>
-</ul>
-
-
-</article><article class="p" id="LTE_SERVER_IP2" data-k="lte_server_ip2 server ip 2 (lte_server_ip2)"><h3><a href="#LTE_SERVER_IP2">LTE_SERVER_IP2</a> <span>Server IP 2</span></h3>
-
-<p>Third octet of the server IP address to connect to</p>
-<ul>
-<li>Range: 0 255</li>
-</ul>
-
-
-</article><article class="p" id="LTE_SERVER_IP3" data-k="lte_server_ip3 server ip 3 (lte_server_ip3)"><h3><a href="#LTE_SERVER_IP3">LTE_SERVER_IP3</a> <span>Server IP 3</span></h3>
-
-<p>Fourth octet of the server IP address to connect to</p>
-<ul>
-<li>Range: 0 255</li>
-</ul>
-
-
-</article><article class="p" id="LTE_SERVER_PORT" data-k="lte_server_port server port (lte_server_port)"><h3><a href="#LTE_SERVER_PORT">LTE_SERVER_PORT</a> <span>Server Port</span></h3>
-
-<p>IPv4 Port of the server to connect to</p>
-<ul>
-<li>Range: 1 65525</li>
-</ul>
-
-
-</article><article class="p" id="LTE_BAUD" data-k="lte_baud serial baud rate (lte_baud)"><h3><a href="#LTE_BAUD">LTE_BAUD</a> <span>Serial Baud Rate</span></h3>
-
-<p>Baud rate for the serial port to the LTE modem when connected. Initial power on baudrate is in LTE_IBAUD</p>
+<p>Set ANX CAN driver</p>
 <ul>
 <table><th>Value</th><th>Meaning</th>
-<tr><td>19200</td><td>19200</td></tr>
-<tr><td>38400</td><td>38400</td></tr>
-<tr><td>57600</td><td>57600</td></tr>
-<tr><td>115200</td><td>115200</td></tr>
-<tr><td>230400</td><td>230400</td></tr>
-<tr><td>460800</td><td>460800</td></tr>
-<tr><td>921600</td><td>921600</td></tr>
-<tr><td>3686400</td><td>3686400</td></tr>
+<tr><td>0</td><td>None</td></tr>
+<tr><td>1</td><td>1stCANDriver</td></tr>
+<tr><td>2</td><td>2ndCanDriver</td></tr>
 </table>
 </ul>
 
 
-</article><article class="p" id="LTE_TIMEOUT" data-k="lte_timeout timeout (lte_timeout)"><h3><a href="#LTE_TIMEOUT">LTE_TIMEOUT</a> <span>Timeout</span></h3>
+</article><article class="p" id="BATT_ANX_INDEX" data-k="batt_anx_index anx can battery index (batt_anx_index)"><h3><a href="#BATT_ANX_INDEX">BATT_ANX_INDEX</a> <span>ANX CAN battery index</span></h3>
 
-<p>Timeout in seconds for the LTE connection. If no data is received for this time, the connection will be reset. A value of zero disables the timeout</p>
+<p>ANX CAN battery index</p>
 <ul>
-<li>Range: 0 60</li>
-<li>Units: seconds</li>
+<li>Range: 1 10</li>
 </ul>
 
 
-</article><article class="p" id="LTE_PROTOCOL" data-k="lte_protocol lte protocol (lte_protocol)"><h3><a href="#LTE_PROTOCOL">LTE_PROTOCOL</a> <span>LTE protocol</span></h3>
+</article><article class="p" id="BATT_ANX_OPTIONS" data-k="batt_anx_options anx can battery options (batt_anx_options)"><h3><a href="#BATT_ANX_OPTIONS">BATT_ANX_OPTIONS</a> <span>ANX CAN battery options</span></h3><em>Note: This parameter is for advanced users</em><br>
 
-<p>The protocol that we will use in communication with the LTE modem. If this is PPP then the LTE_SERVER parameters are not used and instead a PPP connection will be established and you should use the NET_ parameters to enable network ports. If this is MAVLink2 then the LTE_SERVER parameters are used to create a TCP or UDP connection to a single server.</p>
+<p>ANX CAN battery options</p>
 <ul>
-<table><th>Value</th><th>Meaning</th>
-<tr><td>2</td><td>MavLink2</td></tr>
-<tr><td>48</td><td>PPP</td></tr>
-</table>
+<li>Bitmask: 0:LogAllFrames</li>
 </ul>
 
 
-</article><article class="p" id="LTE_OPTIONS" data-k="lte_options lte options (lte_options)"><h3><a href="#LTE_OPTIONS">LTE_OPTIONS</a> <span>LTE options</span></h3>
+</article><article class="p" id="EFI_DLA_ENABLE" data-k="efi_dla_enable efi dla enable (efi_dla_enable)"><h3><a href="#EFI_DLA_ENABLE">EFI_DLA_ENABLE</a> <span>EFI DLA enable</span></h3>
 
-<p>Options to control the LTE modem driver. If VerboseSignalInfoGCS is set then additional NAMED_VALUE_FLOAT values are sent with verbose signal information</p>
-<ul>
-<li>Bitmask: 0:LogAllData,1:VerboseSignalInfoGCS,2:DisableMultiplexing,3:DisableSignalQueries,4:UseTCP</li>
-</ul>
-
-
-</article><article class="p" id="LTE_IBAUD" data-k="lte_ibaud lte initial baudrate (lte_ibaud)"><h3><a href="#LTE_IBAUD">LTE_IBAUD</a> <span>LTE initial baudrate</span></h3>
-
-<p>This is the initial baud rate on power on for the modem. This is set in the modem with the AT+IREX=baud command</p>
-<ul>
-<table><th>Value</th><th>Meaning</th>
-<tr><td>19200</td><td>19200</td></tr>
-<tr><td>38400</td><td>38400</td></tr>
-<tr><td>57600</td><td>57600</td></tr>
-<tr><td>115200</td><td>115200</td></tr>
-<tr><td>230400</td><td>230400</td></tr>
-<tr><td>460800</td><td>460800</td></tr>
-<tr><td>921600</td><td>921600</td></tr>
-<tr><td>3686400</td><td>3686400</td></tr>
-</table>
-</ul>
-
-
-</article><article class="p" id="LTE_MCCMNC" data-k="lte_mccmnc lte operator selection (lte_mccmnc)"><h3><a href="#LTE_MCCMNC">LTE_MCCMNC</a> <span>LTE operator selection</span></h3>
-
-<p>This allows selection of network operator</p>
-<ul>
-<table><th>Value</th><th>Meaning</th>
-<tr><td>-1</td><td>NoChange</td></tr>
-<tr><td>0</td><td>Default</td></tr>
-<tr><td>50501</td><td>AU-Telstra</td></tr>
-<tr><td>50502</td><td>AU-Optus</td></tr>
-<tr><td>50503</td><td>AU-Vodafone</td></tr>
-</table>
-</ul>
-
-
-</article><article class="p" id="LTE_TX_RATE" data-k="lte_tx_rate max transmit rate (lte_tx_rate)"><h3><a href="#LTE_TX_RATE">LTE_TX_RATE</a> <span>Max transmit rate</span></h3>
-
-<p>Maximum data transmit rate to the modem in bytes/second. Use zero for unlimited</p>
-<ul>
-</ul>
-
-
-</article><article class="p" id="LTE_BAND" data-k="lte_band lte band selection (lte_band)"><h3><a href="#LTE_BAND">LTE_BAND</a> <span>LTE band selection</span></h3>
-
-<p>This allows selection of LTE band. A value of -1 means no band setting change is made. A value of 0 sets all bands. Otherwise the specified band is set.</p>
-<ul>
-<li>Range: -1 50</li>
-</ul>
-
-
-</article><article class="p" id="ESC_HW_ENABLE" data-k="esc_hw_enable hobbywing esc enable (esc_hw_enable)"><h3><a href="#ESC_HW_ENABLE">ESC_HW_ENABLE</a> <span>Hobbywing ESC Enable</span></h3>
-
-<p>Enable Hobbywing ESC telemetry</p>
+<p>Enable EFI DLA driver</p>
 <ul>
 <table><th>Value</th><th>Meaning</th>
 <tr><td>0</td><td>Disabled</td></tr>
@@ -4224,19 +4105,151 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="ESC_HW_POLES" data-k="esc_hw_poles hobbywing esc motor poles (esc_hw_poles)"><h3><a href="#ESC_HW_POLES">ESC_HW_POLES</a> <span>Hobbywing ESC motor poles</span></h3>
+</article><article class="p" id="EFI_DLA_LPS" data-k="efi_dla_lps efi dla fuel scale (efi_dla_lps)"><h3><a href="#EFI_DLA_LPS">EFI_DLA_LPS</a> <span>EFI DLA fuel scale</span></h3>
 
-<p>Number of motor poles for eRPM scaling</p>
+<p>EFI DLA litres of fuel per second of injection time</p>
 <ul>
-<li>Range: 1 50</li>
+<li>Range: 0.00001 1</li>
+<li>Units: litres</li>
 </ul>
 
 
-</article><article class="p" id="ESC_HW_OFS" data-k="esc_hw_ofs hobbywing esc motor offset (esc_hw_ofs)"><h3><a href="#ESC_HW_OFS">ESC_HW_OFS</a> <span>Hobbywing ESC motor offset</span></h3>
+</article><article class="p" id="EFI_DLA64_ENABLE" data-k="efi_dla64_enable efi dla64 enable (efi_dla64_enable)"><h3><a href="#EFI_DLA64_ENABLE">EFI_DLA64_ENABLE</a> <span>EFI DLA64 enable</span></h3>
 
-<p>Motor number offset of first ESC</p>
+<p>Enable EFI DLA64 driver</p>
 <ul>
-<li>Range: 0 31</li>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Disabled</td></tr>
+<tr><td>1</td><td>Enabled</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="EFI_H6K_ENABLE" data-k="efi_h6k_enable enable halo6000 efi driver (efi_h6k_enable)"><h3><a href="#EFI_H6K_ENABLE">EFI_H6K_ENABLE</a> <span>Enable Halo6000 EFI driver</span></h3>
+
+<p>Enable Halo6000 EFI driver</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Disabled</td></tr>
+<tr><td>1</td><td>Enabled</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="EFI_H6K_CANDRV" data-k="efi_h6k_candrv halo6000 can driver (efi_h6k_candrv)"><h3><a href="#EFI_H6K_CANDRV">EFI_H6K_CANDRV</a> <span>Halo6000 CAN driver</span></h3>
+
+<p>Halo6000 CAN driver. Use 1 for first CAN scripting driver, 2 for 2nd driver</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Disabled</td></tr>
+<tr><td>1</td><td>FirstCAN</td></tr>
+<tr><td>2</td><td>SecondCAN</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="EFI_H6K_START_FN" data-k="efi_h6k_start_fn halo6000 start auxilliary function (efi_h6k_start_fn)"><h3><a href="#EFI_H6K_START_FN">EFI_H6K_START_FN</a> <span>Halo6000 start auxilliary function</span></h3>
+
+<p>The RC auxilliary function number for start/stop of the generator. Zero to disable start function</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Disabled</td></tr>
+<tr><td>300</td><td>300</td></tr>
+<tr><td>301</td><td>301</td></tr>
+<tr><td>302</td><td>302</td></tr>
+<tr><td>303</td><td>303</td></tr>
+<tr><td>304</td><td>304</td></tr>
+<tr><td>305</td><td>305</td></tr>
+<tr><td>306</td><td>306</td></tr>
+<tr><td>307</td><td>307</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="EFI_H6K_TELEM_RT" data-k="efi_h6k_telem_rt halo6000 telemetry rate (efi_h6k_telem_rt)"><h3><a href="#EFI_H6K_TELEM_RT">EFI_H6K_TELEM_RT</a> <span>Halo6000 telemetry rate</span></h3>
+
+<p>The rate that additional generator telemetry is sent</p>
+<ul>
+<li>Units: hertz</li>
+</ul>
+
+
+</article><article class="p" id="EFI_H6K_FUELTOT" data-k="efi_h6k_fueltot halo6000 total fuel capacity (efi_h6k_fueltot)"><h3><a href="#EFI_H6K_FUELTOT">EFI_H6K_FUELTOT</a> <span>Halo6000 total fuel capacity</span></h3>
+
+<p>The capacity of the tank in litres</p>
+<ul>
+<li>Units: litres</li>
+</ul>
+
+
+</article><article class="p" id="EFI_H6K_OPTIONS" data-k="efi_h6k_options halo6000 options (efi_h6k_options)"><h3><a href="#EFI_H6K_OPTIONS">EFI_H6K_OPTIONS</a> <span>Halo6000 options</span></h3>
+
+<p>Halo6000 options</p>
+<ul>
+<li>Bitmask: 0:LogAllCanPackets</li>
+</ul>
+
+
+</article><article class="p" id="EFI_HFE_ENABLE" data-k="efi_hfe_enable enable hfe efi driver (efi_hfe_enable)"><h3><a href="#EFI_HFE_ENABLE">EFI_HFE_ENABLE</a> <span>Enable HFE EFI driver</span></h3>
+
+<p>Enable HFE EFI driver</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Disabled</td></tr>
+<tr><td>1</td><td>Enabled</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="EFI_HFE_RATE_HZ" data-k="efi_hfe_rate_hz hfi efi update rate (efi_hfe_rate_hz)"><h3><a href="#EFI_HFE_RATE_HZ">EFI_HFE_RATE_HZ</a> <span>HFI EFI Update rate</span></h3>
+
+<p>HFI EFI Update rate</p>
+<ul>
+<li>Range: 0 400</li>
+</ul>
+
+
+</article><article class="p" id="EFI_HFE_ECU_IDX" data-k="efi_hfe_ecu_idx hfi efi ecu index (efi_hfe_ecu_idx)"><h3><a href="#EFI_HFE_ECU_IDX">EFI_HFE_ECU_IDX</a> <span>HFI EFI ECU index</span></h3>
+
+<p>HFI EFI ECU index, 0 for automatic</p>
+<ul>
+<li>Range: 0 10</li>
+</ul>
+
+
+</article><article class="p" id="EFI_HFE_FUEL_DTY" data-k="efi_hfe_fuel_dty hfi efi fuel density (efi_hfe_fuel_dty)"><h3><a href="#EFI_HFE_FUEL_DTY">EFI_HFE_FUEL_DTY</a> <span>HFI EFI fuel density</span></h3>
+
+<p>HFI EFI fuel density in gram per litre</p>
+<ul>
+<li>Range: 0 2000</li>
+</ul>
+
+
+</article><article class="p" id="EFI_HFE_REL_IDX" data-k="efi_hfe_rel_idx hfi efi relay index (efi_hfe_rel_idx)"><h3><a href="#EFI_HFE_REL_IDX">EFI_HFE_REL_IDX</a> <span>HFI EFI relay index</span></h3>
+
+<p>HFI EFI relay index</p>
+<ul>
+<li>Range: 0 10</li>
+</ul>
+
+
+</article><article class="p" id="EFI_HFE_CANDRV" data-k="efi_hfe_candrv hfi efi can driver (efi_hfe_candrv)"><h3><a href="#EFI_HFE_CANDRV">EFI_HFE_CANDRV</a> <span>HFI EFI CAN driver</span></h3>
+
+<p>HFI EFI CAN driver</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>None</td></tr>
+<tr><td>1</td><td>1stCANDriver</td></tr>
+<tr><td>2</td><td>2ndCanDriver</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="EFI_HFE_OPTIONS" data-k="efi_hfe_options hfi efi options (efi_hfe_options)"><h3><a href="#EFI_HFE_OPTIONS">EFI_HFE_OPTIONS</a> <span>HFI EFI options</span></h3>
+
+<p>HFI EFI options</p>
+<ul>
+<li>Bitmask: 1:EnableCANLogging</li>
 </ul>
 
 
@@ -4268,102 +4281,6 @@ footer{color:var(--muted);font-size:13px}
 <p>NMEA 2000 driver options</p>
 <ul>
 <li>Bitmask: 0:EnableLogging</li>
-</ul>
-
-
-</article><article class="p" id="EFI_INF_ENABLE" data-k="efi_inf_enable efi inf-inject enable (efi_inf_enable)"><h3><a href="#EFI_INF_ENABLE">EFI_INF_ENABLE</a> <span>EFI INF-Inject enable</span></h3>
-
-<p>Enable EFI INF-Inject driver</p>
-<ul>
-<table><th>Value</th><th>Meaning</th>
-<tr><td>0</td><td>Disabled</td></tr>
-<tr><td>1</td><td>Enabled</td></tr>
-</table>
-</ul>
-
-
-</article><article class="p" id="EFI_INF_OPTIONS" data-k="efi_inf_options efi inf-inject options (efi_inf_options)"><h3><a href="#EFI_INF_OPTIONS">EFI_INF_OPTIONS</a> <span>EFI INF-Inject options</span></h3>
-
-<p>EFI INF driver options</p>
-<ul>
-<li>Bitmask: 0:EnableLogging</li>
-</ul>
-
-
-</article><article class="p" id="EFI_INF_THR_HZ" data-k="efi_inf_thr_hz efi inf-inject throttle rate (efi_inf_thr_hz)"><h3><a href="#EFI_INF_THR_HZ">EFI_INF_THR_HZ</a> <span>EFI INF-Inject throttle rate</span></h3>
-
-<p>EFI INF throttle output rate</p>
-<ul>
-<li>Range: 0 50</li>
-<li>Units: hertz</li>
-</ul>
-
-
-</article><article class="p" id="EFI_INF_IGN_AUX" data-k="efi_inf_ign_aux efi inf-inject ignition aux function (efi_inf_ign_aux)"><h3><a href="#EFI_INF_IGN_AUX">EFI_INF_IGN_AUX</a> <span>EFI INF-Inject ignition aux function</span></h3>
-
-<p>EFI INF throttle ignition aux function</p>
-<ul>
-</ul>
-
-
-</article><article class="p" id="TRQL_ENABLE" data-k="trql_enable torqeedo torqlink enable (trql_enable)"><h3><a href="#TRQL_ENABLE">TRQL_ENABLE</a> <span>Torqeedo TorqLink Enable</span></h3>
-
-<p>Torqeedo TorqLink Enable</p>
-<ul>
-<table><th>Value</th><th>Meaning</th>
-<tr><td>0</td><td>Disabled</td></tr>
-<tr><td>1</td><td>Enabled</td></tr>
-</table>
-</ul>
-
-
-</article><article class="p" id="TRQL_DEBUG" data-k="trql_debug torqeedo torqlink debug level (trql_debug)"><h3><a href="#TRQL_DEBUG">TRQL_DEBUG</a> <span>Torqeedo TorqLink Debug Level</span></h3>
-
-<p>Torqeedo TorqLink Debug Level</p>
-<ul>
-<table><th>Value</th><th>Meaning</th>
-<tr><td>0</td><td>None</td></tr>
-<tr><td>1</td><td>Low</td></tr>
-<tr><td>2</td><td>Medium</td></tr>
-<tr><td>3</td><td>High</td></tr>
-</table>
-</ul>
-
-
-</article><article class="p" id="UM_SERVO_MASK" data-k="um_servo_mask mask of ultramotion servos (um_servo_mask)"><h3><a href="#UM_SERVO_MASK">UM_SERVO_MASK</a> <span>Mask of UltraMotion servos</span></h3>
-
-<p>Mask of UltraMotion servos</p>
-<ul>
-<li>Bitmask: 0:SERVO1,1:SERVO2,2:SERVO3,3:SERVO4,4:SERVO5,5:SERVO6,6:SERVO7,7:SERVO8,8:SERVO9,9:SERVO10,10:SERVO11,11:SERVO12</li>
-</ul>
-
-
-</article><article class="p" id="UM_CANDRV" data-k="um_candrv set can driver (um_candrv)"><h3><a href="#UM_CANDRV">UM_CANDRV</a> <span>Set CAN driver</span></h3>
-
-<p>Set CAN driver</p>
-<ul>
-<table><th>Value</th><th>Meaning</th>
-<tr><td>0</td><td>None</td></tr>
-<tr><td>1</td><td>1stCANDriver</td></tr>
-<tr><td>2</td><td>2ndCanDriver</td></tr>
-</table>
-</ul>
-
-
-</article><article class="p" id="UM_RATE_HZ" data-k="um_rate_hz update rate for ultramotion servos (um_rate_hz)"><h3><a href="#UM_RATE_HZ">UM_RATE_HZ</a> <span>Update rate for UltraMotion servos</span></h3>
-
-<p>Update rate for UltraMotion servos</p>
-<ul>
-<li>Units: hertz</li>
-<li>Range: 1 400</li>
-</ul>
-
-
-</article><article class="p" id="UM_OPTIONS" data-k="um_options optional settings (um_options)"><h3><a href="#UM_OPTIONS">UM_OPTIONS</a> <span>Optional settings</span></h3>
-
-<p>Optional settings</p>
-<ul>
-<li>Bitmask: 0:LogAllFrames,1:ParseTelemetry,2:SendPosAsNamedValueFloat</li>
 </ul>
 
 
@@ -4524,9 +4441,9 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="EFI_DLA_ENABLE" data-k="efi_dla_enable efi dla enable (efi_dla_enable)"><h3><a href="#EFI_DLA_ENABLE">EFI_DLA_ENABLE</a> <span>EFI DLA enable</span></h3>
+</article><article class="p" id="EFI_SVF_ENABLE" data-k="efi_svf_enable generator svffi enable (efi_svf_enable)"><h3><a href="#EFI_SVF_ENABLE">EFI_SVF_ENABLE</a> <span>Generator SVFFI enable</span></h3>
 
-<p>Enable EFI DLA driver</p>
+<p>Enable SVFFI generator support</p>
 <ul>
 <table><th>Value</th><th>Meaning</th>
 <tr><td>0</td><td>Disabled</td></tr>
@@ -4535,12 +4452,234 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="EFI_DLA_LPS" data-k="efi_dla_lps efi dla fuel scale (efi_dla_lps)"><h3><a href="#EFI_DLA_LPS">EFI_DLA_LPS</a> <span>EFI DLA fuel scale</span></h3>
+</article><article class="p" id="EFI_SVF_ARMCHECK" data-k="efi_svf_armcheck generator svffi arming check (efi_svf_armcheck)"><h3><a href="#EFI_SVF_ARMCHECK">EFI_SVF_ARMCHECK</a> <span>Generator SVFFI arming check</span></h3>
 
-<p>EFI DLA litres of fuel per second of injection time</p>
+<p>Check for Generator ARM state before arming</p>
 <ul>
-<li>Range: 0.00001 1</li>
-<li>Units: litres</li>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Disabled</td></tr>
+<tr><td>1</td><td>Enabled</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="ESC_HW_ENABLE" data-k="esc_hw_enable hobbywing esc enable (esc_hw_enable)"><h3><a href="#ESC_HW_ENABLE">ESC_HW_ENABLE</a> <span>Hobbywing ESC Enable</span></h3>
+
+<p>Enable Hobbywing ESC telemetry</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Disabled</td></tr>
+<tr><td>1</td><td>Enabled</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="ESC_HW_POLES" data-k="esc_hw_poles hobbywing esc motor poles (esc_hw_poles)"><h3><a href="#ESC_HW_POLES">ESC_HW_POLES</a> <span>Hobbywing ESC motor poles</span></h3>
+
+<p>Number of motor poles for eRPM scaling</p>
+<ul>
+<li>Range: 1 50</li>
+</ul>
+
+
+</article><article class="p" id="ESC_HW_OFS" data-k="esc_hw_ofs hobbywing esc motor offset (esc_hw_ofs)"><h3><a href="#ESC_HW_OFS">ESC_HW_OFS</a> <span>Hobbywing ESC motor offset</span></h3>
+
+<p>Motor number offset of first ESC</p>
+<ul>
+<li>Range: 0 31</li>
+</ul>
+
+
+</article><article class="p" id="EFI_INF_ENABLE" data-k="efi_inf_enable efi inf-inject enable (efi_inf_enable)"><h3><a href="#EFI_INF_ENABLE">EFI_INF_ENABLE</a> <span>EFI INF-Inject enable</span></h3>
+
+<p>Enable EFI INF-Inject driver</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Disabled</td></tr>
+<tr><td>1</td><td>Enabled</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="EFI_INF_OPTIONS" data-k="efi_inf_options efi inf-inject options (efi_inf_options)"><h3><a href="#EFI_INF_OPTIONS">EFI_INF_OPTIONS</a> <span>EFI INF-Inject options</span></h3>
+
+<p>EFI INF driver options</p>
+<ul>
+<li>Bitmask: 0:EnableLogging</li>
+</ul>
+
+
+</article><article class="p" id="EFI_INF_THR_HZ" data-k="efi_inf_thr_hz efi inf-inject throttle rate (efi_inf_thr_hz)"><h3><a href="#EFI_INF_THR_HZ">EFI_INF_THR_HZ</a> <span>EFI INF-Inject throttle rate</span></h3>
+
+<p>EFI INF throttle output rate</p>
+<ul>
+<li>Range: 0 50</li>
+<li>Units: hertz</li>
+</ul>
+
+
+</article><article class="p" id="EFI_INF_IGN_AUX" data-k="efi_inf_ign_aux efi inf-inject ignition aux function (efi_inf_ign_aux)"><h3><a href="#EFI_INF_IGN_AUX">EFI_INF_IGN_AUX</a> <span>EFI INF-Inject ignition aux function</span></h3>
+
+<p>EFI INF throttle ignition aux function</p>
+<ul>
+</ul>
+
+
+</article><article class="p" id="LTE_ENABLE" data-k="lte_enable lte enable (lte_enable)"><h3><a href="#LTE_ENABLE">LTE_ENABLE</a> <span>LTE Enable</span></h3>
+
+<p>Enable or disable the LTE modem driver</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Disabled</td></tr>
+<tr><td>1</td><td>Enabled</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="LTE_SERPORT" data-k="lte_serport serial port (lte_serport)"><h3><a href="#LTE_SERPORT">LTE_SERPORT</a> <span>Serial Port</span></h3>
+
+<p>Serial port to use for the LTE modem. This is the index of the SERIALn_ ports that are set to 28 for &quot;scripting&quot;</p>
+<ul>
+<li>Range: 0 8</li>
+</ul>
+
+
+</article><article class="p" id="LTE_SCRPORT" data-k="lte_scrport scripting serial port (lte_scrport)"><h3><a href="#LTE_SCRPORT">LTE_SCRPORT</a> <span>Scripting Serial Port</span></h3>
+
+<p>Scripting Serial port to use for the LTE modem. This is the index of the SCR_SDEV ports that are set to 2 for &quot;MAVLink2&quot;</p>
+<ul>
+<li>Range: 0 8</li>
+</ul>
+
+
+</article><article class="p" id="LTE_SERVER_IP0" data-k="lte_server_ip0 server ip 0 (lte_server_ip0)"><h3><a href="#LTE_SERVER_IP0">LTE_SERVER_IP0</a> <span>Server IP 0</span></h3>
+
+<p>First octet of the server IP address to connect to</p>
+<ul>
+<li>Range: 0 255</li>
+</ul>
+
+
+</article><article class="p" id="LTE_SERVER_IP1" data-k="lte_server_ip1 server ip 1 (lte_server_ip1)"><h3><a href="#LTE_SERVER_IP1">LTE_SERVER_IP1</a> <span>Server IP 1</span></h3>
+
+<p>Second octet of the server IP address to connect to</p>
+<ul>
+<li>Range: 0 255</li>
+</ul>
+
+
+</article><article class="p" id="LTE_SERVER_IP2" data-k="lte_server_ip2 server ip 2 (lte_server_ip2)"><h3><a href="#LTE_SERVER_IP2">LTE_SERVER_IP2</a> <span>Server IP 2</span></h3>
+
+<p>Third octet of the server IP address to connect to</p>
+<ul>
+<li>Range: 0 255</li>
+</ul>
+
+
+</article><article class="p" id="LTE_SERVER_IP3" data-k="lte_server_ip3 server ip 3 (lte_server_ip3)"><h3><a href="#LTE_SERVER_IP3">LTE_SERVER_IP3</a> <span>Server IP 3</span></h3>
+
+<p>Fourth octet of the server IP address to connect to</p>
+<ul>
+<li>Range: 0 255</li>
+</ul>
+
+
+</article><article class="p" id="LTE_SERVER_PORT" data-k="lte_server_port server port (lte_server_port)"><h3><a href="#LTE_SERVER_PORT">LTE_SERVER_PORT</a> <span>Server Port</span></h3>
+
+<p>IPv4 Port of the server to connect to</p>
+<ul>
+<li>Range: 1 65525</li>
+</ul>
+
+
+</article><article class="p" id="LTE_BAUD" data-k="lte_baud serial baud rate (lte_baud)"><h3><a href="#LTE_BAUD">LTE_BAUD</a> <span>Serial Baud Rate</span></h3>
+
+<p>Baud rate for the serial port to the LTE modem when connected. Initial power on baudrate is in LTE_IBAUD</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>19200</td><td>19200</td></tr>
+<tr><td>38400</td><td>38400</td></tr>
+<tr><td>57600</td><td>57600</td></tr>
+<tr><td>115200</td><td>115200</td></tr>
+<tr><td>230400</td><td>230400</td></tr>
+<tr><td>460800</td><td>460800</td></tr>
+<tr><td>921600</td><td>921600</td></tr>
+<tr><td>3686400</td><td>3686400</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="LTE_TIMEOUT" data-k="lte_timeout timeout (lte_timeout)"><h3><a href="#LTE_TIMEOUT">LTE_TIMEOUT</a> <span>Timeout</span></h3>
+
+<p>Timeout in seconds for the LTE connection. If no data is received for this time, the connection will be reset. A value of zero disables the timeout</p>
+<ul>
+<li>Range: 0 60</li>
+<li>Units: seconds</li>
+</ul>
+
+
+</article><article class="p" id="LTE_PROTOCOL" data-k="lte_protocol lte protocol (lte_protocol)"><h3><a href="#LTE_PROTOCOL">LTE_PROTOCOL</a> <span>LTE protocol</span></h3>
+
+<p>The protocol that we will use in communication with the LTE modem. If this is PPP then the LTE_SERVER parameters are not used and instead a PPP connection will be established and you should use the NET_ parameters to enable network ports. If this is MAVLink2 then the LTE_SERVER parameters are used to create a TCP or UDP connection to a single server.</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>2</td><td>MavLink2</td></tr>
+<tr><td>48</td><td>PPP</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="LTE_OPTIONS" data-k="lte_options lte options (lte_options)"><h3><a href="#LTE_OPTIONS">LTE_OPTIONS</a> <span>LTE options</span></h3>
+
+<p>Options to control the LTE modem driver. If VerboseSignalInfoGCS is set then additional NAMED_VALUE_FLOAT values are sent with verbose signal information</p>
+<ul>
+<li>Bitmask: 0:LogAllData,1:VerboseSignalInfoGCS,2:DisableMultiplexing,3:DisableSignalQueries,4:UseTCP</li>
+</ul>
+
+
+</article><article class="p" id="LTE_IBAUD" data-k="lte_ibaud lte initial baudrate (lte_ibaud)"><h3><a href="#LTE_IBAUD">LTE_IBAUD</a> <span>LTE initial baudrate</span></h3>
+
+<p>This is the initial baud rate on power on for the modem. This is set in the modem with the AT+IREX=baud command</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>19200</td><td>19200</td></tr>
+<tr><td>38400</td><td>38400</td></tr>
+<tr><td>57600</td><td>57600</td></tr>
+<tr><td>115200</td><td>115200</td></tr>
+<tr><td>230400</td><td>230400</td></tr>
+<tr><td>460800</td><td>460800</td></tr>
+<tr><td>921600</td><td>921600</td></tr>
+<tr><td>3686400</td><td>3686400</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="LTE_MCCMNC" data-k="lte_mccmnc lte operator selection (lte_mccmnc)"><h3><a href="#LTE_MCCMNC">LTE_MCCMNC</a> <span>LTE operator selection</span></h3>
+
+<p>This allows selection of network operator</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>-1</td><td>NoChange</td></tr>
+<tr><td>0</td><td>Default</td></tr>
+<tr><td>50501</td><td>AU-Telstra</td></tr>
+<tr><td>50502</td><td>AU-Optus</td></tr>
+<tr><td>50503</td><td>AU-Vodafone</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="LTE_TX_RATE" data-k="lte_tx_rate max transmit rate (lte_tx_rate)"><h3><a href="#LTE_TX_RATE">LTE_TX_RATE</a> <span>Max transmit rate</span></h3>
+
+<p>Maximum data transmit rate to the modem in bytes/second. Use zero for unlimited</p>
+<ul>
+</ul>
+
+
+</article><article class="p" id="LTE_BAND" data-k="lte_band lte band selection (lte_band)"><h3><a href="#LTE_BAND">LTE_BAND</a> <span>LTE band selection</span></h3>
+
+<p>This allows selection of LTE band. A value of -1 means no band setting change is made. A value of 0 sets all bands. Otherwise the specified band is set.</p>
+<ul>
+<li>Range: -1 50</li>
 </ul>
 
 
@@ -4567,9 +4706,9 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="EFI_H6K_ENABLE" data-k="efi_h6k_enable enable halo6000 efi driver (efi_h6k_enable)"><h3><a href="#EFI_H6K_ENABLE">EFI_H6K_ENABLE</a> <span>Enable Halo6000 EFI driver</span></h3>
+</article><article class="p" id="TRQL_ENABLE" data-k="trql_enable torqeedo torqlink enable (trql_enable)"><h3><a href="#TRQL_ENABLE">TRQL_ENABLE</a> <span>Torqeedo TorqLink Enable</span></h3>
 
-<p>Enable Halo6000 EFI driver</p>
+<p>Torqeedo TorqLink Enable</p>
 <ul>
 <table><th>Value</th><th>Meaning</th>
 <tr><td>0</td><td>Disabled</td></tr>
@@ -4578,90 +4717,53 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
-</article><article class="p" id="EFI_H6K_CANDRV" data-k="efi_h6k_candrv halo6000 can driver (efi_h6k_candrv)"><h3><a href="#EFI_H6K_CANDRV">EFI_H6K_CANDRV</a> <span>Halo6000 CAN driver</span></h3>
+</article><article class="p" id="TRQL_DEBUG" data-k="trql_debug torqeedo torqlink debug level (trql_debug)"><h3><a href="#TRQL_DEBUG">TRQL_DEBUG</a> <span>Torqeedo TorqLink Debug Level</span></h3>
 
-<p>Halo6000 CAN driver. Use 1 for first CAN scripting driver, 2 for 2nd driver</p>
+<p>Torqeedo TorqLink Debug Level</p>
 <ul>
 <table><th>Value</th><th>Meaning</th>
-<tr><td>0</td><td>Disabled</td></tr>
-<tr><td>1</td><td>FirstCAN</td></tr>
-<tr><td>2</td><td>SecondCAN</td></tr>
+<tr><td>0</td><td>None</td></tr>
+<tr><td>1</td><td>Low</td></tr>
+<tr><td>2</td><td>Medium</td></tr>
+<tr><td>3</td><td>High</td></tr>
 </table>
 </ul>
 
 
-</article><article class="p" id="EFI_H6K_START_FN" data-k="efi_h6k_start_fn halo6000 start auxilliary function (efi_h6k_start_fn)"><h3><a href="#EFI_H6K_START_FN">EFI_H6K_START_FN</a> <span>Halo6000 start auxilliary function</span></h3>
+</article><article class="p" id="UM_SERVO_MASK" data-k="um_servo_mask mask of ultramotion servos (um_servo_mask)"><h3><a href="#UM_SERVO_MASK">UM_SERVO_MASK</a> <span>Mask of UltraMotion servos</span></h3>
 
-<p>The RC auxilliary function number for start/stop of the generator. Zero to disable start function</p>
+<p>Mask of UltraMotion servos</p>
+<ul>
+<li>Bitmask: 0:SERVO1,1:SERVO2,2:SERVO3,3:SERVO4,4:SERVO5,5:SERVO6,6:SERVO7,7:SERVO8,8:SERVO9,9:SERVO10,10:SERVO11,11:SERVO12</li>
+</ul>
+
+
+</article><article class="p" id="UM_CANDRV" data-k="um_candrv set can driver (um_candrv)"><h3><a href="#UM_CANDRV">UM_CANDRV</a> <span>Set CAN driver</span></h3>
+
+<p>Set CAN driver</p>
 <ul>
 <table><th>Value</th><th>Meaning</th>
-<tr><td>0</td><td>Disabled</td></tr>
-<tr><td>300</td><td>300</td></tr>
-<tr><td>301</td><td>301</td></tr>
-<tr><td>302</td><td>302</td></tr>
-<tr><td>303</td><td>303</td></tr>
-<tr><td>304</td><td>304</td></tr>
-<tr><td>305</td><td>305</td></tr>
-<tr><td>306</td><td>306</td></tr>
-<tr><td>307</td><td>307</td></tr>
+<tr><td>0</td><td>None</td></tr>
+<tr><td>1</td><td>1stCANDriver</td></tr>
+<tr><td>2</td><td>2ndCanDriver</td></tr>
 </table>
 </ul>
 
 
-</article><article class="p" id="EFI_H6K_TELEM_RT" data-k="efi_h6k_telem_rt halo6000 telemetry rate (efi_h6k_telem_rt)"><h3><a href="#EFI_H6K_TELEM_RT">EFI_H6K_TELEM_RT</a> <span>Halo6000 telemetry rate</span></h3>
+</article><article class="p" id="UM_RATE_HZ" data-k="um_rate_hz update rate for ultramotion servos (um_rate_hz)"><h3><a href="#UM_RATE_HZ">UM_RATE_HZ</a> <span>Update rate for UltraMotion servos</span></h3>
 
-<p>The rate that additional generator telemetry is sent</p>
+<p>Update rate for UltraMotion servos</p>
 <ul>
 <li>Units: hertz</li>
+<li>Range: 1 400</li>
 </ul>
 
 
-</article><article class="p" id="EFI_H6K_FUELTOT" data-k="efi_h6k_fueltot halo6000 total fuel capacity (efi_h6k_fueltot)"><h3><a href="#EFI_H6K_FUELTOT">EFI_H6K_FUELTOT</a> <span>Halo6000 total fuel capacity</span></h3>
+</article><article class="p" id="UM_OPTIONS" data-k="um_options optional settings (um_options)"><h3><a href="#UM_OPTIONS">UM_OPTIONS</a> <span>Optional settings</span></h3>
 
-<p>The capacity of the tank in litres</p>
+<p>Optional settings</p>
 <ul>
-<li>Units: litres</li>
-</ul>
-
-
-</article><article class="p" id="EFI_H6K_OPTIONS" data-k="efi_h6k_options halo6000 options (efi_h6k_options)"><h3><a href="#EFI_H6K_OPTIONS">EFI_H6K_OPTIONS</a> <span>Halo6000 options</span></h3>
-
-<p>Halo6000 options</p>
-<ul>
-<li>Bitmask: 0:LogAllCanPackets</li>
-</ul>
-
-
-</article><article class="p" id="EFI_DLA64_ENABLE" data-k="efi_dla64_enable efi dla64 enable (efi_dla64_enable)"><h3><a href="#EFI_DLA64_ENABLE">EFI_DLA64_ENABLE</a> <span>EFI DLA64 enable</span></h3>
-
-<p>Enable EFI DLA64 driver</p>
-<ul>
-<table><th>Value</th><th>Meaning</th>
-<tr><td>0</td><td>Disabled</td></tr>
-<tr><td>1</td><td>Enabled</td></tr>
-</table>
-</ul>
-
-
-</article><article class="p" id="EFI_SVF_ENABLE" data-k="efi_svf_enable generator svffi enable (efi_svf_enable)"><h3><a href="#EFI_SVF_ENABLE">EFI_SVF_ENABLE</a> <span>Generator SVFFI enable</span></h3>
-
-<p>Enable SVFFI generator support</p>
-<ul>
-<table><th>Value</th><th>Meaning</th>
-<tr><td>0</td><td>Disabled</td></tr>
-<tr><td>1</td><td>Enabled</td></tr>
-</table>
-</ul>
-
-
-</article><article class="p" id="EFI_SVF_ARMCHECK" data-k="efi_svf_armcheck generator svffi arming check (efi_svf_armcheck)"><h3><a href="#EFI_SVF_ARMCHECK">EFI_SVF_ARMCHECK</a> <span>Generator SVFFI arming check</span></h3>
-
-<p>Check for Generator ARM state before arming</p>
-<ul>
-<table><th>Value</th><th>Meaning</th>
-<tr><td>0</td><td>Disabled</td></tr>
-<tr><td>1</td><td>Enabled</td></tr>
-</table>
+<li>Bitmask: 0:LogAllFrames,1:ParseTelemetry,2:SendPosAsNamedValueFloat</li>
 </ul>
 
 
@@ -4699,108 +4801,6 @@ footer{color:var(--muted);font-size:13px}
 <p>Which Scripting serial port the sensor is connected at.</p>
 <ul>
 <li>Range: 1 10</li>
-</ul>
-
-
-</article><article class="p" id="EFI_HFE_ENABLE" data-k="efi_hfe_enable enable hfe efi driver (efi_hfe_enable)"><h3><a href="#EFI_HFE_ENABLE">EFI_HFE_ENABLE</a> <span>Enable HFE EFI driver</span></h3>
-
-<p>Enable HFE EFI driver</p>
-<ul>
-<table><th>Value</th><th>Meaning</th>
-<tr><td>0</td><td>Disabled</td></tr>
-<tr><td>1</td><td>Enabled</td></tr>
-</table>
-</ul>
-
-
-</article><article class="p" id="EFI_HFE_RATE_HZ" data-k="efi_hfe_rate_hz hfi efi update rate (efi_hfe_rate_hz)"><h3><a href="#EFI_HFE_RATE_HZ">EFI_HFE_RATE_HZ</a> <span>HFI EFI Update rate</span></h3>
-
-<p>HFI EFI Update rate</p>
-<ul>
-<li>Range: 0 400</li>
-</ul>
-
-
-</article><article class="p" id="EFI_HFE_ECU_IDX" data-k="efi_hfe_ecu_idx hfi efi ecu index (efi_hfe_ecu_idx)"><h3><a href="#EFI_HFE_ECU_IDX">EFI_HFE_ECU_IDX</a> <span>HFI EFI ECU index</span></h3>
-
-<p>HFI EFI ECU index, 0 for automatic</p>
-<ul>
-<li>Range: 0 10</li>
-</ul>
-
-
-</article><article class="p" id="EFI_HFE_FUEL_DTY" data-k="efi_hfe_fuel_dty hfi efi fuel density (efi_hfe_fuel_dty)"><h3><a href="#EFI_HFE_FUEL_DTY">EFI_HFE_FUEL_DTY</a> <span>HFI EFI fuel density</span></h3>
-
-<p>HFI EFI fuel density in gram per litre</p>
-<ul>
-<li>Range: 0 2000</li>
-</ul>
-
-
-</article><article class="p" id="EFI_HFE_REL_IDX" data-k="efi_hfe_rel_idx hfi efi relay index (efi_hfe_rel_idx)"><h3><a href="#EFI_HFE_REL_IDX">EFI_HFE_REL_IDX</a> <span>HFI EFI relay index</span></h3>
-
-<p>HFI EFI relay index</p>
-<ul>
-<li>Range: 0 10</li>
-</ul>
-
-
-</article><article class="p" id="EFI_HFE_CANDRV" data-k="efi_hfe_candrv hfi efi can driver (efi_hfe_candrv)"><h3><a href="#EFI_HFE_CANDRV">EFI_HFE_CANDRV</a> <span>HFI EFI CAN driver</span></h3>
-
-<p>HFI EFI CAN driver</p>
-<ul>
-<table><th>Value</th><th>Meaning</th>
-<tr><td>0</td><td>None</td></tr>
-<tr><td>1</td><td>1stCANDriver</td></tr>
-<tr><td>2</td><td>2ndCanDriver</td></tr>
-</table>
-</ul>
-
-
-</article><article class="p" id="EFI_HFE_OPTIONS" data-k="efi_hfe_options hfi efi options (efi_hfe_options)"><h3><a href="#EFI_HFE_OPTIONS">EFI_HFE_OPTIONS</a> <span>HFI EFI options</span></h3>
-
-<p>HFI EFI options</p>
-<ul>
-<li>Bitmask: 1:EnableCANLogging</li>
-</ul>
-
-
-</article><article class="p" id="BATT_ANX_ENABLE" data-k="batt_anx_enable enable anx battery support (batt_anx_enable)"><h3><a href="#BATT_ANX_ENABLE">BATT_ANX_ENABLE</a> <span>Enable ANX battery support</span></h3>
-
-<p>Enable ANX battery support</p>
-<ul>
-<table><th>Value</th><th>Meaning</th>
-<tr><td>0</td><td>Disabled</td></tr>
-<tr><td>1</td><td>Enabled</td></tr>
-</table>
-</ul>
-
-
-</article><article class="p" id="BATT_ANX_CANDRV" data-k="batt_anx_candrv set anx can driver (batt_anx_candrv)"><h3><a href="#BATT_ANX_CANDRV">BATT_ANX_CANDRV</a> <span>Set ANX CAN driver</span></h3>
-
-<p>Set ANX CAN driver</p>
-<ul>
-<table><th>Value</th><th>Meaning</th>
-<tr><td>0</td><td>None</td></tr>
-<tr><td>1</td><td>1stCANDriver</td></tr>
-<tr><td>2</td><td>2ndCanDriver</td></tr>
-</table>
-</ul>
-
-
-</article><article class="p" id="BATT_ANX_INDEX" data-k="batt_anx_index anx can battery index (batt_anx_index)"><h3><a href="#BATT_ANX_INDEX">BATT_ANX_INDEX</a> <span>ANX CAN battery index</span></h3>
-
-<p>ANX CAN battery index</p>
-<ul>
-<li>Range: 1 10</li>
-</ul>
-
-
-</article><article class="p" id="BATT_ANX_OPTIONS" data-k="batt_anx_options anx can battery options (batt_anx_options)"><h3><a href="#BATT_ANX_OPTIONS">BATT_ANX_OPTIONS</a> <span>ANX CAN battery options</span></h3><em>Note: This parameter is for advanced users</em><br>
-
-<p>ANX CAN battery options</p>
-<ul>
-<li>Bitmask: 0:LogAllFrames</li>
 </ul>
 
 
@@ -32093,6 +32093,16 @@ footer{color:var(--muted);font-size:13px}
 </ul>
 
 
+</article><article class="p" id="MSP_DSARM_HOLD" data-k="msp_dsarm_hold msp disarm hold time (msp_dsarm_hold)"><h3><a href="#MSP_DSARM_HOLD">MSP_DSARM_HOLD</a> <span>MSP disarm hold time</span></h3>
+
+<p>Keep reporting armed to an MSP DisplayPort VTX (SERIALn_PROTOCOL 42) for this long after a disarm. DJI air units stop recording when the arm bit clears, so this keeps the OSD_DSARM_SCR stats screen in the video. Only that MSP report is held: the vehicle disarms normally, and other MSP ports still report the live state. Zero disables.</p>
+<ul>
+<li>Units: seconds</li>
+<li>Range: 0 7</li>
+<li>Increment: 1</li>
+</ul>
+
+
 </article></section><section class="grp" id="g-navl1-parameters"><h2>NAVL1_ Parameters</h2><article class="p" id="NAVL1_PERIOD" data-k="navl1_period l1 control period (navl1_period)"><h3><a href="#NAVL1_PERIOD">NAVL1_PERIOD</a> <span>L1 control period</span></h3>
 
 <p>Period in seconds of L1 tracking loop. This parameter is the primary control for aggressiveness of turns in auto mode. This needs to be larger for less responsive airframes. The default is quite conservative, but for most RC aircraft will lead to reasonable flight. For smaller more agile aircraft a value closer to 15 is appropriate, or even as low as 10 for some very agile aircraft. When tuning, change this value in small increments, as a value that is much too small (say 5 or 10 below the right value) can lead to very radical turns, and a risk of stalling.</p>
@@ -32976,6 +32986,561 @@ footer{color:var(--muted);font-size:13px}
 <ul>
 <li>Range: 1 32</li>
 <li>RebootRequired: True</li>
+</ul>
+
+
+</article><article class="p" id="NTF_LS_ENABLE" data-k="ntf_ls_enable led segments enable (ntf_ls_enable)"><h3><a href="#NTF_LS_ENABLE">NTF_LS_ENABLE</a> <span>LED segments enable</span></h3>
+
+<p>1 draws the NeoPixel strip as up to 8 segments set by NTF_LS1_* to NTF_LS8_*, each with its own function and colour. 0 keeps the stock behaviour where the whole strip shows one status colour. Needs NTF_LED_TYPES NeoPixel and an output with SERVOn_FUNCTION 120. LEDs not covered by any segment stay off.</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Disabled</td></tr>
+<tr><td>1</td><td>Enabled</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="NTF_LS_MODECLR" data-k="ntf_ls_modeclr led segment flight-mode colours (ntf_ls_modeclr)"><h3><a href="#NTF_LS_MODECLR">NTF_LS_MODECLR</a> <span>LED segment flight-mode colours</span></h3><em>Note: This parameter is for advanced users</em><br>
+
+<p>Colours used by segments with FUNC Flight mode. Six 4-bit palette numbers (same list as NTF_LSn_COLOR) packed into one value: bits 0-3 Manual/Stabilize/Training/Acro, bits 4-7 FBWA/FBWB/Cruise/Autotune/Course Hold/Auto Trim, bits 8-11 Auto/Takeoff/Guided/Avoid ADSB/Thermal, bits 12-15 RTL/QRTL/QLand/Loiter to QLand, bits 16-19 Loiter/Circle, bits 20-23 QStabilize/QHover/QLoiter/QAutotune/QAcro. Value = sum of colour * 16^group. Default: Manual yellow, assisted green, auto blue, return/land orange, loiter cyan, VTOL violet.</p>
+<ul>
+<li>Range: 0 16777215</li>
+</ul>
+
+
+</article></section><section class="grp" id="g-ntf-ls1-parameters"><h2>NTF_LS1_ Parameters</h2><article class="p" id="NTF_LS1_START" data-k="ntf_ls1_start led segment first led (ntf_ls1_start)"><h3><a href="#NTF_LS1_START">NTF_LS1_START</a> <span>LED segment first LED</span></h3>
+
+<p>First LED of this segment, counting from 1 at the data-input end of the strip. 0 turns the segment off. Segments are drawn in order, so where two overlap the higher-numbered segment wins. Only used when NTF_LS_ENABLE is 1.</p>
+<ul>
+<li>Range: 0 127</li>
+</ul>
+
+
+</article><article class="p" id="NTF_LS1_LEN" data-k="ntf_ls1_len led segment length (ntf_ls1_len)"><h3><a href="#NTF_LS1_LEN">NTF_LS1_LEN</a> <span>LED segment length</span></h3>
+
+<p>Number of LEDs in this segment. LEDs past NTF_LED_LEN are ignored.</p>
+<ul>
+<li>Range: 0 127</li>
+</ul>
+
+
+</article><article class="p" id="NTF_LS1_FUNC" data-k="ntf_ls1_func led segment function (ntf_ls1_func)"><h3><a href="#NTF_LS1_FUNC">NTF_LS1_FUNC</a> <span>LED segment function</span></h3>
+
+<p>What this segment shows. Fixed colour uses COLOR. Flight mode uses NTF_LS_MODECLR. Arm state is green when armed, blue when disarmed and ready, amber when pre-arm checks fail. Battery and Link quality fade from red through yellow to green. GPS is red without a 3D fix, yellow with 3D, green with DGPS or better. Throttle shows COLOR at a brightness that follows the throttle. Status copies the stock NeoPixel status pattern.</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Off</td></tr>
+<tr><td>1</td><td>Fixed colour</td></tr>
+<tr><td>2</td><td>Flight mode</td></tr>
+<tr><td>3</td><td>Arm state</td></tr>
+<tr><td>4</td><td>Battery</td></tr>
+<tr><td>5</td><td>GPS</td></tr>
+<tr><td>6</td><td>Link quality</td></tr>
+<tr><td>7</td><td>Throttle</td></tr>
+<tr><td>8</td><td>Status</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="NTF_LS1_COLOR" data-k="ntf_ls1_color led segment colour (ntf_ls1_color)"><h3><a href="#NTF_LS1_COLOR">NTF_LS1_COLOR</a> <span>LED segment colour</span></h3>
+
+<p>Palette colour for Fixed colour and Throttle segments, and the fallback for Battery when no remaining-capacity estimate is available.</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Off</td></tr>
+<tr><td>1</td><td>White</td></tr>
+<tr><td>2</td><td>Red</td></tr>
+<tr><td>3</td><td>Orange</td></tr>
+<tr><td>4</td><td>Yellow</td></tr>
+<tr><td>5</td><td>Lime</td></tr>
+<tr><td>6</td><td>Green</td></tr>
+<tr><td>7</td><td>Mint</td></tr>
+<tr><td>8</td><td>Cyan</td></tr>
+<tr><td>9</td><td>Light blue</td></tr>
+<tr><td>10</td><td>Blue</td></tr>
+<tr><td>11</td><td>Violet</td></tr>
+<tr><td>12</td><td>Magenta</td></tr>
+<tr><td>13</td><td>Pink</td></tr>
+<tr><td>14</td><td>Amber</td></tr>
+<tr><td>15</td><td>Warm white</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="NTF_LS1_OVL" data-k="ntf_ls1_ovl led segment effects (ntf_ls1_ovl)"><h3><a href="#NTF_LS1_OVL">NTF_LS1_OVL</a> <span>LED segment effects</span></h3>
+
+<p>Effects drawn on top of the segment function. Blink is 1 Hz. Strobe is a white double flash every 1.2 s (with COLOR Off between flashes this makes a white anti-collision strobe). Larson scanner sweeps one bright LED along the segment. Failsafe warning flashes red during any radio/battery/GCS/EKF failsafe. Bar lights a share of the segment proportional to Battery/GPS satellites/Link quality/Throttle. Reverse runs the segment from its last LED. Only when armed blanks the segment while disarmed.</p>
+<ul>
+<li>Bitmask: 0:Blink,1:Strobe,2:Larson scanner,3:Failsafe warning,4:Bar,5:Reverse,6:Only when armed</li>
+</ul>
+
+
+</article></section><section class="grp" id="g-ntf-ls2-parameters"><h2>NTF_LS2_ Parameters</h2><article class="p" id="NTF_LS2_START" data-k="ntf_ls2_start led segment first led (ntf_ls2_start)"><h3><a href="#NTF_LS2_START">NTF_LS2_START</a> <span>LED segment first LED</span></h3>
+
+<p>First LED of this segment, counting from 1 at the data-input end of the strip. 0 turns the segment off. Segments are drawn in order, so where two overlap the higher-numbered segment wins. Only used when NTF_LS_ENABLE is 1.</p>
+<ul>
+<li>Range: 0 127</li>
+</ul>
+
+
+</article><article class="p" id="NTF_LS2_LEN" data-k="ntf_ls2_len led segment length (ntf_ls2_len)"><h3><a href="#NTF_LS2_LEN">NTF_LS2_LEN</a> <span>LED segment length</span></h3>
+
+<p>Number of LEDs in this segment. LEDs past NTF_LED_LEN are ignored.</p>
+<ul>
+<li>Range: 0 127</li>
+</ul>
+
+
+</article><article class="p" id="NTF_LS2_FUNC" data-k="ntf_ls2_func led segment function (ntf_ls2_func)"><h3><a href="#NTF_LS2_FUNC">NTF_LS2_FUNC</a> <span>LED segment function</span></h3>
+
+<p>What this segment shows. Fixed colour uses COLOR. Flight mode uses NTF_LS_MODECLR. Arm state is green when armed, blue when disarmed and ready, amber when pre-arm checks fail. Battery and Link quality fade from red through yellow to green. GPS is red without a 3D fix, yellow with 3D, green with DGPS or better. Throttle shows COLOR at a brightness that follows the throttle. Status copies the stock NeoPixel status pattern.</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Off</td></tr>
+<tr><td>1</td><td>Fixed colour</td></tr>
+<tr><td>2</td><td>Flight mode</td></tr>
+<tr><td>3</td><td>Arm state</td></tr>
+<tr><td>4</td><td>Battery</td></tr>
+<tr><td>5</td><td>GPS</td></tr>
+<tr><td>6</td><td>Link quality</td></tr>
+<tr><td>7</td><td>Throttle</td></tr>
+<tr><td>8</td><td>Status</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="NTF_LS2_COLOR" data-k="ntf_ls2_color led segment colour (ntf_ls2_color)"><h3><a href="#NTF_LS2_COLOR">NTF_LS2_COLOR</a> <span>LED segment colour</span></h3>
+
+<p>Palette colour for Fixed colour and Throttle segments, and the fallback for Battery when no remaining-capacity estimate is available.</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Off</td></tr>
+<tr><td>1</td><td>White</td></tr>
+<tr><td>2</td><td>Red</td></tr>
+<tr><td>3</td><td>Orange</td></tr>
+<tr><td>4</td><td>Yellow</td></tr>
+<tr><td>5</td><td>Lime</td></tr>
+<tr><td>6</td><td>Green</td></tr>
+<tr><td>7</td><td>Mint</td></tr>
+<tr><td>8</td><td>Cyan</td></tr>
+<tr><td>9</td><td>Light blue</td></tr>
+<tr><td>10</td><td>Blue</td></tr>
+<tr><td>11</td><td>Violet</td></tr>
+<tr><td>12</td><td>Magenta</td></tr>
+<tr><td>13</td><td>Pink</td></tr>
+<tr><td>14</td><td>Amber</td></tr>
+<tr><td>15</td><td>Warm white</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="NTF_LS2_OVL" data-k="ntf_ls2_ovl led segment effects (ntf_ls2_ovl)"><h3><a href="#NTF_LS2_OVL">NTF_LS2_OVL</a> <span>LED segment effects</span></h3>
+
+<p>Effects drawn on top of the segment function. Blink is 1 Hz. Strobe is a white double flash every 1.2 s (with COLOR Off between flashes this makes a white anti-collision strobe). Larson scanner sweeps one bright LED along the segment. Failsafe warning flashes red during any radio/battery/GCS/EKF failsafe. Bar lights a share of the segment proportional to Battery/GPS satellites/Link quality/Throttle. Reverse runs the segment from its last LED. Only when armed blanks the segment while disarmed.</p>
+<ul>
+<li>Bitmask: 0:Blink,1:Strobe,2:Larson scanner,3:Failsafe warning,4:Bar,5:Reverse,6:Only when armed</li>
+</ul>
+
+
+</article></section><section class="grp" id="g-ntf-ls3-parameters"><h2>NTF_LS3_ Parameters</h2><article class="p" id="NTF_LS3_START" data-k="ntf_ls3_start led segment first led (ntf_ls3_start)"><h3><a href="#NTF_LS3_START">NTF_LS3_START</a> <span>LED segment first LED</span></h3>
+
+<p>First LED of this segment, counting from 1 at the data-input end of the strip. 0 turns the segment off. Segments are drawn in order, so where two overlap the higher-numbered segment wins. Only used when NTF_LS_ENABLE is 1.</p>
+<ul>
+<li>Range: 0 127</li>
+</ul>
+
+
+</article><article class="p" id="NTF_LS3_LEN" data-k="ntf_ls3_len led segment length (ntf_ls3_len)"><h3><a href="#NTF_LS3_LEN">NTF_LS3_LEN</a> <span>LED segment length</span></h3>
+
+<p>Number of LEDs in this segment. LEDs past NTF_LED_LEN are ignored.</p>
+<ul>
+<li>Range: 0 127</li>
+</ul>
+
+
+</article><article class="p" id="NTF_LS3_FUNC" data-k="ntf_ls3_func led segment function (ntf_ls3_func)"><h3><a href="#NTF_LS3_FUNC">NTF_LS3_FUNC</a> <span>LED segment function</span></h3>
+
+<p>What this segment shows. Fixed colour uses COLOR. Flight mode uses NTF_LS_MODECLR. Arm state is green when armed, blue when disarmed and ready, amber when pre-arm checks fail. Battery and Link quality fade from red through yellow to green. GPS is red without a 3D fix, yellow with 3D, green with DGPS or better. Throttle shows COLOR at a brightness that follows the throttle. Status copies the stock NeoPixel status pattern.</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Off</td></tr>
+<tr><td>1</td><td>Fixed colour</td></tr>
+<tr><td>2</td><td>Flight mode</td></tr>
+<tr><td>3</td><td>Arm state</td></tr>
+<tr><td>4</td><td>Battery</td></tr>
+<tr><td>5</td><td>GPS</td></tr>
+<tr><td>6</td><td>Link quality</td></tr>
+<tr><td>7</td><td>Throttle</td></tr>
+<tr><td>8</td><td>Status</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="NTF_LS3_COLOR" data-k="ntf_ls3_color led segment colour (ntf_ls3_color)"><h3><a href="#NTF_LS3_COLOR">NTF_LS3_COLOR</a> <span>LED segment colour</span></h3>
+
+<p>Palette colour for Fixed colour and Throttle segments, and the fallback for Battery when no remaining-capacity estimate is available.</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Off</td></tr>
+<tr><td>1</td><td>White</td></tr>
+<tr><td>2</td><td>Red</td></tr>
+<tr><td>3</td><td>Orange</td></tr>
+<tr><td>4</td><td>Yellow</td></tr>
+<tr><td>5</td><td>Lime</td></tr>
+<tr><td>6</td><td>Green</td></tr>
+<tr><td>7</td><td>Mint</td></tr>
+<tr><td>8</td><td>Cyan</td></tr>
+<tr><td>9</td><td>Light blue</td></tr>
+<tr><td>10</td><td>Blue</td></tr>
+<tr><td>11</td><td>Violet</td></tr>
+<tr><td>12</td><td>Magenta</td></tr>
+<tr><td>13</td><td>Pink</td></tr>
+<tr><td>14</td><td>Amber</td></tr>
+<tr><td>15</td><td>Warm white</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="NTF_LS3_OVL" data-k="ntf_ls3_ovl led segment effects (ntf_ls3_ovl)"><h3><a href="#NTF_LS3_OVL">NTF_LS3_OVL</a> <span>LED segment effects</span></h3>
+
+<p>Effects drawn on top of the segment function. Blink is 1 Hz. Strobe is a white double flash every 1.2 s (with COLOR Off between flashes this makes a white anti-collision strobe). Larson scanner sweeps one bright LED along the segment. Failsafe warning flashes red during any radio/battery/GCS/EKF failsafe. Bar lights a share of the segment proportional to Battery/GPS satellites/Link quality/Throttle. Reverse runs the segment from its last LED. Only when armed blanks the segment while disarmed.</p>
+<ul>
+<li>Bitmask: 0:Blink,1:Strobe,2:Larson scanner,3:Failsafe warning,4:Bar,5:Reverse,6:Only when armed</li>
+</ul>
+
+
+</article></section><section class="grp" id="g-ntf-ls4-parameters"><h2>NTF_LS4_ Parameters</h2><article class="p" id="NTF_LS4_START" data-k="ntf_ls4_start led segment first led (ntf_ls4_start)"><h3><a href="#NTF_LS4_START">NTF_LS4_START</a> <span>LED segment first LED</span></h3>
+
+<p>First LED of this segment, counting from 1 at the data-input end of the strip. 0 turns the segment off. Segments are drawn in order, so where two overlap the higher-numbered segment wins. Only used when NTF_LS_ENABLE is 1.</p>
+<ul>
+<li>Range: 0 127</li>
+</ul>
+
+
+</article><article class="p" id="NTF_LS4_LEN" data-k="ntf_ls4_len led segment length (ntf_ls4_len)"><h3><a href="#NTF_LS4_LEN">NTF_LS4_LEN</a> <span>LED segment length</span></h3>
+
+<p>Number of LEDs in this segment. LEDs past NTF_LED_LEN are ignored.</p>
+<ul>
+<li>Range: 0 127</li>
+</ul>
+
+
+</article><article class="p" id="NTF_LS4_FUNC" data-k="ntf_ls4_func led segment function (ntf_ls4_func)"><h3><a href="#NTF_LS4_FUNC">NTF_LS4_FUNC</a> <span>LED segment function</span></h3>
+
+<p>What this segment shows. Fixed colour uses COLOR. Flight mode uses NTF_LS_MODECLR. Arm state is green when armed, blue when disarmed and ready, amber when pre-arm checks fail. Battery and Link quality fade from red through yellow to green. GPS is red without a 3D fix, yellow with 3D, green with DGPS or better. Throttle shows COLOR at a brightness that follows the throttle. Status copies the stock NeoPixel status pattern.</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Off</td></tr>
+<tr><td>1</td><td>Fixed colour</td></tr>
+<tr><td>2</td><td>Flight mode</td></tr>
+<tr><td>3</td><td>Arm state</td></tr>
+<tr><td>4</td><td>Battery</td></tr>
+<tr><td>5</td><td>GPS</td></tr>
+<tr><td>6</td><td>Link quality</td></tr>
+<tr><td>7</td><td>Throttle</td></tr>
+<tr><td>8</td><td>Status</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="NTF_LS4_COLOR" data-k="ntf_ls4_color led segment colour (ntf_ls4_color)"><h3><a href="#NTF_LS4_COLOR">NTF_LS4_COLOR</a> <span>LED segment colour</span></h3>
+
+<p>Palette colour for Fixed colour and Throttle segments, and the fallback for Battery when no remaining-capacity estimate is available.</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Off</td></tr>
+<tr><td>1</td><td>White</td></tr>
+<tr><td>2</td><td>Red</td></tr>
+<tr><td>3</td><td>Orange</td></tr>
+<tr><td>4</td><td>Yellow</td></tr>
+<tr><td>5</td><td>Lime</td></tr>
+<tr><td>6</td><td>Green</td></tr>
+<tr><td>7</td><td>Mint</td></tr>
+<tr><td>8</td><td>Cyan</td></tr>
+<tr><td>9</td><td>Light blue</td></tr>
+<tr><td>10</td><td>Blue</td></tr>
+<tr><td>11</td><td>Violet</td></tr>
+<tr><td>12</td><td>Magenta</td></tr>
+<tr><td>13</td><td>Pink</td></tr>
+<tr><td>14</td><td>Amber</td></tr>
+<tr><td>15</td><td>Warm white</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="NTF_LS4_OVL" data-k="ntf_ls4_ovl led segment effects (ntf_ls4_ovl)"><h3><a href="#NTF_LS4_OVL">NTF_LS4_OVL</a> <span>LED segment effects</span></h3>
+
+<p>Effects drawn on top of the segment function. Blink is 1 Hz. Strobe is a white double flash every 1.2 s (with COLOR Off between flashes this makes a white anti-collision strobe). Larson scanner sweeps one bright LED along the segment. Failsafe warning flashes red during any radio/battery/GCS/EKF failsafe. Bar lights a share of the segment proportional to Battery/GPS satellites/Link quality/Throttle. Reverse runs the segment from its last LED. Only when armed blanks the segment while disarmed.</p>
+<ul>
+<li>Bitmask: 0:Blink,1:Strobe,2:Larson scanner,3:Failsafe warning,4:Bar,5:Reverse,6:Only when armed</li>
+</ul>
+
+
+</article></section><section class="grp" id="g-ntf-ls5-parameters"><h2>NTF_LS5_ Parameters</h2><article class="p" id="NTF_LS5_START" data-k="ntf_ls5_start led segment first led (ntf_ls5_start)"><h3><a href="#NTF_LS5_START">NTF_LS5_START</a> <span>LED segment first LED</span></h3>
+
+<p>First LED of this segment, counting from 1 at the data-input end of the strip. 0 turns the segment off. Segments are drawn in order, so where two overlap the higher-numbered segment wins. Only used when NTF_LS_ENABLE is 1.</p>
+<ul>
+<li>Range: 0 127</li>
+</ul>
+
+
+</article><article class="p" id="NTF_LS5_LEN" data-k="ntf_ls5_len led segment length (ntf_ls5_len)"><h3><a href="#NTF_LS5_LEN">NTF_LS5_LEN</a> <span>LED segment length</span></h3>
+
+<p>Number of LEDs in this segment. LEDs past NTF_LED_LEN are ignored.</p>
+<ul>
+<li>Range: 0 127</li>
+</ul>
+
+
+</article><article class="p" id="NTF_LS5_FUNC" data-k="ntf_ls5_func led segment function (ntf_ls5_func)"><h3><a href="#NTF_LS5_FUNC">NTF_LS5_FUNC</a> <span>LED segment function</span></h3>
+
+<p>What this segment shows. Fixed colour uses COLOR. Flight mode uses NTF_LS_MODECLR. Arm state is green when armed, blue when disarmed and ready, amber when pre-arm checks fail. Battery and Link quality fade from red through yellow to green. GPS is red without a 3D fix, yellow with 3D, green with DGPS or better. Throttle shows COLOR at a brightness that follows the throttle. Status copies the stock NeoPixel status pattern.</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Off</td></tr>
+<tr><td>1</td><td>Fixed colour</td></tr>
+<tr><td>2</td><td>Flight mode</td></tr>
+<tr><td>3</td><td>Arm state</td></tr>
+<tr><td>4</td><td>Battery</td></tr>
+<tr><td>5</td><td>GPS</td></tr>
+<tr><td>6</td><td>Link quality</td></tr>
+<tr><td>7</td><td>Throttle</td></tr>
+<tr><td>8</td><td>Status</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="NTF_LS5_COLOR" data-k="ntf_ls5_color led segment colour (ntf_ls5_color)"><h3><a href="#NTF_LS5_COLOR">NTF_LS5_COLOR</a> <span>LED segment colour</span></h3>
+
+<p>Palette colour for Fixed colour and Throttle segments, and the fallback for Battery when no remaining-capacity estimate is available.</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Off</td></tr>
+<tr><td>1</td><td>White</td></tr>
+<tr><td>2</td><td>Red</td></tr>
+<tr><td>3</td><td>Orange</td></tr>
+<tr><td>4</td><td>Yellow</td></tr>
+<tr><td>5</td><td>Lime</td></tr>
+<tr><td>6</td><td>Green</td></tr>
+<tr><td>7</td><td>Mint</td></tr>
+<tr><td>8</td><td>Cyan</td></tr>
+<tr><td>9</td><td>Light blue</td></tr>
+<tr><td>10</td><td>Blue</td></tr>
+<tr><td>11</td><td>Violet</td></tr>
+<tr><td>12</td><td>Magenta</td></tr>
+<tr><td>13</td><td>Pink</td></tr>
+<tr><td>14</td><td>Amber</td></tr>
+<tr><td>15</td><td>Warm white</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="NTF_LS5_OVL" data-k="ntf_ls5_ovl led segment effects (ntf_ls5_ovl)"><h3><a href="#NTF_LS5_OVL">NTF_LS5_OVL</a> <span>LED segment effects</span></h3>
+
+<p>Effects drawn on top of the segment function. Blink is 1 Hz. Strobe is a white double flash every 1.2 s (with COLOR Off between flashes this makes a white anti-collision strobe). Larson scanner sweeps one bright LED along the segment. Failsafe warning flashes red during any radio/battery/GCS/EKF failsafe. Bar lights a share of the segment proportional to Battery/GPS satellites/Link quality/Throttle. Reverse runs the segment from its last LED. Only when armed blanks the segment while disarmed.</p>
+<ul>
+<li>Bitmask: 0:Blink,1:Strobe,2:Larson scanner,3:Failsafe warning,4:Bar,5:Reverse,6:Only when armed</li>
+</ul>
+
+
+</article></section><section class="grp" id="g-ntf-ls6-parameters"><h2>NTF_LS6_ Parameters</h2><article class="p" id="NTF_LS6_START" data-k="ntf_ls6_start led segment first led (ntf_ls6_start)"><h3><a href="#NTF_LS6_START">NTF_LS6_START</a> <span>LED segment first LED</span></h3>
+
+<p>First LED of this segment, counting from 1 at the data-input end of the strip. 0 turns the segment off. Segments are drawn in order, so where two overlap the higher-numbered segment wins. Only used when NTF_LS_ENABLE is 1.</p>
+<ul>
+<li>Range: 0 127</li>
+</ul>
+
+
+</article><article class="p" id="NTF_LS6_LEN" data-k="ntf_ls6_len led segment length (ntf_ls6_len)"><h3><a href="#NTF_LS6_LEN">NTF_LS6_LEN</a> <span>LED segment length</span></h3>
+
+<p>Number of LEDs in this segment. LEDs past NTF_LED_LEN are ignored.</p>
+<ul>
+<li>Range: 0 127</li>
+</ul>
+
+
+</article><article class="p" id="NTF_LS6_FUNC" data-k="ntf_ls6_func led segment function (ntf_ls6_func)"><h3><a href="#NTF_LS6_FUNC">NTF_LS6_FUNC</a> <span>LED segment function</span></h3>
+
+<p>What this segment shows. Fixed colour uses COLOR. Flight mode uses NTF_LS_MODECLR. Arm state is green when armed, blue when disarmed and ready, amber when pre-arm checks fail. Battery and Link quality fade from red through yellow to green. GPS is red without a 3D fix, yellow with 3D, green with DGPS or better. Throttle shows COLOR at a brightness that follows the throttle. Status copies the stock NeoPixel status pattern.</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Off</td></tr>
+<tr><td>1</td><td>Fixed colour</td></tr>
+<tr><td>2</td><td>Flight mode</td></tr>
+<tr><td>3</td><td>Arm state</td></tr>
+<tr><td>4</td><td>Battery</td></tr>
+<tr><td>5</td><td>GPS</td></tr>
+<tr><td>6</td><td>Link quality</td></tr>
+<tr><td>7</td><td>Throttle</td></tr>
+<tr><td>8</td><td>Status</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="NTF_LS6_COLOR" data-k="ntf_ls6_color led segment colour (ntf_ls6_color)"><h3><a href="#NTF_LS6_COLOR">NTF_LS6_COLOR</a> <span>LED segment colour</span></h3>
+
+<p>Palette colour for Fixed colour and Throttle segments, and the fallback for Battery when no remaining-capacity estimate is available.</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Off</td></tr>
+<tr><td>1</td><td>White</td></tr>
+<tr><td>2</td><td>Red</td></tr>
+<tr><td>3</td><td>Orange</td></tr>
+<tr><td>4</td><td>Yellow</td></tr>
+<tr><td>5</td><td>Lime</td></tr>
+<tr><td>6</td><td>Green</td></tr>
+<tr><td>7</td><td>Mint</td></tr>
+<tr><td>8</td><td>Cyan</td></tr>
+<tr><td>9</td><td>Light blue</td></tr>
+<tr><td>10</td><td>Blue</td></tr>
+<tr><td>11</td><td>Violet</td></tr>
+<tr><td>12</td><td>Magenta</td></tr>
+<tr><td>13</td><td>Pink</td></tr>
+<tr><td>14</td><td>Amber</td></tr>
+<tr><td>15</td><td>Warm white</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="NTF_LS6_OVL" data-k="ntf_ls6_ovl led segment effects (ntf_ls6_ovl)"><h3><a href="#NTF_LS6_OVL">NTF_LS6_OVL</a> <span>LED segment effects</span></h3>
+
+<p>Effects drawn on top of the segment function. Blink is 1 Hz. Strobe is a white double flash every 1.2 s (with COLOR Off between flashes this makes a white anti-collision strobe). Larson scanner sweeps one bright LED along the segment. Failsafe warning flashes red during any radio/battery/GCS/EKF failsafe. Bar lights a share of the segment proportional to Battery/GPS satellites/Link quality/Throttle. Reverse runs the segment from its last LED. Only when armed blanks the segment while disarmed.</p>
+<ul>
+<li>Bitmask: 0:Blink,1:Strobe,2:Larson scanner,3:Failsafe warning,4:Bar,5:Reverse,6:Only when armed</li>
+</ul>
+
+
+</article></section><section class="grp" id="g-ntf-ls7-parameters"><h2>NTF_LS7_ Parameters</h2><article class="p" id="NTF_LS7_START" data-k="ntf_ls7_start led segment first led (ntf_ls7_start)"><h3><a href="#NTF_LS7_START">NTF_LS7_START</a> <span>LED segment first LED</span></h3>
+
+<p>First LED of this segment, counting from 1 at the data-input end of the strip. 0 turns the segment off. Segments are drawn in order, so where two overlap the higher-numbered segment wins. Only used when NTF_LS_ENABLE is 1.</p>
+<ul>
+<li>Range: 0 127</li>
+</ul>
+
+
+</article><article class="p" id="NTF_LS7_LEN" data-k="ntf_ls7_len led segment length (ntf_ls7_len)"><h3><a href="#NTF_LS7_LEN">NTF_LS7_LEN</a> <span>LED segment length</span></h3>
+
+<p>Number of LEDs in this segment. LEDs past NTF_LED_LEN are ignored.</p>
+<ul>
+<li>Range: 0 127</li>
+</ul>
+
+
+</article><article class="p" id="NTF_LS7_FUNC" data-k="ntf_ls7_func led segment function (ntf_ls7_func)"><h3><a href="#NTF_LS7_FUNC">NTF_LS7_FUNC</a> <span>LED segment function</span></h3>
+
+<p>What this segment shows. Fixed colour uses COLOR. Flight mode uses NTF_LS_MODECLR. Arm state is green when armed, blue when disarmed and ready, amber when pre-arm checks fail. Battery and Link quality fade from red through yellow to green. GPS is red without a 3D fix, yellow with 3D, green with DGPS or better. Throttle shows COLOR at a brightness that follows the throttle. Status copies the stock NeoPixel status pattern.</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Off</td></tr>
+<tr><td>1</td><td>Fixed colour</td></tr>
+<tr><td>2</td><td>Flight mode</td></tr>
+<tr><td>3</td><td>Arm state</td></tr>
+<tr><td>4</td><td>Battery</td></tr>
+<tr><td>5</td><td>GPS</td></tr>
+<tr><td>6</td><td>Link quality</td></tr>
+<tr><td>7</td><td>Throttle</td></tr>
+<tr><td>8</td><td>Status</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="NTF_LS7_COLOR" data-k="ntf_ls7_color led segment colour (ntf_ls7_color)"><h3><a href="#NTF_LS7_COLOR">NTF_LS7_COLOR</a> <span>LED segment colour</span></h3>
+
+<p>Palette colour for Fixed colour and Throttle segments, and the fallback for Battery when no remaining-capacity estimate is available.</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Off</td></tr>
+<tr><td>1</td><td>White</td></tr>
+<tr><td>2</td><td>Red</td></tr>
+<tr><td>3</td><td>Orange</td></tr>
+<tr><td>4</td><td>Yellow</td></tr>
+<tr><td>5</td><td>Lime</td></tr>
+<tr><td>6</td><td>Green</td></tr>
+<tr><td>7</td><td>Mint</td></tr>
+<tr><td>8</td><td>Cyan</td></tr>
+<tr><td>9</td><td>Light blue</td></tr>
+<tr><td>10</td><td>Blue</td></tr>
+<tr><td>11</td><td>Violet</td></tr>
+<tr><td>12</td><td>Magenta</td></tr>
+<tr><td>13</td><td>Pink</td></tr>
+<tr><td>14</td><td>Amber</td></tr>
+<tr><td>15</td><td>Warm white</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="NTF_LS7_OVL" data-k="ntf_ls7_ovl led segment effects (ntf_ls7_ovl)"><h3><a href="#NTF_LS7_OVL">NTF_LS7_OVL</a> <span>LED segment effects</span></h3>
+
+<p>Effects drawn on top of the segment function. Blink is 1 Hz. Strobe is a white double flash every 1.2 s (with COLOR Off between flashes this makes a white anti-collision strobe). Larson scanner sweeps one bright LED along the segment. Failsafe warning flashes red during any radio/battery/GCS/EKF failsafe. Bar lights a share of the segment proportional to Battery/GPS satellites/Link quality/Throttle. Reverse runs the segment from its last LED. Only when armed blanks the segment while disarmed.</p>
+<ul>
+<li>Bitmask: 0:Blink,1:Strobe,2:Larson scanner,3:Failsafe warning,4:Bar,5:Reverse,6:Only when armed</li>
+</ul>
+
+
+</article></section><section class="grp" id="g-ntf-ls8-parameters"><h2>NTF_LS8_ Parameters</h2><article class="p" id="NTF_LS8_START" data-k="ntf_ls8_start led segment first led (ntf_ls8_start)"><h3><a href="#NTF_LS8_START">NTF_LS8_START</a> <span>LED segment first LED</span></h3>
+
+<p>First LED of this segment, counting from 1 at the data-input end of the strip. 0 turns the segment off. Segments are drawn in order, so where two overlap the higher-numbered segment wins. Only used when NTF_LS_ENABLE is 1.</p>
+<ul>
+<li>Range: 0 127</li>
+</ul>
+
+
+</article><article class="p" id="NTF_LS8_LEN" data-k="ntf_ls8_len led segment length (ntf_ls8_len)"><h3><a href="#NTF_LS8_LEN">NTF_LS8_LEN</a> <span>LED segment length</span></h3>
+
+<p>Number of LEDs in this segment. LEDs past NTF_LED_LEN are ignored.</p>
+<ul>
+<li>Range: 0 127</li>
+</ul>
+
+
+</article><article class="p" id="NTF_LS8_FUNC" data-k="ntf_ls8_func led segment function (ntf_ls8_func)"><h3><a href="#NTF_LS8_FUNC">NTF_LS8_FUNC</a> <span>LED segment function</span></h3>
+
+<p>What this segment shows. Fixed colour uses COLOR. Flight mode uses NTF_LS_MODECLR. Arm state is green when armed, blue when disarmed and ready, amber when pre-arm checks fail. Battery and Link quality fade from red through yellow to green. GPS is red without a 3D fix, yellow with 3D, green with DGPS or better. Throttle shows COLOR at a brightness that follows the throttle. Status copies the stock NeoPixel status pattern.</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Off</td></tr>
+<tr><td>1</td><td>Fixed colour</td></tr>
+<tr><td>2</td><td>Flight mode</td></tr>
+<tr><td>3</td><td>Arm state</td></tr>
+<tr><td>4</td><td>Battery</td></tr>
+<tr><td>5</td><td>GPS</td></tr>
+<tr><td>6</td><td>Link quality</td></tr>
+<tr><td>7</td><td>Throttle</td></tr>
+<tr><td>8</td><td>Status</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="NTF_LS8_COLOR" data-k="ntf_ls8_color led segment colour (ntf_ls8_color)"><h3><a href="#NTF_LS8_COLOR">NTF_LS8_COLOR</a> <span>LED segment colour</span></h3>
+
+<p>Palette colour for Fixed colour and Throttle segments, and the fallback for Battery when no remaining-capacity estimate is available.</p>
+<ul>
+<table><th>Value</th><th>Meaning</th>
+<tr><td>0</td><td>Off</td></tr>
+<tr><td>1</td><td>White</td></tr>
+<tr><td>2</td><td>Red</td></tr>
+<tr><td>3</td><td>Orange</td></tr>
+<tr><td>4</td><td>Yellow</td></tr>
+<tr><td>5</td><td>Lime</td></tr>
+<tr><td>6</td><td>Green</td></tr>
+<tr><td>7</td><td>Mint</td></tr>
+<tr><td>8</td><td>Cyan</td></tr>
+<tr><td>9</td><td>Light blue</td></tr>
+<tr><td>10</td><td>Blue</td></tr>
+<tr><td>11</td><td>Violet</td></tr>
+<tr><td>12</td><td>Magenta</td></tr>
+<tr><td>13</td><td>Pink</td></tr>
+<tr><td>14</td><td>Amber</td></tr>
+<tr><td>15</td><td>Warm white</td></tr>
+</table>
+</ul>
+
+
+</article><article class="p" id="NTF_LS8_OVL" data-k="ntf_ls8_ovl led segment effects (ntf_ls8_ovl)"><h3><a href="#NTF_LS8_OVL">NTF_LS8_OVL</a> <span>LED segment effects</span></h3>
+
+<p>Effects drawn on top of the segment function. Blink is 1 Hz. Strobe is a white double flash every 1.2 s (with COLOR Off between flashes this makes a white anti-collision strobe). Larson scanner sweeps one bright LED along the segment. Failsafe warning flashes red during any radio/battery/GCS/EKF failsafe. Bar lights a share of the segment proportional to Battery/GPS satellites/Link quality/Throttle. Reverse runs the segment from its last LED. Only when armed blanks the segment while disarmed.</p>
+<ul>
+<li>Bitmask: 0:Blink,1:Strobe,2:Larson scanner,3:Failsafe warning,4:Bar,5:Reverse,6:Only when armed</li>
 </ul>
 
 
@@ -78122,7 +78687,7 @@ footer{color:var(--muted);font-size:13px}
     if(!texts)texts=arts.map(a=>a.textContent.toLowerCase());
     for(let i=0;i<arts.length;i++){const a=arts[i],k=texts[i];const ok=terms.every(w=>k.includes(w));a.hidden=!ok;if(ok)shown++}
     for(const g of grps)g.hidden=!g.querySelector('article.p:not([hidden])');
-    n.textContent=terms.length?shown+' of 6811 entries':'6,589 parameters';
+    n.textContent=terms.length?shown+' of 6854 entries':'6,632 parameters';
   }
 })();
 </script>
