@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{color-scheme:light}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>LED Segment Editor</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: live strip + segment table on the left, simulator + export on the right, mode colours and notes below */
+:root{
+  --bg:#eef1ee; --panel:#fbfcfa; --fg:#1c2421; --muted:#5d6b66; --line:#cdd6d1; --accent:#1f7a8c;
+  --warn:#b23a3a; --strip:#1a1f1d; --ledoff:#2c3431; --sel:#e0b44a;
+  --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --body:"Source Sans 3","Segoe UI",Roboto,Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#141a18; --panel:#1b2320; --fg:#e3ebe7; --muted:#9aaba4; --line:#2f3b37; --accent:#5cc2d6;
+  --warn:#e27777; --strip:#0b0e0d; --ledoff:#232b28; --sel:#e0b44a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141a18; --panel:#1b2320; --fg:#e3ebe7; --muted:#9aaba4; --line:#2f3b37; --accent:#5cc2d6;
+  --warn:#e27777; --strip:#0b0e0d; --ledoff:#232b28; --sel:#e0b44a; color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.5}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:16px;padding-block:24px 56px;display:flex;flex-direction:column;gap:24px}
+h1,h2,h3{font-family:var(--display);margin:0;text-wrap:balance;letter-spacing:.01em}
+h1{font-size:clamp(1.8rem,4.5vw,2.6rem)}
+h2{font-size:1.35rem}
+h3{font-size:1.1rem}
+p{margin:0;max-width:72ch}
+.eyebrow{font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--accent)}
+.lede{color:var(--muted)}
+.main{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:20px;align-items:start}
+@media (max-width:900px){.main{grid-template-columns:1fr}}
+.col{display:flex;flex-direction:column;gap:20px;min-width:0}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:14px;min-width:0;display:flex;flex-direction:column;gap:12px}
+.hint{font-size:.82rem;color:var(--muted)}
+.strip{background:var(--strip);border-radius:8px;padding:12px;display:grid;grid-template-columns:repeat(auto-fill,minmax(34px,1fr));gap:8px;touch-action:none;user-select:none}
+.led{display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer}
+.led i{display:block;width:24px;height:24px;border-radius:50%;background:var(--ledoff);box-shadow:0 0 0 2px transparent;transition:box-shadow .1s}
+.led span{font-family:var(--mono);font-size:.66rem;color:#8a9692}
+.led.insel i{box-shadow:0 0 0 2px var(--sel)}
+.led.drag i{box-shadow:0 0 0 2px #fff}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:720px;font-size:.86rem}
+th,td{padding:6px 6px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}
+thead th{font-family:var(--display);font-size:.95rem;letter-spacing:.03em;border-bottom:2px solid var(--fg)}
+tr.active{background:color-mix(in srgb,var(--sel) 14%,transparent)}
+td.n{font-family:var(--mono)}
+input[type=number]{width:4.2em;font-family:var(--mono);font-size:.85rem;padding:3px 4px;border:1px solid var(--line);border-radius:4px;background:var(--bg);color:var(--fg)}
+select{font-family:var(--body);font-size:.85rem;padding:3px 4px;border:1px solid var(--line);border-radius:4px;background:var(--bg);color:var(--fg);max-width:100%}
+.ovl{display:flex;flex-wrap:wrap;gap:3px 8px;font-size:.78rem}
+.ovl label{display:inline-flex;gap:3px;align-items:center;white-space:nowrap}
+.sw{display:inline-block;width:12px;height:12px;border-radius:3px;border:1px solid var(--line);vertical-align:-1px;margin-right:4px}
+.ctl{display:grid;grid-template-columns:1fr auto;gap:8px 10px;align-items:center}
+.ctl label{font-size:.88rem}
+.ctl output{font-family:var(--mono);font-size:.82rem;font-variant-numeric:tabular-nums}
+.ctl input[type=range]{grid-column:1 / -1;width:100%;accent-color:var(--accent)}
+.ctl .full{grid-column:1 / -1}
+.chk{display:flex;gap:8px;align-items:center;font-size:.88rem}
+.chk input{accent-color:var(--accent);width:16px;height:16px}
+.row{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+button{font-family:var(--mono);font-size:.78rem;padding:5px 9px;border:1px solid var(--line);background:var(--bg);color:var(--fg);border-radius:4px;cursor:pointer}
+button:hover{border-color:var(--accent)}
+button.primary{background:var(--accent);color:var(--bg);border-color:var(--accent)}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+textarea{width:100%;box-sizing:border-box;min-height:220px;font-family:var(--mono);font-size:.78rem;background:var(--bg);color:var(--fg);border:1px solid var(--line);border-radius:4px;padding:8px;resize:vertical}
+.modes{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:10px}
+.modes .m{display:flex;flex-direction:column;gap:4px}
+.modes small{color:var(--muted);font-size:.78rem}
+.warn{color:var(--warn);font-size:.84rem}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+ul{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:6px}
+code{font-family:var(--mono);font-size:.86em}
+.tag{font-family:var(--mono);font-size:.72rem;padding:1px 7px;border-radius:999px;border:1px solid currentColor;color:var(--warn)}
+</style>
+</head>
+<body>
+<style>.apt-back{box-sizing:border-box;max-width:1180px;margin:0 auto;padding:10px max(16px,env(safe-area-inset-right,0px)) 0 max(16px,env(safe-area-inset-left,0px));font:500 14px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif}.apt-back a{color:inherit;opacity:.8;text-decoration:none;display:inline-flex;gap:6px;align-items:center;padding:4px 10px;border:1px solid currentColor;border-radius:999px}.apt-back a:hover,.apt-back a:focus-visible{opacity:1}</style>
+<nav class="apt-back" aria-label="Site"><a href="./">← ArduPilot Tools</a></nav>
+<div class="wrap">
+  <header style="display:flex;flex-direction:column;gap:8px">
+    <span class="eyebrow">ArduPlane Stratos · NTF_LS* LED segments</span>
+    <h1>LED Segment Editor</h1>
+    <p class="lede">Split a NeoPixel strip into up to 8 segments, INAV style: navigation lights, flight-mode colour, battery bar, strobe. The preview runs the same rules as the firmware. Export a <code>.param</code> file and load it in Mission Planner.</p>
+    <p><span class="tag">needs Stratos firmware with LED segments (not released yet)</span></p>
+  </header>
+
+  <div class="main">
+    <div class="col">
+      <section class="panel" aria-labelledby="h-strip">
+        <div class="row" style="justify-content:space-between">
+          <h2 id="h-strip">Strip</h2>
+          <div class="row">
+            <label class="hint" for="ledlen">NTF_LED_LEN</label>
+            <input type="number" id="ledlen" min="1" max="127" value="16">
+          </div>
+        </div>
+        <div class="strip" id="strip" role="group" aria-label="LED strip preview"></div>
+        <p class="hint">LED 1 is the first LED after the data input. Drag across LEDs to place the highlighted segment. Where segments overlap, the higher-numbered one wins. Uncovered LEDs stay off.</p>
+        <p class="hint" id="ramwarn"></p>
+      </section>
+
+      <section class="panel" aria-labelledby="h-seg">
+        <div class="row" style="justify-content:space-between">
+          <h2 id="h-seg">Segments</h2>
+          <div class="row">
+            <span class="hint">Presets:</span>
+            <button data-preset="nav">Nav lights</button>
+            <button data-preset="mode">Mode + battery bar</button>
+            <button data-preset="scan">Scanner + failsafe</button>
+            <button data-preset="clear">Clear</button>
+          </div>
+        </div>
+        <div class="scroll">
+          <table>
+            <thead><tr><th>#</th><th>START</th><th>LEN</th><th>FUNC</th><th>COLOR</th><th>OVL (effects)</th></tr></thead>
+            <tbody id="segs"></tbody>
+          </table>
+        </div>
+        <p class="hint">Click a row to make it the one you place by dragging on the strip. START 0 turns a segment off.</p>
+      </section>
+
+      <section class="panel" aria-labelledby="h-modes">
+        <h2 id="h-modes">Flight-mode colours <span class="hint" style="font-family:var(--mono)">NTF_LS_MODECLR = <b id="modeval"></b></span></h2>
+        <div class="modes" id="modes"></div>
+      </section>
+    </div>
+
+    <div class="col">
+      <section class="panel" aria-labelledby="h-sim">
+        <h2 id="h-sim">Simulate the aircraft</h2>
+        <div class="ctl">
+          <label for="s-mode">Flight mode</label><span></span>
+          <select id="s-mode" class="full"></select>
+          <label class="chk full"><input type="checkbox" id="s-armed"> Armed</label>
+          <label class="chk full"><input type="checkbox" id="s-prearm" checked> Pre-arm checks pass</label>
+          <label class="chk full"><input type="checkbox" id="s-fs"> Failsafe active (radio, battery, GCS or EKF)</label>
+          <label class="chk full"><input type="checkbox" id="s-usb"> USB connected (firmware dims to Low)</label>
+          <label for="s-batt">Battery remaining</label><output id="o-batt"></output>
+          <input type="range" id="s-batt" min="0" max="100" value="80">
+          <label class="chk full"><input type="checkbox" id="s-battok" checked> Capacity estimate available</label>
+          <label for="s-gps">GPS</label><span></span>
+          <select id="s-gps" class="full">
+            <option value="1">No fix</option><option value="2">2D fix</option><option value="3">3D fix</option><option value="4" selected>DGPS / SBAS</option><option value="6">RTK</option>
+          </select>
+          <label for="s-sats">Satellites</label><output id="o-sats"></output>
+          <input type="range" id="s-sats" min="0" max="30" value="16">
+          <label for="s-link">Link quality (RSSI)</label><output id="o-link"></output>
+          <input type="range" id="s-link" min="0" max="100" value="90">
+          <label class="chk full"><input type="checkbox" id="s-rssiok" checked> RSSI source configured</label>
+          <label for="s-thr">Throttle</label><output id="o-thr"></output>
+          <input type="range" id="s-thr" min="0" max="100" value="45">
+          <label for="s-bright">NTF_LED_BRIGHT</label><span></span>
+          <select id="s-bright" class="full"><option value="0">0 Off</option><option value="1">1 Low</option><option value="2">2 Medium</option><option value="3" selected>3 High</option></select>
+        </div>
+        <p class="hint">The preview shows colours at full screen brightness. The firmware scales them by NTF_LED_BRIGHT.</p>
+      </section>
+
+      <section class="panel" aria-labelledby="h-exp">
+        <h2 id="h-exp">Export</h2>
+        <div class="ctl">
+          <label for="servo">LED output (SERVOn_FUNCTION 120)</label><span></span>
+          <select id="servo" class="full"></select>
+          <label class="chk full"><input type="checkbox" id="settypes" checked> Set NTF_LED_TYPES 257 (board LED + NeoPixel)</label>
+        </div>
+        <textarea id="out" spellcheck="false" aria-label="Parameter file"></textarea>
+        <div class="row">
+          <button class="primary" id="dl">Download .param</button>
+          <button id="copy">Copy</button>
+          <label class="hint" style="display:inline-flex;gap:6px;align-items:center">Import .param <input type="file" id="imp" accept=".param,.parm,.txt"></label>
+        </div>
+        <p class="hint" id="status" aria-live="polite"></p>
+      </section>
+    </div>
+  </div>
+
+  <section class="cols">
+    <div class="panel">
+      <h3>Wiring</h3>
+      <ul>
+        <li>Use an output whose timer drives nothing else. Every output in a timer group shares one protocol, so a strip in a DShot motor group breaks.</li>
+        <li>SpeedyBee F405 WING Buzz: the LED pad is output 12 and has its timer to itself. The tone buzzer on S11 runs on a different timer, so melodies and the strip work together.</li>
+        <li>Also usable: speedybee F4 V3 output 9, AtomRC F405 NAVI output 9, Matek F405-TE output 12. Matek F405-Wing: not the LED pad (no DMA), but output 9 works if you give up outputs 7 and 8 (same timer). Not usable (no DMA on the pad, or the pad drives a buzzer or relay): CoreWing F405 Wing V2 / Mini V2, Kakute F4 Wing Buzz, AtomRC NAVI Buzz, Omnibus F4 Pro.</li>
+        <li>Power the strip from 5 V, not the flight controller's 5 V pin if you run more than a few LEDs at full brightness.</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h3>Limits</h3>
+      <ul>
+        <li>RAM depends only on NTF_LED_LEN: about 96 bytes per LED when the LED output has its timer to itself, 384 when it shares the timer. It is set at boot and never changes with the pattern.</li>
+        <li>CPU grows with the number of LEDs your segments cover, not with the effect. Avoid stacking several full-length segments on top of each other.</li>
+        <li>Bench check before flying: compare the PM log (NLon, MaxT, Load) with NTF_LS_ENABLE 0 and 1, and confirm EKF3 starts and a log is written when you arm.</li>
+        <li>NTF_LED_LEN needs a reboot. The segment parameters apply live.</li>
+        <li>Battery needs a capacity estimate (BATT_CAPACITY). Without one the segment shows its COLOR.</li>
+        <li>NTF_LS_ENABLE 0 brings back the stock single-colour status strip.</li>
+      </ul>
+    </div>
+  </section>
+</div>
+
+<script>
+(() => {
+  // ---- firmware tables (libraries/AP_Notify/SerialLED.cpp) ----
+  const PAL = [[0,0,0],[255,255,255],[255,0,0],[255,60,0],[255,180,0],[128,255,0],[0,255,0],[0,255,96],
+               [0,255,255],[0,128,255],[0,0,255],[128,0,255],[255,0,255],[255,0,96],[255,110,0],[255,180,100]];
+  const PALN = ["Off","White","Red","Orange","Yellow","Lime","Green","Mint","Cyan","Light blue","Blue","Violet","Magenta","Pink","Amber","Warm white"];
+  const FUNCS = ["Off","Fixed colour","Flight mode","Arm state","Battery","GPS","Link quality","Throttle","Status"];
+  const OVLS = ["Blink","Strobe","Scanner","Failsafe","Bar","Reverse","Armed only"];
+  const OVL = {BLINK:1,STROBE:2,LARSON:4,WARNING:8,BAR:16,REVERSE:32,ONLY_ARMED:64};
+  const GROUPS = ["Manual · Stabilize · Training · Acro","FBWA · FBWB · Cruise · Autotune · Course Hold · Auto Trim",
+                  "Auto · Takeoff · Guided · Avoid ADSB · Thermal","RTL · QRTL · QLand · Loiter to QLand",
+                  "Loiter · Circle","QStabilize · QHover · QLoiter · QAutotune · QAcro"];
+  const MODES = [[0,"Manual"],[2,"Stabilize"],[3,"Training"],[4,"Acro"],[5,"FBWA"],[6,"FBWB"],[7,"Cruise"],[8,"Autotune"],
+                 [26,"Course Hold"],[27,"Auto Trim"],[10,"Auto"],[13,"Takeoff"],[15,"Guided"],[14,"Avoid ADSB"],[24,"Thermal"],
+                 [11,"RTL"],[21,"QRTL"],[20,"QLand"],[25,"Loiter to QLand"],[12,"Loiter"],[1,"Circle"],
+                 [17,"QStabilize"],[18,"QHover"],[19,"QLoiter"],[22,"QAutotune"],[23,"QAcro"]];
+  const BRIGHT = [0,0x33,0x7F,0xFF];
+  const NSEG = 8;
+
+  function modeGroup(m){
+    if ([0,2,3,4].includes(m)) return 0;
+    if ([5,6,7,8,26,27].includes(m)) return 1;
+    if ([10,13,14,15,24].includes(m)) return 2;
+    if ([11,20,21,25].includes(m)) return 3;
+    if ([1,12].includes(m)) return 4;
+    if ([17,18,19,22,23].includes(m)) return 5;
+    return 0;
+  }
+  const clamp = (v,a,b) => Math.min(b,Math.max(a,v));
+  const scale = (c,s) => c.map(v => Math.trunc(v*s/255));
+  function gradient(f){
+    f = clamp(f,0,1);
+    if (f < 0.5) return [255, Math.trunc(f*2*180), 0];
+    return [Math.trunc((1-f)*2*255), Math.trunc(180+(f-0.5)*2*75), 0];
+  }
+
+  // stock RGBLed status sequence, simplified to the cases the simulator can reach
+  function statusColour(sim, now){
+    const step = Math.floor(now/100) % 10;
+    const Y=[255,255,0], G=[0,255,0], B=[0,0,255], K=[0,0,0];
+    if (sim.fs) return step < 5 ? Y : K;
+    if (sim.armed) return sim.gps >= 3 ? G : B;
+    if (!sim.prearm) return [0,1,4,5].includes(step) ? Y : K;
+    if (sim.gps >= 4) return step % 2 ? K : G;
+    if (sim.gps === 3) return step < 5 ? G : K;
+    return step < 5 ? B : K;
+  }
+
+  // ---- state ----
+  const blank = () => ({start:0,len:0,func:0,colour:0,ovl:0});
+  let st = {ledlen:16, segs:Array.from({length:NSEG},blank), modeclr:[4,6,10,3,8,11], active:0, servo:12, settypes:true};
+  try { const s = JSON.parse(localStorage.getItem("ledseg-editor")||"null"); if (s && s.segs && s.segs.length===NSEG) st = Object.assign(st,s); } catch(e){}
+  const save = () => { try { localStorage.setItem("ledseg-editor", JSON.stringify(st)); } catch(e){} };
+
+  const $ = id => document.getElementById(id);
+  const sim = {};
+  function readSim(){
+    sim.mode = +$("s-mode").value; sim.armed = $("s-armed").checked; sim.prearm = $("s-prearm").checked;
+    sim.fs = $("s-fs").checked; sim.usb = $("s-usb").checked; sim.batt = +$("s-batt").value; sim.battok = $("s-battok").checked;
+    sim.gps = +$("s-gps").value; sim.sats = +$("s-sats").value; sim.link = +$("s-link").value/100; sim.rssiok = $("s-rssiok").checked;
+    sim.thr = +$("s-thr").value; sim.bright = +$("s-bright").value;
+    $("o-batt").textContent = sim.batt+" %"; $("o-sats").textContent = sim.sats; $("o-link").textContent = Math.round(sim.link*100)+" %"; $("o-thr").textContent = sim.thr+" %";
+  }
+
+  // ---- mirror of SerialLED::draw_segments() ----
+  function draw(now){
+    const n = st.ledlen, out = Array.from({length:n},()=>[0,0,0]);
+    let brightness = BRIGHT[sim.bright];
+    if (sim.usb && brightness > 0x33) brightness = 0x33;
+    for (const seg of st.segs){
+      if (seg.start <= 0 || seg.len <= 0) continue;
+      if ((seg.ovl & OVL.ONLY_ARMED) && !sim.armed) continue;
+      const first = seg.start-1, len = seg.len;
+      let c = PAL[seg.colour & 15], level = -1;
+      switch (seg.func){
+        case 1: break;
+        case 2: c = PAL[(modeclrValue() >> (4*modeGroup(sim.mode))) & 15]; break;
+        case 3: c = sim.armed ? PAL[6] : (sim.prearm ? PAL[10] : PAL[14]); break;
+        case 4: if (sim.battok){ level = sim.batt*0.01; c = gradient(level); } break;
+        case 5: c = sim.gps < 3 ? PAL[2] : (sim.gps === 3 ? PAL[4] : PAL[6]); level = sim.sats/20; break;
+        case 6: if (sim.rssiok){ level = sim.link; c = gradient(level); } break;
+        case 7: level = clamp(sim.thr*0.01,0,1); if (!(seg.ovl & OVL.BAR)) c = scale(c, Math.trunc(level*255)); break;
+        case 8: c = statusColour(sim, now).map(v => v ? 255 : 0); break;
+        default: continue;
+      }
+      if ((seg.ovl & OVL.WARNING) && sim.fs) c = (Math.floor(now/200) & 1) ? PAL[2] : PAL[0];
+      if ((seg.ovl & OVL.BLINK) && (Math.floor(now/500) & 1)) c = PAL[0];
+      if (seg.ovl & OVL.STROBE){ const p = now % 1200; if (p < 50 || (p >= 150 && p < 200)) c = PAL[1]; }
+      let lit = len;
+      if ((seg.ovl & OVL.BAR) && level >= 0) lit = Math.trunc(clamp(level,0,1)*len + 0.5);
+      let scan = -1;
+      if ((seg.ovl & OVL.LARSON) && len > 1){ const period = 2*(len-1), step = Math.floor(now/60) % period; scan = step < len ? step : period-step; }
+      for (let i=0;i<len;i++){
+        const ledNo = first + ((seg.ovl & OVL.REVERSE) ? len-1-i : i);
+        if (ledNo >= n) continue;
+        let o = i < lit ? c : PAL[0];
+        if (scan >= 0){ const d = Math.abs(i-scan); if (d === 1) o = scale(o,64); else if (d > 1) o = scale(o,16); }
+        out[ledNo] = scale(o, brightness);
+      }
+    }
+    // show at screen brightness: undo the NTF_LED_BRIGHT scaling for display
+    return out.map(o => brightness ? o.map(v => Math.min(255, Math.round(v*255/brightness))) : o);
+  }
+
+  function modeclrValue(){ return st.modeclr.reduce((a,c,i)=>a + (c << (4*i)), 0); }
+
+  // ---- UI build ----
+  const strip = $("strip");
+  let leds = [];
+  function buildStrip(){
+    strip.innerHTML = ""; leds = [];
+    for (let i=0;i<st.ledlen;i++){
+      const d = document.createElement("div"); d.className = "led"; d.dataset.i = i;
+      d.innerHTML = "<i></i><span>"+(i+1)+"</span>";
+      strip.appendChild(d); leds.push(d);
+    }
+    // firmware: (24*N + 9) bits, 4 bytes per bit per channel; 1 channel when the strip is alone on its timer
+    const bits = 24*st.ledlen + 9, alone = bits*4, shared = bits*16;
+    $("ramwarn").className = alone > 6400 ? "warn" : "hint";
+    $("ramwarn").textContent = "Output buffer RAM for "+st.ledlen+" LEDs: "+(alone/1024).toFixed(1)+" KB when the LED output has its timer to itself, "+(shared/1024).toFixed(1)+" KB when it shares the timer with other outputs. Effects don't change it."+(alone > 6400 ? " On F405 boards, check that EKF3 still starts." : "");
+    markSel();
+  }
+  function markSel(){
+    const s = st.segs[st.active];
+    leds.forEach((d,i) => d.classList.toggle("insel", s.start > 0 && i >= s.start-1 && i < s.start-1+s.len));
+  }
+
+  let drag = null;
+  strip.addEventListener("pointerdown", e => {
+    const d = e.target.closest(".led"); if (!d) return;
+    drag = {a:+d.dataset.i, b:+d.dataset.i}; strip.setPointerCapture(e.pointerId); showDrag();
+  });
+  strip.addEventListener("pointermove", e => {
+    if (!drag) return;
+    const el = document.elementFromPoint(e.clientX, e.clientY); const d = el && el.closest(".led");
+    if (d){ drag.b = +d.dataset.i; showDrag(); }
+  });
+  const endDrag = () => {
+    if (!drag) return;
+    const a = Math.min(drag.a,drag.b), b = Math.max(drag.a,drag.b);
+    const s = st.segs[st.active]; s.start = a+1; s.len = b-a+1; if (!s.func) s.func = 1;
+    drag = null; leds.forEach(d=>d.classList.remove("drag")); renderSegs(); changed();
+  };
+  strip.addEventListener("pointerup", endDrag); strip.addEventListener("pointercancel", () => { drag=null; leds.forEach(d=>d.classList.remove("drag")); });
+  function showDrag(){ const a=Math.min(drag.a,drag.b), b=Math.max(drag.a,drag.b); leds.forEach((d,i)=>d.classList.toggle("drag", i>=a && i<=b)); }
+
+  const swatch = c => '<span class="sw" style="background:rgb('+PAL[c].join(",")+')"></span>';
+  function colourSelect(v){ return PALN.map((n,i)=>'<option value="'+i+'"'+(i===v?" selected":"")+'>'+i+' '+n+'</option>').join(""); }
+
+  function renderSegs(){
+    const tb = $("segs"); tb.innerHTML = "";
+    st.segs.forEach((s,k) => {
+      const tr = document.createElement("tr"); if (k === st.active) tr.className = "active";
+      tr.innerHTML =
+        '<td class="n"><label><input type="radio" name="act" '+(k===st.active?"checked":"")+' aria-label="Place segment '+(k+1)+'"> '+(k+1)+'</label></td>'+
+        '<td><input type="number" min="0" max="127" data-f="start" value="'+s.start+'"></td>'+
+        '<td><input type="number" min="0" max="127" data-f="len" value="'+s.len+'"></td>'+
+        '<td><select data-f="func">'+FUNCS.map((n,i)=>'<option value="'+i+'"'+(i===s.func?" selected":"")+'>'+i+' '+n+'</option>').join("")+'</select></td>'+
+        '<td>'+swatch(s.colour)+'<select data-f="colour">'+colourSelect(s.colour)+'</select></td>'+
+        '<td><div class="ovl">'+OVLS.map((n,b)=>'<label><input type="checkbox" data-b="'+b+'"'+((s.ovl>>b)&1?" checked":"")+'>'+n+'</label>').join("")+'</div></td>';
+      tr.addEventListener("click", e => { if (st.active !== k){ st.active = k; [...tb.rows].forEach((r,j)=>{ r.classList.toggle("active", j===k); r.querySelector("input[type=radio]").checked = j===k; }); markSel(); save(); } });
+      tr.querySelectorAll("[data-f]").forEach(inp => inp.addEventListener("change", () => {
+        let v = parseInt(inp.value,10); if (isNaN(v)) v = 0;
+        if (inp.dataset.f === "start" || inp.dataset.f === "len") v = clamp(v,0,127);
+        s[inp.dataset.f] = v;
+        if (inp.dataset.f === "colour") inp.previousElementSibling.style.background = "rgb("+PAL[v].join(",")+")";
+        changed();
+      }));
+      tr.querySelectorAll("[data-b]").forEach(cb => cb.addEventListener("change", () => {
+        const bit = 1 << +cb.dataset.b; s.ovl = cb.checked ? (s.ovl | bit) : (s.ovl & ~bit); changed();
+      }));
+      tb.appendChild(tr);
+    });
+  }
+
+  function renderModes(){
+    const box = $("modes"); box.innerHTML = "";
+    GROUPS.forEach((g,i) => {
+      const d = document.createElement("div"); d.className = "m";
+      d.innerHTML = '<label for="mg'+i+'">'+swatch(st.modeclr[i])+'<b>Group '+(i+1)+'</b></label><small>'+g+'</small><select id="mg'+i+'">'+colourSelect(st.modeclr[i])+'</select>';
+      d.querySelector("select").addEventListener("change", e => { st.modeclr[i] = +e.target.value; d.querySelector(".sw").style.background = "rgb("+PAL[st.modeclr[i]].join(",")+")"; changed(); });
+      box.appendChild(d);
+    });
+  }
+
+  // ---- export / import ----
+  function paramText(){
+    const L = ["# LED segments - ArduPilot Tools LED Segment Editor", "# needs ArduPlane Stratos with NTF_LS* support"];
+    if (st.settypes) L.push("NTF_LED_TYPES,257");
+    L.push("SERVO"+st.servo+"_FUNCTION,120", "NTF_LED_LEN,"+st.ledlen, "NTF_LS_ENABLE,1", "NTF_LS_MODECLR,"+modeclrValue());
+    st.segs.forEach((s,k) => {
+      const p = "NTF_LS"+(k+1)+"_";
+      L.push(p+"START,"+s.start, p+"LEN,"+s.len, p+"FUNC,"+s.func, p+"COLOR,"+s.colour, p+"OVL,"+s.ovl);
+    });
+    return L.join("\n")+"\n";
+  }
+  function importText(txt){
+    let hits = 0;
+    txt.split(/\r?\n/).forEach(line => {
+      const m = line.trim().match(/^([A-Z0-9_]+)[,\s\t]+(-?[\d.]+)/); if (!m) return;
+      const name = m[1], v = Math.round(parseFloat(m[2]));
+      let mm;
+      if (name === "NTF_LED_LEN"){ st.ledlen = clamp(v,1,127); hits++; }
+      else if (name === "NTF_LS_MODECLR"){ st.modeclr = st.modeclr.map((_,i)=>(v >> (4*i)) & 15); hits++; }
+      else if ((mm = name.match(/^NTF_LS([1-8])_(START|LEN|FUNC|COLOR|OVL)$/))){
+        const s = st.segs[+mm[1]-1], f = {START:"start",LEN:"len",FUNC:"func",COLOR:"colour",OVL:"ovl"}[mm[2]];
+        s[f] = v; hits++;
+      }
+      else if ((mm = name.match(/^SERVO(\d+)_FUNCTION$/)) && v === 120){ st.servo = +mm[1]; hits++; }
+    });
+    return hits;
+  }
+
+  function changed(){ markSel(); $("modeval").textContent = modeclrValue(); $("out").value = paramText(); save(); }
+
+  $("dl").addEventListener("click", () => {
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([paramText()],{type:"text/plain"})); a.download = "led_segments.param"; a.click();
+    setTimeout(()=>URL.revokeObjectURL(a.href), 1000);
+  });
+  $("copy").addEventListener("click", async () => {
+    try { await navigator.clipboard.writeText(paramText()); $("status").textContent = "Copied."; }
+    catch(e){ $("out").select(); $("status").textContent = "Select-all done; press Ctrl+C."; }
+  });
+  $("imp").addEventListener("change", e => {
+    const f = e.target.files[0]; if (!f) return;
+    f.text().then(t => { const n = importText(t); buildAll(); $("status").textContent = n ? "Imported "+n+" LED parameters from "+f.name+"." : "No NTF_LS* parameters found in "+f.name+"."; });
+  });
+
+  // ---- presets ----
+  const PRESETS = {
+    nav:  { ledlen:12, segs:[{start:1,len:4,func:1,colour:2,ovl:0},{start:5,len:4,func:1,colour:6,ovl:0},{start:9,len:4,func:1,colour:0,ovl:2}] },
+    mode: { ledlen:16, segs:[{start:1,len:8,func:2,colour:0,ovl:8},{start:9,len:8,func:4,colour:1,ovl:16}] },
+    scan: { ledlen:16, segs:[{start:1,len:16,func:2,colour:0,ovl:4|8}] },
+    clear:{ ledlen:null, segs:[] }
+  };
+  document.querySelectorAll("[data-preset]").forEach(b => b.addEventListener("click", () => {
+    const p = PRESETS[b.dataset.preset];
+    if (p.ledlen) st.ledlen = p.ledlen;
+    st.segs = Array.from({length:NSEG}, (_,k) => Object.assign(blank(), p.segs[k]||{}));
+    st.active = 0; buildAll();
+  }));
+
+  // ---- static selects ----
+  $("s-mode").innerHTML = MODES.map(([n,name]) => '<option value="'+n+'"'+(n===5?" selected":"")+'>'+name+' ('+n+')</option>').join("");
+  $("servo").innerHTML = Array.from({length:16},(_,i)=>'<option value="'+(i+1)+'">SERVO'+(i+1)+'</option>').join("");
+  $("servo").addEventListener("change", e => { st.servo = +e.target.value; changed(); });
+  $("settypes").addEventListener("change", e => { st.settypes = e.target.checked; changed(); });
+  $("ledlen").addEventListener("change", e => { st.ledlen = clamp(parseInt(e.target.value,10)||1,1,127); e.target.value = st.ledlen; buildStrip(); changed(); });
+  document.querySelectorAll("#h-sim ~ .ctl input, #h-sim ~ .ctl select").forEach(el => el.addEventListener("input", readSim));
+
+  function buildAll(){
+    $("ledlen").value = st.ledlen; $("servo").value = st.servo; $("settypes").checked = st.settypes;
+    buildStrip(); renderSegs(); renderModes(); changed();
+  }
+
+  // ---- animation at the firmware's 25 Hz ----
+  const t0 = performance.now();
+  let lastTick = -1;
+  function frame(){
+    const now = Math.floor(performance.now() - t0), tick = Math.floor(now/40);
+    if (tick !== lastTick){
+      lastTick = tick;
+      const cols = draw(tick*40);
+      cols.forEach((c,i) => { if (leds[i]){ const on = c[0]|c[1]|c[2]; const i2 = leds[i].firstChild;
+        i2.style.background = on ? "rgb("+c.join(",")+")" : ""; i2.style.boxShadow = on ? "0 0 10px rgb("+c.join(",")+")" : ""; } });
+    }
+    requestAnimationFrame(frame);
+  }
+  readSim(); buildAll(); requestAnimationFrame(frame);
+})();
+</script>
+<style>.apt-support{box-sizing:border-box;max-width:1080px;margin:28px auto 36px;padding:12px 16px;border:1px dashed currentColor;border-radius:8px;font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;color:inherit;opacity:.78}.apt-support a{color:inherit;font-weight:600;text-decoration:underline}.apt-wrap{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}</style>
+<div class="apt-wrap"><p class="apt-support">☕ If this tool saved you time (or a plane), a tip helps keep it going: <a href="https://paypal.me/iamwinq" target="_blank" rel="noopener">paypal.me/iamwinq</a> · <a href="./">more ArduPilot tools</a> · <a href="https://discord.gg/9eanVaHhP" target="_blank" rel="noopener">💬 Join the Stratos Discord</a> <img class="apt-hits" src="https://hits.sh/erwinquilloy.github.io/ardupilot-tools/led-editor.svg?label=visits&amp;style=flat-square&amp;color=6b7a86&amp;labelColor=3b4650" alt="page visits" height="18" loading="lazy" referrerpolicy="no-referrer-when-downgrade" onerror="this.remove()" style="vertical-align:middle;margin-left:6px"></p></div>
+<script data-goatcounter="https://windfpv.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
