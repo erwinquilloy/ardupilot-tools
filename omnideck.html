@@ -306,6 +306,13 @@ footer { margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--rule);
   <li><b>Battery capacity:</b> ArduPilot sends <code>BATT_CAPACITY</code>. For INAV and Betaflight enter the pack size under <b>Battery mAh (INAV/BF only)</b>. The battery bar also needs a working current sensor.</li>
   <li><b>INAV virtual pitot</b> sends an estimate as if it were airspeed. Set the pitot to NONE if you would rather see ground speed on the tape.</li>
 </ul>
+<h3>Link settings on the transmitter</h3>
+<div class="tbl"><table>
+<tr><th>Link</th><th>Setting</th></tr>
+<tr><td>ELRS</td><td>Telemetry ratio <b>1:8 or more often</b> (1:4, 1:2).</td></tr>
+<tr><td>TBS Crossfire</td><td><b>Dynamic</b> or <b>150 Hz forced</b>. At 50 Hz the telemetry runs seconds late with any flight controller, and Dynamic drops to 50 Hz far out (<a href="#crossfire-50hz">why</a>).</td></tr>
+<tr><td>mLRS, F.Port</td><td>The defaults work.</td></tr>
+</table></div>
 </section>
 
 <section id="main-page" data-nav="Main page and HUD" data-group="The pages">
