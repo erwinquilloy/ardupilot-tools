@@ -224,7 +224,7 @@ footer { margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--rule);
 
 <section id="install" data-nav="Install" data-group="Setup">
 <h2>Install</h2>
-<p>Download the package for your radio from the release page and unzip it on the PC; the Ethos Suite zip goes to Ethos Suite as it is, unopened. Each package holds an <code>INSTALL.txt</code> with the same steps.</p>
+<p>Download the package for your radio from the release page and unzip it on the PC; the Ethos Suite zip goes to Ethos Suite as it is, unopened. The other two zips each hold an <code>INSTALL.txt</code> with the same steps.</p>
 <div class="tbl"><table>
 <tr><th>Package</th><th>For</th></tr>
 <tr><td><code>OmniDeck_Ethos_Suite_0.3.0.zip</code></td><td>Any Ethos colour radio, installed with <b>Ethos Suite</b>. Holds both screen sizes; the radio picks the right one.</td></tr>
@@ -243,10 +243,10 @@ footer { margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--rule);
 <h3>With Ethos Suite</h3>
 <ol class="steps">
   <li>Connect the radio by USB and start <b>Ethos Suite</b>.</li>
-  <li>Open <b>Lua Library › Install from local .zip</b> and pick <code>OmniDeck_Ethos_Suite_0.3.0.zip</code>. The Suite installs OmniDeck to <code>scripts/omnideck/</code> on the radio's SD card or internal storage, whichever the radio uses, and shows its version.</li>
+  <li>Open <b>Lua Library › Install from local .zip</b> and pick <code>OmniDeck_Ethos_Suite_0.3.0.zip</code>. The Suite installs OmniDeck to <code>scripts/omnideck/</code> on the radio's SD card or internal storage, whichever the radio uses.</li>
   <li>Disconnect and restart the radio, then carry on from step 4 under <b>By hand</b>.</li>
 </ol>
-<p>The Suite package has no <code>missions</code> folder: to load ArduPilot missions, make <code>scripts/omnideck/missions/</code> yourself. The <code>logs</code> folder appears with the first flight log. Map tiles are never in a package; copy them as in <a href="#tiles">Map tiles</a>.</p>
+<p>If <code>scripts/omnideck/missions/</code> isn't there afterwards, make it for your ArduPilot <code>.waypoints</code> files; the <code>logs</code> folder appears with the first flight log. Map tiles are never in a package; copy them as in <a href="#tiles">Map tiles</a>.</p>
 <h3>By hand</h3>
 <ol class="steps">
   <li>Connect the radio by USB and choose the SD card, or put the card in a card reader.</li>
