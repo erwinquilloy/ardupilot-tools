@@ -325,11 +325,12 @@ footer { margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--rule);
 <h2>Memory</h2>
 <p>A TX12 MK2 gives Lua scripts about <b>127 KB</b>. EdgeTX stops every Lua script with "Lua disabled!" once that is used up, and its count includes garbage not yet collected. OmniDeck Mono loads one page at a time, clears the garbage once it is 6 KB above the live data, and never lets the total pass 106 KB.</p>
 <div class="tbl"><table>
-<tr><th>Measured on a TX12 MK2</th><th>Lua memory</th></tr>
+<tr><th>Measured on a TX12 MK2 with 0.1.0</th><th>Lua memory</th></tr>
 <tr><td>Telemetry script, ArduPilot or INAV, flying pages</td><td>about 97 of 127 KB</td></tr>
 <tr><td>At disarm with the flight log on</td><td>101 of 127 KB</td></tr>
 <tr><td>Over mLRS, which sends bigger telemetry frames</td><td>107 of 127 KB</td></tr>
 </table></div>
+<p>0.1.1 leaves out the colour builds' code that Mono never uses and loads the voice phrase tables only when a mode changes or a message arrives: in the simulator that is about 15 KB less live memory than 0.1.0.</p>
 <p>The Link check page shows LUA MEM as two figures: the live data, and PK, the highest it has reached, garbage included.</p>
 </section>
 
@@ -357,7 +358,7 @@ footer { margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--rule);
 <tr><td>ArduPilot on TX12 MK2, EdgeTX 2.12: all pages, voice, summary</td><td class="ok">Bench pass</td></tr>
 <tr><td>INAV over ExpressLRS: arm and disarm cycles, flight log</td><td class="ok">Bench pass</td></tr>
 <tr><td>mLRS 1.4.04 on TX12 MK2: all pages, arming</td><td class="ok">Bench pass</td></tr>
-<tr><td>Freeze after leaving OmniDeck while armed, over mLRS</td><td>Seen once; memory margin raised, retest pending</td></tr>
+<tr><td>Freeze and "not enough memory" on the TX12 MK2 (ELRS and mLRS)</td><td>Memory use cut in 0.1.1; retest pending</td></tr>
 <tr><td>Flight test</td><td class="na">Not yet</td></tr>
 <tr><td>Pocket and Boxer</td><td class="na">Not yet</td></tr>
 </table></div>
