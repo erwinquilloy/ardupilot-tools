@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" type="image/png" href="omnideck-icon.png">
+<link rel="apple-touch-icon" href="omnideck-apple-touch-icon.png">
+<meta name="description" content="OmniDeck Mono 0.1.0: the OmniDeck telemetry screen for EdgeTX black-and-white radios (TX12 MK2, Pocket, Boxer). Install, keys, pages, settings, memory and problems.">
+<title>OmniDeck Mono Guide</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: sticky outline rail on the left, one reading column on the right; rail folds into a drawer on phones. */
+:root {
+  --bg: #f4f6f8;
+  --surface: #ffffff;
+  --ink: #15202b;
+  --muted: #5b6876;
+  --rule: #d8dee5;
+  --accent: #1679b0;      /* the widget's home-blue, darkened for paper */
+  --accent-soft: #e2f1fa;
+  --amber: #b27c00;       /* the aircraft symbol */
+  --code-bg: #eef2f5;
+  --good: #1d8a4a; --warn: #b26a00; --bad: #c43a3a;
+  --f-display: "Barlow Semi Condensed", "Arial Narrow", "Segoe UI", sans-serif;
+  --f-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+  --rail: 248px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0f1419; --surface: #161d24; --ink: #e3e9ef; --muted: #93a1af; --rule: #27313b;
+  --accent: #50c8ff; --accent-soft: #12303f; --amber: #ffd200; --code-bg: #1b242d;
+  --good: #5ae68c; --warn: #ffbe28; --bad: #ff6a6a; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0f1419; --surface: #161d24; --ink: #e3e9ef; --muted: #93a1af; --rule: #27313b;
+  --accent: #50c8ff; --accent-soft: #12303f; --amber: #ffd200; --code-bg: #1b242d;
+  --good: #5ae68c; --warn: #ffbe28; --bad: #ff6a6a; color-scheme: dark }
+
+* { box-sizing: border-box }
+html { scroll-behavior: smooth; scroll-padding-top: 16px }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto } }
+body { background: var(--bg); color: var(--ink); font: 15.5px/1.62 var(--f-body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)) }
+a { color: var(--accent); text-underline-offset: 2px }
+a:focus-visible, summary:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px }
+
+.shell { display: grid; grid-template-columns: var(--rail) minmax(0, 1fr); gap: 48px; max-width: 1180px; margin: 0 auto; padding-block: 28px 80px }
+
+/* outline rail */
+nav.rail { position: sticky; top: calc(16px + env(safe-area-inset-top, 0px)); align-self: start; max-height: calc(100vh - 32px); overflow-y: auto; padding-right: 6px; font-size: 13.5px }
+.rail .brand { display: flex; align-items: center; gap: 10px; margin-bottom: 18px }
+.rail .brand img { width: 30px; height: 30px }
+.rail .brand b { font: 700 19px/1 var(--f-display); letter-spacing: .02em }
+.rail .brand small { display: block; font: 500 11px/1.2 var(--f-mono); color: var(--muted); margin-top: 3px }
+.rail ol { list-style: none; margin: 0; padding: 0 }
+.rail > ol > li { margin-bottom: 2px }
+.rail a { display: block; color: var(--muted); text-decoration: none; padding: 4px 10px; border-left: 2px solid var(--rule); line-height: 1.35 }
+.rail a:hover { color: var(--ink) }
+.rail a.on { color: var(--accent); border-left-color: var(--accent); font-weight: 600 }
+.rail ol ol a { padding-left: 22px; font-size: 12.5px }
+.rail .group { font: 600 11px/1 var(--f-display); text-transform: uppercase; letter-spacing: .12em; color: var(--muted); margin: 16px 0 6px 12px }
+details.mobile-nav { display: none }
+
+main { min-width: 0; max-width: 820px }
+header.hero { padding-bottom: 26px; border-bottom: 1px solid var(--rule); margin-bottom: 8px }
+.logo { width: min(420px, 100%); height: auto; display: block }
+.logo.dark { display: none }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .logo.light { display: none } :root:not([data-theme="light"]) .logo.dark { display: block } }
+:root[data-theme="dark"] .logo.light { display: none } :root[data-theme="dark"] .logo.dark { display: block }
+.lede { font-size: 18px; line-height: 1.55; max-width: 62ch; margin: 18px 0 14px }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px }
+.chip { font: 500 12px/1 var(--f-mono); padding: 6px 9px; border: 1px solid var(--rule); border-radius: 4px; background: var(--surface); color: var(--muted) }
+.chip.v { color: var(--accent); border-color: var(--accent) }
+
+section { padding-top: 34px }
+h2 { font: 700 30px/1.15 var(--f-display); letter-spacing: .01em; margin: 0 0 12px; text-wrap: balance }
+h2 .num { font: 500 13px/1 var(--f-mono); color: var(--muted); margin-right: 10px; vertical-align: 5px }
+h3 { font: 600 21px/1.25 var(--f-display); margin: 28px 0 8px; text-wrap: balance }
+h4 { font: 600 12px/1.2 var(--f-display); text-transform: uppercase; letter-spacing: .12em; color: var(--muted); margin: 22px 0 8px }
+p, li { max-width: 68ch }
+ul, ol.steps { padding-left: 22px }
+li { margin: 4px 0 }
+code, .path { font: 13px/1.4 var(--f-mono); background: var(--code-bg); padding: 1px 5px; border-radius: 3px; overflow-wrap: anywhere }
+kbd { font: 600 12px/1 var(--f-mono); border: 1px solid var(--rule); border-bottom-width: 2px; border-radius: 4px; padding: 2px 6px; background: var(--surface) }
+
+figure { margin: 18px 0; }
+figure img, .shot { display: block; width: 100%; height: auto; border-radius: 6px; border: 1px solid var(--rule); background: #000; image-rendering: auto }
+figcaption { font-size: 13.5px; color: var(--muted); margin-top: 8px; line-height: 1.5 }
+.grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px }
+.grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px }
+.grid2 figure, .grid3 figure { margin: 0 }
+
+.tbl { overflow-x: auto; margin: 14px 0; border: 1px solid var(--rule); border-radius: 6px; background: var(--surface) }
+table { border-collapse: collapse; width: 100%; font-size: 14px; font-variant-numeric: tabular-nums }
+th, td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--rule); vertical-align: top }
+th { font: 600 12px/1.3 var(--f-display); text-transform: uppercase; letter-spacing: .08em; color: var(--muted); background: var(--code-bg) }
+tr:last-child td { border-bottom: 0 }
+td.ok { color: var(--good); font-weight: 500 } td.na { color: var(--muted) }
+
+.note { border: 1px solid var(--rule); border-left: 3px solid var(--accent); background: var(--surface); padding: 12px 16px; border-radius: 4px; margin: 16px 0; font-size: 14.5px }
+.note.warn { border-left-color: var(--warn) }
+.note b:first-child { font-family: var(--f-display); letter-spacing: .03em }
+
+/* annotated screen */
+.annot { position: relative; margin: 18px 0 10px }
+.annot img { display: block; width: 100%; height: auto; border-radius: 6px; border: 1px solid var(--rule) }
+.pin { position: absolute; transform: translate(-50%, -50%); width: 22px; height: 22px; border-radius: 50%;
+  background: #ffd200; color: #111; font: 700 11.5px/22px var(--f-mono); text-align: center; box-shadow: 0 0 0 2px #111, 0 1px 4px rgba(0,0,0,.5) }
+.pin.p { background: #50c8ff }
+.legend { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 28px; padding: 0; list-style: none; margin: 14px 0 0 }
+.legend li { display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 8px; max-width: none; font-size: 14px; line-height: 1.45; margin: 5px 0 }
+.legend .k { width: 20px; height: 20px; border-radius: 50%; background: #ffd200; color: #111; font: 700 11px/20px var(--f-mono); text-align: center; margin-top: 1px }
+.legend .k.p { background: #50c8ff }
+.legend b { font-weight: 600 }
+
+/* folder trees */
+pre.tree { font: 13px/1.6 var(--f-mono); background: var(--code-bg); border: 1px solid var(--rule); border-radius: 6px; padding: 14px 16px; overflow-x: auto; margin: 12px 0; color: var(--ink) }
+pre.tree .c { color: var(--muted) }
+pre.tree .h { color: var(--accent); font-weight: 500 }
+
+.tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--rule); margin-top: 18px; flex-wrap: wrap }
+.tabs button { font: 600 15px/1 var(--f-display); letter-spacing: .03em; padding: 10px 16px; border: 1px solid transparent; border-bottom: 0; background: none; color: var(--muted); cursor: pointer; border-radius: 6px 6px 0 0; margin-bottom: -1px }
+.tabs button[aria-selected="true"] { color: var(--ink); background: var(--surface); border-color: var(--rule) }
+.tabpanel { background: var(--surface); border: 1px solid var(--rule); border-top: 0; border-radius: 0 0 6px 6px; padding: 6px 20px 18px }
+
+ol.steps { counter-reset: s; list-style: none; padding-left: 0 }
+ol.steps > li { counter-increment: s; position: relative; padding-left: 38px; margin: 12px 0 }
+ol.steps > li::before { content: counter(s); position: absolute; left: 0; top: 1px; width: 24px; height: 24px; border-radius: 50%; border: 1.5px solid var(--accent); color: var(--accent); font: 600 12px/21px var(--f-mono); text-align: center }
+
+footer { margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--rule); font-size: 13px; color: var(--muted) }
+
+@media (max-width: 920px) {
+  .shell { grid-template-columns: minmax(0, 1fr); gap: 0; padding-top: 12px }
+  nav.rail { display: none }
+  details.mobile-nav { display: block; position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); border-bottom: 1px solid var(--rule); padding-block: 10px; margin-bottom: 14px }
+  body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg) }
+  details.mobile-nav summary { font: 600 15px/1.2 var(--f-display); cursor: pointer; letter-spacing: .03em }
+  details.mobile-nav ol { list-style: none; padding: 6px 0 4px; margin: 0; columns: 2; column-gap: 18px; font-size: 14px }
+  details.mobile-nav a { display: block; padding: 4px 0; text-decoration: none }
+}
+@media (max-width: 620px) {
+  .grid2, .grid3, .legend { grid-template-columns: minmax(0, 1fr) }
+  h2 { font-size: 26px }
+  .pin { width: 17px; height: 17px; font-size: 9px; line-height: 17px }
+  .tabpanel { padding: 4px 14px 14px }
+}
+.mono-shot { max-width: 536px; image-rendering: pixelated; background: #23292b !important }
+.grid2 .mono-shot { max-width: 100% }
+</style>
+
+<style>body{margin:0;padding-top:env(safe-area-inset-top,0px)}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<style>.apt-back{box-sizing:border-box;max-width:1180px;margin:0 auto;padding:10px max(16px,env(safe-area-inset-right,0px)) 0 max(16px,env(safe-area-inset-left,0px));font:500 14px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif}.apt-back a{color:inherit;opacity:.8;text-decoration:none;display:inline-flex;gap:6px;align-items:center;padding:4px 10px;border:1px solid currentColor;border-radius:999px}.apt-back a:hover,.apt-back a:focus-visible{opacity:1}</style>
+<nav class="apt-back" aria-label="Site"><a href="./">← ArduPilot Tools</a></nav>
+<div class="shell">
+<nav class="rail" aria-label="Outline">
+  <div class="brand"><img src="data:image/png;base64,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" alt=""><div><b>OmniDeck Mono</b><small>0.1.0 beta</small></div></div>
+  <ol id="outline"></ol>
+</nav>
+
+<main>
+<details class="mobile-nav"><summary>Contents</summary><ol id="outline-m"></ol></details>
+
+<header class="hero" id="top">
+  <h1 style="font: 700 44px/1.05 var(--f-display); margin: 6px 0 0; letter-spacing: .01em">OmniDeck Mono</h1>
+  <p class="lede">OmniDeck for EdgeTX radios with a 128 × 64 black-and-white screen. A free telemetry script for ArduPilot, INAV and Betaflight: horizon, map, messages, flight summary, flight log and voice call-outs, on six small pages.</p>
+  <p class="lede">Questions, ideas and flight reports: chat with us on the <a href="https://discord.gg/NrfaPSpEFp" target="_blank" rel="noopener">Arduplane Stratos Discord</a>. The colour version is the <a href="omnideck.html">OmniDeck guide</a>.</p>
+  <div class="chips"><span class="chip v">0.1.0 beta</span><span class="chip">TX12 MK2 · Pocket · Boxer</span><span class="chip">EdgeTX 2.12</span><span class="chip">ELRS · TBS · mLRS · S.Port · F.Port</span><span class="chip">GPL-3.0</span></div>
+  <figure><img class="mono-shot" src="data:image/png;base64,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" alt="OmniDeck Mono main page in FBWA, 1.5 km from home" width="536" height="280"><figcaption>Main page in FBWA, 1.5 km out, on its way home. Simulator render of the release code.</figcaption></figure>
+</header>
+
+<section id="status" data-nav="Status and radios" data-group="Overview">
+<h2>Status and radios</h2>
+<p><b>0.1.0, beta.</b> Bench-tested on a RadioMaster TX12 MK2 (EdgeTX 2.12) with ArduPilot and INAV over ExpressLRS, and over mLRS 1.4.04. Not flown yet, and not yet tried on the Pocket or Boxer.</p>
+<div class="tbl"><table>
+<tr><th>Radio</th><th>Screen</th><th>Status</th></tr>
+<tr><td>RadioMaster TX12 MK2</td><td>128 × 64</td><td class="ok">Tested (bench)</td></tr>
+<tr><td>RadioMaster Pocket, Boxer</td><td>128 × 64</td><td class="na">Not tested</td></tr>
+</table></div>
+<div class="tbl"><table>
+<tr><th>Flight controller</th><th>Links</th></tr>
+<tr><td>ArduPilot</td><td>FrSky passthrough over CRSF (ExpressLRS, TBS Crossfire, mLRS), S.Port, F.Port</td></tr>
+<tr><td>INAV, Betaflight</td><td>The radio's own telemetry sensors over CRSF or S.Port</td></tr>
+</table></div>
+</section>
+
+<section id="install" data-nav="Install" data-group="Setup">
+<h2>Install</h2>
+<ol class="steps">
+  <li>Download <code>OmniDeck_Mono_0.1.0.zip</code> from the <a href="https://github.com/erwinquilloy/OmniDeck/releases/tag/mono-v0.1.0">OmniDeck Mono release</a>.</li>
+  <li>Connect the radio by USB and pick <b>USB Storage (SD)</b>, or put the card in a card reader.</li>
+  <li>Copy the <code>SCRIPTS</code> folder from the zip to the <b>root</b> of the card, merging with the folder already there:
+<pre class="tree"><span class="h">SCRIPTS/</span>
+├── <span class="h">TELEMETRY/</span>omnid.luac        <span class="c">the telemetry script</span>
+├── <span class="h">OMNID/</span>
+│   ├── telem.luac etx.luac pmain.luac …   <span class="c">compiled pages and decoders</span>
+│   ├── audio/                  <span class="c">voice packs: Aria, Guy</span>
+│   ├── tones/                  <span class="c">info, warn, crit beeps</span>
+│   └── logs/                   <span class="c">one text file per flight, if turned on</span>
+└── <span class="h">TOOLS/</span>
+    └── OmniDeck Setup.lua      <span class="c">settings, saved per model</span></pre></li>
+  <li>On the model: <b>MODEL › DISPLAY</b>, pick a screen, set it to <b>Script</b> and choose <b>omnid</b>.</li>
+  <li>Open it from the main screen with the radio's telemetry key (<kbd>TELE</kbd> on the TX12 MK2).</li>
+  <li>Optional: run <b>SYS › Tools › OmniDeck Setup</b> once per model to pick units, voice and alarms.</li>
+</ol>
+<div class="note warn"><b>Keep the <code>.luac</code> files.</b> The telemetry code ships compiled because the radio runs out of memory compiling it itself ("not enough memory"). Don't put <code>telem.lua</code> on the card.</div>
+<div class="note"><b>Updating.</b> Copy the new <code>SCRIPTS</code> folder over the old one and replace the files. Your per-model settings in <code>SCRIPTS/OMNID/&lt;model&gt;.cfg</code> stay.</div>
+</section>
+
+<section id="keys" data-nav="Keys" data-group="Setup">
+<h2>Keys</h2>
+<div class="tbl"><table>
+<tr><th>Screen</th><th>Key</th><th>Does</th></tr>
+<tr><td>Telemetry screen</td><td><kbd>ENTER</kbd></td><td>next page</td></tr>
+<tr><td></td><td>wheel, <kbd>+</kbd> <kbd>−</kbd></td><td>scroll the messages and sensor pages</td></tr>
+<tr><td></td><td><kbd>ENTER</kbd> on the summary</td><td>back to the start page</td></tr>
+<tr><td>OmniDeck Setup</td><td>wheel</td><td>move between settings</td></tr>
+<tr><td></td><td><kbd>ENTER</kbd></td><td>edit; the wheel then changes the value; <kbd>ENTER</kbd> again keeps it</td></tr>
+<tr><td></td><td><kbd>RTN</kbd></td><td>leave; the changes apply now</td></tr>
+</table></div>
+</section>
+
+<section id="main-page" data-nav="Main page" data-group="The pages">
+<h2>Main page</h2>
+<figure><img class="mono-shot" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAhgAAAEYCAIAAACRDhjaAAAJt0lEQVR42u3dMXIjNxAF0E+Xb7C1yaaMWLyGM0cOlegCOo8uoEShI2c+j5KtvYNTJSxhDGAGGLwXkxQ5JNWF/kTjcr3dAwD/128uAQAKCQAKCQAKCQAKCQAoJAAoJAAoJAAoJACgkACgkAAwrt9LbvTr54crBRP559+/l33tf/7xlw9AQ9++/7AiASBaWwAoJABk4YwkjXqvn3uXWx/nUd/z8+OU9EZLbl/y3PRhyQJZwqPvwtbPf8njbP3etcqBevwv6vF/Y+v/uj0f04oEgGhtAaCQAJA1MpJ0yAlaZRvZsVfY+/kwTu+7x3OoyfxqPns9MolWj/PoNr2/XzV5z6P79sh0R95jZEUCgEICgEICQBbMSCAn3SeRznmbjK38mpzpWm19Xa32zZRcWysSAKK1BYBCAkBkJGn8e+RWfeoev/V2lkP04hfOJ47aBzb73qNZPjN7fs6tSABQSABQSACIWVuZedbWWXu+HPv5Gflz0iPj7LHvIQPvPZoxL+nxuqxIAIjWFgAKCQAxawtI1fneW8/tyITzsiKrGzLrdWY7ANHaAkAhASAykkz2e/aS+f5mK3FUX3vGnGO1vGTr86nZZ9bq8zPa/zQrEgAUEgAUEgAmdbne7l/e6NfPD1cKMmc+EXt3qPDt+w8rEgCitQWAQgJAFs5I3t5fXSnIGueUwGfPTy9WJABEawsAhQSAmLUFJFOcJd4jm6nZnzFjJlRz3Wrerx6PY0UCQLS2AFBIACAykpjtE3Ocztqj771PpXcGM/t3udX7Ndr7bkUCgEICgEICQGQkpE9PeYT7tvo9O5z1nPnRssOS51byfW+Vr1iRABCtLQAUEgAiI6Gsx1rSo9zzvnFmRuxVYqb5XVuznK3/N7Y+NysSAKK1BYBCAkBkJNTlEzFHi85nV3COXMSKBIBobQGAQgJAZCQ57dye2KMAWTEX6Z1Z9nhMKxIAFBIAFBIAIiMh8+QixD4n+4qKr09J5lFy35LrXDNHy4oEgGhtAaCQAMAWl+vt/uWN3t5fXan0n6WTAc57j7758HsLYE/PTy9WJABEawsAhQSA2EdC9ptbVfM49gr4XNXsZ+qRz3nv6q/V1oxtz0zOigQAhQQAhQSAyEhivhZk6H0nrXrrJTnKyt+LVtdhlnl9ViQAKCQAKCQAREZC7ImJPCnywjXzkt6ZVo/vY6vnbEUCQLS2AFBIAIiMhDiXPs6u3/M61+wRkWPl0HzxqOvcI8uxIgFAIQFAIQEgMhIgx81zq5mRxZjvVwbORaxIAFBIAFBIAIiMhOgFQ5xHsvQMNCsSABQSABQSACIjycz92ZKZUbhuI58Hs+c1974fOxut5n9dj7zEigSAaG0BoJAAEBlJJjtXvKQ/OPLv4kfuoZNh9uj0fhznzYz53pXc1z4SAKK1BYBCAkBkJFnot9uZPNeRecTcqox1voXrP8617T1Ty4oEAIUEAIUEgMhISF1/c5Zs41G/teQ12luwTmZwpvd6tNcyy/8KKxIAFBIAFBIAIiMh593bYc9K5CILfAZGy356Z67OIwEgWlsAKCQAREaSE/7uu6T3V9IPlQ2w2v6G2c/pyWJ55Agz2axIAFBIAFBIAIiMJM61huM+5zU5itlosR/IigSAaG0BoJAAEBkJEBlMZCdpv+/nqH0evc9ytyIBQCEBQCEBIDISILKTLDq776gzUbY+nx55iRUJANHaAkAhAWBOl+vt/uWN3t5fXSmI889Zz/PTixUJANHaAkAhASD2kSQZ4/fj+stxVnnOf17O1tfe6sySHntH9vzO1pxhPtrravV+9Z7xZUUCQLS2AFBIAMjas7Zq+qpbZ8tAzWem1Wd1zyynpsfdqlfeqhefgbO0EfLXPbMNKxIAorUFgEICQGQkGahPDT0+MyWf1ZJcYet9GT8zS6OczIoEABQSABQSAGIfScY7AzkTzn3q8fvx0Z7/nud5zJ5ttOrdy2/qP6u9/3f1PrPdigSAaG0BoJAAQFpnJCv8vn60LGfr8/H793k/k60yMzlKpspizdoCIFpbAKCQAJAZMhLIjmePZ4FchDEziVaZcQ7KAmvOqrEiASBaWwAoJABERpIN/bWtvUK97Cw5WywV2UmP2USfH6fmcz7arK3VPqtb99aMcJ17PJ8euYgVCQDR2gJAIQFgfpfr7f7ljd7eXzNS39zMqJx6VtJZ57PNeAYPPD+9WJEAEK0tABQSAGIfSRK93cg5vPYDXkvNfoJW51uMMDOt9+ys0fbr9NgX1eN1WZEAEK0tABQSALJGRmL+VeyZIKuf3T3a86n57ox2nXtkWr1flxUJANHaAkAhASDrnUdSczZDj/tmxzOWa35TLwshZtANkzXOeN1G+x9iRQKAQgKAQgJAFsxI0mG+zVFzbGr+rvljxDy0U38vRjhLpmYGWu9MxYoEAIUEAIUEgCyekaRif0ZJv++oWT01s/5lJ2SxfRtykUyb49bkKFYkAERrCwCFBIDISNJgBk6rc6d7zA17lOtk4B4rcX6JvGT3a9gqN53lGlqRAKCQAKCQABAZCZDx8sVWjzNyXvLodZU8h5L77plh7Pl+WZEAEK0tABQSANZ2ud7uX97o7f01zhvPcGdN43x16O356cWKBIBobQGgkAAQ+0iS6O0CYEUCgEICgEICQJbJSOxvgBx6NkY670lqlX22Ooej99/dOoNr6wyxmjljNX/XigSAaG0BoJAAQJxHAjGbK/vnEz0yg9H+7ixnxe/5eq1IAFBIAFBIAIiMBMgY+ySy496O2fOJPff6jJZRtXqPrEgAiNYWAAoJAJGRAFluH0kOykVqZou1yjlKMoke16rVfVs9phUJANHaAkAhASAyEiBL73E5ar9ITVaRyTOzrde/x7WyIgEgWlsAKCQAREaSk/cf9WrJwDOdRphnVfM8e+yNOCoz2DNPGuFcdysSABQSABQSACZ1ud7uX97o18+PrDrLaGvPt6RXO1pe0qofzZjzr6DG89OLFQkA0doCQCEBIPaRxLygnLLPLvM4x3ngW3O4mv0cZzqPvWYPSs19z/ScrUgAiNYWAAoJAJGRkF3zD9nGmjPfts6P6jHDKgtkoo9u0ypD2vq+9H7OViQARGsLAIUEgMhIyJR7CICYt9Z5D4oVCQDR2gJAIQEgMpIs1K8smV+09ffdsMI5Pcz7nm7NS6xIAIjWFgAKCQCRkcS+Db1j4LRnIFmRAKCQAKCQABAZCZA5M78z9eXT4ayXVnvLtp4ZM8tztiIBIFpbACgkAJzL5Xq7uwoAWJEAoJAAoJAAoJAAgEICgEICgEICgEICAAoJAAoJAAoJAGf0H7PbmFRka6wyAAAAAElFTkSuQmCC" alt="OmniDeck Mono main page" width="536" height="280"></figure>
+<ul>
+  <li><b>Top bar:</b> flight mode; radio battery; <b>ARM</b> or <b>DIS</b> in a block; GPS fix and satellites (<code>3D14</code>).</li>
+  <li><b>Heading box</b> at the top, with the <b>home marker</b> <code>H</code> under it. The marker slides with the bearing to home and stops at the edge with a <code>&lt;</code> or <code>&gt;</code> arrow when home is too far off the nose.</li>
+  <li><b>Speed box</b> on the left: airspeed when a sensor is fitted, with a <b>GS</b> box under it; ground speed alone without one.</li>
+  <li><b>Altitude box</b> on the right edge of the horizon, and the <b>pitch ladder</b> with its numbers on the left.</li>
+  <li><b>Right column:</b> seven labelled rows, label on the left and value right-aligned.</li>
+</ul>
+<div class="tbl"><table>
+<tr><th>Row</th><th>Shows</th><th>Notes</th></tr>
+<tr><td><code>ALT</code></td><td>altitude above home</td><td><code>120m</code>; from 1000 m <code>1.00km</code> to <code>9.99km</code>, then <code>10.0km</code></td></tr>
+<tr><td><code>SPD</code></td><td>airspeed, or ground speed without a sensor</td><td>in the Setup speed unit</td></tr>
+<tr><td><code>H</code></td><td>distance to home; the arrow right after the H points home</td><td><code>999m</code>, <code>1.5k</code>, <code>25.0k</code></td></tr>
+<tr><td><code>BAT</code></td><td>flight battery voltage</td><td>the value inverts when low and blinks when critical (Setup voltage alarms)</td></tr>
+<tr><td><code>CUR</code></td><td>current</td><td><code>12.0A</code>; whole amps from 100 A</td></tr>
+<tr><td><code>EF</code></td><td>live efficiency, small font</td><td><code>2.9WH/km</code>; hidden below 2 m/s ground speed</td></tr>
+<tr><td><code>TIM</code></td><td>flight time, small font</td><td>on ArduPilot it counts only while ArduPilot reports it is flying</td></tr>
+</table></div>
+<p>The column is 54 pixels wide: nine characters, or eleven in the small font. When a label and its value don't fit side by side with a space, the label is left out and the value stays, as for altitude in km and the longer mAh efficiency units.</p>
+<h3 id="units">Units</h3>
+<div class="grid2"><figure><img class="mono-shot" src="data:image/png;base64,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" alt="Main page in feet and miles" width="536" height="280"><figcaption><b>Feet/Miles</b> with mph and mAh/mi. <code>298MAH/mi</code> is too long for the <code>EF</code> label beside it.</figcaption></figure><figure><img class="mono-shot" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAhgAAAEYCAIAAACRDhjaAAAJf0lEQVR42u3dO3IjNxQF0EuXdzA1yaSMWNyGM0cOlWgDWo82oEShI2dezyRTswenCsxSYwB0A41zYooim59XeJd4uFxv9wDAr/rNJQBAIQFAIQFAIQFAIQEAhQQAhQQAhQQAhQQAFBIAFBIAxvX7lhv9/PHdlYKJ/PPv38s+9z//+MsboKEvX79ZkQAQrS0AFBIAsnBGkka914+9y9L7edT3/Hg/W3qjW26/5bHpw5IFsoRHn4XS9/+W+yn93LXKgXp8F/X43ij9rtvzPq1IAIjWFgAKCQBZIyNJh5ygVbaRHXuFvR8P4/S+ezyGmsyv5r3XI5NodT+PbtP781WT9zz62x6Z7sh7jKxIAFBIAFBIAMiCGQnkpPsk0jlvk7FtvyZnulalz6vVvpkt19aKBIBobQGgkAAQGUka/x65VZ+6x2+9neUQvfiF84mj9oHNvvdolvfMnu9zKxIAFBIAFBIAYtZWZp61ddaeL8e+f0Z+n/TIOHvse8jAe49mzEt6PC8rEgCitQWAQgJAzNoCUnW+d+m5HZlwXlZkdUNmvc5sByBaWwAoJABERpLJfs++Zb6/2Uoc1deeMedYLS8pfTw1+8xavX9G+06zIgFAIQFAIQFgUpfr7f7pjX7++O5KQebMJ2LvDhW+fP1mRQJAtLYAUEgAyMIZydv7qysFWeOcEvjo+enFigSAaG0BoJAAELO2AHLmDGmEOVozZmlWJAAoJAAoJABERhK93ZjjBJN9dkoziUe3rznXZPbPlBUJAAoJAAoJAJGRkLrfm9ecXT/C/4VW57rL/OrzlS2f91Y5jRUJANHaAkAhASAyErb1fB/dpjT/eNTfLP2/cWYGpNdek1bZTM1ns/R7o/T+rUgAiNYWAAoJAJGRkMP2oJijBRnmfJSamV0zZpZWJAAoJAAoJABERkL6n9PQYzaROVqs8HmZ8YyQHnOxejwvKxIAFBIAFBIAIiMBSItsY8+sYstjSIfzVHrMy7IiASBaWwAoJABQ4nK93T+90dv7qyuVdr9hH+3M9pjHNfzsJjjK89OLFQkA0doCQCEBIPaRkL4zrI6anaVff773Uo/9DT3OIZeh7nNufO/XxYoEAIUEAIUEgMhI4nx1yND7Tlr11mc/Y3yW126Ws4KsSABQSABQSACIjASIvDCL5iW9M60eeUmrx2xFAkC0tgBQSACIjARI97yh1R4R+6Jy6Gy0o65zjyzHigQAhQQAhQSAyEiAHDfPrWZGFmO+Xhk4F7EiAUAhAUAhASAyEoA4jyRLz0CzIgFAIQFAIQEgMhIg+85rykF7RB49tpVzkT1no9XkHD3yEisSAKK1BYBCAsCcLtfb/dMbvb2/ulIQeyxYz/PTixUJANHaAkAhASD2kZA59hnov6+ZqchgnP1uRQJAtLYAUEgAIDKS6I0CsjErEgCitQWAQgIAkZFE/gGs9B2yZZ+Z80gAiNYWAAoJAJGREPkHpzq/nXX2l5R+52y5n9LvKCsSAKK1BYBCAkBkJNGzln/QRenMJdacu2VFAkC0tgBQSAAgMpIM0bMGGO17psd9WpEAoJAAoJAAEBkJEPs5SLMMY5bZfVYkACgkACgkAEzqcr3dP73R2/urKwVZY24SfPT89GJFAkC0tgBQSACIfSRJxviNvP5y7KvI+WcllV63VmeWPLqfmtdxz89saRY18vNq9XqVXgdntgMQrS0AFBIAIiNJg15haY/PnKKYKdTh/TZyftAj/3h0bWvup1UvPgPncCPkr3tmG1YkAERrCwCFBIDISDJQj5vYV1Hxfnt0m5qsrub/Mn7elkY5mRUJACgkACgkAMQ+kmzrOc54NsOeve8evx8f4fHXvO6t8omj9oIcNXPJ3LO2mUfv7y5ntgMQrS0AUEgAyGwZyQq/rx8tyyl9PGf6/XvN+2rG92qrzEyOkqmyWLO2AIjWFgAoJABkhowEMsk8JUjnjKHmXJzen5eas2qsSACI1hYACgkAkZGkoL9W2ivUB88p5oyV7mPoMV+o1Syymvf5aLO2Vnt/lu6tGeE693g8PXIRKxIAorUFgEICwPwu19v90xu9vb9mpNzCmckZ/pwVWdc+vWno7fnpxYoEgGhtAaCQABD7SJLo7Ub+MfT/Pev1b3UWfc3+m1Z7iUaenTXafp0ee6p6PC8rEgCitQWAQgJA1shI9L4zzJ4Yr0Wck5Fjzu4e7fHUfBZGu849Mq3ez8uKBIBobQGgkACQ9c4jqTmbocffZsczlmt+U7/lb+Uf2OO1z2y3Ga/baN8PViQAKCQAKCQAZMGMJB3m2xw1x6bm/7Z6zHIRcqIe/ZkymxHOkqmZgdb7u8WKBACFBACFBIAsnpGkYn/Gln7fUbN6amb9O7uFOIs+cpE5ctyaHMWKBIBobQGgkAAQGUkazMBpde50j7lhj3KdDNxjJc4vkZfsfg1b5aazXEMrEgAUEgAUEgAiIwEyXr7Y6n5GzksePa8tj2HL3+6ZYez5elmRABCtLQAUEgDWdrne7p/e6O39Nc7MyHBnTeN8dejt+enFigSAaG0BoJAAEPtIkujtAmBFAoBCAoBCAkDM2sox571DFjtfJJ33JLXKPludw9H7/5bO4CqdIVYzZ6zm/1qRABCtLQAUEgDIqBmJzAOy+2yuPfOJHpnBaP93lrPi93y+ViQAKCQAKCQAZPGMRP4BGWafRHbc2zF7PjH7917vPTFWJABEawsAhQSArJ2RyD8g9pEMto+hZrZYq++3LZlEj2vV6m9b3acVCQDR2gJAIQEgZm0BWXqPy1H7RWqyikyemZVe/x7XyooEgGhtAaCQABAZCZDDZjqNMM+q5nH22BtxVGawZ540wrnuViQAKCQAKCQATOpyvd0/vdHPH99dqdTN9pn9d+41514wZp4BWzw/vViRABCtLQAUEgBiH0n0sttnKq3OVOj9vOQfGf488NL3Us1+jjOdx16zB6Xmb/d8zL33IVmRABCtLQAUEgAiI4mzFjJLliPzyDJnTvSYYbXC5/rRbVplSKWvS819trp/KxIAorUFgEICQGQkZLgsROYB5q2l874ZKxIAorUFgEICQGQkZJr5SxCZHI1mrFmRABCtLQAUEgAiI4l+4qazH0pn4wAxx8+KBIBobQGAQgJAZCQ5074NWQgjvG/P1JdPh7NeWuWjpWfG9H7MzmwHIFpbACgkAPB/Ltfb3VUAwIoEAIUEAIUEAIUEABQSABQSABQSABQSAFBIAFBIAFBIADij/wAxQkjIatMIgAAAAABJRU5ErkJggg==" alt="Main page at 1230 m" width="536" height="280"><figcaption><b>Above 999 m</b> the altitude switches to km and the <code>ALT</code> label steps aside. The horizon box keeps whole metres.</figcaption></figure></div>
+<div class="tbl"><table>
+<tr><th>Alt/Dist setting</th><th>Altitude</th><th>Distance</th><th>Efficiency</th></tr>
+<tr><td>Metric</td><td><code>120m</code> · <code>1.23km</code></td><td><code>850m</code> · <code>1.5k</code></td><td><code>WH/km</code> · <code>MAH/km</code></td></tr>
+<tr><td>Feet/Miles</td><td><code>394ft</code></td><td><code>528ft</code> · <code>0.9mi</code></td><td><code>WH/mi</code> · <code>MAH/mi</code></td></tr>
+</table></div>
+<p>Speed has its own setting: <code>k</code> (km/h), <code>MS</code>, <code>KT</code> or <code>MPH</code>. The flight summary and the map use the same units as the main page.</p>
+</section>
+
+<section id="pages" data-nav="Other pages" data-group="The pages">
+<h2>Other pages</h2>
+<p><kbd>ENTER</kbd> steps through them in this order. Messages appear only with ArduPilot. Flight stats and Sensor check are hidden until you turn them on in Setup.</p>
+<div class="grid2"><figure><img class="mono-shot" src="data:image/png;base64,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" alt="Main page banked" width="536" height="280"><figcaption><b>Main</b>, banked.</figcaption></figure><figure><img class="mono-shot" src="data:image/png;base64,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" alt="Map page" width="536" height="280"><figcaption><b>Map.</b> North-up, zooms itself to keep home, the aircraft, its trail and the active waypoint on screen. Mode, waypoint and distance to home on top.</figcaption></figure><figure><img class="mono-shot" src="data:image/png;base64,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n732Zeo1Pi2f7S1/H/f6+9NrfFQkACBIABAkAMQ6ktSbf0+xfZbWvi9zuOdbF3XEz7PXoyIBAEECgCABIHok2Wr/q159BTLlOdgtP6va56faOqEK4zPi749z3VUkAAgSAAQJANEjSY3zqFv2R2pZB9DrPnEO+fTj3LJP2ojxWXLPozyvEX9/WsZHRQIAggQAQQLA7i73x/PLi97eX40UQObbL+56e1GRABBTWwAIEgAECQAIEgAECQCCBIDYayvnOsei115A9toCVCQAIEgAECQARI8k++0PM/oM55az4mc4wxlQkQCAIAFAkAAQPZJUPYd5y/7EiDPq1/6slr4OgIoEAEECgCABIHokmfUc45b9u1p6ORnQQ9IvAVQkAAgSAAQJANEjIeP7IgAqEgAQJAAIEgCiR5Jz9UVykPPY9WwAFQkAggQAQQIAOf2Z7Ut6Hkv+bRb0G9buo6VXAahIAECQACBIANjd5f54fnnR2/urkQLIHGvpPrreXlQkAMTUFgCCBABBAgCCBABBAoAgASBTrSMBABUJAIIEAEECgCABAEECgCABQJAAIEgAECQAIEgAECQAHNB/k6IxLvxNokcAAAAASUVORK5CYII=" alt="Messages page" width="536" height="280"><figcaption><b>Messages.</b> ArduPilot status texts, newest at the bottom, warnings marked <code>!</code>. The wheel scrolls back.</figcaption></figure><figure><img class="mono-shot" src="data:image/png;base64,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" alt="Flight stats page" width="536" height="280"><figcaption><b>Flight stats</b> (optional). The flight in progress, the same rows as the summary.</figcaption></figure><figure><img class="mono-shot" src="data:image/png;base64,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" alt="Link check page" width="536" height="280"><figcaption><b>Link check.</b> Link, flight controller, passthrough, LQ and RSSI, satellites and the Lua memory in use.</figcaption></figure><figure><img class="mono-shot" src="data:image/png;base64,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" alt="Sensor check page" width="536" height="280"><figcaption><b>Sensor check</b> (optional). Each radio sensor OmniDeck reads and its raw value (INAV over CRSF shown).</figcaption></figure></div>
+</section>
+
+<section id="summary" data-nav="Flight summary and log" data-group="The pages">
+<h2>Flight summary and log</h2>
+<figure><img class="mono-shot" src="data:image/png;base64,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" alt="Flight summary page" width="536" height="280"></figure>
+<p>The <b>flight summary</b> opens by itself at disarm when the aircraft was armed for at least 10 seconds: flight time, distance flown (the whole track), furthest from home, max altitude, max airspeed and ground speed, efficiency and the lowest voltage. <kbd>ENTER</kbd> goes back to the start page.</p>
+<p>With <b>FLIGHT LOG</b> on in Setup, the same flights are also written as text files to <code>SCRIPTS/OMNID/logs/</code>. Set the radio's clock, or the file names and dates will be wrong.</p>
+</section>
+
+<section id="voice" data-nav="Voice and alarms" data-group="Configure">
+<h2>Voice and alarms</h2>
+<p>The same call-outs as the colour builds, from the packs in <code>SCRIPTS/OMNID/audio/</code> (Aria and Guy are included): flight modes, arm and disarm, battery percent while armed (50, 40, 30, 25, 20, 15, 10 and 5 %), failsafes, GPS fix changes, telemetry lost and recovered, ready and not ready to arm, ArduPilot messages worth hearing such as "Takeoff complete", a beep for other messages, and the low and critical voltage per cell when set in Setup. "OmniDeck telemetry ready" plays when the radio starts or you select the model.</p>
+</section>
+
+<section id="settings" data-nav="Settings" data-group="Configure">
+<h2>Settings</h2>
+<p><b>SYS › Tools › OmniDeck Setup</b>, saved per model in <code>SCRIPTS/OMNID/&lt;model&gt;.cfg</code>. EdgeTX pauses telemetry scripts while a tool runs, so a change takes effect when you leave.</p>
+<div class="grid2"><figure><img class="mono-shot" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAhgAAAEYCAIAAACRDhjaAAAIpElEQVR42u3dvXHrRhQG0I+e14FGiVJGHLbhzJFDJWqA9agBJQodOXM9SjTqwRVwCLz9wQJ7TgxB4ArQN7uXuHs6X64BgN/1hyEAQJAAIEgAECQACBIAECQACBIABAkAggQABAkAggSAcf1actDP95eRApjQ0/OLGQkAsbQFgCABIBPXSO75979/Hh7z159/P/zZe8csOb7WeVp8rrU/u/Y8Pa+txTjXsnas7t0/JePc4jy1nouSewbMSAAQJAAIEgCiRpJeNYla684lStasW9QbStave9Y2tqqL1PpdJeep9bdufT+P8LfDjAQABAkAggSAHOA9knSsSSypl+xlnbdWDWar9XRr64AZCQCCBABBAkDUSKL20F6t/l0jv8PRus9Vrf5me7yXjvq5MCMBQJAAgCABIAerkbTom7RVz67RxuSotahavaSOWidQ/8CMBABBAoAgAYAc/j2S7KReMvI7LiV7pei7BWYkACBIABAkAOTANZIWPY6yk95EJfuf19rzY+3fqOffq2e9pGRMep7T84UZCQAIEgAECQDDOp0v14cH/Xx/GSmACT09v5iRABBLWwAIEgAECQAIEgAECQCCBIBM22urpN/UveNr9RQa4Twl+53omwQZss9ei2d/L//TzEgAiKUtAAQJAFEjycZ7gy85vmQ/jNbXA2T4ukjPZ3+P/9PMSACIpS0ABAkAUSNB/QPAjAQAQQKAIAEgaiRkm/42QP9ndo/Pfq3PZUYCgCABQJAAEDUS4l0TmPWZXVv/KOlhNdrnMiMBIJa2ABAkAGTuGsmStb8R1gQz2B4GQKavuxz1/4YZCQCCBABBAkAmfI+kZO3v3s+2+B50yd7IPb+XrdYCUS+p9D/NjASAWNoCQJAAwCOn8+X68KCf7y8jBTChp+cXMxIAYmkLAEECQCZ+j6T1fr8AjOnt9WZGAkAsbQEgSACIXltJynpS3Tt+ba+YkvO0rvf0/Cyt90opOY+6GtFTq/jZL3mOap3HjASAWNoCQJAAEDWSbLwfSTrWbNJgX/eS66l1nT3P03OcIQPvNTLDM2JGAoAgAUCQAJAJayT36iKj7Sfs/QYAMxIABAkAggQAUrFGkgb1lVq1jb303Vr7ffMjnQcyca8tMxIAECQACBIAcpgaScmaeIu+NC32+dBrK+of0ODZNyMBIJa2AECQACBIABAkAAgSABAkAOTYvbbWfod6yTsWo30vu2dvqxbv0HhfBPbVs2urZ9+MBIBY2gJAkACwT6fz5frwoI/PdyMFMKG315sZCQCxtAWAIAFAkACAIAFAkAAgSACIXlsp69+yVQ+ZFn261p5HDyvIkP2s1va+u/fsl5yn1vX3vB4zEgBiaQsAQQJA5qiR1FrXS8GeHEv2Jml9PbXqOuolkCnrKD2vx4wEgFjaAkCQAEBG2rN9ZiXf9QYyZF1k7TNeq15iRgKAIAFAkABAutVIWvSVOup5gExTFxn52lrXY8xIABAkAAgSADLheySz9cgC4h2vjv9Pel5DSR3FjASAWNoCQJAAEL22yO6/qw7oiWdGAoAgAUCQABA1ktT4rnHP9cRa19b6PNZYIeolB6qhmpEAIEgAECQA7NTpfLk+POjj891IAUzo7fVmRgJALG0BIEgAECQAIEgAECQACBIAYj+SLOtJtaQPVa09jTPAXsolY9JinGv1ENtqnMn0+/GUPGs97+0WfQh7Pvslz6kZCQCxtAWAIAEg8+1HUrK+mQb7BLT+vWvPWevaSvZCqDUOPceZTF8v6bnvUYt7u9az2fPZL/m8ZiQAxNIWAIIEgMz3HgkZfv9n2PuzUPKeB33qTGYkAMTSFgCCBIDotRV9gbKXNWh9sTjqczrCvT3bs2ZGAoAgAUCQAJAJayQt9sCIuki2/J6491rY43sMo92rs70rZkYCgCABQJAAEL22yNw1GCC7rZfYjwSAWNoCQJAAEDWSDNonJ42/M956j/eS6793niXXPMLYwgz/Q1rUS0qe/Z599sxIAIilLQAECQD7dDpfrg8P+vh8N1IAE3p7vZmRABBLWwAIEgAECQAIEgAECQCCBIBM22urZA/2tb1fep5n7WestV996/O0GOdae7/X+lz2oo99fQruga3updbX0/NzmZEAEEtbAAgSADLffiS11ppHPk/rdcaSfQXWft4RagNqG0Rdp1l9JQV1FDMSAGJpCwBBAkDUSMhmezhnsnXekvFZUjdSXyHqK7/1vJiRABBLWwAIEgCiRpId9JJqcZ5MsMZaMj6j1SHURahVS6j1XkWL6xn5fjYjAUCQACBIAIheW4c5T7yz0n1vGNjLM7LkPq9V22hR/2vxf8CMBABBAoAgASB6bZGx+1Zlo/c5jA8c+30pMxIABAkAggSA6LWVo7znce9zleyv3uJ76yX7Nu/lvRN1EWrtsdH6Xtpqn54R6iVmJAAIEgAECQA7dTpfrg8P+vh8N1IAE3p7vZmRABBLWwAIEgAECQAIEgAECQCCBIBM9R7Jz/eXkQKY0NPzixkJALG0BYAgASAT70diTwiA6LVlRgJALG0BIEgAyNR7tpfs+71kb+Eley/3rOvU+rxrr7P1z45WA9vq85bckyPcVy2eoyPdV5iRACBIABAkAJCKNZJUWgNdu+68do24hZLftXYtu+TzjjBWLca5xVi1roWMVkuY+b7CjAQAQQKAIAGAVKyR3Pte+VHXTGf7vIx5Xy15L8Q9iRkJAIIEAEECABn2PZKSPloZ7P0Gcoha1Fb3pPsKMxIABAkACBIAsrsaCZmmVjFCPyi23UMFzEgAECQACBIAokaSGvs/73FNvMV+12uPb732Pdra+lZ7YPS8J2s9RyW/S00FMxIABAkAggSACZ3Ol+vDgz4+340UwITeXm9mJADE0hYAggSATFwjAQAzEgAECQCCBABBAgCCBABBAoAgAUCQACBIAECQACBIANih/wE+FvTxETt/PgAAAABJRU5ErkJggg==" alt="OmniDeck Setup" width="536" height="280"><figcaption>SYS › Tools › OmniDeck Setup.</figcaption></figure><figure><img class="mono-shot" src="data:image/png;base64,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" alt="Editing a setting" width="536" height="280"><figcaption>Editing a value: the wheel changes it, ENTER keeps it.</figcaption></figure></div>
+<div class="tbl"><table>
+<tr><th>Setting</th><th>Choices</th><th>Default</th></tr>
+<tr><td><code>VOICE</code></td><td>a voice pack, or Off</td><td>first pack found</td></tr>
+<tr><td><code>MSG BEEP</code></td><td>All, Warnings, Off</td><td>All</td></tr>
+<tr><td><code>SPEED</code></td><td>km/h, m/s, knots, mph</td><td>km/h</td></tr>
+<tr><td><code>ALT/DIST</code></td><td>Metric, Feet/Miles</td><td>Metric</td></tr>
+<tr><td><code>EFFICIENCY</code></td><td>Wh/km, mAh/km, Wh/mi, mAh/mi</td><td>Wh/km</td></tr>
+<tr><td><code>SUMMARY</code></td><td>On disarm, Off</td><td>On disarm</td></tr>
+<tr><td><code>FLIGHT LOG</code></td><td>Off, On (text file in <code>OMNID/logs</code>)</td><td>Off</td></tr>
+<tr><td><code>CELLS</code></td><td>0 to 14; 0 = auto</td><td>0</td></tr>
+<tr><td><code>LOW V/CELL</code></td><td>0 to 4.50 V in 0.05 V steps; 0 = off</td><td>Off</td></tr>
+<tr><td><code>CRIT V/CELL</code></td><td>0 to 4.50 V in 0.05 V steps; 0 = off</td><td>Off</td></tr>
+<tr><td><code>BATT MAH</code></td><td>pack capacity for INAV and Betaflight, which don't send it; 0 = off</td><td>0</td></tr>
+<tr><td><code>START PAGE</code></td><td>Main, Map</td><td>Main</td></tr>
+<tr><td><code>STATS PAGE</code></td><td>Hide, Show</td><td>Hide</td></tr>
+<tr><td><code>SENSOR PAGE</code></td><td>Hide, Show</td><td>Hide</td></tr>
+<tr><td><code>LINK</code></td><td>Auto, CRSF, S.Port</td><td>Auto</td></tr>
+</table></div>
+</section>
+
+<section id="params" data-nav="ArduPilot parameters" data-group="Configure">
+<h2>ArduPilot parameters</h2>
+<p>OmniDeck Mono has no parameter editor of its own. To read and change ArduPilot parameters from the radio, install the <a href="https://github.com/erwinquilloy/ap-param-editor">AP Param Editor</a> and open it from <b>SYS › Tools › APParam</b>. It runs on black-and-white and colour EdgeTX radios and on Ethos.</p>
+<div class="tbl"><table>
+<tr><th>Link</th><th>AP Param Editor needs</th></tr>
+<tr><td>S.Port, F.Port</td><td>ArduPilot with FrSky passthrough telemetry</td></tr>
+<tr><td>ExpressLRS, TBS Crossfire</td><td>ArduPlane Stratos v2.2.1 or later on the flight controller</td></tr>
+<tr><td>mLRS</td><td><b>Tx Ser Port = cbridge</b> on the mLRS transmitter; any ArduPilot</td></tr>
+</table></div>
+<p>While it runs, EdgeTX pauses the OmniDeck screen. While armed the editor is view only: turn on <b>AIR EDITS</b> in its tab list to save any parameter while armed (a change takes effect at once, so use small steps). AIR EDITS is OFF again every time the editor opens.</p>
+</section>
+
+<section id="memory" data-nav="Memory" data-group="Help">
+<h2>Memory</h2>
+<p>A TX12 MK2 gives Lua scripts about <b>127 KB</b>. EdgeTX stops every Lua script with "Lua disabled!" once that is used up, and its count includes garbage not yet collected. OmniDeck Mono loads one page at a time, clears the garbage once it is 8 KB above the live data, and never lets the total pass 112 KB.</p>
+<div class="tbl"><table>
+<tr><th>Measured on a TX12 MK2</th><th>Lua memory</th></tr>
+<tr><td>Telemetry script, ArduPilot or INAV, flying pages</td><td>about 97 of 127 KB</td></tr>
+<tr><td>At disarm with the flight log on</td><td>101 of 127 KB</td></tr>
+<tr><td>Over mLRS, which sends bigger telemetry frames</td><td>107 of 127 KB</td></tr>
+</table></div>
+<p>The Link check page shows the live figure, garbage included.</p>
+</section>
+
+<section id="problems" data-nav="Problems" data-group="Help">
+<h2>Problems</h2>
+<div class="tbl"><table>
+<tr><th>You see</th><th>Do this</th></tr>
+<tr><td>"not enough memory" when the script starts</td><td>A <code>telem.lua</code> source file is on the card. Delete it and keep <code>telem.luac</code>.</td></tr>
+<tr><td>No telemetry on INAV or Betaflight</td><td>Discover the sensors again on the radio with the aircraft powered.</td></tr>
+<tr><td>Horizon stays level on INAV over S.Port or F.Port</td><td>Turn on <b>Use Pitch &amp; Roll sensors in telemetry</b> in INAV.</td></tr>
+<tr><td>Flight time 00:00 on ArduPilot on the bench</td><td>Expected; it counts only while ArduPilot reports it is flying.</td></tr>
+<tr><td>No flight summary</td><td>The aircraft has to be armed for at least 10 seconds, and SUMMARY must be On disarm.</td></tr>
+<tr><td>Setup changes don't show</td><td>Leave the tool with <kbd>RTN</kbd>; settings apply when the telemetry screen starts again.</td></tr>
+<tr><td>Log file dates are wrong</td><td>Set the radio's clock.</td></tr>
+<tr><td>mLRS Configurator stays on "parameters loading"</td><td>The model has a second module set to CRSF. Set the RF section that is not mLRS to OFF.</td></tr>
+<tr><td>ExpressLRS script stays on "External TX…"</td><td>The model's internal module is not set to CRSF. Set Internal RF to CRSF and External RF to OFF.</td></tr>
+</table></div>
+<p>Report anything else on the <a href="https://discord.gg/NrfaPSpEFp" target="_blank" rel="noopener">Arduplane Stratos Discord</a> with the radio and EdgeTX version, the flight controller and firmware, the link, and a photo of the Link check or Sensor check page.</p>
+</section>
+
+<section id="tests" data-nav="Test status" data-group="Help">
+<h2>Test status</h2>
+<div class="tbl"><table>
+<tr><th>Test</th><th>Result</th></tr>
+<tr><td>ArduPilot on TX12 MK2, EdgeTX 2.12: all pages, voice, summary</td><td class="ok">Bench pass</td></tr>
+<tr><td>INAV over ExpressLRS: arm and disarm cycles, flight log</td><td class="ok">Bench pass</td></tr>
+<tr><td>mLRS 1.4.04 on TX12 MK2: all pages, arming</td><td class="ok">Bench pass</td></tr>
+<tr><td>Freeze after leaving OmniDeck while armed, over mLRS</td><td>Seen once; memory margin raised, retest pending</td></tr>
+<tr><td>Flight test</td><td class="na">Not yet</td></tr>
+<tr><td>Pocket and Boxer</td><td class="na">Not yet</td></tr>
+</table></div>
+<h3 id="vs-colour">Compared with colour OmniDeck</h3>
+<ul>
+  <li>No map tiles. The map shows only the active waypoint, because ArduPilot's passthrough sends only that one. No mission files or INAV mission download.</li>
+  <li>No touch, speed tapes or side panel: the screen is 128 × 64.</li>
+  <li>No built-in parameter editor; use the AP Param Editor.</li>
+</ul>
+</section>
+
+<section id="credits" data-nav="Licence and support" data-group="Help">
+<h2>Licence and support</h2>
+<p>OmniDeck Mono is part of OmniDeck, written by Erwin Quilloy, and shares the colour builds' telemetry decoding and their <a href="omnideck.html#credits">credits</a>.</p>
+<p>Free software under the GNU General Public License v3.0. If it helps you fly, a coffee keeps it going: PayPal <a href="https://paypal.me/iamwinq/10USD">$10</a> · <a href="https://paypal.me/iamwinq">any amount</a>, or <a href="https://ko-fi.com/windfpv">Ko-fi</a>.</p>
+</section>
+
+<footer>OmniDeck Mono 0.1.0 · screens rendered with the OmniDeck Mono simulator; memory figures from a RadioMaster TX12 MK2 on EdgeTX 2.12 · <a href="https://github.com/erwinquilloy/OmniDeck/blob/main/docs/mono/README.md">github.com/erwinquilloy/OmniDeck</a></footer>
+</main>
+</div>
+
+</main>
+</div>
+
+<script>
+(function () {
+  // outline from the sections
+  var secs = Array.prototype.slice.call(document.querySelectorAll('section[data-nav]'));
+  var rail = document.getElementById('outline'), mob = document.getElementById('outline-m');
+  var lastGroup = null, n = 0, links = {};
+  secs.forEach(function (s) {
+    var g = s.getAttribute('data-group');
+    if (g !== lastGroup) { var gl = document.createElement('li'); gl.className = 'group'; gl.textContent = g; rail.appendChild(gl); lastGroup = g; }
+    n++;
+    var h = s.querySelector('h2');
+    if (h && !h.querySelector('.num')) { var sp = document.createElement('span'); sp.className = 'num'; sp.textContent = (n < 10 ? '0' : '') + n; h.insertBefore(sp, h.firstChild); }
+    var li = document.createElement('li'), a = document.createElement('a');
+    a.href = '#' + s.id; a.textContent = s.getAttribute('data-nav'); li.appendChild(a);
+    var subs = s.querySelectorAll('h3[id]');
+    if (subs.length) { var ol = document.createElement('ol'); subs.forEach(function (h3) { var l2 = document.createElement('li'), a2 = document.createElement('a'); a2.href = '#' + h3.id; a2.textContent = h3.textContent; l2.appendChild(a2); ol.appendChild(l2); }); li.appendChild(ol); }
+    rail.appendChild(li); links[s.id] = a;
+    var ml = document.createElement('li'), ma = document.createElement('a'); ma.href = '#' + s.id; ma.textContent = s.getAttribute('data-nav'); ml.appendChild(ma); mob.appendChild(ml);
+  });
+  mob.addEventListener('click', function (e) { if (e.target.tagName === 'A') e.currentTarget.parentNode.removeAttribute('open'); });
+  // scroll spy
+  function spy() {
+    var cur = secs[0];
+    secs.forEach(function (s) { if (s.getBoundingClientRect().top < 120) cur = s; });
+    Object.keys(links).forEach(function (k) { links[k].classList.toggle('on', k === cur.id); });
+  }
+  window.addEventListener('scroll', spy, { passive: true }); spy();
+  // install tabs
+  var tabs = document.querySelectorAll('.tabs [role=tab]');
+  tabs.forEach(function (t) {
+    t.addEventListener('click', function () {
+      tabs.forEach(function (o) { var on = o === t; o.setAttribute('aria-selected', on); document.getElementById(o.getAttribute('aria-controls')).hidden = !on; });
+    });
+  });
+})();
+</script>
+<style>.apt-support{box-sizing:border-box;max-width:1080px;margin:28px auto 36px;padding:12px 16px;border:1px dashed currentColor;border-radius:8px;font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;color:inherit;opacity:.78}.apt-support a{color:inherit;font-weight:600;text-decoration:underline}.apt-wrap{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}</style>
+<div class="apt-wrap"><p class="apt-support">☕ If this tool saved you time (or a plane), a tip helps keep it going: PayPal <a href="https://paypal.me/iamwinq/10USD" target="_blank" rel="noopener">$10</a> · <a href="https://paypal.me/iamwinq" target="_blank" rel="noopener">any amount</a> · <a href="https://ko-fi.com/windfpv" target="_blank" rel="noopener">Ko-fi</a> · <a href="./">more ArduPilot tools</a> · <a href="https://discord.gg/NrfaPSpEFp" target="_blank" rel="noopener">💬 Join the Stratos Discord</a> <img class="apt-hits" src="https://hits.sh/erwinquilloy.github.io/ardupilot-tools/omnideck.svg?label=visits&amp;style=flat-square&amp;color=6b7a86&amp;labelColor=3b4650" alt="page visits" height="18" loading="lazy" referrerpolicy="no-referrer-when-downgrade" onerror="this.remove()" style="vertical-align:middle;margin-left:6px"></p></div>
+<script data-goatcounter="https://windfpv.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

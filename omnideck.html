@@ -597,60 +597,15 @@ footer { margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--rule);
 
 <section id="mono" data-nav="OmniDeck Mono" data-group="Configure">
 <h2>OmniDeck Mono (black-and-white radios)</h2>
-<p>OmniDeck Mono is OmniDeck for EdgeTX radios with a 128 × 64 black-and-white screen. It decodes telemetry the same way as the colour builds, for ArduPilot, INAV and Betaflight on every link above, and fits it on six small pages. It runs as an EdgeTX <b>telemetry screen script</b>, not a widget.</p>
-<p><b>Status:</b> 0.1.0, beta. Bench-tested on a TX12 MK2 (EdgeTX 2.12) with ArduPilot and with INAV over ExpressLRS. Not yet flown, and not yet tried on the Pocket or Boxer.</p>
-<h3>Install</h3>
-<ol class="steps">
-  <li>Connect the radio by USB and pick <b>USB Storage (SD)</b>, or use a card reader.</li>
-  <li>Copy the <code>SCRIPTS</code> folder from <code>OmniDeck_Mono_0.1.0.zip</code> to the <b>root</b> of the card:
-<pre class="tree"><span class="h">SCRIPTS/TELEMETRY/</span>omnid.luac   <span class="c">the telemetry script (plus omnid.lua)</span>
-<span class="h">SCRIPTS/OMNID/</span>
-├── telem.luac  etx.luac  pmain.luac ...  <span class="c">compiled; see below</span>
-├── audio/              <span class="c">voice packs: Aria, Guy</span>
-├── tones/              <span class="c">message beeps</span>
-└── logs/               <span class="c">one text file per flight</span>
-<span class="h">SCRIPTS/TOOLS/</span>OmniDeck Setup.lua  <span class="c">the settings, per model</span></pre></li>
-  <li>On the model: <b>MODEL › DISPLAY</b>, pick a screen, set it to <b>Script</b> and choose <b>omnid</b>.</li>
-  <li>Open it from the main screen the way your radio opens telemetry screens (the <kbd>TELE</kbd> key, or a long press of <kbd>PAGE</kbd>).</li>
-</ol>
-<div class="note warn"><b>Keep the <code>.luac</code> files.</b> The telemetry code comes compiled because the radio runs out of memory compiling it itself ("not enough memory"). Don't add <code>telem.lua</code> to the card.</div>
-<div class="note"><b>Updating.</b> Copy the new <code>SCRIPTS</code> folder over the old one, replacing files.</div>
-<h3>Pages</h3>
-<p><kbd>ENTER</kbd> moves to the next page. The wheel (or <kbd>+</kbd>/<kbd>−</kbd>) scrolls the messages and sensor pages.</p>
-<div class="tbl"><table>
-<tr><th>Page</th><th>Shows</th></tr>
-<tr><td>Main</td><td>Horizon with pitch ladder; heading box with a home marker under it at the bearing to home; speed and altitude boxes, and a GS box under the airspeed when an airspeed sensor is fitted. On the right: altitude, speed, distance and arrow to home, voltage, current, live efficiency and flight time. The voltage inverts when low and blinks when critical.</td></tr>
-<tr><td>Map</td><td>North-up vector map that zooms itself: home, the aircraft, its trail, the active waypoint and a scale.</td></tr>
-<tr><td>Messages</td><td>ArduPilot status messages, newest at the bottom, warnings marked <code>!</code>. Only in the cycle with ArduPilot.</td></tr>
-<tr><td>Flight stats</td><td>The flight in progress. Hidden unless turned on in Setup.</td></tr>
-<tr><td>Link check</td><td>Link, flight controller, passthrough, LQ / RSSI, satellites and the Lua memory in use.</td></tr>
-<tr><td>Sensor check</td><td>Every radio sensor OmniDeck reads, with its name and raw value. Hidden unless turned on in Setup.</td></tr>
-</table></div>
-<p>The <b>flight summary</b> opens by itself at disarm, after at least 10 s armed: flight time, distance flown, max distance from home, max altitude, max AS/GS, efficiency and min voltage. <kbd>ENTER</kbd> goes back to the start page. A <b>flight log</b> is written to <code>SCRIPTS/OMNID/logs/</code> for the same flights, with the same contents as on the colour radios; set the radio's clock so the file names and dates are right.</p>
-<h3>Settings</h3>
-<p><b>SYS › Tools › OmniDeck Setup</b>, saved per model in <code>SCRIPTS/OMNID/&lt;model&gt;.cfg</code>. The wheel moves, <kbd>ENTER</kbd> edits (the wheel then changes the value), <kbd>ENTER</kbd> keeps, <kbd>RTN</kbd> leaves. EdgeTX stops telemetry scripts while a tool runs, so changes apply when you leave the tool.</p>
-<div class="tbl"><table>
-<tr><th>Setting</th><th>Choices</th></tr>
-<tr><td>Voice</td><td>a voice pack, or Off</td></tr>
-<tr><td>Msg beep</td><td>All · Warnings · Off</td></tr>
-<tr><td>Speed</td><td>km/h · m/s · knots · mph</td></tr>
-<tr><td>Alt/Dist</td><td>Metric · Feet/Miles</td></tr>
-<tr><td>Efficiency</td><td>Wh/km · mAh/km · Wh/mi · mAh/mi</td></tr>
-<tr><td>Summary</td><td>On disarm · Off</td></tr>
-<tr><td>Cells</td><td>0 = auto</td></tr>
-<tr><td>Low V/cell, Crit V/cell</td><td>voltage alarms, 0 = off</td></tr>
-<tr><td>Batt mAh</td><td>pack capacity for INAV and Betaflight, which don't send it</td></tr>
-<tr><td>Start page</td><td>Main · Map</td></tr>
-<tr><td>Stats page, Sensor page</td><td>Show · Hide (default Hide)</td></tr>
-<tr><td>Link</td><td>Auto · CRSF · S.Port</td></tr>
-</table></div>
-<h3>Voice</h3>
-<p>The same call-outs as the colour builds, from the voice packs in <code>SCRIPTS/OMNID/audio/</code>: flight modes, arm and disarm, battery percent, failsafes, GPS, telemetry lost and recovered, ready to arm, ArduPilot messages worth hearing, message beeps, and the low and critical voltage alarms. "OmniDeck telemetry ready" plays when the radio starts or the model is selected.</p>
+<p>OmniDeck Mono is OmniDeck for EdgeTX radios with a 128 × 64 black-and-white screen: the TX12 MK2, Pocket and Boxer. It decodes telemetry the same way as the colour builds, for ArduPilot, INAV and Betaflight over CRSF (ExpressLRS, TBS Crossfire, mLRS), S.Port and F.Port, and fits it on six small pages: main, map, messages, flight stats, link check and sensor check. It runs as an EdgeTX <b>telemetry screen script</b>, with its settings in <b>SYS › Tools › OmniDeck Setup</b>.</p>
+<p><b>Status:</b> 0.1.0, beta. Bench-tested on a TX12 MK2 (EdgeTX 2.12) with ArduPilot and INAV over ExpressLRS, and over mLRS 1.4.04. Not flown yet.</p>
+<div class="note"><b>Full guide.</b> Install, keys, every page, settings, memory and problems: <a href="omnideck-mono.html">OmniDeck Mono guide</a>.</div>
 <h3>Differences from the colour builds</h3>
 <ul>
   <li>No map tiles, and only the active waypoint on the map (ArduPilot's passthrough sends just that one); no mission files or INAV mission download.</li>
   <li>No touch, tapes or top-right panel: the screen is 128 × 64.</li>
-  <li>About 127 KB of Lua memory on a TX12 MK2; OmniDeck Mono uses about 97 KB, shown on the Link check page. Pages load one at a time.</li>
+  <li>No parameter editor built in; ArduPilot parameters go through the separate <a href="https://github.com/erwinquilloy/ap-param-editor">AP Param Editor</a>.</li>
+  <li>About 127 KB of Lua memory on a TX12 MK2; OmniDeck Mono uses about 97 to 107 KB, shown on the Link check page. Pages load one at a time.</li>
 </ul>
 </section>
 
