@@ -234,7 +234,7 @@ footer { margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--rule);
 </ul>
 <div class="tbl"><table>
 <tr><th>Row</th><th>Shows</th><th>Notes</th></tr>
-<tr><td><code>ALT</code></td><td>altitude above home</td><td><code>120m</code>; from 1000 m <code>1.00km</code> to <code>9.99km</code>, then <code>10.0km</code></td></tr>
+<tr><td><code>ALT</code></td><td>altitude above home</td><td><code>120m</code>; from 1000 m <code>1.00km</code> to <code>9.99km</code>, then <code>10.0km</code>; blinks while under the LOW ALT alarm</td></tr>
 <tr><td><code>SPD</code></td><td>airspeed, or ground speed without a sensor</td><td>in the Setup speed unit</td></tr>
 <tr><td><code>H</code></td><td>distance to home; the arrow right after the H points home</td><td><code>999m</code>, <code>1.5k</code>, <code>25.0k</code></td></tr>
 <tr><td><code>BAT</code></td><td>flight battery voltage</td><td>the value inverts when low and blinks when critical (Setup voltage alarms)</td></tr>
@@ -280,7 +280,7 @@ footer { margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--rule);
 
 <section id="voice" data-nav="Voice and alarms" data-group="Configure">
 <h2>Voice and alarms</h2>
-<p>The same call-outs as the colour builds, from the packs in <code>SCRIPTS/OMNID/audio/</code> (Aria and Guy are included): flight modes, arm and disarm, battery percent while armed (50, 40, 30, 25, 20, 15, 10 and 5 %), failsafes, GPS fix changes, telemetry lost and recovered, ready and not ready to arm, ArduPilot messages worth hearing such as "Takeoff complete", a beep for other messages, and the low and critical voltage per cell when set in Setup. "OmniDeck telemetry ready" plays when the radio starts or you select the model.</p>
+<p>The same call-outs as the colour builds, from the packs in <code>SCRIPTS/OMNID/audio/</code> (Aria and Guy are included): flight modes, arm and disarm, battery percent while armed (50, 40, 30, 25, 20, 15, 10 and 5 %), failsafes, GPS fix changes, telemetry lost and recovered, ready and not ready to arm, ArduPilot messages worth hearing such as "Takeoff complete", a beep for other messages, the low and critical voltage per cell when set in Setup, and the low-altitude "Terrain, pull up" when LOW ALT is set: only while armed and once the aircraft has been above the setting, so the take-off and a landing approach from below don't count; again every 15 s while low, with the ALT value blinking on the main page. "OmniDeck telemetry ready" plays when the radio starts or you select the model.</p>
 </section>
 
 <section id="settings" data-nav="Settings" data-group="Configure">
@@ -299,6 +299,7 @@ footer { margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--rule);
 <tr><td><code>CELLS</code></td><td>0 to 14; 0 = auto</td><td>0</td></tr>
 <tr><td><code>LOW V/CELL</code></td><td>0 to 4.50 V in 0.05 V steps; 0 = off</td><td>Off</td></tr>
 <tr><td><code>CRIT V/CELL</code></td><td>0 to 4.50 V in 0.05 V steps; 0 = off</td><td>Off</td></tr>
+<tr><td><code>LOW ALT</code></td><td>low-altitude alarm, 0 to 3000 in steps of 10, in the ALT/DIST unit; 0 = off</td><td>Off</td></tr>
 <tr><td><code>BATT MAH</code></td><td>pack capacity for INAV and Betaflight, which don't send it; 0 = off</td><td>0</td></tr>
 <tr><td><code>START PAGE</code></td><td>Main, Map</td><td>Main</td></tr>
 <tr><td><code>MAP VIEW</code></td><td>Aircraft, Home: what the map keeps in the centre</td><td>Aircraft</td></tr>
@@ -322,14 +323,14 @@ footer { margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--rule);
 
 <section id="memory" data-nav="Memory" data-group="Help">
 <h2>Memory</h2>
-<p>A TX12 MK2 gives Lua scripts about <b>127 KB</b>. EdgeTX stops every Lua script with "Lua disabled!" once that is used up, and its count includes garbage not yet collected. OmniDeck Mono loads one page at a time, clears the garbage once it is 8 KB above the live data, and never lets the total pass 112 KB.</p>
+<p>A TX12 MK2 gives Lua scripts about <b>127 KB</b>. EdgeTX stops every Lua script with "Lua disabled!" once that is used up, and its count includes garbage not yet collected. OmniDeck Mono loads one page at a time, clears the garbage once it is 6 KB above the live data, and never lets the total pass 106 KB.</p>
 <div class="tbl"><table>
 <tr><th>Measured on a TX12 MK2</th><th>Lua memory</th></tr>
 <tr><td>Telemetry script, ArduPilot or INAV, flying pages</td><td>about 97 of 127 KB</td></tr>
 <tr><td>At disarm with the flight log on</td><td>101 of 127 KB</td></tr>
 <tr><td>Over mLRS, which sends bigger telemetry frames</td><td>107 of 127 KB</td></tr>
 </table></div>
-<p>The Link check page shows the live figure, garbage included.</p>
+<p>The Link check page shows LUA MEM as two figures: the live data, and PK, the highest it has reached, garbage included.</p>
 </section>
 
 <section id="problems" data-nav="Problems" data-group="Help">
