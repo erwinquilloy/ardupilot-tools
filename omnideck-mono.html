@@ -343,6 +343,7 @@ footer { margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--rule);
 <div class="tbl"><table>
 <tr><th>You see</th><th>Do this</th></tr>
 <tr><td>"not enough memory" when the script starts</td><td>A <code>telem.lua</code> source file is on the card. Delete it and keep <code>telem.luac</code>.</td></tr>
+<tr><td>"Syntax error" over the page (for example "bad argument #1 to 'getValue'"), while OmniDeck runs fine from the file browser</td><td>Another telemetry script on one of the model's DISPLAY screens is failing, such as EdgeTX's stock <code>gplusl.lua</code> on a model with no GPS sensor. EdgeTX runs every screen's script in the background and shows any script's error over the page you are on. Set that screen to None or remove the script. If OmniDeck itself can't start, it says so: <b>OmniDeck: not started</b>, with the reason and LUA MEM, and it tries again every 5 s.</td></tr>
 <tr><td>No telemetry on INAV or Betaflight</td><td>Discover the sensors again on the radio with the aircraft powered.</td></tr>
 <tr><td>Horizon stays level on INAV over S.Port or F.Port</td><td>Turn on <b>Use Pitch &amp; Roll sensors in telemetry</b> in INAV.</td></tr>
 <tr><td>Flight time 00:00 on ArduPilot on the bench</td><td>Expected; it counts only while ArduPilot reports it is flying.</td></tr>
