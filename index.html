@@ -40,9 +40,44 @@ footer{color:var(--muted);font-size:13px;display:grid;gap:6px}
   </header>
   <div class="tools">
     <a class="tool" href="readme.html">
-      <b>ArduPlane Stratos v2.2 README</b>
+      <b>ArduPlane Stratos v2.3.0 README</b>
       <span>Everything the fork adds over stock ArduPlane, with the parameters, how to enable each feature and what changed from upstream. Outline on the left, the README on the right, so you can jump straight to a feature.</span>
-      <i>Stratos v2.2 · ArduPlane 4.7.2 · full and light</i>
+      <i>Stratos v2.3.0 · ArduPlane 4.7.3 · full and light</i>
+    </a>
+    <a class="tool" href="https://erwinquilloy.github.io/firmware-tools/stratos/">
+      <b>Stratos Firmware Downloader</b>
+      <span>Pick your flight controller and download the Stratos firmware zip for it, straight from the GitHub releases. Full and light boards are in one list, with the release notes and install steps beside the button.</span>
+      <i>Every Stratos release · full and light</i>
+    </a>
+    <a class="tool" href="log-analyzer.html">
+      <b>Log Analyzer</b>
+      <span>Open a .bin log to see the aircraft, firmware and date, a list of problems found in the log, the flight path on a map, controller demand versus actual, tuning parameters and efficiency. Enter your battery, weight, motors and props to estimate flight time and motor headroom.</span>
+      <i>Any ArduPilot plane, QuadPlane or copter log</i>
+    </a>
+    <a class="tool" href="bitmask-calculator.html">
+      <b>Bitmask Calculator</b>
+      <span>Tick the bits you want for any bitmask parameter, such as FLIGHT_OPTIONS, Q_OPTIONS or ARMING_SKIPCHK, and get the value to enter. Reads the fork's own parameter definitions, so the fork-only bits are listed too.</span>
+      <i>Stratos v2.3.0 · v2.2.1, v2.1, v2.0 and v1.1 definitions selectable</i>
+    </a>
+    <a class="tool" href="parameters.html">
+      <b>Full Parameter List</b>
+      <span>All 6,638 parameters in the v2.3.0 firmware with their descriptions, ranges, units and values, searchable by name or text. Includes the fork's own parameters.</span>
+      <i>Stratos v2.3.0 · ArduPlane 4.7.3 · full and light</i>
+    </a>
+    <a class="tool" href="https://github.com/erwinquilloy/Arduplane_TECS_tuning_helper_ETHOS_ETX">
+      <b>TECS Tuning Helper (Ethos / EdgeTX)</b>
+      <span>A Lua script for your radio that walks you through TECS tuning in flight, step by step, from live telemetry, then shows the finished values and saves them to a log on the radio. No laptop at the field. Needs passthrough telemetry over CRSF (Crossfire, ELRS) or FrSky SPort.</span>
+      <i>GitHub repo · FrSky Ethos and EdgeTX radios</i>
+    </a>
+    <a class="tool" href="omnideck.html">
+      <b>OmniDeck</b>
+      <span>A full-screen telemetry widget for your radio: horizon and tapes, a moving map with satellite tiles, status messages, voice call-outs and a flight summary, the same for ArduPilot, INAV and Betaflight. The guide covers the supported radios and links, install, setup, settings and map tiles.</span>
+      <i>FrSky Ethos and EdgeTX radios · ArduPilot, INAV, Betaflight</i>
+    </a>
+    <a class="tool" href="omnideck-mono.html">
+      <b>OmniDeck Mono</b>
+      <span>OmniDeck for black-and-white EdgeTX radios: horizon, map, messages, flight summary, flight log and voice call-outs on six small 128 × 64 pages, for ArduPilot, INAV and Betaflight.</span>
+      <i>RadioMaster TX12 MK2, GX12, Pocket, Boxer · 0.1.1 beta</i>
     </a>
     <a class="tool" href="qrtl-planner.html">
       <b>QRTL Planner</b>
@@ -59,40 +94,15 @@ footer{color:var(--muted);font-size:13px;display:grid;gap:6px}
       <span>Edit the PTCH_TRIM_SPD / PTCH_TRIM_OFS curve and see the trim it adds at each airspeed, including the fade near the stall. Load a .param file for your values, or a .bin log to fit the curve from level flight the same way the in-flight learn does.</span>
       <i>Stratos v2.1 · ArduPlane 4.7.2 · full and light · not supported in v2.0 or lower</i>
     </a>
-    <a class="tool" href="log-analyzer.html">
-      <b>Log Analyzer</b>
-      <span>Open a .bin log to see the aircraft, firmware and date, a list of problems found in the log, the flight path on a map, controller demand versus actual, tuning parameters and efficiency. Enter your battery, weight, motors and props to estimate flight time and motor headroom.</span>
-      <i>Any ArduPilot plane, QuadPlane or copter log</i>
-    </a>
-    <a class="tool" href="bitmask-calculator.html">
-      <b>Bitmask Calculator</b>
-      <span>Tick the bits you want for any bitmask parameter, such as FLIGHT_OPTIONS, Q_OPTIONS or ARMING_SKIPCHK, and get the value to enter. Reads the fork's own parameter definitions, so the fork-only bits are listed too.</span>
-      <i>Stratos v2.2 · v2.1, v2.0 and v1.1 definitions selectable</i>
-    </a>
-    <a class="tool" href="parameters.html">
-      <b>Full Parameter List</b>
-      <span>All 6,632 parameters in the v2.2 firmware with their descriptions, ranges, units and values, searchable by name or text. Includes the fork's own parameters.</span>
-      <i>Stratos v2.2 · ArduPlane 4.7.2 · full and light</i>
-    </a>
     <a class="tool" href="led-editor.html">
       <b>LED Segment Editor</b>
       <span>Split a NeoPixel strip into up to 8 segments, INAV style: nav lights, flight-mode colour, battery bar, strobe, failsafe flash. The preview follows the same rules as the firmware; copy or download the NTF_LS parameters when it looks right.</span>
       <i>Stratos v2.2 · every full board, SpeedyBeeF405WING-LED and MatekF405-TE-bdshot</i>
     </a>
-    <a class="tool" href="https://github.com/erwinquilloy/Arduplane_TECS_tuning_helper_ETHOS_ETX">
-      <b>TECS Tuning Helper (Ethos / EdgeTX)</b>
-      <span>A Lua script for your radio that walks you through TECS tuning in flight, step by step, from live telemetry, then shows the finished values and saves them to a log on the radio. No laptop at the field. Needs passthrough telemetry over CRSF (Crossfire, ELRS) or FrSky SPort.</span>
-      <i>GitHub repo · FrSky Ethos and EdgeTX radios</i>
-    </a>
-    <a class="tool" href="omnideck.html">
-      <b>OmniDeck</b>
-      <span>A full-screen telemetry widget for your radio: horizon and tapes, a moving map with satellite tiles, status messages, voice call-outs and a flight summary, the same for ArduPilot, INAV and Betaflight. The guide covers the supported radios and links, install, setup, settings and map tiles.</span>
-      <i>FrSky Ethos and EdgeTX radios · ArduPilot, INAV, Betaflight</i>
-    </a>
-    <a class="tool" href="omnideck-mono.html">
-      <b>OmniDeck Mono</b>
-      <span>OmniDeck for black-and-white EdgeTX radios: horizon, map, messages, flight summary, flight log and voice call-outs on six small 128 × 64 pages, for ArduPilot, INAV and Betaflight.</span>
-      <i>RadioMaster TX12 MK2, GX12, Pocket, Boxer · 0.1.1 beta</i>
+    <a class="tool" href="https://erwinquilloy.github.io/firmware-tools/">
+      <b>INAV Disarm Hold Firmware</b>
+      <span>Unofficial INAV 9 builds with osd_msp_disarm_hold, so DJI and other digital goggles that record only while armed keep recording for the stats screen after you disarm. Pick your target and download the hex.</span>
+      <i>INAV 9.0.0, 9.0.1 and 9.1.0 · not an INAV project release</i>
     </a>
     <a class="tool" href="https://discord.gg/w7W2T8sgqn" target="_blank" rel="noopener">
       <b>Arduplane Stratos Discord</b>
