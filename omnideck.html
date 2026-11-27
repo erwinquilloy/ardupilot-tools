@@ -330,10 +330,16 @@ footer { margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--rule);
 ├── OmniDeck Setup.lua  <span class="c">the settings, per model</span>
 └── OmniDeck Check.lua  <span class="c">load test that shows any error</span></pre></li>
   <li>Eject the card and restart the radio.</li>
-  <li>Add a screen with a <b>one-zone layout</b> (no top bar, no sliders, no trims) and pick OmniDeck for the zone.</li>
-  <li>Long-press the widget and choose <b>Full screen</b> to change pages and zoom. EdgeTX passes touch and keys to a widget only in full screen. Long-press <kbd>RTN</kbd> to leave.</li>
+  <li>Add a screen with a <b>one-zone layout</b> (no top bar, no sliders, no trims) and pick OmniDeck for the zone, or an <b>App mode</b> layout with OmniDeck as its widget.</li>
+  <li>Bring OmniDeck to the front to change pages and zoom (below): EdgeTX passes touch and keys to a widget only then.</li>
   <li>Settings: <b>SYS › Tools › OmniDeck Setup</b>.</li>
 </ol>
+<p><b>Full screen or App mode:</b></p>
+<ul>
+  <li><b>One-zone (full screen) layout:</b> long-press the widget and choose <b>Full screen</b>. Then tap the screen or press the scroll wheel's centre button (<kbd>ENTER</kbd>) to change pages. Long-press <kbd>RTN</kbd> to leave full screen.</li>
+  <li><b>App mode layout</b> (TX16S MK3): press and hold the widget screen. The EdgeTX button in the corner goes away, and a screen tap or the scroll wheel's centre button changes pages. To get back to the EdgeTX menus, hold <kbd>RTN</kbd> until the EdgeTX button appears again.</li>
+  <li>Not in front, a one-zone screen still shows the full display (a small zone only the minimap), and a <a href="#pages">page switch</a> still turns the pages.</li>
+</ul>
 <div class="note"><b>Updating.</b> Delete the <code>.luac</code> files in <code>WIDGETS/OmniDeck/</code> first, then copy the new folders, so the radio compiles the new version. Your settings stay in <code>WIDGETS/OmniDeck/&lt;model name&gt;.cfg</code>; settings new in 1.0.0 start Off.</div>
 <div class="note warn"><b>Not in the widget list?</b> Run <b>SYS › Tools › OmniDeck Check</b>. It loads the widget the way EdgeTX does and shows the exact error.</div>
 </div>
